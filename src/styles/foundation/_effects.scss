@@ -1,0 +1,27 @@
+* {
+    transition: .2s all ease-out;
+}
+
+
+.highlight {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    &:before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 0%;
+        background-size: 100%;
+        z-index: -1;
+    }
+    &.red {
+    color: #fff;
+        &:before {
+            background-image: url(./styling-assets/redHighlight.svg);
+        }
+    }
+}

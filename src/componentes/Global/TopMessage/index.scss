@@ -1,0 +1,40 @@
+.top-message-container {
+  min-height: 32px;
+  padding: 9px 102px;
+  text-align: center;
+  color: var(--ct-dark-blue);
+  background-color: #f9dd87;
+
+  @media (max-width: 600px) {
+    padding: 0;
+  }
+
+  h1 {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .information {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+    h1 {
+      padding-left: 4px;
+    }
+  }
+
+  .close-btn {
+    cursor: pointer;
+  }
+}
+
+.top-message-container + header + main {
+  padding-top: 90px;
+}
