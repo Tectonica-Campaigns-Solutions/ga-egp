@@ -1,0 +1,122 @@
+.text-hubspot-form {
+  padding: 145px 0;
+  background-color:#FF70BD;
+  h2 {
+    font-family: 'Laca';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 100%;
+    color: var(--ct-white);
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 130%;
+    color: var(--ct-white);
+  }
+
+  ul,
+  ol {
+    list-style: disc;
+  }
+
+  .blue-arrows {
+    display: none;
+    margin-top: 75px;
+  }
+
+  &.pale-blue {
+    * {
+      color: var(--ct-dark-blue);
+    }
+
+    .blue-arrows {
+      display: block;
+    }
+  }
+
+  .form-content {
+    &.white-box {
+      padding: 50px 69px;
+      background-color: var(--ct-white);
+      border-radius: 5px;
+
+      h3 {
+        font-family: 'Laca';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 39px;
+        line-height: 120%;
+        color: var(--ct-dark-blue);
+        margin-bottom: 25px;
+      }
+
+      p {
+        font-family: 'Public Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 150%;
+        color: var(--ct-dark-blue);
+        margin-bottom: 36px;
+      }
+
+      #hubspotForm {
+        padding: 0 68px;
+      }
+
+      @media screen and (max-width: 768px) {
+        padding: 30px;
+
+        #hubspotForm {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  &.small {
+    position: relative;
+    padding: 0;
+
+    .hubspot-form {
+      z-index: 10;
+    }
+
+    h3 {
+      z-index: 10;
+      font-family: 'Laca';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 31px;
+      line-height: 120%;
+      color: var(--ct-white);
+
+      @media screen and (max-width: 767px) {
+        padding-top: 1.5rem;
+      }
+    }
+
+    .arrows {
+      z-index: 5;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &.one_column {
+    padding: 140px 0 91px 0;
+
+    h2,
+    p {
+      color: var(--ct-dark-blue);
+    }
+  }
+}

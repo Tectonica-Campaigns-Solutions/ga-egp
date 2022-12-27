@@ -1,0 +1,87 @@
+.component-narrative-block {
+  padding-top: 100px;
+  padding-bottom: 70px;
+
+  .logo {
+    margin-bottom: 35px;
+  }
+
+  ul {
+    list-style: disc;
+
+    li {
+      margin-bottom: 1rem;
+    }
+  }
+
+  h3 {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.05em;
+    color: var(--ct-dark-blue);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-family: 'Laca';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 49px;
+    line-height: 100%;
+    color: var(--ct-dark-blue);
+    margin-bottom: 25px;
+  }
+
+  .text-content {
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--ct-dark-blue);
+    margin-bottom: 35px;
+  }
+
+  .center-content {
+    text-align: center;
+
+    & > p {
+      max-width: 60%;
+      margin: auto;
+
+      @media screen and (max-width: 1199px) {
+        max-width: 80%;
+      }
+
+      @media screen and (max-width: 991px) {
+        max-width: 100%;
+      }
+    }
+
+    p {
+      color: var(--ct-dark-gray);
+    }
+
+    .ctas {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 767px) {
+      text-align: left;
+    }
+  }
+
+  .vertical-ctas {
+    .ctas {
+      flex-direction: column;
+    }
+  }
+
+  + .component-narrative-block {
+    padding-top: 0;
+  }
+}

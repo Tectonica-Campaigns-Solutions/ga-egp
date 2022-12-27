@@ -1,0 +1,23 @@
+.image-wrapper {
+  .caption {
+    max-width: 654px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    gap: 10px;
+    margin-top: 10px;
+
+    img {
+      padding-top: 0.2rem;
+    }
+
+    span {
+      font-family: 'Libre Franklin';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 19px;
+      color: var(--ct-gray);
+    }
+  }
+}
