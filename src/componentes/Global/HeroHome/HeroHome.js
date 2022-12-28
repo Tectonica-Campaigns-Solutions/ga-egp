@@ -30,7 +30,7 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
     <div className={`hero-home ${ textWhite ? 'text-white': ''}`}>
       <GatsbyImage image={images} />
       <div className="text container">
-        <h1>{ title }</h1> 
+        <h1 dangerouslySetInnerHTML={{ __html: title }} />
         {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
         {
           form && <div id={`hubspotForm-${form.id}`} />

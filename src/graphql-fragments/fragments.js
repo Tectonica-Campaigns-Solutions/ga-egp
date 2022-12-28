@@ -56,4 +56,20 @@ export const DatoCMS = graphql`
       }
     }
   }
+  fragment BlockHighlightedPositions on DatoCmsHighlightedPosition{
+    __typename
+    id
+    title
+    pretitle
+    description
+    positions{
+      ... on DatoCmsPosition{
+        title
+        imageCard{
+          url
+          gatsbyImageData
+        }
+      }
+    }
+  }
 `;

@@ -6,9 +6,7 @@ const Page = ({ data: { page } }) => {
 
   return (
     <Layout>
-      
       <h1>{page.title}</h1>
-
     </Layout>
   )
 }

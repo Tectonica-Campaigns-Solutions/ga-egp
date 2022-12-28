@@ -2,6 +2,7 @@ import React from 'react';
 import NarrativeBlock from './Blocks/NarrativeBlock/NarrativeBlock';
 import TextHubsportForm from './Blocks/TextHubspotForm/TextHubsportForm';
 import Logos from './Blocks/Logos/Logos';
+import HighlightedPositions from './Blocks/HighlightedPositions/HighlightedPositions';
 
 export default function Blocks({ blocks }) {
   return (
@@ -14,6 +15,8 @@ export default function Blocks({ blocks }) {
             return <TextHubsportForm block={block} key={block.id} />;
           case 'DatoCmsLogosBlock':
             return <Logos block={block} key={block.id} />;
+          case 'DatoCmsHighlightedPosition':
+            return <HighlightedPositions block={block} key={block.id}/>
           default:
             return '';
         }

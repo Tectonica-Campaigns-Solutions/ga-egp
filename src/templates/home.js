@@ -2,13 +2,14 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import Blocks from '../componentes/Blocks';
 import HeroHome from '../componentes/Global/HeroHome/HeroHome';
+import Layout from '../componentes/Layout';
  
 const Home = ({ data: { page } }) => {
   return (
-    <div>
+    <Layout>
       <HeroHome title={page.title} image={page.backgroundImage.gatsbyImageData} imageMobile={page.imageMobile.gatsbyImageData} description={page.description} form={page.form} textWhite={page.textWhite}/>
       <Blocks blocks={page.blocks} />
-    </div>
+    </Layout>
   )
 }
 
@@ -47,6 +48,9 @@ export const HomeQuery = graphql`
         }
         ...on DatoCmsTextHubspotForm{
           ... BlockTextHubspot
+        }
+        ... on DatoCmsHighlightedPosition{
+          ... BlockHighlightedPositions
         }
       }
     }
