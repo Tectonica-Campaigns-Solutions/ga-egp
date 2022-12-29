@@ -15,35 +15,34 @@
   }
 
   h3 {
-    font-family: 'Public Sans';
+    font-family: "Roboto";
     font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 150%;
-    letter-spacing: 0.05em;
-    color: var(--ct-dark-blue);
-    margin-bottom: 25px;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 130%;
+    letter-spacing: 0.02em;
+    color: var(--egp-gray);
+    margin-bottom: 1.563rem;
   }
 
   h2 {
-    font-family: 'Laca';
+    font-family: "Jaldi";
     font-style: normal;
-    font-weight: 600;
-    font-size: 49px;
+    font-weight: 800;
+    font-size: 3.813rem;
     line-height: 100%;
-    color: var(--ct-dark-blue);
-    margin-bottom: 25px;
+    color: var(--egp-darker-green);
+    margin-bottom: 1.563rem;
   }
 
   .text-content {
-    font-family: 'Public Sans';
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 150%;
-    color: var(--ct-dark-blue);
-    margin-bottom: 35px;
+    color: var(--egp-dark-gray);
+    margin-bottom: 1.563rem;
   }
 
   .center-content {

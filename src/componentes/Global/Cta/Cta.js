@@ -1,12 +1,6 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React from "react";
+import Button from "../Button/Button";
 
 export default function Cta({ url, label, isButton = false }) {
-  return (
-    <div>
-      <Link className={`btn ${isButton ? 'btn-primary' : ''}`} to={url}>
-        {label}
-      </Link>
-    </div>
-  );
+  return <Button isPrimary={isButton} url={url} label={label} />;
 }

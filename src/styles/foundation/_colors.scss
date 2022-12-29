@@ -1,51 +1,15 @@
 :root {
   // Bright colors
-  --ct-red: #ff3a45;
-  --ct-medium-red: #fcb7bb;
-  --ct-yellow: #ffaa2d;
-  --ct-medium-yellow: #fdcf87;
-  --ct-blue: #0066ff;
-  --ct-light-blue: #70d4fc;
-  --ct-dark-blue: #003366;
-
-  --ct-gray: #848383; // Remove? color used for image caption
-  --ct-dark-gray: #686987;
-
-  --ct-pearl: #eeeef1;
-  --ct-black: #000000;
-  --ct-alternative-black: #001325; // Color used on footer
-  --ct-white: #ffffff;
-
-  // Pale colors (For backgrounds)
-  --ct-pale-blue: #e4f5fd;
-  --ct-pale-yellow: #fbf5e0;
-  --ct-pale-red: #fbeef0;
-  --ct-pale-gray: #fbfbfd; // Background color for the most of the pages
-  --ct-pale-light-gray: #f8f9fb;
-
-  // Forms colors
-  --ct-form-floating-level: #a2a2b8;
-  --ct-form-red-value: #a0353b;
-  --ct-form-error: #ffe8e9;
+  --egp-yellow: #ffdc2e;
+  --egp-green: #57b45f;
+  --egp-dark-green: #36845b;
+  --egp-white: #ffffff;
+  --egp-gray: #838386;
+  --egp-light-gray: #ccccd0;
+  --egp-dark-gray: #4d4845;
+  --egp-dark: #333333;
+  --egp-pink: #ff70bd;
+  --egp-darker-green: #184b31;
 }
 
 // Global background colors
-.pale-blue {
-  background-color: var(--ct-pale-blue);
-}
-
-.pale-yellow {
-  background-color: var(--ct-pale-yellow);
-}
-
-.pale-red {
-  background-color: var(--ct-pale-red);
-}
-
-.pale-gray {
-  background-color: var(--ct-pale-gray);
-}
-
-.dark-blue {
-  background-color: var(--ct-dark-blue);
-}
