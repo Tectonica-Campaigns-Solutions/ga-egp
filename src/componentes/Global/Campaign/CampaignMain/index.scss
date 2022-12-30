@@ -1,0 +1,35 @@
+.campaign-main {
+  h2 {
+    font-family: "Colby";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3.063rem;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: var(--egp-dark-green);
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 150%;
+    color: var(--egp-dark-gray);
+    margin-bottom: 25px;
+  }
+
+  .img,
+  .image-wrapper {
+    margin-bottom: 31px;
+
+    img {
+      width: 100%;
+      max-height: 401px;
+      background: #c4c4c4;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  }
+}

@@ -43,4 +43,10 @@
       background-color: var(--egp-dark-green);
     }
   }
+
+  &.light {
+    color: var(--egp-green);
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+  }
 }

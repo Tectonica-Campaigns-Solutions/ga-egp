@@ -1,0 +1,20 @@
+.egp-section {
+  padding: 82px 0 71px 0;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 80px;
+
+    h2 {
+      font-family: "Jaldi";
+      font-style: normal;
+      font-weight: 800;
+      font-size: 1.938rem;
+      line-height: 110%;
+      text-transform: uppercase;
+      color: var(--egp-darker-green);
+    }
+  }
+}
