@@ -9,6 +9,7 @@ const Campaigns = ({}) => {
       title="Building Green Power"
       linkLabel="all engagement opportunities  →"
       bgColor="section-light-red"
+      extraClassNames="g-5"
     >
       <div className="col-md-6">
         <CampaignMain
