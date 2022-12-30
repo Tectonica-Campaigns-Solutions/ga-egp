@@ -4,7 +4,7 @@ import "./index.scss";
 const EventDate = ({ day, hour }) => {
   return (
     <div className="event-date">
-      <h3>{day}</h3>
+      <h4>{day}</h4>
       <span>{hour}</span>
     </div>
   );
