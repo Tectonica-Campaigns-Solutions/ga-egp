@@ -17,6 +17,21 @@
 
   .range {
     width: 100%;
+    width: 400px;
+    height: 5px;
+    outline: none;
+    overflow: hidden;
+    box-shadow: inset 0 0 100px rgba(86, 179, 94, 0.3);
+    -webkit-appearance: none;
+  }
+
+  .range::-webkit-slider-thumb {
+    cursor: pointer;
+    background-color: var(--egp-green);
+    width: 15px;
+    height: 15px;
+    box-shadow: -407px 0 0 400px var(--egp-green);
+    -webkit-appearance: none;
   }
 
   .buttons {
