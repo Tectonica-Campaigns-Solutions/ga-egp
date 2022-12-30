@@ -27,7 +27,7 @@ function HighlightedPositions({ block }) {
 
           {isArray(block.positions) && (
             <div className="col-lg-8">
-              <div className="row h-100">
+              <div className="row gx-5">
                 <EGPSlider>
                   {block.positions.map((item) => (
                     <CardPosition position={item} />
@@ -38,9 +38,11 @@ function HighlightedPositions({ block }) {
           )}
 
           {/* Blocks for testing */}
-          <Campaigns />
-          <UpcomingEvents />
-          <LatestUpdates />
+          <div className="mt-5 pt-5">
+            <Campaigns />
+            <UpcomingEvents />
+            <LatestUpdates />
+          </div>
         </div>
       </div>
     </div>

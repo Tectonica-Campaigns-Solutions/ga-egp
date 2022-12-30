@@ -1,0 +1,38 @@
+.egp-slider-action {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  margin: 2rem 0 2rem 0;
+
+  span {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--egp-dark-gray);
+  }
+
+  .range {
+    width: 100%;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 12px;
+
+    span {
+      cursor: pointer;
+      width: 35px;
+      height: 35px;
+      background: #f8f9fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100%;
+      color: var(--egp-dark-green);
+    }
+  }
+}
