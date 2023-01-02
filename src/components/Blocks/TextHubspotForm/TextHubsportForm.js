@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import flowerForm from "../../Icons/flower-form.svg";
+import sunflower from "../../Icons/Sunflower.svg";
 
 import "./index.scss";
 
@@ -27,7 +27,7 @@ function TextHubspotForm({ block }) {
 
   return (
     <div className="text-hubspot-form">
-      <img className="flowers" src={flowerForm} />
+      <img className="flowers" src={sunflower} />
 
       <div className="container">
         <h2>{block.title}</h2>

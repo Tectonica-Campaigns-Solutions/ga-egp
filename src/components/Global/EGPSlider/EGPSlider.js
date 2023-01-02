@@ -2,7 +2,13 @@ import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import EGPSliderAction from "./EGPSliderAction/EGPSliderAction";
 
-const EGPSlider = ({ children }) => {
+const EGPSlider = ({
+  children,
+  renderActions = true,
+  slidesToShow = 2,
+  slidesToScroll = 1,
+  autoplay = false,
+}) => {
   const sliderRef = useRef();
   const [slideIndex, setSlideIndex] = useState(0);
 
@@ -11,11 +17,13 @@ const EGPSlider = ({ children }) => {
   };
 
   const Settings = {
+    autoplay,
+    autoplaySpeed: 5000,
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 1,
+    slidesToShow,
+    slidesToScroll,
     beforeChange: (_, next) => setSlideIndex(next),
   };
 
@@ -25,13 +33,15 @@ const EGPSlider = ({ children }) => {
         {children}
       </Slider>
 
-      <EGPSliderAction
-        currentSlide={slideIndex}
-        totalSlides={children.length}
-        onChangeSlide={handleOnChangeSlide}
-        onPrevSlide={() => sliderRef.current?.slickPrev()}
-        onNextSlide={() => sliderRef.current?.slickNext()}
-      />
+      {renderActions && (
+        <EGPSliderAction
+          currentSlide={slideIndex}
+          totalSlides={children.length}
+          onChangeSlide={handleOnChangeSlide}
+          onPrevSlide={() => sliderRef.current?.slickPrev()}
+          onNextSlide={() => sliderRef.current?.slickNext()}
+        />
+      )}
     </div>
   );
 };

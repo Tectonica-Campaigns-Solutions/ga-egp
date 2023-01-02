@@ -3,7 +3,7 @@
   text-align: center;
 
   h2 {
-    font-family: 'Laca';
+    font-family: "Laca";
     font-style: normal;
     font-weight: 600;
     font-size: 39px;
@@ -13,7 +13,7 @@
   }
 
   .intro {
-    font-family: 'Public Sans';
+    font-family: "Public Sans";
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
@@ -31,6 +31,12 @@
 
   .logos-list {
     margin-bottom: 50px;
+
+    .slick-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     a {
       display: flex;

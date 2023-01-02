@@ -32,4 +32,16 @@
     color: var(--egp-darker-green);
     margin-bottom: 1.938rem;
   }
+
+  &.text-white {
+    .title,
+    .text-content {
+      // todo: remove
+      strong {
+        font-family: "Colby Black Italic";
+      }
+
+      color: var(--egp-white);
+    }
+  }
 }
