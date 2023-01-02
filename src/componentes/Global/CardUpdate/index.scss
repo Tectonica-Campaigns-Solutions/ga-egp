@@ -1,0 +1,72 @@
+.card-update {
+  .image-wrapper {
+    img {
+      width: 100%;
+      border-radius: 0px 0px 15px 15px;
+    }
+  }
+
+  .information {
+    border-radius: 15px 15px 0px 0px;
+    background: #f2f8f3;
+
+    padding: 20px 28px;
+
+    .title {
+      display: block;
+      font-family: "Jaldi";
+      font-style: normal;
+      font-weight: 800;
+      font-size: 1.938rem;
+      line-height: 110%;
+      color: var(--egp-dark-green);
+      margin-bottom: 1.25rem;
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 92px;
+
+      span {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 130%;
+        text-transform: uppercase;
+        color: var(--egp-dark-gray);
+      }
+    }
+
+    .tags {
+      margin-bottom: 0.938rem;
+    }
+  }
+
+  &.podcast {
+    .information {
+      background-color: #d3ffd7;
+
+      .podcast-tag {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 4px 10px;
+        gap: 20px;
+        background: var(--egp-darker-green);
+        border-radius: 5px;
+
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 0.938rem;
+        line-height: 130%;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #d3ffd7;
+      }
+    }
+  }
+}

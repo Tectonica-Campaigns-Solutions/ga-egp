@@ -1,0 +1,57 @@
+.card-event {
+  padding: 50px 0;
+
+  .content {
+    display: flex;
+    gap: 18.5px;
+
+    .img,
+    .image-wrapper {
+      width: 228px;
+      height: 152px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+      }
+    }
+  }
+
+  .information {
+    width: 100%;
+
+    .meta {
+      display: flex;
+      gap: 13px;
+      margin-bottom: 11px;
+    }
+
+    h2 {
+      font-family: "Jaldi";
+      font-style: normal;
+      font-weight: 800;
+      font-size: 1.938rem;
+      line-height: 110%;
+      color: var(--egp-dark-green);
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+      color: var(--egp-dark-gray);
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid rgba(86, 179, 94, 0.2);
+  }
+
+  &:first-child {
+    padding-top: 0;
+  }
+}

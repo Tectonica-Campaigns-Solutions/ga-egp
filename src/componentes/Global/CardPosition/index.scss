@@ -1,0 +1,26 @@
+.card-position {
+  width: 450px;
+  height: 636px;
+  border-radius: 10px;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  align-items: flex-end;
+
+  .text-content {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    h3 {
+      font-family: "Colby";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 3.125rem;
+      line-height: 110%;
+      text-transform: uppercase;
+      color: var(--egp-white);
+      margin-bottom: 1.563rem;
+    }
+  }
+}

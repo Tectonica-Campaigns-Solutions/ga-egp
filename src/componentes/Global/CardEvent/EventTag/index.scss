@@ -1,0 +1,15 @@
+.event-tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 5px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 130%;
+  text-transform: uppercase;
+  color: var(--egp-darker-green);
+}

@@ -1,0 +1,31 @@
+.highlighted-positions {
+  padding: 130px 0;
+
+  h3 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 130%;
+    letter-spacing: 0.02em;
+    color: var(--egp-gray);
+  }
+
+  h2 {
+    font-family: "Jaldi";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 3.813rem;
+    line-height: 100%;
+    color: var(--egp-darker-green);
+  }
+
+  .description {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 150%;
+    color: var(--egp-dark-gray);
+  }
+}

@@ -1,0 +1,26 @@
+.campaign-card {
+  margin-bottom: 50px;
+  padding: 30px 48px 52px 312px;
+  border-radius: 15px;
+  background-color: #d9d9d9;
+
+  h3 {
+    font-family: "Colby";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.938rem;
+    line-height: 110%;
+    text-transform: uppercase;
+    color: var(--egp-dark-green);
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 150%;
+    color: var(--egp-dark-gray);
+  }
+}

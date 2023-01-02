@@ -1,18 +1,22 @@
 .text-hubspot-form {
-  padding: 145px 0;
-  background-color:#FF70BD;
+  position: relative;
+  overflow: hidden;
+  padding: 51px 0 31px 0;
+  background-color: var(--egp-pink);
+
   h2 {
-    font-family: 'Laca';
+    font-family: "Colby";
     font-style: normal;
     font-weight: 700;
-    font-size: 61px;
-    line-height: 100%;
-    color: var(--ct-white);
-    margin-bottom: 25px;
+    font-size: 2.188rem;
+    line-height: 110%;
+    text-transform: uppercase;
+    color: var(--egp-white);
+    margin-bottom: 1.875rem;
   }
 
   p {
-    font-family: 'Public Sans';
+    font-family: "Public Sans";
     font-style: normal;
     font-weight: 500;
     font-size: 25px;
@@ -25,19 +29,11 @@
     list-style: disc;
   }
 
-  .blue-arrows {
-    display: none;
-    margin-top: 75px;
-  }
-
-  &.pale-blue {
-    * {
-      color: var(--ct-dark-blue);
-    }
-
-    .blue-arrows {
-      display: block;
-    }
+  .flowers {
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 
   .form-content {
@@ -47,7 +43,7 @@
       border-radius: 5px;
 
       h3 {
-        font-family: 'Laca';
+        font-family: "Laca";
         font-style: normal;
         font-weight: 600;
         font-size: 39px;
@@ -57,7 +53,7 @@
       }
 
       p {
-        font-family: 'Public Sans';
+        font-family: "Public Sans";
         font-style: normal;
         font-weight: 400;
         font-size: 20px;
@@ -90,7 +86,7 @@
 
     h3 {
       z-index: 10;
-      font-family: 'Laca';
+      font-family: "Laca";
       font-style: normal;
       font-weight: 600;
       font-size: 31px;
@@ -100,14 +96,6 @@
       @media screen and (max-width: 767px) {
         padding-top: 1.5rem;
       }
-    }
-
-    .arrows {
-      z-index: 5;
-      height: 100%;
-      position: absolute;
-      bottom: 0;
-      left: 0;
     }
   }
 
