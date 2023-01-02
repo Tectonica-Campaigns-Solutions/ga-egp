@@ -10,8 +10,6 @@ import Campaigns from "../Campaigns/Campaigns";
 import "./index.scss";
 
 function HighlightedPositions({ block }) {
-  console.log(block);
-
   return (
     <div className="highlighted-positions">
       <div className="container">
