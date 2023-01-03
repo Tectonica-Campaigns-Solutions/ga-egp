@@ -19,9 +19,9 @@ const EGPSlider = ({
   const Settings = {
     autoplay,
     autoplaySpeed: 5000,
+    speed: 1000,
     dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow,
     slidesToScroll,
     beforeChange: (_, next) => setSlideIndex(next),

@@ -56,6 +56,28 @@ export const DatoCMS = graphql`
       }
     }
   }
+  fragment BlockUpcomingEvents on DatoCmsUpcomingEvent{
+    __typename
+    id
+    title
+  }
+  fragment BlockCampaings on DatoCmsCampaing{
+    __typename
+    id
+    title
+    link{
+      url
+      ... on DatoCmsGlobalLink{
+        label
+      }
+    }
+    highlight{
+      ... on DatoCmsHighlight{
+        title
+        description
+      }
+    }
+  }
   fragment BlockHighlightedPositions on DatoCmsHighlightedPosition{
     __typename
     id
@@ -68,6 +90,37 @@ export const DatoCMS = graphql`
         imageCard{
           url
           gatsbyImageData
+        }
+      }
+    }
+  }
+  fragment Navigation on DatoCmsNavigation {
+    title
+    navigationItems {
+      id
+      label
+      isButton
+      icon {
+        url
+      }
+      mainLink {
+        id
+        url
+        label
+        content {
+          ... on DatoCmsPage {
+            slug
+          }
+        }
+      }
+      links {
+        id
+        url
+        label
+        content {
+          ... on DatoCmsPage {
+            slug
+          }
         }
       }
     }
