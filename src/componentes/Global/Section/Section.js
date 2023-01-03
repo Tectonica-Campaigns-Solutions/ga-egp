@@ -5,23 +5,25 @@ import "./index.scss";
 
 const Section = ({
   title,
-  linkLabel,
-  linkUrl,
+  link=null,
   bgColor,
   extraClassNames = "",
   children,
 }) => {
+  console.log(link)
   return (
     <section className={`egp-section ${bgColor}`}>
       <div className="container">
         <div className="title">
           <h2>{title}</h2>
-          <Button
-            label={linkLabel}
-            url={linkUrl}
-            isPrimary={false}
-            customVariant="light"
-          />
+          {
+            link && 
+              <Button
+                label={link.label}
+                isPrimary={false}
+                customVariant="light"
+              />
+          }
         </div>
 
         <div className={`row ${extraClassNames}`}>{children}</div>

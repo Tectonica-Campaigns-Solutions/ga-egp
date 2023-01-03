@@ -36,11 +36,10 @@ function HighlightedPositions({ block }) {
           )}
 
           {/* Blocks for testing */}
-          <div className="mt-5 pt-5">
+          {/* <div className="mt-5 pt-5">
             <Campaigns />
-            <UpcomingEvents />
             <LatestUpdates />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

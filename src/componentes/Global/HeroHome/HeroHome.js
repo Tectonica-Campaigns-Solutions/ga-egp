@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
-
 import "./index.scss";
 
 function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
@@ -38,8 +36,6 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
       <div
         className={`hero-home ${textWhite ? "text-white" : ""}`}
       >
-        {/* <GatsbyImage image={images} /> */}
-
         <div class="row">
           <div className="col-md-7 text container">
             <div className="title" dangerouslySetInnerHTML={{ __html: title }} />

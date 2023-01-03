@@ -52,6 +52,9 @@ export const HomeQuery = graphql`
         ... on DatoCmsHighlightedPosition{
           ... BlockHighlightedPositions
         }
+        ... on DatoCmsCampaing{
+          ... BlockCampaings
+        }
       }
     }
   }

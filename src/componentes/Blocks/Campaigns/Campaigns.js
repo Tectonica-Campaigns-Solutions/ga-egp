@@ -3,37 +3,44 @@ import CampaignCard from "../../Global/Campaign/CampaignCard/CampaignCard";
 import CampaignMain from "../../Global/Campaign/CampaignMain/CampaignMain";
 import Section from "../../Global/Section/Section";
 
-const Campaigns = ({}) => {
+const Campaigns = ({ block }) => {
   return (
     <Section
-      title="Building Green Power"
-      linkLabel="all engagement opportunities  →"
+      title={block.title}
+      link={block.link}
       bgColor="section-light-red"
       extraClassNames="g-5"
     >
-      <div className="col-md-6">
-        <CampaignMain
-          title="Welcome to the Local Councillors’ Networks"
-          description="The Local Councillor’s Network is the community of Green Local Councillors from all over Europe. A space where you can share your projects, experience and knowledge with others, and a place to find relevant events, network and skill sharing opportunities"
-          image={{
-            url: "https://www.datocms-assets.com/87481/1672133611-madhu-shesharam-kqzzcvyewvk-unsplash.jpg?auto=format",
-          }}
-        />
-      </div>
-
-      <div className="col-md-6">
-        <CampaignCard
-          title="Join Tilt! and fight for a Green Europe!"
-          description="Are you committed to a fairer and Greener Europe? Make sure you join the Tilt Community!"
-        />
-        <CampaignCard
-          title="Join Tilt! and fight for a Green Europe!"
-          description="Are you committed to a fairer and Greener Europe? Make sure you join the Tilt Community!"
-        />
-        <CampaignCard
-          title="Join Tilt! and fight for a Green Europe!"
-          description="Are you committed to a fairer and Greener Europe? Make sure you join the Tilt Community!"
-        />
+      {
+        block.highlight && block.highlight.map( (item, index) => {
+          if(index === 0){
+            return (
+            <div className="col-md-6">
+              <CampaignMain
+                title={item.title }
+                description={item.description}
+                image={{
+                  url: "https://www.datocms-assets.com/87481/1672133611-madhu-shesharam-kqzzcvyewvk-unsplash.jpg?auto=format",
+                }}
+              />
+            </div>
+            )
+          }
+        })
+      }
+       <div className="col-md-6">
+      {
+        block.highlight && block.highlight.map( (item, index) => {
+          if(index !== 0){
+            return (
+              <CampaignCard
+              title={item.title }
+              description={ item.description }
+            />
+            )
+          }
+        })
+      }
       </div>
     </Section>
   );
