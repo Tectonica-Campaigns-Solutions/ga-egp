@@ -3,13 +3,8 @@
 
 // Colby font
 @font-face {
-  font-family: "Colby Black";
-  src: url("/src/assets/fonts/Colby/Colby_Black.ttf") format("ttf");
-}
-
-@font-face {
-  font-family: "Colby Black Italic";
-  src: url("/src/assets/fonts/Colby/Colby_Black_Italic.ttf") format("ttf");
+  font-family: "Colby";
+  src: url("/fonts/Colby/Colby-StBlk.woff2") format("woff2");
 }
 
 * {

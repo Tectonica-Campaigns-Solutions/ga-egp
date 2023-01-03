@@ -5,6 +5,7 @@ import Logos from "./Blocks/Logos/Logos";
 import HighlightedPositions from "./Blocks/HighlightedPositions/HighlightedPositions";
 import UpcomingEvents from "./Blocks/UpcomingEvents/UpcomingEvents";
 import Campaigns from "./Blocks/Campaigns/Campaigns";
+import SocialFollow from "./Blocks/SocialFollow/SocialFollow";
 
 export default function Blocks({ blocks }) {
   return (
@@ -23,6 +24,8 @@ export default function Blocks({ blocks }) {
             return <UpcomingEvents />;
           case "DatoCmsCampaing":
             return <Campaigns block={block} key={block.id} />;
+          case "DatoCmsSocialFollow":
+            return <SocialFollow block={block} key={block.id} />;
           default:
             return "";
         }
