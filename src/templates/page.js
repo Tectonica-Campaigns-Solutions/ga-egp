@@ -1,15 +1,14 @@
-import React from 'react'
-import { graphql } from 'gatsby';
-import Layout from '../componentes/Layout';
+import React from "react";
+import { graphql } from "gatsby";
+import Layout from "../components/Layout";
 
 const Page = ({ data: { page } }) => {
-
   return (
     <Layout>
       <h1>{page.title}</h1>
     </Layout>
-  )
-}
+  );
+};
 
 export default Page;
 
@@ -20,6 +19,5 @@ export const PageQuery = graphql`
       title
       slug
     }
-    
   }
 `;

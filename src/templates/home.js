@@ -1,59 +1,66 @@
-import React from 'react'
-import { graphql } from 'gatsby';
-import Blocks from '../componentes/Blocks';
-import HeroHome from '../componentes/Global/HeroHome/HeroHome';
-import Layout from '../componentes/Layout';
- 
+import React from "react";
+import { graphql } from "gatsby";
+import Blocks from "../components/Blocks";
+import HeroHome from "../components/Global/HeroHome/HeroHome";
+import Layout from "../components/Layout";
+
 const Home = ({ data: { page } }) => {
   return (
     <Layout>
-      <HeroHome title={page.title} image={page.backgroundImage.gatsbyImageData} imageMobile={page.imageMobile.gatsbyImageData} description={page.description} form={page.form} textWhite={page.textWhite}/>
+      <HeroHome
+        title={page.title}
+        image={page.backgroundImage.gatsbyImageData}
+        imageMobile={page.imageMobile.gatsbyImageData}
+        description={page.description}
+        form={page.form}
+        textWhite={page.textWhite}
+      />
       <Blocks blocks={page.blocks} />
     </Layout>
-  )
-}
+  );
+};
 
 export default Home;
 
 export const HomeQuery = graphql`
-  query HomeById{
-    page: datoCmsHome{
+  query HomeById {
+    page: datoCmsHome {
       title
       description
       textWhite
-      backgroundImage{
+      backgroundImage {
         url
         gatsbyImageData
       }
-      imageMobile{
+      imageMobile {
         url
         gatsbyImageData
       }
-      form{
-        ... on DatoCmsHubspot{
+      form {
+        ... on DatoCmsHubspot {
           id
           formId
           region
-          portalId 
+          portalId
         }
       }
       description
-      blocks{
+      blocks {
         __typename
-        ... on DatoCmsNarrativeBlock{
-          ... BlockNarrativeBlock
+        ... on DatoCmsNarrativeBlock {
+          ...BlockNarrativeBlock
         }
-        ...on DatoCmsLogosBlock{
-          ... BlockLogos
+        ... on DatoCmsLogosBlock {
+          ...BlockLogos
         }
-        ...on DatoCmsTextHubspotForm{
-          ... BlockTextHubspot
+        ... on DatoCmsTextHubspotForm {
+          ...BlockTextHubspot
         }
-        ... on DatoCmsHighlightedPosition{
-          ... BlockHighlightedPositions
+        ... on DatoCmsHighlightedPosition {
+          ...BlockHighlightedPositions
         }
-        ... on DatoCmsCampaing{
-          ... BlockCampaings
+        ... on DatoCmsCampaing {
+          ...BlockCampaings
         }
       }
     }

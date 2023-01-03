@@ -1,16 +1,28 @@
-const path = require(`path`)
+const path = require(`path`);
+
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
-  reporter.info(`Your Gatsby site has been built!`)
-}
+  reporter.info(`Your Gatsby site has been built!`);
+};
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createSlice } = actions;
+
+  // slices api
+  createSlice({
+    id: `header`,
+    component: require.resolve(`./src/components/Header.js`),
+  });
+  createSlice({
+    id: `footer`,
+    component: require.resolve(`./src/components/Global/Footer/Footer.js`),
+  });
+
   return new Promise((resolve, reject) => {
     const templates = {
-      page: path.resolve('./src/templates/page.js'),
-      post: path.resolve('./src/templates/post.js'),
-      home: path.resolve('./src/templates/home.js'),
+      page: path.resolve("./src/templates/page.js"),
+      post: path.resolve("./src/templates/post.js"),
+      home: path.resolve("./src/templates/home.js"),
     };
     resolve(
       graphql(
@@ -26,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
             posts: allDatoCmsPost {
-              edges{
+              edges {
                 node {
                   title
                   slug
@@ -34,14 +46,13 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            home: datoCmsHome{
+            home: datoCmsHome {
               title
               id
             }
-            
           }
         `
-      ).then(result => {
+      ).then((result) => {
         if (result.errors) {
           console.log(result.errors);
           reject(result.errors);
@@ -50,13 +61,10 @@ exports.createPages = ({ graphql, actions }) => {
         // create the pages
         const pages = result.data.pages.edges;
 
-        
         // const globalSettings = result.data.globalSettings.nodes;
 
-        
-
-        pages.map(({node:page}) => {
-          console.log(page.slug)
+        pages.map(({ node: page }) => {
+          console.log(page.slug);
           createPage({
             path: page.slug,
             component: templates.page,
@@ -65,19 +73,16 @@ exports.createPages = ({ graphql, actions }) => {
               id: page.id,
             },
           });
-        })
+        });
 
-        
         createPage({
-          path: '/',
+          path: "/",
           component: templates.home,
           context: {
-            slug: '/',
+            slug: "/",
             id: result.data.home.id,
           },
         });
-        
-
       })
     );
   });
