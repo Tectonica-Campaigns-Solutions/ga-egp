@@ -8,9 +8,7 @@ const CampaignCard = ({ title, description, imageUrl }) => {
       style={{ backgroundImage: `url(${imageUrl})` }}
     >
       <h3>{title}</h3>
-      <div
-      dangerouslySetInnerHTML={{__html: description}}
-    />
+      <div dangerouslySetInnerHTML={{ __html: description }} />
     </div>
   );
 };

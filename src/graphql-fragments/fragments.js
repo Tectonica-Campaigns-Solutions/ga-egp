@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql } from "gatsby";
 
 export const DatoCMS = graphql`
   fragment BlockNarrativeBlock on DatoCmsNarrativeBlock {
@@ -28,7 +28,6 @@ export const DatoCMS = graphql`
       }
     }
   }
-
   fragment BlockTextHubspot on DatoCmsTextHubspotForm {
     __typename
     id
@@ -56,38 +55,38 @@ export const DatoCMS = graphql`
       }
     }
   }
-  fragment BlockUpcomingEvents on DatoCmsUpcomingEvent{
+  fragment BlockUpcomingEvents on DatoCmsUpcomingEvent {
     __typename
     id
     title
   }
-  fragment BlockCampaings on DatoCmsCampaing{
+  fragment BlockCampaings on DatoCmsCampaing {
     __typename
     id
     title
-    link{
+    link {
       url
-      ... on DatoCmsGlobalLink{
+      ... on DatoCmsGlobalLink {
         label
       }
     }
-    highlight{
-      ... on DatoCmsHighlight{
+    highlight {
+      ... on DatoCmsHighlight {
         title
         description
       }
     }
   }
-  fragment BlockHighlightedPositions on DatoCmsHighlightedPosition{
+  fragment BlockHighlightedPositions on DatoCmsHighlightedPosition {
     __typename
     id
     title
     pretitle
     description
-    positions{
-      ... on DatoCmsPosition{
+    positions {
+      ... on DatoCmsPosition {
         title
-        imageCard{
+        imageCard {
           url
           gatsbyImageData
         }

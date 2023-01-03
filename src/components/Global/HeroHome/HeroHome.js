@@ -33,12 +33,13 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
   return (
     <>
       <style scoped>{css}</style>
-      <div
-        className={`hero-home ${textWhite ? "text-white" : ""}`}
-      >
+      <div className={`hero-home ${textWhite ? "text-white" : ""}`}>
         <div class="row">
           <div className="col-md-7 text container">
-            <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+            <div
+              className="title"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
             {description && (
               <div
                 className="text-content"

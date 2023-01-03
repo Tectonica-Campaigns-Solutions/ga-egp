@@ -1,22 +1,22 @@
-export const pathToModel = (model, slug = '') => {
-  if (model === 'product') {
+export const pathToModel = (model, slug = "") => {
+  if (model === "product") {
     return `/product/${slug}`;
-  } else if (model === 'post') {
+  } else if (model === "post") {
     return `/post/${slug}`;
   } else {
-    return '';
+    return "";
   }
-}
+};
 
-export const isArray = array => {
+export const isArray = (array) => {
   return Array.isArray(array) && array.length > 0;
-}
+};
 
-export const getCtaUrl = cta => {
+export const getCtaUrl = (cta) => {
   const url = cta.link?.content ? cta.link?.content?.slug : cta.link?.url;
-  return '/' + url;
-}
+  return "/" + url;
+};
 
-export const getCtaTitle = cta => {
+export const getCtaTitle = (cta) => {
   return cta.title ? cta.title : cta.link?.content?.label;
-}
+};

@@ -11,36 +11,34 @@ const Campaigns = ({ block }) => {
       bgColor="section-light-red"
       extraClassNames="g-5"
     >
-      {
-        block.highlight && block.highlight.map( (item, index) => {
-          if(index === 0){
+      {block.highlight &&
+        block.highlight.map((item, index) => {
+          if (index === 0) {
             return (
-            <div className="col-md-6">
-              <CampaignMain
-                title={item.title }
-                description={item.description}
-                image={{
-                  url: "https://www.datocms-assets.com/87481/1672133611-madhu-shesharam-kqzzcvyewvk-unsplash.jpg?auto=format",
-                }}
-              />
-            </div>
-            )
+              <div className="col-md-6">
+                <CampaignMain
+                  title={item.title}
+                  description={item.description}
+                  image={{
+                    url: "https://www.datocms-assets.com/87481/1672133611-madhu-shesharam-kqzzcvyewvk-unsplash.jpg?auto=format",
+                  }}
+                />
+              </div>
+            );
           }
-        })
-      }
-       <div className="col-md-6">
-      {
-        block.highlight && block.highlight.map( (item, index) => {
-          if(index !== 0){
-            return (
-              <CampaignCard
-              title={item.title }
-              description={ item.description }
-            />
-            )
-          }
-        })
-      }
+        })}
+      <div className="col-md-6">
+        {block.highlight &&
+          block.highlight.map((item, index) => {
+            if (index !== 0) {
+              return (
+                <CampaignCard
+                  title={item.title}
+                  description={item.description}
+                />
+              );
+            }
+          })}
       </div>
     </Section>
   );

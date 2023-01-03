@@ -14,9 +14,7 @@ const CampaignMain = ({ title, description, image }) => {
       )}
 
       <h2>{title}</h2>
-      <div
-      dangerouslySetInnerHTML={{__html: description}}
-    />
+      <div dangerouslySetInnerHTML={{ __html: description }} />
 
       {/* Cta */}
       <div className="ctas">
