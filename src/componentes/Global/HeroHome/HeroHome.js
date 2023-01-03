@@ -4,6 +4,16 @@ import { GatsbyImage, withArtDirection } from "gatsby-plugin-image";
 import "./index.scss";
 
 function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
+  const css = `@media (max-width: 750px) {
+    .hero-home {
+        background-image: url("${imageMobile.images.fallback.src}")
+    }
+    }
+    @media (min-width: 750px) {
+        .hero-home {
+            background-image: url("${image.images.fallback.src}");
+        }
+    }`;
   useEffect(() => {
     const script = document.createElement("script");
     script.id = "hubspot-contact-form";
@@ -22,35 +32,30 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
     });
   }, [form]);
 
-  const images = withArtDirection(image, [
-    {
-      media: "(max-width: 992px)",
-      image: imageMobile,
-    },
-  ]);
-
   return (
-    <div
-      className={`hero-home ${textWhite ? "text-white" : ""}`}
-      style={{ backgroundImage: `url(${image.images.fallback.src})` }}
-    >
-      {/* <GatsbyImage image={images} /> */}
+    <>
+      <style scoped>{css}</style>
+      <div
+        className={`hero-home ${textWhite ? "text-white" : ""}`}
+      >
+        {/* <GatsbyImage image={images} /> */}
 
-      <div class="row">
-        <div className="col-md-7 text container">
-          <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
-          {description && (
-            <div
-              className="text-content"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-          )}
-          {form && <div id={`hubspotForm-${form.id}`} />}
+        <div class="row">
+          <div className="col-md-7 text container">
+            <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+            {description && (
+              <div
+                className="text-content"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            )}
+            {form && <div id={`hubspotForm-${form.id}`} />}
+          </div>
         </div>
-      </div>
 
-      <div className="col-md-5"></div>
-    </div>
+        <div className="col-md-5"></div>
+      </div>
+    </>
   );
 }
 
