@@ -2,12 +2,12 @@
   width: 100%;
   min-height: 100vh;
   padding-bottom: 90px;
-  margin-top: -100px;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+  padding-top: 50px;
 
   > .row {
     padding-top: 150px;
@@ -23,7 +23,12 @@
     color: var(--egp-darker-green);
     margin-bottom: 1.938rem;
 
+    span {
+      font-family: "Colby";
+    }
+
     strong {
+      font-family: "Colby";
       color: var(--egp-pink);
     }
   }
@@ -41,10 +46,6 @@
   &.text-white {
     .title,
     .text-content {
-      strong {
-        font-family: "Colby";
-      }
-
       color: var(--egp-white);
     }
   }

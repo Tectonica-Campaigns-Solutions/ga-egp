@@ -11,7 +11,8 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
         .hero-home {
             background-image: url("${image.images.fallback.src}");
         }
-    }`;
+  }`;
+
   useEffect(() => {
     const script = document.createElement("script");
     script.id = "hubspot-contact-form";
@@ -40,12 +41,14 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
               className="title"
               dangerouslySetInnerHTML={{ __html: title }}
             />
+
             {description && (
               <div
                 className="text-content"
                 dangerouslySetInnerHTML={{ __html: description }}
               />
             )}
+
             {form && <div id={`hubspotForm-${form.id}`} />}
           </div>
         </div>

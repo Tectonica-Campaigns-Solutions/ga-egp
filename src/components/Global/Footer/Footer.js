@@ -49,8 +49,8 @@ function Footer() {
       address: datoCmsGlobalSetting(codeId: { eq: "address_gs" }) {
         value
       }
-      formFooter: datoCmsFormFooter{
-        hubspot{
+      formFooter: datoCmsFormFooter {
+        hubspot {
           ... on DatoCmsHubspot {
             formId
             region
@@ -100,7 +100,7 @@ function Footer() {
             {isArray(menuFooter.navigationItems) && (
               <div className="row">
                 {menuFooter.navigationItems.map((navItem) => (
-                  <div className="col-lg-3">
+                  <div className="col-lg-3 mb-md-5 mb-0">
                     <FooterGroupLinks item={navItem} />
                   </div>
                 ))}
@@ -110,12 +110,9 @@ function Footer() {
 
           {/* Hubspot form */}
           <div className="col-lg-3 offset-lg-1">
-             {
-              formFooter && formFooter.hubspot && (
-                <TextHubspotForm block={formFooter}/>
-              )
-             }       
-                  
+            {formFooter && formFooter.hubspot && (
+              <TextHubspotForm block={formFooter} />
+            )}
           </div>
         </div>
 

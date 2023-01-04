@@ -1,41 +1,23 @@
-import React, { useEffect } from "react";
-import sunflower from "../../Icons/Sunflower.svg";
+import React from "react";
+import HubspotForm from "../HubspotForm/HubspotForm";
 
 import "./index.scss";
 
 function TextHubspotForm({ block }) {
   const { text, title } = block;
-  const { formId, region, portalId, backgroundImage } = block.hubspot;
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.id = "hubspot-contact-form";
-    script.src = "https://js.hsforms.net/forms/v2.js";
-    document.body.appendChild(script);
-
-    script.addEventListener("load", () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          region: region,
-          portalId: portalId,
-          formId: formId,
-          target: `#hubspotForm-${block.id}`,
-        });
-      }
-    });
-  }, [formId, region, portalId]);
+  const { formId, region, portalId } = block.hubspot;
 
   return (
     <div className="text-hubspot-form">
-      {
-        backgroundImage && backgroundImage.url && (
-          <img className="flowers" src={sunflower} />
-        )
-      }
-     
-
       <div className="container">
         <h2>{block.title}</h2>
-        <div id={`hubspotForm-${block.id}`} />
+
+        <HubspotForm
+          id={block.id}
+          formId={formId}
+          region={region}
+          portalId={portalId}
+        />
       </div>
     </div>
   );
