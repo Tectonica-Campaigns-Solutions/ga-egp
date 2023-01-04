@@ -15,7 +15,7 @@ const Campaigns = ({ block }) => {
         block.highlight.map((item, index) => {
           if (index === 0) {
             return (
-              <div className="col-md-6">
+              <div className="col-lg-6">
                 <CampaignMain
                   title={item.title}
                   description={item.description}
@@ -27,7 +27,8 @@ const Campaigns = ({ block }) => {
             );
           }
         })}
-      <div className="col-md-6">
+
+      <div className="col-lg-6">
         {block.highlight &&
           block.highlight.map((item, index) => {
             if (index !== 0) {

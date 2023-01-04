@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "../Link";
 import logo from "../../Icons/logo.svg";
+import searchIcon from "../../Icons/icons-search.svg";
+import userIcon from "../../Icons/icons-user.svg";
 
 import "./index.scss";
 
@@ -94,7 +96,7 @@ export default function Nav({ navData, path }) {
       } ${scrollPosition > 75 ? "sticky-nav" : ""}`}
     >
       <Link className="navbar-brand" to={"/"}>
-        <img src={logo} alt="logo civitech" />
+        <img src={logo} alt="EGP Logo" />
       </Link>
 
       <button
@@ -109,11 +111,13 @@ export default function Nav({ navData, path }) {
       >
         <span
           className={`${expanded ? "open-toggle " : ""} navbar-toggler-icon`}
-        ></span>
+        />
       </button>
 
       <div
-        className={` ${expanded ? "show" : ""} collapse navbar-collapse`}
+        className={` ${
+          expanded ? "show" : ""
+        } collapse navbar-collapse egp-nav`}
         id="navNav"
       >
         <ul className="navbar-nav mr-auto">
@@ -134,6 +138,16 @@ export default function Nav({ navData, path }) {
               />
             )
           )}
+
+          {/* Final icons */}
+          <div className="nav-actions">
+            <Link to="">
+              <img src={searchIcon} alt="" />
+            </Link>
+            <Link to="">
+              <img src={userIcon} alt="" />
+            </Link>
+          </div>
         </ul>
       </div>
     </nav>
