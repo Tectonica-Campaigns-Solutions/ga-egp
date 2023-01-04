@@ -124,4 +124,23 @@ export const DatoCMS = graphql`
       }
     }
   }
+  fragment BlockSocialFollow on DatoCmsSocialFollow {
+    __typename
+    id
+    title
+    links {
+      ... on DatoCmsNavigationItem {
+        label
+        mainLink {
+          ... on DatoCmsGlobalLink {
+            url
+            label
+          }
+        }
+        icon {
+          url
+        }
+      }
+    }
+  }
 `;
