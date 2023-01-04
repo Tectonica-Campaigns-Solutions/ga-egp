@@ -32,11 +32,16 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    
     hubspot {
       ... on DatoCmsHubspot {
         formId
         region
         portalId
+        backgroundImage{
+          url
+          gatsbyImageData
+        }
       }
     }
   }

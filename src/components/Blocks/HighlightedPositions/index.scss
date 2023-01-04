@@ -1,6 +1,6 @@
 .highlighted-positions {
   padding: 130px 0;
-
+  overflow-x: hidden;
   h3 {
     font-family: "Roboto";
     font-style: normal;
@@ -27,5 +27,32 @@
     font-size: 1.25rem;
     line-height: 150%;
     color: var(--egp-dark-gray);
+  }
+  
+  
+}
+
+@media screen and (min-width:1492px){
+  .highlighted-positions {
+    .col-text{
+      position:relative;
+      z-index:10;
+      background-color:#fff;
+      &:after{
+        position:absolute;
+        content:"";
+        width:500px;
+        height:100%;
+        background-color:#fff;
+        display:block;
+        left:-500px;
+        top:0;
+      }
+    }
+    .col-slide{
+      .slick-list{
+        overflow: visible;
+      }
+    }
   }
 }

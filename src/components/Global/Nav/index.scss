@@ -136,7 +136,8 @@
     #navNav ul li.nav-item {
       a.nav-link {
         color: var(--psa-navy);
-
+        font-size:25px;
+        text-transform: uppercase;
         &.btn {
           background-color: var(--psa-magenta);
           border-color: var(--psa-magenta);
@@ -163,12 +164,11 @@
         margin-right: 50px;
 
         a {
-          font-family: "Public Sans";
-          font-style: normal;
+          text-transform: uppercase;
           font-weight: 400;
-          font-size: 20px;
+          font-size: 25px;
           line-height: 150%;
-          color: var(--ct-dark-blue);
+          color: var(--egp-dark-green);
         }
 
         a.btn {

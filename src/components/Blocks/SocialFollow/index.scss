@@ -27,6 +27,12 @@
         padding-right: 25px;
         border-right: 1px solid rgba(255, 112, 188, 0.2);
       }
+      &:hover{
+       img{
+        transition:all .3s;
+        filter: grayscale(100%) sepia(100%) hue-rotate(90deg);
+       }
+      }
     }
   }
 }

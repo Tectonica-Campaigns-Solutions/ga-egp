@@ -64,7 +64,6 @@ exports.createPages = ({ graphql, actions }) => {
         // const globalSettings = result.data.globalSettings.nodes;
 
         pages.map(({ node: page }) => {
-          console.log(page.slug);
           createPage({
             path: page.slug,
             component: templates.page,

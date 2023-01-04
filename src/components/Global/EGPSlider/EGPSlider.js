@@ -8,6 +8,7 @@ const EGPSlider = ({
   slidesToShow = 2,
   slidesToScroll = 1,
   autoplay = false,
+  
 }) => {
   const sliderRef = useRef();
   const [slideIndex, setSlideIndex] = useState(0);
@@ -24,6 +25,7 @@ const EGPSlider = ({
     infinite: true,
     slidesToShow,
     slidesToScroll,
+    arrows: false,
     beforeChange: (_, next) => setSlideIndex(next),
   };
 

@@ -10,7 +10,6 @@ const Section = ({
   extraClassNames = "",
   children,
 }) => {
-  console.log(link);
   return (
     <section className={`egp-section ${bgColor}`}>
       <div className="container">

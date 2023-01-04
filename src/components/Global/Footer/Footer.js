@@ -3,8 +3,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import { Link } from "gatsby-link";
 import { isArray, getCtaUrl } from "../../../utils";
 import FooterGroupLinks from "./FooterGroupLinks";
-import logoCorner from "../../Icons/footer_logo_corner.svg";
-import sunflower from "../../Icons/footer_sunflower.svg";
+import TextHubspotForm from "../../Blocks/TextHubspotForm/TextHubsportForm";
 
 import "./index.scss";
 
@@ -19,6 +18,7 @@ function Footer() {
     phone,
     address,
     socialLinks,
+    formFooter,
   } = useStaticQuery(graphql`
     query footer {
       menuFooter: datoCmsNavigation(codeId: { eq: "menu_footer" }) {
@@ -49,6 +49,15 @@ function Footer() {
       address: datoCmsGlobalSetting(codeId: { eq: "address_gs" }) {
         value
       }
+      formFooter: datoCmsFormFooter{
+        hubspot{
+          ... on DatoCmsHubspot {
+            formId
+            region
+            portalId
+          }
+        }
+      }
       socialLinks: datoCmsSocialFollow {
         title
         links {
@@ -63,8 +72,6 @@ function Footer() {
       }
     }
   `);
-
-  console.log({ socialLinks });
 
   return (
     <footer className="footer">
@@ -102,7 +109,14 @@ function Footer() {
           </div>
 
           {/* Hubspot form */}
-          <div className="col-lg-3 offset-lg-1">Form here</div>
+          <div className="col-lg-3 offset-lg-1">
+             {
+              formFooter && formFooter.hubspot && (
+                <TextHubspotForm block={formFooter}/>
+              )
+             }       
+                  
+          </div>
         </div>
 
         {/* Second row */}
@@ -158,10 +172,6 @@ function Footer() {
           </div>
         )}
       </div>
-
-      {/* Assets styles */}
-      <img src={logoCorner} alt="Logo bottom corner" className="logo-corner" />
-      <img src={sunflower} alt="Sunflower bottom" className="sunflower" />
     </footer>
   );
 }

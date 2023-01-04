@@ -5,8 +5,7 @@ import "./index.scss";
 
 function TextHubspotForm({ block }) {
   const { text, title } = block;
-  const { formId, region, portalId } = block.hubspot;
-
+  const { formId, region, portalId, backgroundImage } = block.hubspot;
   useEffect(() => {
     const script = document.createElement("script");
     script.id = "hubspot-contact-form";
@@ -27,7 +26,12 @@ function TextHubspotForm({ block }) {
 
   return (
     <div className="text-hubspot-form">
-      <img className="flowers" src={sunflower} />
+      {
+        backgroundImage && backgroundImage.url && (
+          <img className="flowers" src={sunflower} />
+        )
+      }
+     
 
       <div className="container">
         <h2>{block.title}</h2>

@@ -1,8 +1,8 @@
 .footer {
   position: relative;
   padding: 67px 0 38px 0;
-  background-color: var(--egp-green);
-
+  
+  background: url('../../Icons/footer_logo_corner.svg') no-repeat right bottom, url('../../Icons/footer_sunflower.svg') no-repeat right center var(--egp-green);
   .partners {
     display: flex;
     align-items: center;
