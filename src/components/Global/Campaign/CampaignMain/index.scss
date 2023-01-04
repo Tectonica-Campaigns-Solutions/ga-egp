@@ -3,6 +3,11 @@
   padding-right: 50px;
   border-right: 1px solid rgba(255, 112, 189, 0.2);
 
+  @media screen and (max-width: 991px) {
+    padding: 0;
+    border: none;
+  }
+
   h2 {
     font-family: "Colby";
     font-style: normal;
