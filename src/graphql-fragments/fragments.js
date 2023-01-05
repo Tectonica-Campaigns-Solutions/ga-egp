@@ -94,6 +94,7 @@ export const DatoCMS = graphql`
     slug
     imageCard {
       url
+      alt
       gatsbyImageData
     }
     model {
