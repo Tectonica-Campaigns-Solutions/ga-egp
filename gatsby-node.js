@@ -23,6 +23,8 @@ exports.createPages = ({ graphql, actions }) => {
       page: path.resolve("./src/templates/page.js"),
       post: path.resolve("./src/templates/post.js"),
       home: path.resolve("./src/templates/home.js"),
+      listPositions: path.resolve("./src/templates/list-positions.js"),
+      position: path.resolve("./src/templates/position.js"),
     };
     resolve(
       graphql(
@@ -46,6 +48,20 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            positions:allDatoCmsPosition{
+              edges{
+                node{
+                  title
+                  id
+                  slug
+                }
+              }
+            }
+            listPositions: datoCmsListPosition{
+              title
+              id
+              slug
+            }
             home: datoCmsHome {
               title
               id
@@ -60,9 +76,10 @@ exports.createPages = ({ graphql, actions }) => {
 
         // create the pages
         const pages = result.data.pages.edges;
-
+        const positions = result.data.positions.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
+        // pages 
         pages.map(({ node: page }) => {
           createPage({
             path: page.slug,
@@ -74,6 +91,30 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
+        // positions 
+        positions.map(({ node: position }) => {
+          createPage({
+            path: `/positions/${position.slug}`,
+            component: templates.position,
+            context: {
+              slug: position.slug,
+              id: position.id,
+            },
+          });
+        });
+
+        // list positions
+        if(result.data.listPositions){
+          createPage({
+            path: result.data.listPositions.slug,
+            component: templates.listPositions,
+            context: {
+              slug: result.data.listPositions.slug,
+              id: result.data.listPositions.id,
+            },
+          });
+        }
+        //home
         createPage({
           path: "/",
           component: templates.home,
@@ -82,6 +123,7 @@ exports.createPages = ({ graphql, actions }) => {
             id: result.data.home.id,
           },
         });
+        
       })
     );
   });

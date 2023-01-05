@@ -85,14 +85,20 @@ export const DatoCMS = graphql`
     description
     positions {
       ... on DatoCmsPosition {
-        title
-        imageCard {
-          url
-          gatsbyImageData
-        }
+        ... CardPosition
       }
     }
   }
+
+  fragment CardPosition on DatoCmsPosition{
+    title
+    slug
+    imageCard{
+      url
+      gatsbyImageData
+    }
+  }
+
   fragment Navigation on DatoCmsNavigation {
     title
     navigationItems {
