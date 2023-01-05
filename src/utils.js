@@ -1,10 +1,10 @@
-export const pathToModel = (model, slug = "") => {
-  if (model === "product") {
-    return `/product/${slug}`;
-  } else if (model === "post") {
+export const pathToModel = (model, slug = '') => {
+  if (model === 'position') {
+    return `/positions/${slug}`;
+  } else if (model === 'post') {
     return `/post/${slug}`;
   } else {
-    return "";
+    return '';
   }
 };
 
@@ -14,7 +14,7 @@ export const isArray = (array) => {
 
 export const getCtaUrl = (cta) => {
   const url = cta.link?.content ? cta.link?.content?.slug : cta.link?.url;
-  return "/" + url;
+  return '/' + url;
 };
 
 export const getCtaTitle = (cta) => {

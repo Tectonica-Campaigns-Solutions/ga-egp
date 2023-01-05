@@ -20,11 +20,11 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const templates = {
-      page: path.resolve("./src/templates/page.js"),
-      post: path.resolve("./src/templates/post.js"),
-      home: path.resolve("./src/templates/home.js"),
-      listPositions: path.resolve("./src/templates/list-positions.js"),
-      position: path.resolve("./src/templates/position.js"),
+      page: path.resolve('./src/templates/page.js'),
+      post: path.resolve('./src/templates/post.js'),
+      home: path.resolve('./src/templates/home.js'),
+      listPositions: path.resolve('./src/templates/list-positions.js'),
+      position: path.resolve('./src/templates/position.js'),
     };
     resolve(
       graphql(
@@ -48,16 +48,16 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            positions:allDatoCmsPosition{
-              edges{
-                node{
+            positions: allDatoCmsPosition {
+              edges {
+                node {
                   title
                   id
                   slug
                 }
               }
             }
-            listPositions: datoCmsListPosition{
+            listPositions: datoCmsListPosition {
               title
               id
               slug
@@ -79,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
         const positions = result.data.positions.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
-        // pages 
+        // pages
         pages.map(({ node: page }) => {
           createPage({
             path: page.slug,
@@ -91,7 +91,7 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // positions 
+        // positions
         positions.map(({ node: position }) => {
           createPage({
             path: `/positions/${position.slug}`,
@@ -104,7 +104,7 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // list positions
-        if(result.data.listPositions){
+        if (result.data.listPositions) {
           createPage({
             path: result.data.listPositions.slug,
             component: templates.listPositions,
@@ -116,14 +116,13 @@ exports.createPages = ({ graphql, actions }) => {
         }
         //home
         createPage({
-          path: "/",
+          path: '/',
           component: templates.home,
           context: {
-            slug: "/",
+            slug: '/',
             id: result.data.home.id,
           },
         });
-        
       })
     );
   });

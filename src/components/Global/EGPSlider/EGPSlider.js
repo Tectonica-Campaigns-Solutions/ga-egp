@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import Slider from "react-slick";
-import EGPSliderAction from "./EGPSliderAction/EGPSliderAction";
+import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
+import EGPSliderAction from './EGPSliderAction/EGPSliderAction';
 
 const EGPSlider = ({
   children,

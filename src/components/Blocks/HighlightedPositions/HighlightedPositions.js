@@ -1,9 +1,9 @@
-import React from "react";
-import CardPosition from "../../Global/CardPosition/CardPosition";
-import { isArray } from "../../../utils";
-import EGPSlider from "../../Global/EGPSlider/EGPSlider";
+import React from 'react';
+import CardPosition from '../../Global/CardPosition/CardPosition';
+import { isArray } from '../../../utils';
+import EGPSlider from '../../Global/EGPSlider/EGPSlider';
 
-import "./index.scss";
+import './index.scss';
 
 function HighlightedPositions({ block }) {
   const { pretitle, title, description, positions } = block;
@@ -25,10 +25,7 @@ function HighlightedPositions({ block }) {
           <div className="col-xxl-4 col-text">
             <h3>{pretitle}</h3>
             <h2>{title}</h2>
-            <div
-              className="description"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
+            <div className="description" dangerouslySetInnerHTML={{ __html: description }} />
           </div>
 
           {isArray(positions) && (

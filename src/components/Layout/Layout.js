@@ -1,9 +1,9 @@
-import * as React from "react";
-import { Slice } from "gatsby";
-import PropTypes from "prop-types";
-import TopMessage from "./Global/TopMessage/TopMessage";
+import * as React from 'react';
+import { Slice } from 'gatsby';
+import PropTypes from 'prop-types';
+import TopMessage from '../Global/TopMessage/TopMessage';
 
-import "../styles/main.scss";
+import '../../styles/main.scss';
 
 const Layout = ({ location, children }) => {
   return (
