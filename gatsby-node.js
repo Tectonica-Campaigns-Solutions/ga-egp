@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
       position: path.resolve('./src/templates/position.js'),
+      resolution: path.resolve('./src/templates/resolution.js')
     };
     resolve(
       graphql(
@@ -57,6 +58,15 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            resolutions: allDatoCmsResolution {
+              edges {
+                node {
+                  title
+                  id
+                  slug
+                }
+              }
+            }
             listPositions: datoCmsListPosition {
               title
               id
@@ -77,6 +87,7 @@ exports.createPages = ({ graphql, actions }) => {
         // create the pages
         const pages = result.data.pages.edges;
         const positions = result.data.positions.edges;
+        const resolutions = result.data.resolutions.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
         // pages
@@ -99,6 +110,18 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: position.slug,
               id: position.id,
+            },
+          });
+        });
+
+        // resolutions
+        resolutions.map(({ node: resolution }) => {
+          createPage({
+            path: `/resolutions/${resolution.slug}`,
+            component: templates.resolution,
+            context: {
+              slug: resolution.slug,
+              id: resolution.id,
             },
           });
         });
