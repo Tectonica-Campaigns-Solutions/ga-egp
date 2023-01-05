@@ -1,8 +1,8 @@
-import React from "react";
-import { graphql } from "gatsby";
-import Blocks from "../components/Blocks";
-import HeroHome from "../components/Global/HeroHome/HeroHome";
-import Layout from "../components/Layout";
+import React from 'react';
+import { graphql } from 'gatsby';
+import Blocks from '../components/Blocks';
+import HeroHome from '../components/Global/HeroHome/HeroHome';
+import Layout from '../components/Layout/Layout';
 
 const Home = ({ data: { page } }) => {
   return (

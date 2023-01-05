@@ -1,4 +1,4 @@
-import { graphql } from "gatsby";
+import { graphql } from 'gatsby';
 
 export const DatoCMS = graphql`
   fragment BlockNarrativeBlock on DatoCmsNarrativeBlock {
@@ -85,20 +85,21 @@ export const DatoCMS = graphql`
     description
     positions {
       ... on DatoCmsPosition {
-        ... CardPosition
+        ...CardPosition
       }
     }
   }
-
-  fragment CardPosition on DatoCmsPosition{
+  fragment CardPosition on DatoCmsPosition {
     title
     slug
-    imageCard{
+    imageCard {
       url
       gatsbyImageData
     }
+    model {
+      apiKey
+    }
   }
-
   fragment Navigation on DatoCmsNavigation {
     title
     navigationItems {

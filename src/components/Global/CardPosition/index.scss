@@ -1,5 +1,4 @@
 .card-position {
-  width: 450px;
   height: 636px;
   border-radius: 10px;
   background-size: cover;
@@ -14,11 +13,10 @@
 
   .text-content {
     width: 100%;
-    padding: 0 0px 40px 46px;
-    margin-bottom: 20px;
+    padding: 0 25px 40px 46px;
 
     h3 {
-      font-family: "Colby";
+      font-family: 'Colby';
       font-style: normal;
       font-weight: 700;
       font-size: 3.125rem;
@@ -26,6 +24,22 @@
       text-transform: uppercase;
       color: var(--egp-white);
       margin-bottom: 1.563rem;
+    }
+  }
+
+  &.small {
+    height: 467px;
+
+    .text-content {
+      padding: 0 25px 50px 28px;
+
+      h3 {
+        font-family: 'Colby';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 110%;
+      }
     }
   }
 }
