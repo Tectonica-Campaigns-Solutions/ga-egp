@@ -158,4 +158,24 @@ export const DatoCMS = graphql`
       }
     }
   }
+  fragment BlockLatestBlog on DatoCmsLatestBlog {
+    __typename
+    title
+    linkLabel
+  }
+  fragment PostCard on DatoCmsPost {
+    id
+    title
+    slug
+    image {
+      alt
+      gatsbyImageData
+    }
+    model {
+      apiKey
+    }
+    meta {
+      publishedAt(formatString: "D MMM YYYY")
+    }
+  }
 `;

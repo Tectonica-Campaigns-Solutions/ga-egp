@@ -67,6 +67,9 @@ export const HomeQuery = graphql`
         ... on DatoCmsSocialFollow {
           ...BlockSocialFollow
         }
+        ... on DatoCmsLatestBlog {
+          ...BlockLatestBlog
+        }
       }
     }
   }

@@ -1,17 +1,30 @@
-import React from "react";
-import { Link } from "gatsby";
-import Tag from "../Tag/Tag";
-import ImageWrapper from "../Image/ImageWrapper";
-import podcastArrow from "../../Icons/podcast-arrow.svg";
+import React from 'react';
+import { Link } from 'gatsby';
+import Tag from '../Tag/Tag';
+import ImageWrapper from '../Image/ImageWrapper';
+import podcastArrow from '../../Icons/podcast-arrow.svg';
+import { isArray, pathToModel } from '../../../utils';
 
-import "./index.scss";
+import './index.scss';
 
-const CardUpdate = ({ date, title, image, isPodcast = false }) => {
+const CardUpdate = ({ post }) => {
+  const {
+    slug,
+    meta: { publishedAt },
+    model: { apiKey },
+    title,
+    tags,
+    image,
+    isPodcast = false,
+  } = post;
+
+  const postUrl = pathToModel(apiKey, slug);
+
   return (
-    <article className={`card-update ${isPodcast ? "podcast" : ""}`}>
+    <article className={`card-update ${isPodcast ? 'podcast' : ''}`}>
       <div className="information">
         <div className="meta">
-          <span>{date}</span>
+          <span>{publishedAt}</span>
 
           {isPodcast && (
             <span className="podcast-tag">
@@ -21,16 +34,20 @@ const CardUpdate = ({ date, title, image, isPodcast = false }) => {
           )}
         </div>
 
-        <div className="tags">
-          <Tag title="europe & democracy" />
-        </div>
+        {isArray(tags) && (
+          <div className="tags">
+            <Tag title="europe & democracy" />
+          </div>
+        )}
 
-        <Link to="/" className="title">
+        <Link to={postUrl} className="title">
           {title}
         </Link>
       </div>
 
-      <ImageWrapper image={image} />
+      <Link to={postUrl}>
+        <ImageWrapper image={image} />
+      </Link>
     </article>
   );
 };
