@@ -1,5 +1,5 @@
 .highlighted-positions {
-  padding: 130px 0;
+  padding: 8.125rem 0;
   overflow-x: hidden;
 
   h3 {
@@ -44,13 +44,14 @@
     .col-text {
       position: relative;
       z-index: 10;
-      background-color: #fff;
+      background-color: var(--egp-white);
+
       &:after {
         position: absolute;
         content: '';
         width: 500px;
         height: 100%;
-        background-color: #fff;
+        background-color: var(--egp-white);
         display: block;
         left: -500px;
         top: 0;

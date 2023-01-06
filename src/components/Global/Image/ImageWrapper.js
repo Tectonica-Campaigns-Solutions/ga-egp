@@ -1,8 +1,8 @@
-import React from "react";
-import CTSlider from "./CTSlider";
-import GlobalImage from "./GlobalImage";
+import React from 'react';
+import CTSlider from './CTSlider';
+import GlobalImage from './GlobalImage';
 
-import "./index.scss";
+import './index.scss';
 
 export default function ImageWrapper({ image, ...props }) {
   if (Array.isArray(image) && image.length > 1) {

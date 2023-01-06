@@ -1,24 +1,23 @@
-import React from "react";
-import HubspotForm from "../HubspotForm/HubspotForm";
+import React from 'react';
+import HubspotForm from '../HubspotForm/HubspotForm';
 
-import "./index.scss";
+import './index.scss';
 
 function TextHubspotForm({ block }) {
-  const { text, title } = block;
+  const { id, text, title, backgroundColor, backgroundImage } = block;
   const { formId, region, portalId } = block.hubspot;
 
   return (
-    <div className="text-hubspot-form">
+    <div className={`text-hubspot-form ${backgroundColor}`}>
       <div className="container">
-        <h2>{block.title}</h2>
+        {title && <h2>{title}</h2>}
 
-        <HubspotForm
-          id={block.id}
-          formId={formId}
-          region={region}
-          portalId={portalId}
-        />
+        <HubspotForm id={id} formId={formId} region={region} portalId={portalId} />
       </div>
+
+      {backgroundImage?.url && (
+        <img className="flowers" src={backgroundImage.url} alt={backgroundImage.alt || 'Sunflower image'} />
+      )}
     </div>
   );
 }

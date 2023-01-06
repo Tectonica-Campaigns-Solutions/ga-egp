@@ -30,10 +30,12 @@ export const HomeQuery = graphql`
       textWhite
       backgroundImage {
         url
+        alt
         gatsbyImageData
       }
       imageMobile {
         url
+        alt
         gatsbyImageData
       }
       form {

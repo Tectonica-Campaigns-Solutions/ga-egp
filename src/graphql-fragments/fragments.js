@@ -32,6 +32,11 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    backgroundColor
+    backgroundImage {
+      url
+      alt
+    }
     hubspot {
       ... on DatoCmsHubspot {
         formId
@@ -51,6 +56,7 @@ export const DatoCMS = graphql`
         icon {
           gatsbyImageData
           url
+          alt
         }
       }
     }
@@ -109,6 +115,7 @@ export const DatoCMS = graphql`
       isButton
       icon {
         url
+        alt
       }
       mainLink {
         id

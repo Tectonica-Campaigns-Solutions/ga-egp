@@ -1,9 +1,9 @@
-import React from "react";
-import { isArray } from "../../../utils";
-import CtaList from "../../Global/Cta/CtaList";
-import ImageWrapper from "../../Global/Image/ImageWrapper";
+import React from 'react';
+import { isArray } from '../../../utils';
+import CtaList from '../../Global/Cta/CtaList';
+import ImageWrapper from '../../Global/Image/ImageWrapper';
 
-import "./index.scss";
+import './index.scss';
 
 export default function NarrativeBlock({ block }) {
   const { pretitle, title, textContent, image, ctas } = block;
@@ -16,12 +16,7 @@ export default function NarrativeBlock({ block }) {
             <h3>{pretitle}</h3>
             <h2>{title}</h2>
 
-            {textContent && (
-              <div
-                className="text-content"
-                dangerouslySetInnerHTML={{ __html: textContent }}
-              />
-            )}
+            {textContent && <div className="text-content" dangerouslySetInnerHTML={{ __html: textContent }} />}
 
             {isArray(ctas) && (
               <div>
@@ -30,9 +25,7 @@ export default function NarrativeBlock({ block }) {
             )}
           </div>
 
-          <div className="col-lg-6">
-            {<ImageWrapper image={image} objectFit="contain" />}
-          </div>
+          <div className="col-lg-6">{<ImageWrapper image={image} objectFit="cover" />}</div>
         </div>
       </div>
     </div>
