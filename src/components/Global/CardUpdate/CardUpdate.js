@@ -8,6 +8,7 @@ import { isArray, pathToModel } from '../../../utils';
 import './index.scss';
 
 const CardUpdate = ({ post }) => {
+  // Force re-deploy
   const {
     slug,
     meta: { publishedAt },
