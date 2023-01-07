@@ -3,6 +3,7 @@ import { useStaticQuery } from "gatsby";
 import { graphql } from "gatsby";
 
 const InnerNavigation = ({ location }) => {
+
   const innerMenu = useStaticQuery(graphql`
     query {
       datoCmsNavigation(codeId: { eq: "inner_navigation" }) {

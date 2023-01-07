@@ -24,6 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
       post: path.resolve('./src/templates/post.js'),
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
+      listResolutions: path.resolve('./src/templates/list-resolutions.js'),
       position: path.resolve('./src/templates/position.js'),
       resolution: path.resolve('./src/templates/resolution.js'),
       post: path.resolve('./src/templates/post.js')
@@ -69,6 +70,11 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
             listPositions: datoCmsListPosition {
+              title
+              id
+              slug
+            }
+            listResolutions: datoCmsListResolution {
               title
               id
               slug
@@ -151,6 +157,19 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
+
+        // list resolutions
+        if (result.data.listResolutions) {
+          createPage({
+            path: result.data.listResolutions.slug,
+            component: templates.listResolutions,
+            context: {
+              slug: result.data.listResolutions.slug,
+              id: result.data.listResolutions.id,
+            },
+          });
+        }
+
         //home
         createPage({
           path: '/',

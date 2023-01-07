@@ -107,6 +107,14 @@ export const DatoCMS = graphql`
       apiKey
     }
   }
+  fragment CardResolution on DatoCmsResolution {
+    title
+    slug
+    council
+    model {
+      apiKey
+    }
+  }
   fragment Navigation on DatoCmsNavigation {
     title
     navigationItems {

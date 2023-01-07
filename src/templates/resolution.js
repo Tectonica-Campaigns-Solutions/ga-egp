@@ -2,24 +2,40 @@ import React from 'react'
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout'
 import StructuredTextDefault from '../components/StructuredTextDefault';
+import Link from '../components/Global/Link';
 
 const resolution = ({ data: { resolution }}) => {
   return (
     <Layout>
       <div className="container mt-5 pt-5">
+        <div className="row">
+          <div className="col-lg-10">
+            <h1>{resolution.title }</h1>
+            {
+              resolution.intro && <div dangerouslySetInnerHTML={{__html: resolution.intro}} />
+            }
+            {
+              resolution.text &&  <StructuredTextDefault  content={ resolution.text }/>
+            }
+            <hr />
+            {
+              resolution.footnotes.map(item => {
+                return (<div id={item.anchorId}>{ item.text }</div>)
+              })
+            }
+          </div>
+          <div className="col-lg-2">
+            {
+              resolution.documents.map(item => {
+                return (
+                  <Link to={item.url}>{ item.title ? item.title : item.filename }</Link>
+                )
+              })
+            }
+          </div>
+        </div>
         <div>{ resolution.title}</div>
-        {
-          resolution.intro && <div dangerouslySetInnerHTML={{__html: resolution.intro}} />
-        }
-        {
-          resolution.text &&  <StructuredTextDefault  content={ resolution.text }/>
-        }
-        <hr />
-        {
-          resolution.footnotes.map(item => {
-            return (<div id={item.anchorId}>{ item.text }</div>)
-          })
-        }
+       
       </div>
     </Layout>
   )
@@ -34,8 +50,13 @@ export const ResolutionQuery = graphql`
       title
       slug
       intro
+      date
       text {
         value
+      }
+      documents{
+        url
+        title
       }
       footnotes{
         anchorId
