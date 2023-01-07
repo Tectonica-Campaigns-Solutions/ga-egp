@@ -30,10 +30,12 @@ export const HomeQuery = graphql`
       textWhite
       backgroundImage {
         url
+        alt
         gatsbyImageData
       }
       imageMobile {
         url
+        alt
         gatsbyImageData
       }
       form {
@@ -64,6 +66,9 @@ export const HomeQuery = graphql`
         }
         ... on DatoCmsSocialFollow {
           ...BlockSocialFollow
+        }
+        ... on DatoCmsLatestBlog {
+          ...BlockLatestBlog
         }
       }
     }

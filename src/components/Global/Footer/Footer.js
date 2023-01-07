@@ -1,11 +1,11 @@
-import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import { Link } from "gatsby-link";
-import { isArray, getCtaUrl } from "../../../utils";
-import FooterGroupLinks from "./FooterGroupLinks";
-import TextHubspotForm from "../../Blocks/TextHubspotForm/TextHubsportForm";
+import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby-link';
+import { isArray, getCtaUrl } from '../../../utils';
+import FooterGroupLinks from './FooterGroupLinks';
+import TextHubspotForm from '../../Blocks/TextHubspotForm/TextHubsportForm';
 
-import "./index.scss";
+import './index.scss';
 
 function Footer() {
   const {
@@ -110,14 +110,12 @@ function Footer() {
 
           {/* Hubspot form */}
           <div className="col-lg-3 offset-lg-1">
-            {formFooter && formFooter.hubspot && (
-              <TextHubspotForm block={formFooter} />
-            )}
+            {formFooter && formFooter.hubspot && <TextHubspotForm block={formFooter} />}
           </div>
         </div>
 
         {/* Second row */}
-        <div className="row" style={{ marginTop: "78px" }}>
+        <div className="row" style={{ marginTop: '78px' }}>
           <div className="col-lg-8">
             {/* Copyright section */}
             <div className="row align-items-end">
@@ -148,7 +146,7 @@ function Footer() {
           {isArray(socialLinks.links) && (
             <div className="col-lg-3 offset-lg-1 social-links">
               {socialLinks.links.map((socialLink) => (
-                <Link to={getCtaUrl(socialLink.mainLink)}>
+                <Link key={socialLink.label} to={getCtaUrl(socialLink.mainLink)}>
                   <img src={socialLink.icon.url} alt={socialLink.label} />
                 </Link>
               ))}
@@ -158,11 +156,13 @@ function Footer() {
 
         {/* Third row - Legal menu */}
         {isArray(menuLegal.navigationItems) && (
-          <div className="row" style={{ marginTop: "60px" }}>
+          <div className="row" style={{ marginTop: '60px' }}>
             <div className="col-lg">
               <div className="bottom-links">
                 {menuLegal.navigationItems.map((navItem) => (
-                  <Link to={getCtaUrl(navItem.mainLink)}>{navItem.label}</Link>
+                  <Link key={navItem.label} to={getCtaUrl(navItem.mainLink)}>
+                    {navItem.label}
+                  </Link>
                 ))}
               </div>
             </div>

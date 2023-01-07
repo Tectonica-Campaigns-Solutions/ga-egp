@@ -1,19 +1,19 @@
 .footer {
   position: relative;
-  padding: 67px 0 38px 0;
+  padding: 4.188rem 0 2.375rem 0;
 
-  background: url("../../Icons/footer_logo_corner.svg") no-repeat right bottom,
-    url("../../Icons/footer_sunflower.svg") no-repeat right center
-      var(--egp-green);
+  background: url('../../Icons/footer_logo_corner.svg') no-repeat right bottom,
+    url('../../Icons/footer_sunflower.svg') no-repeat right center var(--egp-green);
+  background-size: auto, contain;
 
   .partners {
     display: flex;
     align-items: center;
     gap: 2.875rem;
-    margin-bottom: 78px;
+    margin-bottom: 4.875rem;
 
     h3 {
-      font-family: "Roboto";
+      font-family: 'Roboto';
       font-style: normal;
       font-weight: 700;
       font-size: 1.25rem;
@@ -30,7 +30,7 @@
 
   .group-links {
     h4 {
-      font-family: "Roboto";
+      font-family: 'Roboto';
       font-style: normal;
       font-weight: 600;
       font-size: 1rem;
@@ -38,7 +38,7 @@
       letter-spacing: 0.02em;
       color: var(--egp-white);
       padding-bottom: 0.625rem;
-      margin-bottom: 20px;
+      margin-bottom: 1.25rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -58,7 +58,7 @@
       }
 
       a {
-        font-family: "Roboto";
+        font-family: 'Roboto';
         font-style: normal;
         font-weight: 400;
         font-size: 1rem;
@@ -71,7 +71,7 @@
   .copyright,
   .support {
     .content {
-      font-family: "Roboto";
+      font-family: 'Roboto';
       font-style: normal;
       font-weight: 400;
       font-size: 1rem;
@@ -79,7 +79,7 @@
       color: var(--egp-white);
 
       .image {
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
       }
 
       p {
@@ -96,7 +96,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 0.625rem;
 
     img {
       width: 30px;
@@ -111,10 +111,10 @@
     gap: 1.938rem;
 
     a {
-      font-family: "Roboto";
+      font-family: 'Roboto';
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 130%;
       color: var(--egp-white);
     }
@@ -122,20 +122,5 @@
 
   a:hover {
     color: var(--egp-yellow) !important;
-  }
-
-  .logo-corner {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 10;
-  }
-
-  .sunflower {
-    height: 100%;
-    opacity: 0.2;
-    position: absolute;
-    bottom: 0;
-    right: 0;
   }
 }

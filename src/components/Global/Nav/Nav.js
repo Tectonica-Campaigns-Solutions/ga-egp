@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import Link from "../Link";
-import logo from "../../Icons/logo.svg";
-import searchIcon from "../../Icons/icons-search.svg";
-import userIcon from "../../Icons/icons-user.svg";
+import React, { useState, useEffect } from 'react';
+import Link from '../Link';
+import logo from '../../Icons/logo.svg';
+import searchIcon from '../../Icons/icons-search.svg';
+import userIcon from '../../Icons/icons-user.svg';
 
-import "./index.scss";
+import './index.scss';
 
 const LinkItem = ({ link, label, isButton }) => {
   return (
     <li className="nav-item">
-      <Link to={link} className={isButton ? "btn btn-primary" : ""}>
+      <Link to={link} className={isButton ? 'btn btn-primary' : ''}>
         {label}
       </Link>
     </li>
@@ -28,22 +28,12 @@ const DropdownItem = ({ link, label, children }) => {
   };
 
   return (
-    <li
-      className="dropdown nav-item"
-      onMouseEnter={mouseEnter}
-      onMouseLeave={mouseLeave}
-    >
-      <Link
-        to={link}
-        type="button"
-        aria-label="Expand"
-        aria-expanded="false"
-        data-bs-toggle="dropdown"
-      >
+    <li className="dropdown nav-item" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
+      <Link to={link} type="button" aria-label="Expand" aria-expanded="false" data-bs-toggle="dropdown">
         {label}
       </Link>
 
-      <ul className={`dropdown-menu ${dropdownOpen ? "open" : null}`}>
+      <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
         {children?.map((link) => (
           <li className="dropdown-item" key={link?.id}>
             <Link className="dropdown-link" to={link}>
@@ -66,7 +56,7 @@ export default function Nav({ navData, path }) {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       const position = window.pageYOffset;
       setScrollPosition(position);
     }
@@ -74,10 +64,10 @@ export default function Nav({ navData, path }) {
 
   // Use effect for sticky nav
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
       return () => {
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener('scroll', handleScroll);
       };
     }
   }, []);
@@ -87,15 +77,15 @@ export default function Nav({ navData, path }) {
     setExpanded(!expanded);
   };
 
-  const isHome = !path || path === "/";
+  const isHome = !path || path === '/';
 
   return (
     <nav
-      className={`navbar navbar-expand-lg ${isHome ? "home-nav" : ""} ${
-        expanded ? "expanded" : ""
-      } ${scrollPosition > 75 ? "sticky-nav" : ""}`}
+      className={`navbar navbar-expand-lg ${isHome ? 'home-nav' : ''} ${expanded ? 'expanded' : ''} ${
+        scrollPosition > 75 ? 'sticky-nav' : ''
+      }`}
     >
-      <Link className="navbar-brand" to={"/"}>
+      <Link className="navbar-brand" to={'/'}>
         <img src={logo} alt="EGP Logo" />
       </Link>
 
@@ -109,33 +99,16 @@ export default function Nav({ navData, path }) {
         aria-label="Toggle navigation"
         onClick={() => handleNavClick()}
       >
-        <span
-          className={`${expanded ? "open-toggle " : ""} navbar-toggler-icon`}
-        />
+        <span className={`${expanded ? 'open-toggle ' : ''} navbar-toggler-icon`} />
       </button>
 
-      <div
-        className={` ${
-          expanded ? "show" : ""
-        } collapse navbar-collapse egp-nav`}
-        id="navNav"
-      >
+      <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
         <ul className="navbar-nav mr-auto">
           {navLinks?.map((link) =>
             link.links.length === 0 ? (
-              <LinkItem
-                key={link?.mainLink?.id}
-                link={link?.mainLink}
-                label={link?.label}
-                isButton={link?.isButton}
-              />
+              <LinkItem key={link?.mainLink?.id} link={link?.mainLink} label={link?.label} isButton={link?.isButton} />
             ) : (
-              <DropdownItem
-                key={link?.mainLink?.id}
-                link={link?.mainLink}
-                label={link?.label}
-                children={link?.links}
-              />
+              <DropdownItem key={link?.mainLink?.id} link={link?.mainLink} label={link?.label} children={link?.links} />
             )
           )}
 

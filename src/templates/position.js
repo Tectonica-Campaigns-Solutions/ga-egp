@@ -9,20 +9,14 @@ const Position = ({ data: { position } }) => {
   return (
     <Layout>
       <div className="container mt-5 pt-5">
-        <div>{ position.title }</div>
-        <div dangerouslySetInnerHTML={{__html: position.intro}} />
-        {
-          position.text &&  <StructuredTextDefault  content={ position.text }/>
-        }
-        {
-          position.imageHeader && <ImageWrapper image={ position.imageHeader} />
-        }
-       
+        <div>{position.title}</div>
+        <div dangerouslySetInnerHTML={{ __html: position.intro }} />
+        {position.text && <StructuredTextDefault content={position.text} />}
+        {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
       </div>
-      
     </Layout>
-  )
-}
+  );
+};
 
 export default Position;
 
@@ -33,7 +27,7 @@ export const PositionQuery = graphql`
       title
       slug
       intro
-      imageHeader{
+      imageHeader {
         url
         alt
         gatsbyImageData
