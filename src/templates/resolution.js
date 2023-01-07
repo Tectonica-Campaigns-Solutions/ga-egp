@@ -8,7 +8,9 @@ const resolution = ({ data: { resolution }}) => {
     <Layout>
       <div className="container mt-5 pt-5">
         <div>{ resolution.title}</div>
-        <div dangerouslySetInnerHTML={{__html: resolution.intro}} />
+        {
+          resolution.intro && <div dangerouslySetInnerHTML={{__html: resolution.intro}} />
+        }
         {
           resolution.text &&  <StructuredTextDefault  content={ resolution.text }/>
         }

@@ -10,7 +10,7 @@ const Position = ({ data: { position } }) => {
     <Layout>
       <div className="container mt-5 pt-5">
         <div>{position.title}</div>
-        <div dangerouslySetInnerHTML={{ __html: position.intro }} />
+        { position.intro && <div dangerouslySetInnerHTML={{ __html: position.intro }} /> }
         {position.text && <StructuredTextDefault content={position.text} />}
         {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
       </div>

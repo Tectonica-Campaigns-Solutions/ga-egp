@@ -25,7 +25,8 @@ exports.createPages = ({ graphql, actions }) => {
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
       position: path.resolve('./src/templates/position.js'),
-      resolution: path.resolve('./src/templates/resolution.js')
+      resolution: path.resolve('./src/templates/resolution.js'),
+      post: path.resolve('./src/templates/post.js')
     };
     resolve(
       graphql(
@@ -88,6 +89,7 @@ exports.createPages = ({ graphql, actions }) => {
         const pages = result.data.pages.edges;
         const positions = result.data.positions.edges;
         const resolutions = result.data.resolutions.edges;
+        const posts = result.data.posts.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
         // pages
@@ -98,6 +100,18 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: page.slug,
               id: page.id,
+            },
+          });
+        });
+
+        // positions
+        posts.map(({ node: post }) => {
+          createPage({
+            path: `/news/${post.slug}`,
+            component: templates.post,
+            context: {
+              slug: post.slug,
+              id: post.id,
             },
           });
         });
