@@ -111,8 +111,10 @@ export const DatoCMS = graphql`
     title
     slug
     council {
-      id
-      title
+      ... on DatoCmsCouncil{
+        idFilter
+        title
+      }
     }
     model {
       apiKey

@@ -13,7 +13,7 @@ function ListResolutions({ data: { list, page } }) {
         <div className="row">
           <div className="col">
             <h1>{page.title}</h1>
-       
+      
 
             <InnerLayout>
               <div className="row gy-5">
@@ -33,7 +33,7 @@ function ListResolutions({ data: { list, page } }) {
                 {list.edges.map((item) => {
                   return (
                     <>
-                      Council: { item.node.council }
+                      Council: { item.node.council.title }
                       <Link to={item.node.slug}>{item.node.title }</Link>
                     </>
             
