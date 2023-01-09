@@ -110,7 +110,10 @@ export const DatoCMS = graphql`
   fragment CardResolution on DatoCmsResolution {
     title
     slug
-    council
+    council {
+      id
+      title
+    }
     model {
       apiKey
     }
