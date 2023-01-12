@@ -110,6 +110,7 @@ export const DatoCMS = graphql`
   fragment CardResolution on DatoCmsResolution {
     title
     slug
+    intro
     council {
       ... on DatoCmsCouncil{
         idFilter
@@ -136,6 +137,15 @@ export const DatoCMS = graphql`
         label
         content {
           ... on DatoCmsPage {
+            slug
+          }
+          ... on DatoCmsListResolution {
+            slug
+          }
+          ... on DatoCmsListResolution {
+            slug
+          }
+          ... on DatoCmsListPosition {
             slug
           }
         }

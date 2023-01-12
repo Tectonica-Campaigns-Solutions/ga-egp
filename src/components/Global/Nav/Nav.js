@@ -49,7 +49,6 @@ const DropdownItem = ({ link, label, children }) => {
 export default function Nav({ navData, path }) {
   // data
   const navLinks = navData.datoCmsNavigation.navigationItems;
-
   // Use States --------
   const [expanded, setExpanded] = useState(false);
   // Sticky Nav handlers are here

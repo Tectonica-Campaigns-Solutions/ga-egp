@@ -5,7 +5,6 @@ import StructuredTextDefault from '../components/StructuredTextDefault';
 import ImageWrapper from '../components/Global/Image/ImageWrapper';
 
 const Position = ({ data: { position } }) => {
-  console.log(position);
   return (
     <Layout>
       <div className="container mt-5 pt-5">
