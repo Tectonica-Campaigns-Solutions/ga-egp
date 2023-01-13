@@ -2,11 +2,19 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import SeoDatoCms from '../components/SeoDatoCms';
+import HubspotStepsForm from '../components/Blocks/HubspotStepsForm/HubspotStepsForm';
 
-const Page = ({ data: { page } }) => {
+const Page = ({ location, data: { page } }) => {
   return (
     <Layout>
-      <h1>{page.title}</h1>
+      <div className="container mt-5 pt-5">
+        <h1>{page.title}</h1>
+        {
+          page.blocks.map(item => {
+            return ( <HubspotStepsForm forms={item.forms} destination={ item.destinationPage.slug } location={location}/> )
+          })
+        }
+      </div>
     </Layout>
   );
 };
@@ -27,6 +35,23 @@ export const PageQuery = graphql`
       seo {
         title
         description
+      }
+      blocks{
+        ... on DatoCmsBlockHubspotFormStep{
+          destinationPage{
+            ... on DatoCmsPage{
+              slug
+            }
+          }
+          forms{
+            
+            ... on DatoCmsHubspotFormStep{
+              formId
+              portalId
+              region
+            }
+          }
+        }
       }
     }
   }

@@ -25,8 +25,6 @@ function ListResolutions({ location, data: { list, page, councils } }) {
   useEffect(() => {
     if(location.search !== ''){
       const params = queryString.parse(location.search)
-      console.log(params.tid)
-      // const paramsArray = Object.entries(params);
       const filteredData = list.edges.filter(item => {
         if((item.node.council.idFilter === params.tid && item.node.intro.includes(params.field_subheading_value))){
           return item;
