@@ -3,17 +3,19 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import SeoDatoCms from '../components/SeoDatoCms';
 import HubspotStepsForm from '../components/Blocks/HubspotStepsForm/HubspotStepsForm';
+import HubspotStepsProvider from '../components/Blocks/HubspotStepsForm/Context/HubspotStepsProvider';
 
 const Page = ({ location, data: { page } }) => {
   return (
     <Layout>
       <div className="container mt-5 pt-5">
         <h1>{page.title}</h1>
-        {
-          page.blocks.map(item => {
-            return ( <HubspotStepsForm forms={item.forms} destination={ item.destinationPage.slug } location={location}/> )
-          })
-        }
+
+        <HubspotStepsProvider>
+          {page.blocks.map((item) => {
+            return <HubspotStepsForm forms={item.forms} destination={item.destinationPage.slug} location={location} />;
+          })}
+        </HubspotStepsProvider>
       </div>
     </Layout>
   );
@@ -36,16 +38,15 @@ export const PageQuery = graphql`
         title
         description
       }
-      blocks{
-        ... on DatoCmsBlockHubspotFormStep{
-          destinationPage{
-            ... on DatoCmsPage{
+      blocks {
+        ... on DatoCmsBlockHubspotFormStep {
+          destinationPage {
+            ... on DatoCmsPage {
               slug
             }
           }
-          forms{
-            
-            ... on DatoCmsHubspotFormStep{
+          forms {
+            ... on DatoCmsHubspotFormStep {
               formId
               portalId
               region
