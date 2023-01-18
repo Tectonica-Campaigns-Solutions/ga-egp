@@ -1,23 +1,24 @@
 import * as React from "react";
-import { useStaticQuery } from "gatsby";
-import { graphql } from "gatsby";
+import { pathToModel } from "../../../utils";
+import './index.scss';
 
-const InnerNavigation = ({ location }) => {
+const InnerNavigation = ({ location, innerMenu }) => {
 
-  const innerMenu = useStaticQuery(graphql`
-    query {
-      datoCmsNavigation(codeId: { eq: "inner_navigation" }) {
-        ...Navigation
-      }
-    }
-  `);
-  const navLinks = innerMenu.datoCmsNavigation.navigationItems;
+  
+  const navLinks = innerMenu.navigationItems;
   return (
-    <div className="my-5">
-      {
-
-      navLinks.map(item => <div>{ item.label }</div> )
-      }
+    <div className="inner-navigation">
+      <div className="container">
+        <div className="d-flex pt-3 pb-3">
+          {
+            navLinks.map(item => {
+              console.log(item);
+              const link = pathToModel(item.mainLink.content.slug, item.mainLink.content.model.apiKey)
+              return ( <div className="pe-5">{ item.label }</div> )
+            })
+          }
+        </div>
+      </div>
 
     </div>
   )

@@ -137,7 +137,7 @@ exports.createPages = ({ graphql, actions }) => {
         // resolutions
         resolutions.map(({ node: resolution }) => {
           createPage({
-            path: `/resolutions/${resolution.slug}`,
+            path: `/positiions/resolutions/${resolution.slug}`,
             component: templates.resolution,
             context: {
               slug: resolution.slug,
@@ -161,7 +161,7 @@ exports.createPages = ({ graphql, actions }) => {
         // list resolutions
         if (result.data.listResolutions) {
           createPage({
-            path: result.data.listResolutions.slug,
+            path: `/positions/${result.data.listResolutions.slug}`,
             component: templates.listResolutions,
             context: {
               slug: result.data.listResolutions.slug,

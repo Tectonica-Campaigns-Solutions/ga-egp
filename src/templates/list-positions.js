@@ -4,19 +4,22 @@ import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import CardPosition from '../components/Global/CardPosition/CardPosition';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
+import HeroPage from '../components/Global/HeroPage/HeroPage';
 
-function ListPositions({ data: { list, page } }) {
+function ListPositions({ pageContext, location,  data: { list, page, navLinks } }) {
+  console.log(navLinks)
   return (
     <Layout>
+      <HeroPage title={page.title} context={pageContext} location={location}/>
+      <InnerNavigation innerMenu={navLinks}/>
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
-            <h1>{page.title}</h1>
-            <InnerNavigation />
+            
+            
 
-            <InnerLayout navMenu={list.edges}>
+           
               <div className="row gy-5">
-                <h3>Our Positions</h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur. Nunc mauris odio pellentesque ut feugiat mauris sagittis.
                   Morbi vitae in volutpat etiam leo. Tellus hac et leo eu tellus tellus neque cursus. Nunc morbi tempor
@@ -34,7 +37,7 @@ function ListPositions({ data: { list, page } }) {
                   );
                 })}
               </div>
-            </InnerLayout>
+            
           </div>
         </div>
       </div>
@@ -56,6 +59,9 @@ export const ListPositionsQuery = graphql`
           ...CardPosition
         }
       }
+    }
+    navLinks: datoCmsNavigation(codeId: { eq: "inner_navigation" }) {
+      ...Navigation
     }
   }
 `;

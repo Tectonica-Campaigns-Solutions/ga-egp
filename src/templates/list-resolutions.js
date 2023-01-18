@@ -7,8 +7,10 @@ import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 import Link from '../components/Global/Link';
 import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
+import HeroPage from '../components/Global/HeroPage/HeroPage';
 
-function ListResolutions({ location, data: { list, page, councils } }) {
+
+function ListResolutions({ pageContext, location, data: { list, page, councils } }) {
   const [filteredContent, setFilteredContent] = useState([]);
 
   const submitHandler = (e) => {
@@ -46,10 +48,11 @@ function ListResolutions({ location, data: { list, page, councils } }) {
 
   return (
     <Layout>
+      <HeroPage title={page.title}/>
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
-            <h1>{page.title}</h1>
+          
 
             <form action="" onSubmit={submitHandler}>
               <div>
@@ -71,17 +74,6 @@ function ListResolutions({ location, data: { list, page, councils } }) {
             </form>
 
             <InnerLayout>
-              <div className="row gy-5">
-                <h3>Our resolutions</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur. Nunc mauris odio pellentesque ut feugiat mauris sagittis.
-                  Morbi vitae in volutpat etiam leo. Tellus hac et leo eu tellus tellus neque cursus. Nunc morbi tempor
-                  sagittis ultricies vitae. Velit est augue proin vitae commodo. Risus scelerisque viverra consectetur
-                  duis volutpat. Aliquet congue etiam amet ullamcorper in eu in. Tristique vulputate mi adipiscing
-                  facilisi. Feugiat feugiat senectus nisl mollis amet. Sed gravida viverra quam egestas id egestas enim
-                  malesuada consequat.
-                </p>
-              </div>
               <div className="row">
                 {filteredContent.map((item) => {
                   return (
