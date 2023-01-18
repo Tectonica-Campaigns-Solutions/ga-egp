@@ -18,7 +18,7 @@ module.exports = {
         // useAutoGen: required 'true' to use autogen
         useAutoGen: true,
         // autoGenHomeLabel: optional 'Home' is default
-        autoGenHomeLabel: `Root`,
+        autoGenHomeLabel: `Home`,
         // exclude: optional, include this array to exclude paths you don't want to
         // generate breadcrumbs for (see below for details).
         exclude: [

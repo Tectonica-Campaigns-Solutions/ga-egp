@@ -5,4 +5,9 @@
   h1{
     font-family: 'Colby';
   }
+  nav.breadcrumb{
+    ol{
+      display:flex;
+    }
+  }
 }

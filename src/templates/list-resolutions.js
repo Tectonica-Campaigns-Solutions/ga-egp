@@ -48,7 +48,7 @@ function ListResolutions({ pageContext, location, data: { list, page, councils }
 
   return (
     <Layout>
-      <HeroPage title={page.title}/>
+      <HeroPage title={page.title} context={pageContext} location={location}/>
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
