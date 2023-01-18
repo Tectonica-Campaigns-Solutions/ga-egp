@@ -9,32 +9,40 @@ import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 
 function ListResolutions({ location, data: { list, page, councils } }) {
-
   const [filteredContent, setFilteredContent] = useState([]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     let url = '/resolutions/?';
-    Array.from(e.target.elements).map(item => {
-      if(item.type != 'submit'){
+
+    Array.from(e.target.elements).map((item) => {
+      if (item.type != 'submit') {
         url += `${item.name}=${item.value}&`;
       }
-    })
-    navigate(url)
-  }
+    });
+
+    navigate(url);
+  };
 
   useEffect(() => {
-    if(location.search !== ''){
-      const params = queryString.parse(location.search)
-      const filteredData = list.edges.filter(item => {
-        if((item.node.council.idFilter === params.tid && item.node.intro.includes(params.field_subheading_value))){
+    if (location.search !== '') {
+      const params = queryString.parse(location.search);
+
+      const filteredData = list.edges.filter((item) => {
+        if (
+          (params.tid === 'all' ? true : item.node.council.idFilter === params.tid) &&
+          item.node.intro.includes(params.field_subheading_value)
+        ) {
           return item;
         }
       });
-      setFilteredContent(filteredData)
-      return
+
+      setFilteredContent(filteredData);
+      return;
     }
-    setFilteredContent(list.edges)
-  }, [list])
+
+    setFilteredContent(list.edges);
+  }, [list]);
 
   return (
     <Layout>
@@ -43,15 +51,14 @@ function ListResolutions({ location, data: { list, page, councils } }) {
           <div className="col">
             <h1>{page.title}</h1>
 
-
             <form action="" onSubmit={submitHandler}>
               <div>
                 <label htmlFor="tid">Council</label>
                 <select name="tid" id="tid">
                   <option value="all">All</option>
-                  {
-                    councils.edges.map(item => <option value={item.node.idFilter}>{ item.node.title }</option>)
-                  }
+                  {councils.edges.map((item) => (
+                    <option value={item.node.idFilter}>{item.node.title}</option>
+                  ))}
                 </select>
               </div>
               <div>
@@ -59,7 +66,7 @@ function ListResolutions({ location, data: { list, page, councils } }) {
                 <input type="text" name="field_subheading_value" />
               </div>
               <div>
-                <input type="submit" value="apply"/>
+                <input type="submit" value="apply" />
               </div>
             </form>
 
@@ -74,17 +81,14 @@ function ListResolutions({ location, data: { list, page, councils } }) {
                   facilisi. Feugiat feugiat senectus nisl mollis amet. Sed gravida viverra quam egestas id egestas enim
                   malesuada consequat.
                 </p>
-
-                
               </div>
               <div className="row">
                 {filteredContent.map((item) => {
                   return (
                     <>
-                      Council: { item.node.council.title }
-                      <Link to={item.node.slug}>{item.node.title }</Link>
+                      Council: {item.node.council.title}
+                      <Link to={item.node.slug}>{item.node.title}</Link>
                     </>
-            
                   );
                 })}
               </div>
@@ -113,9 +117,9 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    councils: allDatoCmsCouncil{
-      edges{
-        node{
+    councils: allDatoCmsCouncil {
+      edges {
+        node {
           title
           idFilter
         }
