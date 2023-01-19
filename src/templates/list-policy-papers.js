@@ -13,7 +13,7 @@ import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks } }) {
   const filteredContent = list.edges;
   // const [filteredContent, setFilteredContent] = useState([]);
-  
+
   // const submitHandler = (e) => {
   //   e.preventDefault();
   //   let url = '/positions/resolutions/?';
@@ -76,9 +76,9 @@ function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks 
 
             <InnerLayout>
               <div className="row">
-                {filteredContent.map((item) => 
-                  <CardPolicy title={item.node.title} intro={item.node.intro}/>
-                )}
+                {filteredContent.map((item) => (
+                  <CardPolicy title={item.node.title} intro={item.node.intro} />
+                ))}
               </div>
             </InnerLayout>
           </div>
@@ -94,16 +94,16 @@ export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPositionsQuery = graphql`
   query ListPolicyPaper {
-    page: datoCmsListPolicyPaper{
+    page: datoCmsListPolicyPaper {
       title
       slug
     }
     navLinks: datoCmsNavigation(codeId: { eq: "positions_navigation" }) {
       ...Navigation
     }
-    list: allDatoCmsPolicyPaper{
-      edges{
-        node{
+    list: allDatoCmsPolicyPaper {
+      edges {
+        node {
           title
           intro
         }
