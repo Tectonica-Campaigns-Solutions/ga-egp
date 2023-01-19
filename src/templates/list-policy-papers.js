@@ -106,9 +106,6 @@ export const ListPositionsQuery = graphql`
         node{
           title
           intro
-          pdf {
-            url
-          }
         }
       }
     }
