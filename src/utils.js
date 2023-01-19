@@ -1,10 +1,10 @@
 export const pathToModel = (model, slug = '') => {
-  if (model === 'position') {
+  if (model === 'position' || model === 'list_resolution') {
     return `/positions/${slug}`;
   } else if (model === 'post') {
     return `/news/${slug}`;
   } else {
-    return '';
+    return '/' + slug;
   }
 };
 

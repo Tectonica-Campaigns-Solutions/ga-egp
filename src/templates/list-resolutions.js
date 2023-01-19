@@ -9,13 +9,12 @@ import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 
-
-function ListResolutions({ pageContext, location, data: { list, page, councils } }) {
+function ListResolutions({ pageContext, location, data: { list, page, navLinks, councils } }) {
   const [filteredContent, setFilteredContent] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    let url = '/resolutions/?';
+    let url = '/positions/resolutions/?';
 
     Array.from(e.target.elements).map((item) => {
       if (item.type != 'submit') {
@@ -48,12 +47,12 @@ function ListResolutions({ pageContext, location, data: { list, page, councils }
 
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location}/>
+      <HeroPage title={page.title} context={pageContext} location={location} />
+      <InnerNavigation location={location} innerMenu={navLinks} />
+
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
-          
-
             <form action="" onSubmit={submitHandler}>
               <div>
                 <label htmlFor="tid">Council</label>
@@ -116,6 +115,9 @@ export const ListPositionsQuery = graphql`
           idFilter
         }
       }
+    }
+    navLinks: datoCmsNavigation(codeId: { eq: "inner_navigation" }) {
+      ...Navigation
     }
   }
 `;
