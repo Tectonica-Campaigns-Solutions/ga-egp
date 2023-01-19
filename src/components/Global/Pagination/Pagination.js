@@ -3,7 +3,7 @@ import { usePagination, DOTS } from './hooks/usePagination';
 
 import './index.scss';
 
-export const PAGE_SIZE = 12;
+export const PAGE_SIZE = 8;
 
 const Pagination = (props) => {
   const { onPageChange, totalCount, siblingCount = 1, currentPage, pageSize } = props;
@@ -17,6 +17,7 @@ const Pagination = (props) => {
 
   // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || paginationRange.length < 2) {
+    console.log('no render');
     return null;
   }
 
@@ -46,7 +47,7 @@ const Pagination = (props) => {
         // Render our Page Pills
         return (
           <li
-            className={`${pageNumber === currentPage ? 'pagination-item' : ''}`}
+            className={`pagination-item ${pageNumber === currentPage ? 'active' : ''}`}
             onClick={() => onPageChange(pageNumber)}
           >
             {pageNumber}
