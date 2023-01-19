@@ -55,7 +55,7 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsNavigation(codeId: { eq: "inner_navigation" }) {
+    navLinks: datoCmsNavigation(codeId: { eq: "positions_navigation" }) {
       ...Navigation
     }
   }

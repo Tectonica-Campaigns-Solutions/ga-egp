@@ -160,6 +160,12 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsListPolicyPaper {
+            slug
+            model{
+              apiKey
+            }
+          }
         }
       }
       links {

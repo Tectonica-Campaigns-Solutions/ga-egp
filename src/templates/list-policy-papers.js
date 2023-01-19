@@ -8,42 +8,44 @@ import Link from '../components/Global/Link';
 import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
+import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 
-function ListResolutions({ pageContext, location, data: { list, page, navLinks, councils } }) {
-  const [filteredContent, setFilteredContent] = useState([]);
+function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks } }) {
+  const filteredContent = list.edges;
+  // const [filteredContent, setFilteredContent] = useState([]);
+  
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   let url = '/positions/resolutions/?';
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    let url = '/positions/resolutions/?';
+  //   Array.from(e.target.elements).map((item) => {
+  //     if (item.type != 'submit') {
+  //       url += `${item.name}=${item.value}&`;
+  //     }
+  //   });
 
-    Array.from(e.target.elements).map((item) => {
-      if (item.type != 'submit') {
-        url += `${item.name}=${item.value}&`;
-      }
-    });
+  //   navigate(url);
+  // };
 
-    navigate(url);
-  };
+  // useEffect(() => {
+  //   if (location.search !== '') {
+  //     const params = queryString.parse(location.search);
 
-  useEffect(() => {
-    if (location.search !== '') {
-      const params = queryString.parse(location.search);
+  //     const filteredData = list.edges.filter((item) => {
+  //       if (
+  //         (params.tid === 'all' ? true : item.node.council.idFilter === params.tid) &&
+  //         item.node.intro.includes(params.field_subheading_value)
+  //       ) {
+  //         return item;
+  //       }
+  //     });
 
-      const filteredData = list.edges.filter((item) => {
-        if (
-          (params.tid === 'all' ? true : item.node.council.idFilter === params.tid) &&
-          item.node.intro.includes(params.field_subheading_value)
-        ) {
-          return item;
-        }
-      });
+  //     setFilteredContent(filteredData);
+  //     return;
+  //   }
 
-      setFilteredContent(filteredData);
-      return;
-    }
-
-    setFilteredContent(list.edges);
-  }, [list]);
+  //   setFilteredContent(list.edges);
+  // }, [list]);
 
   return (
     <Layout>
@@ -53,7 +55,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
-            <form action="" onSubmit={submitHandler}>
+            {/* <form action="" onSubmit={submitHandler}>
               <div>
                 <label htmlFor="tid">Council</label>
                 <select name="tid" id="tid">
@@ -70,18 +72,13 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
               <div>
                 <input type="submit" value="apply" />
               </div>
-            </form>
+            </form> */}
 
             <InnerLayout>
               <div className="row">
-                {filteredContent.map((item) => {
-                  return (
-                    <>
-                      Council: {item.node.council.title}
-                      <Link to={item.node.slug}>{item.node.title}</Link>
-                    </>
-                  );
-                })}
+                {filteredContent.map((item) => 
+                  <CardPolicy title={item.node.title} intro={item.node.intro}/>
+                )}
               </div>
             </InnerLayout>
           </div>
@@ -91,33 +88,29 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
   );
 }
 
-export default ListResolutions;
+export default ListPolicyPapers;
 
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPositionsQuery = graphql`
-  query ListResolutions {
-    page: datoCmsListResolution {
+  query ListPolicyPaper {
+    page: datoCmsListPolicyPaper{
       title
       slug
     }
-    list: allDatoCmsResolution {
-      edges {
-        node {
-          ...CardResolution
-        }
-      }
-    }
-    councils: allDatoCmsCouncil {
-      edges {
-        node {
-          title
-          idFilter
-        }
-      }
-    }
     navLinks: datoCmsNavigation(codeId: { eq: "positions_navigation" }) {
       ...Navigation
+    }
+    list: allDatoCmsPolicyPaper{
+      edges{
+        node{
+          title
+          intro
+          pdf {
+            url
+          }
+        }
+      }
     }
   }
 `;
