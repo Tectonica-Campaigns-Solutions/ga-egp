@@ -16,7 +16,7 @@ const ListPaginated = ({ list, renderItem, resetPage = null }) => {
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
 
     return list.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
+  }, [list, currentPage]);
 
   return (
     <>
