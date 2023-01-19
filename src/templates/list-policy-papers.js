@@ -75,9 +75,9 @@ function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks 
             </form> */}
 
             <InnerLayout>
-              <div className="row">
+              <div className="row g-5">
                 {filteredContent.map((item) => (
-                  <CardPolicy title={item.node.title} intro={item.node.intro} />
+                  <CardPolicy title={item.node.title} intro={item.node.intro} documents={item.node.documents} />
                 ))}
               </div>
             </InnerLayout>
@@ -106,6 +106,14 @@ export const ListPositionsQuery = graphql`
         node {
           title
           intro
+          documents {
+            internalName
+            language
+            document {
+              path
+              url
+            }
+          }
         }
       }
     }
