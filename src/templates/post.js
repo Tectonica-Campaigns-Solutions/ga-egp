@@ -17,8 +17,9 @@ const Post = ({ pageContext, location, data: { page }}) => {
               <p>{ page.image.title }</p></div>
             }
             {page.person && <div>Person</div>}
-
-            <StructuredText data={page.textContent }/>
+            {
+              page.textContent && <StructuredText data={page.textContent }/>
+            }
           </div>
         </div>
       </div>
