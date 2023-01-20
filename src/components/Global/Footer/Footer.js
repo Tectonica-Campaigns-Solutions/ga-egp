@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Link } from 'gatsby-link';
+import Link from '../Link';
 import { isArray, getCtaUrl } from '../../../utils';
 import FooterGroupLinks from './FooterGroupLinks';
 import TextHubspotForm from '../../Blocks/TextHubspotForm/TextHubsportForm';

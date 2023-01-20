@@ -2,15 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { graphql, navigate } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
-import CardPosition from '../components/Global/CardPosition/CardPosition';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 import Link from '../components/Global/Link';
 import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
+import { isArray } from '../utils';
+import ListPaginated from '../components/Global/Pagination/ListPaginated';
 
 function ListResolutions({ pageContext, location, data: { list, page, navLinks, councils } }) {
+  // TODO: Remove this...
+  const resolutionList = [
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+    ...list.edges,
+  ];
+
   const [filteredContent, setFilteredContent] = useState([]);
+  const [activeCouncil, setActiveCouncil] = useState('all');
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -22,14 +37,18 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
       }
     });
 
-    navigate(url);
+    navigate(url, {
+      state: {
+        filtered: true,
+      },
+    });
   };
 
   useEffect(() => {
     if (location.search !== '') {
       const params = queryString.parse(location.search);
 
-      const filteredData = list.edges.filter((item) => {
+      const filteredData = resolutionList.filter((item) => {
         if (
           (params.tid === 'all' ? true : item.node.council.idFilter === params.tid) &&
           item.node.intro.includes(params.field_subheading_value)
@@ -42,7 +61,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
       return;
     }
 
-    setFilteredContent(list.edges);
+    setFilteredContent(resolutionList);
   }, [list]);
 
   return (
@@ -53,7 +72,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
-            <form action="" onSubmit={submitHandler}>
+            <form onSubmit={submitHandler}>
               <div>
                 <label htmlFor="tid">Council</label>
                 <select name="tid" id="tid">
@@ -74,14 +93,18 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
 
             <InnerLayout>
               <div className="row">
-                {filteredContent.map((item) => {
-                  return (
-                    <>
-                      Council: {item.node.council.title}
-                      <Link to={item.node.slug}>{item.node.title}</Link>
-                    </>
-                  );
-                })}
+                {isArray(filteredContent) && (
+                  <ListPaginated
+                    list={filteredContent}
+                    resetPage={location?.state?.filtered ?? null}
+                    renderItem={(item, index) => (
+                      <div key={index}>
+                        Council: {item.node.council.title}
+                        <Link to={item.node.slug}>{item.node.title}</Link>
+                      </div>
+                    )}
+                  />
+                )}
               </div>
             </InnerLayout>
           </div>

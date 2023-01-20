@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import Link from '../Link';
 import Tag from '../Tag/Tag';
 import ImageWrapper from '../Image/ImageWrapper';
 import podcastArrow from '../../Icons/podcast-arrow.svg';
