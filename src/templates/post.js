@@ -2,39 +2,26 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
-import { StructuredText } from 'react-datocms';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import Acordion from '../components/Global/Acordion/Acordion';
+import StructuredContentDefault from '../components/StructuredContentDefault ';
 
-const Post = ({ pageContext, location, data: { page }}) => {
+const Post = ({ pageContext, location, data: { page } }) => {
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} date={ page.date }/>
+      <HeroPage title={page.title} context={pageContext} location={location} date={page.date} />
       <div className="container mt-5 pt-5">
         <div className="row justify-content-center">
           <div className="col-lg-9">
-            {page.image && <div> 
-              <GatsbyImage image={page.image.gatsbyImageData} />
-              <p>{ page.image.title }</p></div>
-            }
+            {page.image && (
+              <div>
+                <GatsbyImage image={page.image.gatsbyImageData} />
+                <p>{page.image.title}</p>
+              </div>
+            )}
+
             {page.person && <div>Person</div>}
-            {
-              page.textContent && 
-                <StructuredText 
-                  data={page.textContent}
-                  renderBlock={({ record }) => {
-                    switch (record.__typename) {
-                      case 'DatoCmsAcordion': 
-                        return <Acordion items={record.items} />
-                      default:
-                        return <></>
-                    }
-                  }}
-                />
-            }
-            {
-              page.tags && page.tags.length > 0 && page.tags.map(item => <div>{ item.title }</div>)
-            }
+            {page.textContent && <StructuredContentDefault content={page.textContent} />}
+            {page.tags && page.tags.length > 0 && page.tags.map((item) => <div>{item.title}</div>)}
           </div>
         </div>
       </div>
@@ -48,7 +35,7 @@ export const PostQuery = graphql`
       id
       title
       slug
-      image{
+      image {
         gatsbyImageData
         alt
         title
@@ -57,30 +44,31 @@ export const PostQuery = graphql`
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
-      
+
       seo {
         title
         description
       }
-      textContent{
+      textContent {
         value
-        blocks{
+        blocks {
           __typename
           id: originalId
-          items{
+          items {
             title
             text
           }
         }
       }
-      tags{
-        ... on DatoCmsTagNews{
+      tags {
+        ... on DatoCmsTagNews {
           title
           id
           slug
         }
       }
     }
-  }`
+  }
+`;
 
 export default Post;

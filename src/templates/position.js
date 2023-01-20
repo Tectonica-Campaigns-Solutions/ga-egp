@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
-import StructuredTextDefault from '../components/StructuredTextDefault';
+import StructuredContentDefault from '../components/StructuredContentDefault ';
 import ImageWrapper from '../components/Global/Image/ImageWrapper';
 
 const Position = ({ data: { position } }) => {
@@ -9,8 +9,8 @@ const Position = ({ data: { position } }) => {
     <Layout>
       <div className="container mt-5 pt-5">
         <div>{position.title}</div>
-        { position.intro && <div dangerouslySetInnerHTML={{ __html: position.intro }} /> }
-        {position.text && <StructuredTextDefault content={position.text} />}
+        {position.intro && <div dangerouslySetInnerHTML={{ __html: position.intro }} />}
+        {position.text && <StructuredContentDefault content={position.text} />}
         {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
       </div>
     </Layout>
