@@ -212,6 +212,7 @@ export const DatoCMS = graphql`
       alt
       gatsbyImageData
     }
+    date(formatString: "D MMM Y")
     model {
       apiKey
     }

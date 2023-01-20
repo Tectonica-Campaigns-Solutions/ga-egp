@@ -3,7 +3,7 @@ import Breadcrumb from 'gatsby-plugin-breadcrumb/components/Breadcrumb';
 
 import './index.scss';
 
-function HeroPage({ title, context = null, location = null }) {
+function HeroPage({ title, context = null, location = null, date=null }) {
   const {
     breadcrumb: { crumbs },
   } = context;
@@ -18,6 +18,9 @@ function HeroPage({ title, context = null, location = null }) {
             <Breadcrumb crumbs={crumbs} crumbSeparator=" / " crumbLabel={customCrumbLabel} />
           </div>
         )}
+        {
+          date && <div>{ date }</div>
+        }
         <h1>{title}</h1>
       </div>
     </div>

@@ -26,6 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
       listPositions: path.resolve('./src/templates/list-positions.js'),
       listResolutions: path.resolve('./src/templates/list-resolutions.js'),
       listPolicyPapers: path.resolve('./src/templates/list-policy-papers.js'),
+      listNews: path.resolve('./src/templates/list-news.js'),
       position: path.resolve('./src/templates/position.js'),
       resolution: path.resolve('./src/templates/resolution.js'),
       post: path.resolve('./src/templates/post.js')
@@ -85,6 +86,11 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
+            listNews: datoCmsListNews {
+              title
+              id
+              slug
+            }
             home: datoCmsHome {
               title
               id
@@ -116,7 +122,7 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // positions
+        // posts
         posts.map(({ node: post }) => {
           createPage({
             path: `/news/${post.slug}`,
@@ -188,6 +194,17 @@ exports.createPages = ({ graphql, actions }) => {
           });
         }
 
+        // list news
+        if (result.data.listNews) {
+          createPage({
+            path: result.data.listNews.slug,
+            component: templates.listNews,
+            context: {
+              slug: result.data.listNews.slug,
+              id: result.data.listNews.id,
+            },
+          });
+        }
 
         //home
         createPage({
