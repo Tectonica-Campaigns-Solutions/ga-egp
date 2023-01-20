@@ -32,6 +32,9 @@ const Post = ({ pageContext, location, data: { page }}) => {
                   }}
                 />
             }
+            {
+              page.tags && page.tags.length > 0 && page.tags.map(item => <div>{ item.title }</div>)
+            }
           </div>
         </div>
       </div>
@@ -68,6 +71,13 @@ export const PostQuery = graphql`
             title
             text
           }
+        }
+      }
+      tags{
+        ... on DatoCmsTagNews{
+          title
+          id
+          slug
         }
       }
     }

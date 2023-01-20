@@ -212,6 +212,13 @@ export const DatoCMS = graphql`
       alt
       gatsbyImageData
     }
+    tags{
+      ... on DatoCmsTagNews{
+        title
+        id
+        slug
+      }
+    }
     date(formatString: "D MMM Y")
     model {
       apiKey
