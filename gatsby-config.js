@@ -27,22 +27,10 @@ module.exports = {
           `**/404.html`,
           `**/offline-plugin-app-shell-fallback/**`
         ],
-        // isMatchOptions: optional, include this object to configure the wildcard-match library.
-        excludeOptions: {
-          separator: '.'
-        },
-        // crumbLabelUpdates: optional, update specific crumbLabels in the path
-        crumbLabelUpdates: [
-          {
-            pathname: '/book',
-            crumbLabel: 'Books'
-          }
-        ],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
         trailingSlashes: true,
-        // usePathPrefix: optional, if you are using pathPrefix above
-        usePathPrefix: '/blog',
+
      },
     },
     {

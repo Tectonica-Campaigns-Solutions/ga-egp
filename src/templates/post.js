@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import { StructuredText } from 'react-datocms';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Acordion from '../components/Global/Acordion/Acordion';
 
 const Post = ({ pageContext, location, data: { page }}) => {
   return (
@@ -18,7 +19,18 @@ const Post = ({ pageContext, location, data: { page }}) => {
             }
             {page.person && <div>Person</div>}
             {
-              page.textContent && <StructuredText data={page.textContent }/>
+              page.textContent && 
+                <StructuredText 
+                  data={page.textContent}
+                  renderBlock={({ record }) => {
+                    switch (record.__typename) {
+                      case 'DatoCmsAcordion': 
+                        return <Acordion items={record.items} />
+                      default:
+                        return <></>
+                    }
+                  }}
+                />
             }
           </div>
         </div>
@@ -49,6 +61,14 @@ export const PostQuery = graphql`
       }
       textContent{
         value
+        blocks{
+          __typename
+          id: originalId
+          items{
+            title
+            text
+          }
+        }
       }
     }
   }`

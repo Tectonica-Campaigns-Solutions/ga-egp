@@ -13,7 +13,7 @@ function HeroPage({ title, context = null, location = null, date=null }) {
   return (
     <div className="hero-page">
       <div className="container">
-        {context && (
+        {crumbs && (
           <div className="breadcrumb-section">
             <Breadcrumb crumbs={crumbs} crumbSeparator=" / " crumbLabel={customCrumbLabel} />
           </div>
