@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Pagination, { PAGE_SIZE } from './Pagination';
 
-const ListPaginated = ({ list, renderItem, resetPage = null }) => {
+const ListPaginated = ({ list, renderItem, resetPage = null, customPageSize = PAGE_SIZE }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ListPaginated = ({ list, renderItem, resetPage = null }) => {
       {listPaginated.map((item, index) => renderItem(item, index))}
 
       <Pagination
-        pageSize={PAGE_SIZE}
+        pageSize={customPageSize}
         currentPage={currentPage}
         totalCount={list.length}
         onPageChange={(page) => setCurrentPage(page)}
