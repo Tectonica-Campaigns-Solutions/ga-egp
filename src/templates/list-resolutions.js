@@ -11,21 +11,13 @@ import { isArray } from '../utils';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 
 function ListResolutions({ pageContext, location, data: { list, page, navLinks, councils } }) {
-  // TODO: Remove this...
-  const resolutionList = [
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-    ...list.edges,
-  ];
-
   const [filteredContent, setFilteredContent] = useState([]);
-  const [activeCouncil, setActiveCouncil] = useState('all');
+  const [filter, setFilter] = useState({ councilId: null, intro: null });
+
+  const shouldNavigateToFirstPage = () => {
+    const params = new URLSearchParams(location.search);
+    return params.has('tid') ? params.get('tid') === filter.councilId : false;
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -37,11 +29,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
       }
     });
 
-    navigate(url, {
-      state: {
-        filtered: true,
-      },
-    });
+    navigate(url);
   };
 
   useEffect(() => {
@@ -75,17 +63,27 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
             <form onSubmit={submitHandler}>
               <div>
                 <label htmlFor="tid">Council</label>
-                <select name="tid" id="tid">
+                <select
+                  name="tid"
+                  id="tid"
+                  onChange={(e) => setFilter((prev) => ({ ...prev, councilId: e.target.value }))}
+                >
                   <option value="all">All</option>
                   {councils.edges.map((item) => (
                     <option value={item.node.idFilter}>{item.node.title}</option>
                   ))}
                 </select>
               </div>
+
               <div>
                 <label htmlFor="field_subheading_value">Intro</label>
-                <input type="text" name="field_subheading_value" />
+                <input
+                  type="text"
+                  name="field_subheading_value"
+                  onChange={(e) => setFilter((prev) => ({ ...prev, intro: e.target.value }))}
+                />
               </div>
+
               <div>
                 <input type="submit" value="apply" />
               </div>
@@ -96,7 +94,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
                 {isArray(filteredContent) && (
                   <ListPaginated
                     list={filteredContent}
-                    resetPage={location?.state?.filtered ?? null}
+                    resetPage={shouldNavigateToFirstPage()}
                     renderItem={(item, index) => (
                       <div key={index}>
                         Council: {item.node.council.title}
