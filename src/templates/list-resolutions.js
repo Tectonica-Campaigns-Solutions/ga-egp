@@ -36,7 +36,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
     if (location.search !== '') {
       const params = queryString.parse(location.search);
 
-      const filteredData = resolutionList.filter((item) => {
+      const filteredData = list.edges.filter((item) => {
         if (
           (params.tid === 'all' ? true : item.node.council.idFilter === params.tid) &&
           item.node.intro.includes(params.field_subheading_value)
@@ -49,7 +49,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
       return;
     }
 
-    setFilteredContent(resolutionList);
+    setFilteredContent(list.edges);
   }, [list]);
 
   return (
