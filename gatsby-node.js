@@ -26,10 +26,12 @@ exports.createPages = ({ graphql, actions }) => {
       listPositions: path.resolve('./src/templates/list-positions.js'),
       listResolutions: path.resolve('./src/templates/list-resolutions.js'),
       listPolicyPapers: path.resolve('./src/templates/list-policy-papers.js'),
+      listMembers: path.resolve('./src/templates/list-members.js'),
       listNews: path.resolve('./src/templates/list-news.js'),
       position: path.resolve('./src/templates/position.js'),
       resolution: path.resolve('./src/templates/resolution.js'),
-      post: path.resolve('./src/templates/post.js')
+      post: path.resolve('./src/templates/post.js'),
+      member: path.resolve('./src/templates/member.js'),
     };
     resolve(
       graphql(
@@ -71,7 +73,21 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            members: allDatoCmsMember {
+              edges {
+                node {
+                  title
+                  id
+                  slug
+                }
+              }
+            }
             listPositions: datoCmsListPosition {
+              title
+              id
+              slug
+            }
+            listMembers: datoCmsListMember {
               title
               id
               slug
@@ -108,6 +124,7 @@ exports.createPages = ({ graphql, actions }) => {
         const positions = result.data.positions.edges;
         const resolutions = result.data.resolutions.edges;
         const posts = result.data.posts.edges;
+        const members = result.data.members.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
         // pages
@@ -158,6 +175,19 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
+        // member
+        members.map(({ node: member }) => {
+          createPage({
+            path: result.data.listMembers ? `${result.data.listMembers.slug}/${member.slug}` : member.slug,
+            component: templates.member,
+            context: {
+              slug: result.data.listMembers ? `${result.data.listMembers.slug}/${member.slug}` : member.slug,
+              id: member.id,
+              titleParent: result.data.listMembers ? result.data.listMembers.title : null
+            },
+          });
+        });
+
         // list positions
         if (result.data.listPositions) {
           createPage({
@@ -202,6 +232,18 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listNews.slug,
               id: result.data.listNews.id,
+            },
+          });
+        }
+
+        // list members
+        if (result.data.listMembers) {
+          createPage({
+            path: result.data.listMembers.slug,
+            component: templates.listMembers,
+            context: {
+              slug: result.data.listMembers.slug,
+              id: result.data.listMembers.id,
             },
           });
         }

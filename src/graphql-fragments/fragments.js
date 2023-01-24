@@ -204,6 +204,11 @@ export const DatoCMS = graphql`
     title
     linkLabel
   }
+  fragment MemberCard on DatoCmsMember{
+    id
+    title
+    slug
+  }
   fragment PostCard on DatoCmsPost {
     id
     title
