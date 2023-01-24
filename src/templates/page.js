@@ -12,11 +12,11 @@ const Page = ({ pageContext, location, data: { page } }) => {
       <HeroPage title={page.title} context={pageContext} location={location}/>
       <div className="container mt-5 pt-5">
         
-        {/* <HubspotStepsProvider>
+        <HubspotStepsProvider>
           {page.blocks.map((item) => {
             return <HubspotStepsForm forms={item.forms} destination={item.destinationPage.slug} location={location} />;
           })}
-        </HubspotStepsProvider> */}
+        </HubspotStepsProvider>
       </div>
     </Layout>
   );
