@@ -31,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
       position: path.resolve('./src/templates/position.js'),
       resolution: path.resolve('./src/templates/resolution.js'),
       post: path.resolve('./src/templates/post.js'),
-      member: path.resolve('./src/templates/member.js'),
+      member: path.resolve('./src/templates/member/member.js'),
     };
     resolve(
       graphql(
@@ -166,7 +166,7 @@ exports.createPages = ({ graphql, actions }) => {
         // resolutions
         resolutions.map(({ node: resolution }) => {
           createPage({
-            path: `/positiions/resolutions/${resolution.slug}`,
+            path: `/positions/resolutions/${resolution.slug}`,
             component: templates.resolution,
             context: {
               slug: resolution.slug,
@@ -183,7 +183,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listMembers ? `${result.data.listMembers.slug}/${member.slug}` : member.slug,
               id: member.id,
-              titleParent: result.data.listMembers ? result.data.listMembers.title : null
+              titleParent: result.data.listMembers ? result.data.listMembers.title : null,
             },
           });
         });
