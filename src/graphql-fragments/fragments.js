@@ -112,7 +112,7 @@ export const DatoCMS = graphql`
     slug
     intro
     council {
-      ... on DatoCmsCouncil{
+      ... on DatoCmsCouncil {
         idFilter
         title
       }
@@ -138,31 +138,37 @@ export const DatoCMS = graphql`
         content {
           ... on DatoCmsPage {
             slug
-            model{
+            model {
               apiKey
             }
           }
           ... on DatoCmsListResolution {
             slug
-            model{
+            model {
               apiKey
             }
           }
           ... on DatoCmsListResolution {
             slug
-            model{
+            model {
               apiKey
             }
           }
           ... on DatoCmsListPosition {
             slug
-            model{
+            model {
               apiKey
             }
           }
           ... on DatoCmsListPolicyPaper {
             slug
-            model{
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListMember {
+            slug
+            model {
               apiKey
             }
           }
@@ -204,7 +210,7 @@ export const DatoCMS = graphql`
     title
     linkLabel
   }
-  fragment MemberCard on DatoCmsMember{
+  fragment MemberCard on DatoCmsMember {
     id
     title
     slug
@@ -217,8 +223,8 @@ export const DatoCMS = graphql`
       alt
       gatsbyImageData
     }
-    tags{
-      ... on DatoCmsTagNews{
+    tags {
+      ... on DatoCmsTagNews {
         title
         id
         slug
