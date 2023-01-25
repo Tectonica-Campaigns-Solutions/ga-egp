@@ -8,14 +8,17 @@ function HeroPage({ title, context = null, location = null, date=null }) {
     breadcrumb: { crumbs },
   } = context;
 
-  const customCrumbLabel = title;
+  // const customCrumbs = crumbs.map((item, index) => {
+  //   return { ...item, crumbLabel: item.crumbLabel.replaceAll('-', ' ').toUpperCase()}
+
+  // });
 
   return (
     <div className="hero-page">
       <div className="container">
         {crumbs && (
           <div className="breadcrumb-section">
-            <Breadcrumb crumbs={crumbs} crumbSeparator=" / " crumbLabel={customCrumbLabel} />
+            <Breadcrumb crumbs={crumbs} crumbSeparator=" / " />
           </div>
         )}
         {

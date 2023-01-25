@@ -7,6 +7,8 @@ import UpcomingEvents from './Blocks/UpcomingEvents/UpcomingEvents';
 import Campaigns from './Blocks/Campaigns/Campaigns';
 import SocialFollow from './Blocks/SocialFollow/SocialFollow';
 import LatestUpdates from './Blocks/LatestUpdates/LatestUpdates';
+import GroupPerson from './Blocks/GroupPerson/GroupPerson';
+
 
 export default function Blocks({ blocks }) {
   return (
@@ -29,6 +31,8 @@ export default function Blocks({ blocks }) {
             return <SocialFollow block={block} key={block.id} />;
           case 'DatoCmsLatestBlog':
             return <LatestUpdates block={block} key={block.id} />;
+          case 'DatoCmsGroupPerson':
+            return <GroupPerson block={block} key={block.id}/>;
           default:
             return '';
         }

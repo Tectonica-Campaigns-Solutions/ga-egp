@@ -21,6 +21,18 @@ module.exports = {
         autoGenHomeLabel: `Home`,
         // exclude: optional, include this array to exclude paths you don't want to
         // generate breadcrumbs for (see below for details).
+        crumbLabelUpdates: [
+          {
+            pathname: '/our-member-parties',
+            crumbLabel: 'Our Member Parties'
+          }
+        ],
+        crumbLabelUpdates: [
+          {
+            pathname: '/positions',
+            crumbLabel: 'Positions'
+          }
+        ],
         exclude: [
           `**/dev-404-page/**`,
           `**/404/**`,
@@ -29,7 +41,7 @@ module.exports = {
         ],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
-        trailingSlashes: true,
+        //trailingSlashes: true,
 
      },
     },

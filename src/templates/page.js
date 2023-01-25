@@ -2,9 +2,8 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import SeoDatoCms from '../components/SeoDatoCms';
-import HubspotStepsForm from '../components/Blocks/HubspotStepsForm/HubspotStepsForm';
-import HubspotStepsProvider from '../components/Blocks/HubspotStepsForm/Context/HubspotStepsProvider';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
+import Blocks from '../components/Blocks';
 
 const Page = ({ pageContext, location, data: { page } }) => {
   return (
@@ -12,11 +11,12 @@ const Page = ({ pageContext, location, data: { page } }) => {
       <HeroPage title={page.title} context={pageContext} location={location}/>
       <div className="container mt-5 pt-5">
         
-        <HubspotStepsProvider>
+        {/* <HubspotStepsProvider>
           {page.blocks.map((item) => {
             return <HubspotStepsForm forms={item.forms} destination={item.destinationPage.slug} location={location} />;
           })}
-        </HubspotStepsProvider>
+        </HubspotStepsProvider> */}
+        <Blocks blocks={page.blocks}/>
       </div>
     </Layout>
   );
@@ -40,19 +40,12 @@ export const PageQuery = graphql`
         description
       }
       blocks {
+        __typename
         ... on DatoCmsBlockHubspotFormStep {
-          destinationPage {
-            ... on DatoCmsPage {
-              slug
-            }
-          }
-          forms {
-            ... on DatoCmsHubspotFormStep {
-              formId
-              portalId
-              region
-            }
-          }
+          ...BlockFormSteps
+        }
+        ... on DatoCmsGroupPerson {
+          ...BlockGroupPerson
         }
       }
     }

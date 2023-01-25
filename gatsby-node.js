@@ -32,11 +32,19 @@ exports.createPages = ({ graphql, actions }) => {
       resolution: path.resolve('./src/templates/resolution.js'),
       post: path.resolve('./src/templates/post.js'),
       member: path.resolve('./src/templates/member/member.js'),
+      person: path.resolve('./src/templates/person/person.js'),
     };
     resolve(
       graphql(
         `
           {
+            mainMenu: datoCmsNavigation(codeId: { eq: "main_menu" }) {
+              navigationItems{
+                ... on DatoCmsNavigationItem{
+                  label
+                }
+              }
+            }
             pages: allDatoCmsPage {
               edges {
                 node {
@@ -82,6 +90,15 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            persons: allDatoCmsPerson{
+              edges{
+                node{
+                  name
+                  id
+                  slug
+                }
+              }
+            }
             listPositions: datoCmsListPosition {
               title
               id
@@ -119,12 +136,14 @@ exports.createPages = ({ graphql, actions }) => {
           reject(result.errors);
         }
 
+        console.log(result.data.mainMenu)
         // create the pages
         const pages = result.data.pages.edges;
         const positions = result.data.positions.edges;
         const resolutions = result.data.resolutions.edges;
         const posts = result.data.posts.edges;
         const members = result.data.members.edges;
+        const persons = result.data.persons.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
         // pages
@@ -184,6 +203,18 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listMembers ? `${result.data.listMembers.slug}/${member.slug}` : member.slug,
               id: member.id,
               titleParent: result.data.listMembers ? result.data.listMembers.title : null,
+            },
+          });
+        });
+
+        // people
+        persons.map(({ node: person }) => {
+          createPage({
+            path: person.slug,
+            component: templates.person,
+            context: {
+              slug: person.slug,
+              id: person.id,
             },
           });
         });

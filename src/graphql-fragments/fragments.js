@@ -95,6 +95,38 @@ export const DatoCMS = graphql`
       }
     }
   }
+  fragment BlockFormSteps on DatoCmsBlockHubspotFormStep {
+    __typename
+    id
+    destinationPage {
+      ... on DatoCmsPage {
+        slug
+      }
+    }
+    forms {
+      ... on DatoCmsHubspotFormStep {
+        formId
+        portalId
+        region
+      }
+    }
+  }
+  fragment BlockGroupPerson on DatoCmsGroupPerson{
+    __typename
+    id
+    title
+    people{
+      ... on DatoCmsPerson{
+        id
+        slug
+        name
+        image{
+          gatsbyImageData
+        }
+        jobPosition
+      }
+    }
+  }
   fragment CardPosition on DatoCmsPosition {
     title
     slug
@@ -127,6 +159,7 @@ export const DatoCMS = graphql`
       id
       label
       isButton
+      hasSubmenu
       icon {
         url
         alt
