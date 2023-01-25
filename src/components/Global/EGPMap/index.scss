@@ -1,0 +1,10 @@
+.egp-map {
+  path {
+    cursor: pointer;
+    fill: var(--egp-dark-green);
+  }
+
+  path:hover {
+    fill: var(--egp-pink);
+  }
+}
