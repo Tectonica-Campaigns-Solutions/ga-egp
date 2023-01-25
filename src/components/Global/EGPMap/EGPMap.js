@@ -1,4 +1,5 @@
 import React from 'react';
+import './index.scss';
 
 const EGPMap = ({ handleOnClickCountry }) => {
   return (
@@ -9,6 +10,7 @@ const EGPMap = ({ handleOnClickCountry }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onClick={handleOnClickCountry}
+      className="egp-map"
     >
       <path
         fillRule="evenodd"

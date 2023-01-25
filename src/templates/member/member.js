@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import Layout from '../../components/Layout/Layout';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import BackButton from '../../components/Global/BackButton/BackButton';
 
 import './index.scss';
 
@@ -19,7 +20,7 @@ function Member({ pageContext, location, data: { page } }) {
         <div className="top-member d-flex justify-content-between">
           <h1>{page.title}</h1>
           {page.parties.length > 1 && <div>{page.parties.length} Member Parties </div>}
-          <div>Close</div>
+          <BackButton location={location} />
         </div>
 
         <div className="content-member">
