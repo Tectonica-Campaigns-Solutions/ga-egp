@@ -135,8 +135,6 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors);
           reject(result.errors);
         }
-
-        console.log(result.data.mainMenu)
         // create the pages
         const pages = result.data.pages.edges;
         const positions = result.data.positions.edges;
@@ -210,7 +208,7 @@ exports.createPages = ({ graphql, actions }) => {
         // people
         persons.map(({ node: person }) => {
           createPage({
-            path: person.slug,
+            path: `/organisation/${person.slug}`,
             component: templates.person,
             context: {
               slug: person.slug,

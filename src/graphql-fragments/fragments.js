@@ -115,6 +115,7 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    highlighted
     people{
       ... on DatoCmsPerson{
         id
@@ -122,6 +123,15 @@ export const DatoCMS = graphql`
         name
         image{
           gatsbyImageData
+        }
+        socialLinks{
+          url
+          socialNetwork
+        }
+        phone
+        email
+        model{
+          apiKey
         }
         jobPosition
       }

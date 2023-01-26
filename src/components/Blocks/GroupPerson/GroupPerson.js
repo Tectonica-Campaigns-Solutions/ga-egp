@@ -3,7 +3,7 @@ import CardPerson from '../../Global/CardPerson/CardPerson'
 
 function GroupPerson({ block }) {
   return (
-    <div className="groupPerson">
+    <div className={`groupPerson ${block.highlighted ? 'highlighted' : ''}`}>
       { block.title && <h3>{ block.title}</h3>}
       <div className="row">
         {

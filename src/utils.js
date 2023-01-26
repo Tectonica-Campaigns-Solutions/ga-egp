@@ -3,7 +3,9 @@ export const pathToModel = (model, slug = '') => {
     return `/positions/${slug}`;
   } else if (model === 'post') {
     return `/news/${slug}`;
-  } else {
+  } else if (model === 'person'){
+    return `/organisation/${slug}`;
+  }  else {
     return '/' + slug;
   }
 };
