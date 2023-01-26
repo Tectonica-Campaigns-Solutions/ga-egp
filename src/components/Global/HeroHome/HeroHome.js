@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import "./index.scss";
+import React, { useEffect } from 'react';
+import './index.scss';
 
 function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
   const css = `@media (max-width: 750px) {
@@ -14,12 +14,12 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
   }`;
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.id = "hubspot-contact-form";
-    script.src = "https://js.hsforms.net/forms/v2.js";
+    const script = document.createElement('script');
+    script.id = 'hubspot-contact-form';
+    script.src = 'https://js.hsforms.net/forms/v2.js';
     document.body.appendChild(script);
 
-    script.addEventListener("load", () => {
+    script.addEventListener('load', () => {
       if (window.hbspt) {
         window.hbspt.forms.create({
           region: form.region,
@@ -34,20 +34,12 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
   return (
     <>
       <style scoped>{css}</style>
-      <div className={`hero-home ${textWhite ? "text-white" : ""}`}>
+      <div className={`hero-home ${textWhite ? 'text-white' : ''}`}>
         <div class="row">
           <div className="col-md-7 text container">
-            <div
-              className="title"
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
+            <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
 
-            {description && (
-              <div
-                className="text-content"
-                dangerouslySetInnerHTML={{ __html: description }}
-              />
-            )}
+            {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
 
             {form && <div id={`hubspotForm-${form.id}`} />}
           </div>
