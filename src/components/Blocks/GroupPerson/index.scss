@@ -1,0 +1,21 @@
+.group-person {
+	h2 {
+		font-family: 'Jaldi';
+		font-style: normal;
+		font-weight: 800;
+		font-size: 31px;
+		line-height: 110%;
+		color: var(--egp-darker-green);
+		margin-bottom: 31px;
+	}
+
+	&.highlighted {
+		.card-person {
+			flex-direction: row;
+			background-color: #F2F8F3;
+			border-radius: 15px;
+			padding: 20px;
+			gap: 31px;
+		}
+	}
+}
