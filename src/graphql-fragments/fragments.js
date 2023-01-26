@@ -191,6 +191,18 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsListMember {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsListResolution {
             slug
             model {
