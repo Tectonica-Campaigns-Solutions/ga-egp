@@ -10,12 +10,12 @@ const SocialMap = {
   twitter: iconTwitter,
 };
 
-const SocialLink = ({ name, url }) => {
+const SocialLink = ({ name, url, iconWhite = false }) => {
   const socialImg = SocialMap[name];
 
   return (
     <Link to={url}>
-      <img src={socialImg} alt={name} />
+      <img src={socialImg} alt={name} className={`${iconWhite ? 'white' : ''}`} />
     </Link>
   );
 };

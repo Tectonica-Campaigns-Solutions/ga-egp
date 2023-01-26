@@ -12,4 +12,14 @@
 		line-height: 150%;
 		color: var(--egp-dark-gray);
 	}
+
+	&.white {
+		span {
+			color: var(--egp-white);
+		}
+
+		img {
+			filter: brightness(10);
+		}
+	}
 }

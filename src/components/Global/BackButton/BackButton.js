@@ -1,17 +1,27 @@
-import { navigate } from 'gatsby';
 import React from 'react';
+import Link from '../Link';
+import AnimateLink from '../Link/AnimateLink';
+import iconClose from '../../Icons/icon_close.svg';
 
-const BackButton = ({ location }) => {
+import './index.scss';
+
+const BackButton = ({ location, animated = false }) => {
   const { pathname } = location;
+  const FinalLink = animated ? AnimateLink : Link;
 
   const navigateBack = () => {
     const splittedUrl = pathname.split('/');
     const [_, backUrl] = splittedUrl;
-
-    navigate('/' + backUrl);
+    return '/' + backUrl;
   };
 
-  return <div onClick={navigateBack}>X</div>;
+  return (
+    <FinalLink to={navigateBack()}>
+      <div className="back-btn">
+        <img src={iconClose} alt="Icon close" />
+      </div>
+    </FinalLink>
+  );
 };
 
 export default BackButton;

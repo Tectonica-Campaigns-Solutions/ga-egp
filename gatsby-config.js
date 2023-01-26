@@ -1,7 +1,7 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
@@ -24,26 +24,20 @@ module.exports = {
         crumbLabelUpdates: [
           {
             pathname: '/our-member-parties',
-            crumbLabel: 'Our Member Parties'
-          }
+            crumbLabel: 'Our Member Parties',
+          },
         ],
         crumbLabelUpdates: [
           {
             pathname: '/positions',
-            crumbLabel: 'Positions'
-          }
+            crumbLabel: 'Positions',
+          },
         ],
-        exclude: [
-          `**/dev-404-page/**`,
-          `**/404/**`,
-          `**/404.html`,
-          `**/offline-plugin-app-shell-fallback/**`
-        ],
+        exclude: [`**/dev-404-page/**`, `**/404/**`, `**/404.html`, `**/offline-plugin-app-shell-fallback/**`],
         // trailingSlashes: optional, will add trailing slashes to the end
         // of crumb pathnames. default is false
         //trailingSlashes: true,
-
-     },
+      },
     },
     {
       resolve: `gatsby-source-datocms`,
@@ -54,13 +48,14 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-datocms",
+      resolve: 'gatsby-source-datocms',
       options: {
-        apiToken: "8a7fbab7233b1fdc6bad69950fee13",
+        apiToken: '8a7fbab7233b1fdc6bad69950fee13',
       },
     },
-    "gatsby-plugin-image",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-transition-link',
   ],
 };
