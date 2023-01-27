@@ -4,7 +4,7 @@ import SocialLink from './SocialLink';
 
 import './index.scss';
 
-const SocialLinkList = ({ links }) => {
+const SocialLinkList = ({ links, iconWhite = false }) => {
   if (!isArray(links)) {
     return null;
   }
@@ -12,7 +12,7 @@ const SocialLinkList = ({ links }) => {
   return (
     <div className="social-list">
       {links.map((link) => (
-        <SocialLink name={link.socialNetwork} url={link.url} />
+        <SocialLink name={link.socialNetwork} url={link.url} iconWhite={iconWhite} />
       ))}
     </div>
   );

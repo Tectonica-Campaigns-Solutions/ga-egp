@@ -1,0 +1,46 @@
+.person-detail {
+	position: relative;
+	padding: 85px 0 146px 0;
+	background-color: var(--egp-darker-green);
+
+	h1 {
+		font-family: 'Jaldi';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 61px;
+		line-height: 100%;
+		color: var(--egp-white);
+		margin-bottom: 5px;
+	}
+
+	.image-wrapper {
+		&>div {
+			border-radius: 15px;
+		}
+	}
+
+	.btn-back {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	.position {
+		font-family: 'Roboto';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 25px;
+		line-height: 130%;
+		color: var(--egp-white);
+		margin-bottom: 35px;
+	}
+
+	.description {
+		font-family: 'Roboto';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 150%;
+		color: var(--egp-white);
+	}
+}

@@ -1,15 +1,16 @@
 .hero-home {
   width: 100%;
-  min-height: 100vh;
+  height: 900px;
   padding-bottom: 90px;
-  background-size: cover;
+  background-size: 2700px;
+  background-position: 50% 100%;
   background-repeat: no-repeat;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   padding-top: 50px;
 
-  > .row {
+  >.row {
     padding-top: 150px;
   }
 
@@ -44,6 +45,7 @@
   }
 
   &.text-white {
+
     .title,
     .text-content {
       color: var(--egp-white);

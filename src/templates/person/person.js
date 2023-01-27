@@ -1,51 +1,44 @@
-import React from 'react'
+import React from 'react';
 import { graphql } from 'gatsby';
-import HeroPage from '../../components/Global/HeroPage/HeroPage'
-import Layout from '../../components/Layout/Layout'
-import { GatsbyImage } from 'gatsby-plugin-image';
+import HeroPage from '../../components/Global/HeroPage/HeroPage';
+import Layout from '../../components/Layout/Layout';
+import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import BackButton from '../../components/Global/BackButton/BackButton';
+import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
+import TextIcon from '../../components/Global/TextIcon/TextIcon';
+import iconEmail from '../../components/Icons/icon_email.svg';
 
-function person({ pageContext, location, data: {person } }) {
+import './index.scss';
+
+function person({ pageContext, location, data: { person } }) {
   return (
     <Layout>
-      <HeroPage title={person.title} context={pageContext} location={location}/>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12 justify-content-end">
-            <BackButton location={location} />
-          </div>
+      <HeroPage title={person.title} context={pageContext} location={location} />
+      <div className="person-detail">
+        <div className="btn-back">
+          <BackButton location={location} animated />
         </div>
-        <div className="row justify-content-center pt-5">
-          <div className="col-lg-9">
-            <div className="row justify-content-center">
-              <div className="col-lg-6">
-                { person.image && <GatsbyImage image={person.image.gatsbyImageData}/>}
-              </div>
-              <div className="col-lg-6">
-                <h1>{ person.name }</h1>
-                <div className="position">
-                  { person.jobPosition }
-                </div>
-                <div className="social">
-                  { person.socialLinks && person.socialLinks.length > 0 &&
-                      person.socialLinks.map(item => <div className={`icon ${item.socialNetwork}`}>{ item.url }</div>)
-                  }
-                </div>
-                <div className="phone">
-                  { person.phone }
-                </div>
-                {
-                  person.description && <div
-                    dangerouslySetInnerHTML={{__html: person.description}}
-                  />
-                }
-              </div>
+
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-4">{person.image && <ImageWrapper image={person.image} />}</div>
+
+            <div className="col-lg-7">
+              <h1>{person.name}</h1>
+              <div className="position">{person.jobPosition}</div>
+
+              <SocialLinkList links={person.socialLinks} iconWhite />
+              {person.phone && <TextIcon icon={iconEmail} text={person.phone} textWhite />}
+
+              {person.description && (
+                <div className="description" dangerouslySetInnerHTML={{ __html: person.description }} />
+              )}
             </div>
           </div>
         </div>
       </div>
     </Layout>
-  )
+  );
 }
 
 export const PersonQuery = graphql`
@@ -55,15 +48,16 @@ export const PersonQuery = graphql`
       phone
       email
       jobPosition
-      socialLinks{
+      socialLinks {
         url
         socialNetwork
       }
       description
-      image{
+      image {
         gatsbyImageData
       }
     }
-  }`
+  }
+`;
 
-export default person
+export default person;

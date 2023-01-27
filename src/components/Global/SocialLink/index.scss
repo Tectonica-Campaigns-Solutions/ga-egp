@@ -3,4 +3,8 @@
     flex-wrap: wrap;
     gap: 12px;
     margin-bottom: 21px;
+
+    img.white {
+        filter: brightness(10);
+    }
 }
