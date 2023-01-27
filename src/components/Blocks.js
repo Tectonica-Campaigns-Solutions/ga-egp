@@ -24,7 +24,7 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsHighlightedPosition':
             return <HighlightedPositions block={block} key={block.id} />;
           case 'DatoCmsUpcomingEvent':
-            return <UpcomingEvents />;
+            return <UpcomingEvents key={block.id} block={block}/>;
           case 'DatoCmsCampaing':
             return <Campaigns block={block} key={block.id} />;
           case 'DatoCmsSocialFollow':

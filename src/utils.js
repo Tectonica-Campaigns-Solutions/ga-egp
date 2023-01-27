@@ -1,7 +1,5 @@
 export const pathToModel = (model = null, slug = '') => {
-  if (model === 'position' || model === 'list_resolution' || model === 'list_policy_paper') {
-    return `/positions/${slug}`;
-  } else if (model === 'post') {
+  if (model === 'post') {
     return `/news/${slug}`;
   } else if (model === 'person') {
     return `/organisation/${slug}`;

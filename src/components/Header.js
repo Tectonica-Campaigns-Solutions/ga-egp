@@ -11,7 +11,6 @@ const Header = ({ location }) => {
       }
     }
   `);
-  console.log(mainMenu)
   return (
     <header>
       <Nav navData={mainMenu} path={location?.pathname} />

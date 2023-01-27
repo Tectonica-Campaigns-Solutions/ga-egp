@@ -10,7 +10,7 @@ const AnimateLink = ({ to, children = null }) => {
       cover={true}
       fade={false}
       direction="bottom"
-      hex="#184b31"
+      bg="#36845b"
       component={Link}
       to={to}
     >
@@ -20,3 +20,4 @@ const AnimateLink = ({ to, children = null }) => {
 };
 
 export default AnimateLink;
+

@@ -65,6 +65,13 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    highlightedEvents{
+      title
+      ... on DatoCmsEvent{
+       ... EventCard
+      }
+    }
+    
   }
   fragment BlockCampaings on DatoCmsCampaing {
     __typename
@@ -269,6 +276,26 @@ export const DatoCMS = graphql`
     id
     title
     slug
+  }
+  fragment EventCard on DatoCmsEvent{
+    id
+    slug
+    title
+    date: date(formatString: "D MMM")
+    filterDate : date(formatString: "MMMM")
+    summary
+    image{
+      alt
+      url	
+      gatsbyImageData
+    }
+    tags{
+      ... on DatoCmsTagEvent{
+        title
+        id
+        color
+      }
+    }
   }
   fragment PostCard on DatoCmsPost {
     id

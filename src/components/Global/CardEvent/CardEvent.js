@@ -7,9 +7,9 @@ import EventTag from './EventTag/EventTag';
 
 import './index.scss';
 
-const CardEvent = ({ day, hour, image, title, description, slug }) => {
+const CardEvent = ({ day, hour, image, title, description, slug, color, tag }) => {
   return (
-    <article className="card-event row">
+    <article className={`card-event row color-${color}`}>
       <div className="col-lg-2 col-md-3 date">
         <EventDate day={day} hour={hour} />
       </div>
@@ -24,11 +24,13 @@ const CardEvent = ({ day, hour, image, title, description, slug }) => {
         <div className="information">
           <div className="meta">
             <EventTag title="virtual" />
-            <Tag title="MEMBER PARTIES" />
+            <Tag title={tag} />
           </div>
 
           <h2>{title}</h2>
-          <p>{description}</p>
+          <div
+            dangerouslySetInnerHTML={{__html: description}}
+          />
         </div>
       </div>
 

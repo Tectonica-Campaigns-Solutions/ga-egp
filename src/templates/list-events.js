@@ -5,12 +5,11 @@ import HeroPage from '../components/Global/HeroPage/HeroPage'
 import FilterMembers from '../components/Global/FilterMembers/FilterMembers';
 import FilterEvents from '../components/Global/FilterEvents/FilterEvents';
 
-function ListEvents({pageContext, location, data: { list, page}}) {
+function ListEvents({pageContext, location, data: { list, page, tags}}) {
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location}/>
-      {/* <FilterMembers members={list.edges} introduction={page.introduction}/> */}
-      <FilterEvents />
+      <FilterEvents events={list.edges} tags={tags}/>
     </Layout>
   )
 }
@@ -21,10 +20,18 @@ export const ListEventsQuery = graphql`
       title
       slug
     }
+    tags: allDatoCmsTagEvent{
+      edges{
+        node{
+          title
+          id
+        }
+      }
+    }
     list: allDatoCmsEvent{
       edges {
         node {
-          title
+          ... EventCard
         }
       }
     }

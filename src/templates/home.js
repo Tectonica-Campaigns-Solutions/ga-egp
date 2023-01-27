@@ -70,6 +70,9 @@ export const HomeQuery = graphql`
         ... on DatoCmsLatestBlog {
           ...BlockLatestBlog
         }
+        ... on DatoCmsUpcomingEvent{
+          ...BlockUpcomingEvents
+        }
       }
     }
   }
