@@ -12,7 +12,7 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks } }
       <HeroPage title={page.title} context={pageContext} location={location} />
       <InnerNavigation location={location} innerMenu={navLinks} />
 
-      <div className="container mt-5 pt-5">
+      <div className="container mt-5 pt-5 mb-5">
         <div className="row">
           <div className="col">
             <div className="row gy-5">
