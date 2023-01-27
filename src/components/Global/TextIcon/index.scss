@@ -4,7 +4,8 @@
 	gap: 13px;
 	margin-bottom: 27px;
 
-	span {
+	span,
+	span a {
 		font-family: 'Roboto';
 		font-style: normal;
 		font-weight: 700;
@@ -14,7 +15,9 @@
 	}
 
 	&.white {
-		span {
+
+		span,
+		span a {
 			color: var(--egp-white);
 		}
 
