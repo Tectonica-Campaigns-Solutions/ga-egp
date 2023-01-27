@@ -11,7 +11,7 @@
   --egp-dark: #333333;
   --egp-pink: #ff70bd;
   --egp-darker-green: #184b31;
-  --egp-pale-yellow:#ccc;
+  --egp-pale-yellow: #ccc;
 }
 
 // Global background colors
@@ -25,4 +25,8 @@
 
 .section-pink {
   background-color: var(--egp-pink);
+}
+
+.section-yellow {
+  background-color: hsla(50, 100%, 59%, 0.2);
 }
