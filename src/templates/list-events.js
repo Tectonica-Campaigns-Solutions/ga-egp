@@ -28,7 +28,7 @@ export const ListEventsQuery = graphql`
         }
       }
     }
-    list: allDatoCmsEvent{
+    list: allDatoCmsEvent(sort: {date: ASC}){
       edges {
         node {
           ... EventCard
