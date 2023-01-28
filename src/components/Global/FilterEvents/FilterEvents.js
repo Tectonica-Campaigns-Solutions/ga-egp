@@ -6,6 +6,13 @@ import { isArray } from '../../../utils';
 import './index.scss';
 
 function FilterEvents({ events, tags }) {
+  // current month
+  // testing date porpuses
+  //const d = new Date("February 6, 2023 11:13:00");
+  const d = new Date();
+  const defaultMonth = d.getMonth();
+  
+  // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
@@ -75,6 +82,7 @@ function FilterEvents({ events, tags }) {
       <div className="row mt-5">
         {isArray(orderedEvents) && (
           <Accordion
+            defaultActive={defaultMonth}
             items={orderedEvents}
             renderCustomTitle={(item) => {
               const eventMonth = item[0];
