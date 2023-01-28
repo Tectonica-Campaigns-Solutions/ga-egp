@@ -65,13 +65,12 @@ export const DatoCMS = graphql`
     __typename
     id
     title
-    highlightedEvents{
+    highlightedEvents {
       title
-      ... on DatoCmsEvent{
-       ... EventCard
+      ... on DatoCmsEvent {
+        ...EventCard
       }
     }
-    
   }
   fragment BlockCampaings on DatoCmsCampaing {
     __typename
@@ -118,26 +117,26 @@ export const DatoCMS = graphql`
       }
     }
   }
-  fragment BlockGroupPerson on DatoCmsGroupPerson{
+  fragment BlockGroupPerson on DatoCmsGroupPerson {
     __typename
     id
     title
     highlighted
-    people{
-      ... on DatoCmsPerson{
+    people {
+      ... on DatoCmsPerson {
         id
         slug
         name
-        image{
+        image {
           gatsbyImageData
         }
-        socialLinks{
+        socialLinks {
           url
           socialNetwork
         }
         phone
         email
-        model{
+        model {
           apiKey
         }
         jobPosition
@@ -147,6 +146,7 @@ export const DatoCMS = graphql`
   fragment CardPosition on DatoCmsPosition {
     title
     slug
+    textWhite
     imageCard {
       url
       alt
@@ -277,20 +277,20 @@ export const DatoCMS = graphql`
     title
     slug
   }
-  fragment EventCard on DatoCmsEvent{
+  fragment EventCard on DatoCmsEvent {
     id
     slug
     title
     date: date(formatString: "D MMM")
-    filterDate : date(formatString: "MMMM")
+    filterDate: date(formatString: "MMMM")
     summary
-    image{
+    image {
       alt
-      url	
+      url
       gatsbyImageData
     }
-    tags{
-      ... on DatoCmsTagEvent{
+    tags {
+      ... on DatoCmsTagEvent {
         title
         id
         color

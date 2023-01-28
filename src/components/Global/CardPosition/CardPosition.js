@@ -15,7 +15,7 @@ function CardPosition({ position, small = false, showButtons = true }) {
         style={{ backgroundImage: `url(${position.imageCard.url})` }}
       >
         <div className="text-content">
-          <h3>{position.title}</h3>
+          <h3 className={`${position.textWhite ? 'white' : ''}`}>{position.title}</h3>
 
           {showButtons && (
             <div className="ctas">

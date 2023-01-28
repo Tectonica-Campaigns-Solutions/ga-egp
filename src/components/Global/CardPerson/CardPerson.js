@@ -1,5 +1,5 @@
 import React from 'react';
-import { pathToModel } from '../../../utils';
+import { getEmailLink, getPhoneLink, pathToModel } from '../../../utils';
 import Link from '../Link';
 import AnimateLink from '../Link/AnimateLink';
 import ImageWrapper from '../../Global/Image/ImageWrapper';
@@ -26,11 +26,10 @@ function CardPerson({ person, animated = false }) {
         </FinalLink>
 
         <div className="job">{person.jobPosition}</div>
-
         <SocialLinkList links={person.socialLinks} />
 
-        {person.phone && <TextIcon icon={iconPhone} text={person.phone} />}
-        {person.email && <TextIcon icon={iconEmail} text={person.email} />}
+        {person.phone && <TextIcon icon={iconPhone} text={<a href={getPhoneLink(person.phone)}>{person.phone}</a>} />}
+        {person.email && <TextIcon icon={iconEmail} text={<a href={getEmailLink(person.email)}>{person.email}</a>} />}
       </div>
     </div>
   );

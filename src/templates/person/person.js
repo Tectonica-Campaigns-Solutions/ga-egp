@@ -7,6 +7,7 @@ import BackButton from '../../components/Global/BackButton/BackButton';
 import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 import TextIcon from '../../components/Global/TextIcon/TextIcon';
 import iconEmail from '../../components/Icons/icon_email.svg';
+import { getPhoneLink } from '../../utils';
 
 import './index.scss';
 
@@ -28,7 +29,9 @@ function person({ pageContext, location, data: { person } }) {
               <div className="position">{person.jobPosition}</div>
 
               <SocialLinkList links={person.socialLinks} iconWhite />
-              {person.phone && <TextIcon icon={iconEmail} text={person.phone} textWhite />}
+              {person.phone && (
+                <TextIcon icon={iconEmail} text={<a href={getPhoneLink(person.phone)}>{person.phone}</a>} textWhite />
+              )}
 
               {person.description && (
                 <div className="description" dangerouslySetInnerHTML={{ __html: person.description }} />

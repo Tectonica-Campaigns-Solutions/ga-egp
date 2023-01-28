@@ -1,58 +1,110 @@
-import React, { useState, useEffect} from 'react'
-import CardEvent from '../CardEvent/CardEvent'
+import React, { useState, useEffect } from 'react';
+import Accordion from '../Accordion/Accordion';
+import CardEvent from '../CardEvent/CardEvent';
+import { isArray } from '../../../utils';
+
+import './index.scss';
 
 function FilterEvents({ events, tags }) {
-  console.log(events);
-  const [orderedEvents, setOrdenedEvents] = useState([{}])
-  const handlerForm = () => {
-    console.log('clicked')
-  }
+  const [orderedEvents, setOrderedEvents] = useState([{}]);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeYear, setActiveYear] = useState(new Date().getFullYear());
+
   useEffect(() => {
-    
     const groupByMonth = events.reduce((group, event) => {
-      const { filterDate } = event.node;
+      const { filterDate, tags } = event.node;
       group[filterDate] = group[filterDate] ?? [];
-      group[filterDate].push(event);
+
+      // TODO: Remove?
+      if (activeCategory) {
+        if (tags.id === activeCategory) {
+          group[filterDate].push(event);
+        }
+      } else {
+        group[filterDate].push(event);
+      }
+
       return group;
     }, {});
-    
-    const grouped = groupByMonth
-    setOrdenedEvents(Object.entries(grouped));
-  }, [])
+
+    const grouped = groupByMonth;
+    setOrderedEvents(Object.entries(grouped));
+  }, [activeCategory]);
+
+  const handlerForm = (item) => {
+    const category = item.node.id;
+
+    // TODO: Discuss...
+    setActiveCategory((prevCategory) => (prevCategory !== category ? category : null));
+  };
+
+  const getActiveCategory = () => {
+    const currentCategory = tags.edges.find((tag) => tag.node.id === activeCategory);
+    return currentCategory?.node?.title;
+  };
+
   return (
-      <div className="container">
-        <div className="row justify-content-between">
-            <div className="col-lg-7">
-                <div className="d-flex">
-                    {
-                      tags.edges.map( item => <div><input type="checkbox" onChange={handlerForm} value=""/><label>{item.node.title}</label></div>)
-                    }
-                </div>
-            </div>
-            <div className="col-lg-4">
-                2022
-            </div>
+    <div className="container filter-events">
+      <div className="row justify-content-between">
+        <div className="col-lg-7">
+          <div className="filter-action-title">Filter by category</div>
+          <div className="category-items">
+            {tags.edges.map((item) => (
+              <div>
+                <input type="checkbox" onChange={() => handlerForm(item)} value="" />
+                <label>{item.node.title}</label>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="row mt-5">
-          { orderedEvents.map(item => 
-            <div className="mt-5">
-              <h3>{ item[0] }</h3>
-              { item[1] && item[1].length > 0 && item[1].map(el => 
-                <CardEvent 
-                  slug={`/events/${el.node.slug}`} 
-                  title={el.node.title} 
-                  day={ el.node.date }
-                  color={el.node.tags.color}
-                  image={el.node.image}
-                  tag={el.node.tags.title}
-                />
-              )}
-            </div>
-          )}
+
+        <div className="col-lg-4">
+          <div className="filter-action-title">Select Year</div>
+          2022
         </div>
       </div>
-    
-  )
+
+      {activeCategory && (
+        <div className="current-filters">
+          <div>
+            Filtered by <span>{getActiveCategory()}</span> in <span>{activeYear}</span>
+          </div>
+        </div>
+      )}
+
+      <div className="row mt-5">
+        {isArray(orderedEvents) && (
+          <Accordion
+            items={orderedEvents}
+            renderCustomTitle={(item) => {
+              const eventMonth = item[0];
+              return eventMonth;
+            }}
+            renderChild={(item) => {
+              const events = item[1];
+
+              if (!isArray(events)) return null;
+
+              return (
+                <>
+                  {events.map((e) => (
+                    <CardEvent
+                      slug={`/events/${e.node.slug}`}
+                      title={e.node.title}
+                      day={e.node.date}
+                      color={e.node.tags.color}
+                      image={e.node.image}
+                      tag={e.node.tags.title}
+                    />
+                  ))}
+                </>
+              );
+            }}
+          />
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default FilterEvents
+export default FilterEvents;

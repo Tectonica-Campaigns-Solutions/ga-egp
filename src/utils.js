@@ -20,3 +20,11 @@ export const getCtaUrl = (cta) => {
 export const getCtaTitle = (cta) => {
   return cta.title ? cta.title : cta.link?.content?.label;
 };
+
+export const getPhoneLink = (phone) => {
+  return `tel:${phone}`;
+};
+
+export const getEmailLink = (email) => {
+  return `mailto:${email}`;
+};
