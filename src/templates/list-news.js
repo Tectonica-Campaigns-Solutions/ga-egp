@@ -7,7 +7,11 @@ import { isArray } from '../utils';
 import CardPost from '../components/Global/CardPost/CardPost';
 
 function ListNews({pageContext, location, data: { list, page}}) {
-  const filteredContent = list.edges;
+  let filteredContent = list.edges;
+  if(pageContext.items){
+    filteredContent = pageContext.items;
+  }
+  
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location}/>

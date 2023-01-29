@@ -136,6 +136,42 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
+            allNews: allDatoCmsPost (limit:1000){
+              edges{
+                node{
+                  id
+                  title
+                  slug
+                  image {
+                    alt
+                    gatsbyImageData
+                  }
+                  tags {
+                    ... on DatoCmsTagNews {
+                      title
+                      id
+                      slug
+                    }
+                  }
+                  date(formatString: "D MMM Y")
+                  model {
+                    apiKey
+                  }
+                  meta {
+                    publishedAt(formatString: "D MMM YYYY")
+                  }
+                }
+              }
+            }
+            tagsNews: allDatoCmsTagNews{
+              edges{
+                node{
+                  title
+                  slug
+                  id
+                }
+              }
+            }
             listEvents: datoCmsListEvent {
               title
               id
@@ -160,6 +196,8 @@ exports.createPages = ({ graphql, actions }) => {
         const members = result.data.members.edges;
         const persons = result.data.persons.edges;
         const events = result.data.events.edges;
+        const tagsNews = result.data.tagsNews.edges;
+        const allNews = result.data.allNews.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
         // pages
@@ -235,8 +273,6 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        
-
         // people
         persons.map(({ node: person }) => {
           createPage({
@@ -248,6 +284,20 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         });
+
+        // tags news
+        tagsNews.map(({node:tag}) => {
+          const items = allNews.filter(item => item.node.tags.id === tag.id)
+          createPage({
+            path: `news/${tag.slug}`,
+            component: templates.listNews,
+            context: {
+              slug: `news/${tag.slug}`,
+              id: tag.id,
+              items: items
+            },
+          });
+        })
 
         // list positions
         if (result.data.listPositions) {
@@ -308,6 +358,8 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
+
+        
 
         // list members
         if (result.data.listMembers) {
