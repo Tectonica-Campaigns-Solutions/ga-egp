@@ -160,6 +160,15 @@ export const DatoCMS = graphql`
     title
     slug
     intro
+    documents {
+      internalName
+      language
+      document {
+        path
+        url
+        title
+      }
+    }
     council {
       ... on DatoCmsCouncil {
         idFilter

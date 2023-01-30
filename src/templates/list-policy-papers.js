@@ -112,6 +112,7 @@ export const ListPositionsQuery = graphql`
             document {
               path
               url
+              title
             }
           }
         }

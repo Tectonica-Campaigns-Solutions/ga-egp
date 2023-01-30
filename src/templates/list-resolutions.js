@@ -9,6 +9,7 @@ import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import { isArray } from '../utils';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
+import InformationCard from '../components/Global/InformationCard/InformationCard';
 
 function ListResolutions({ pageContext, location, data: { list, page, navLinks, councils } }) {
   const [filteredContent, setFilteredContent] = useState([]);
@@ -95,12 +96,24 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
                   <ListPaginated
                     list={filteredContent}
                     resetPage={shouldNavigateToFirstPage()}
-                    renderItem={(item, index) => (
-                      <div key={index}>
-                        Council: {item.node.council.title}
-                        <Link to={item.node.slug}>{item.node.title}</Link>
-                      </div>
-                    )}
+                    renderItem={(item) => {
+                      const { id, council, intro, slug, model, title, documents } = item.node;
+
+                      return (
+                        <div className="mb-5" key={id}>
+                          <InformationCard
+                            preTitle={
+                              <>
+                                Council: <strong>Copenhagen Congress 2022</strong>
+                              </>
+                            }
+                            title={title}
+                            intro={intro}
+                            documents={documents}
+                          />
+                        </div>
+                      );
+                    }}
                   />
                 )}
               </div>

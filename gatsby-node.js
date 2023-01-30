@@ -30,7 +30,7 @@ exports.createPages = ({ graphql, actions }) => {
       listNews: path.resolve('./src/templates/list-news.js'),
       listEvents: path.resolve('./src/templates/list-events.js'),
       position: path.resolve('./src/templates/position.js'),
-      resolution: path.resolve('./src/templates/resolution.js'),
+      resolution: path.resolve('./src/templates/resolution/resolution.js'),
       member: path.resolve('./src/templates/member/member.js'),
       person: path.resolve('./src/templates/person/person.js'),
       event: path.resolve('./src/templates/event/event.js'),
@@ -210,7 +210,7 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
-        
+
         // pages
         pages.map(({ node: page }) => {
           createPage({
@@ -383,8 +383,6 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
-
-        
       })
     );
   });

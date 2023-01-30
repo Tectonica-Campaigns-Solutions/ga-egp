@@ -1,0 +1,31 @@
+.resolution-detail {
+  padding: 0 0 97px 0;
+
+  h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 130%;
+    color: var(--egp-darker-green);
+    margin-bottom: 30px;
+  }
+
+  div,
+  p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--egp-dark);
+  }
+
+  hr {
+    width: 96px;
+    margin: 30px 0 40px 0;
+    color: var(--egp-dark-green);
+    height: 2px;
+    opacity: 1;
+  }
+}
