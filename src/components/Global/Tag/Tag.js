@@ -1,8 +1,16 @@
-import React from "react";
-import "./index.scss";
+import React from 'react';
+import Link from '../Link';
 
-const Tag = ({ title }) => {
-  return <span className="tag">{title}</span>;
+import './index.scss';
+
+const Tag = ({ title, slug = null }) => {
+  const url = slug ? `/news/${slug}` : null;
+
+  return (
+    <Link to={url} className="tag">
+      {title}
+    </Link>
+  );
 };
 
 export default Tag;

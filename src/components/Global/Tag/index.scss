@@ -10,4 +10,9 @@
   text-transform: uppercase;
   color: var(--egp-white);
   background: var(--egp-darker-green);
+
+
+  &:hover {
+    color: var(--egp-white);
+  }
 }
