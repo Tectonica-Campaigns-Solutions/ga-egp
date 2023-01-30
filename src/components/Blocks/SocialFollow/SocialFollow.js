@@ -1,4 +1,4 @@
-import { Link } from "@reach/router";
+import Link from '../../Global/Link';
 import React from "react";
 import { isArray } from "../../../utils";
 
@@ -6,7 +6,6 @@ import "./index.scss";
 
 const SocialFollow = ({ block }) => {
   const { title, links } = block;
-
   return (
     <div className="social-follow">
       <div className="container">
@@ -15,7 +14,7 @@ const SocialFollow = ({ block }) => {
         {isArray(links) && (
           <div className="links">
             {links.map((link) => (
-              <Link to={link.mainLink.url}>
+              <Link to={link.mainLink?.url}>
                 <img src={link.icon.url} alt={link.label} />
               </Link>
             ))}

@@ -21,7 +21,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const templates = {
       page: path.resolve('./src/templates/page.js'),
-      post: path.resolve('./src/templates/post.js'),
+      post: path.resolve('./src/templates/post/post.js'),
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
       listResolutions: path.resolve('./src/templates/list-resolutions.js'),
@@ -31,7 +31,6 @@ exports.createPages = ({ graphql, actions }) => {
       listEvents: path.resolve('./src/templates/list-events.js'),
       position: path.resolve('./src/templates/position.js'),
       resolution: path.resolve('./src/templates/resolution.js'),
-      post: path.resolve('./src/templates/post/post.js'),
       member: path.resolve('./src/templates/member/member.js'),
       person: path.resolve('./src/templates/person/person.js'),
       event: path.resolve('./src/templates/event/event.js'),
@@ -200,6 +199,18 @@ exports.createPages = ({ graphql, actions }) => {
         const allNews = result.data.allNews.edges;
         // const globalSettings = result.data.globalSettings.nodes;
 
+        //home
+        if (result.data.home) {
+          createPage({
+            path: '/',
+            component: templates.home,
+            context: {
+              slug: '/',
+              id: result.data.home.id,
+            },
+          });
+        }
+        
         // pages
         pages.map(({ node: page }) => {
           createPage({
@@ -373,15 +384,7 @@ exports.createPages = ({ graphql, actions }) => {
           });
         }
 
-        //home
-        createPage({
-          path: '/',
-          component: templates.home,
-          context: {
-            slug: '/',
-            id: result.data.home.id,
-          },
-        });
+        
       })
     );
   });
