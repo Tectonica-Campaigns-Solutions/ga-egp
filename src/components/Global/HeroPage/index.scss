@@ -29,6 +29,16 @@
     }
   }
 
+  .date {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--egp-darker-green);
+    margin: 60px 0 17px 0;
+  }
+
   nav.breadcrumb {
     ol {
       display: flex;

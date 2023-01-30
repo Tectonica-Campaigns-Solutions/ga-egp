@@ -13,17 +13,17 @@ function FilterEvents({ events, tags }) {
   const defaultMonth = d.getMonth();
 
   // get years from content
-  const yearsFilter = [...new Set(events.map(item => item.node.year))]
-  
+  const yearsFilter = [...new Set(events.map((item) => item.node.year))];
+
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    let eventsByYear = events.filter(item => item.node.year === activeYear)
+    let eventsByYear = events.filter((item) => item.node.year === activeYear);
     const groupByMonth = eventsByYear.reduce((group, event) => {
-      const { filterDate, tags} = event.node;
+      const { filterDate, tags } = event.node;
       group[filterDate] = group[filterDate] ?? [];
 
       // TODO: Remove?
@@ -43,22 +43,23 @@ function FilterEvents({ events, tags }) {
   }, [activeYear, activeCategory]);
 
   const handlerForm = (item) => {
-
     const category = item.node.id;
 
     // TODO: Discuss...
-    
+
     setActiveCategory((prevCategory) => (prevCategory !== category ? category : null));
   };
 
   const handlerYear = (item) => {
     setActiveYear(item);
-  }
+  };
 
   const getActiveCategory = () => {
     const currentCategory = tags.edges.find((tag) => tag.node.id === activeCategory);
     return currentCategory?.node?.title;
   };
+
+  // todo: agrupar handler en form
 
   return (
     <div className="container filter-events">
@@ -72,7 +73,7 @@ function FilterEvents({ events, tags }) {
             </div> */}
             {tags.edges.map((item) => (
               <div>
-                <input type="checkbox" onChange={() => handlerForm(item)} value={ item.node.id } />
+                <input type="checkbox" onChange={() => handlerForm(item)} value={item.node.id} />
                 <label>{item.node.title}</label>
               </div>
             ))}
@@ -81,9 +82,9 @@ function FilterEvents({ events, tags }) {
 
         <div className="col-lg-4">
           <div className="filter-action-title">Select Year</div>
-          { 
-            yearsFilter.map(item => <div onClick={() => handlerYear(item)}>{ item }</div>)
-          }
+          {yearsFilter.map((item) => (
+            <div onClick={() => handlerYear(item)}>{item}</div>
+          ))}
         </div>
       </div>
 
