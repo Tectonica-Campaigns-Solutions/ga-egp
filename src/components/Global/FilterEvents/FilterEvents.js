@@ -11,19 +11,23 @@ function FilterEvents({ events, tags }) {
   //const d = new Date("February 6, 2023 11:13:00");
   const d = new Date();
   const defaultMonth = d.getMonth();
+
+  // get years from content
+  const yearsFilter = [...new Set(events.map(item => item.node.year))]
   
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('All');
   const [activeYear, setActiveYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    const groupByMonth = events.reduce((group, event) => {
-      const { filterDate, tags } = event.node;
+    let eventsByYear = events.filter(item => item.node.year === activeYear)
+    const groupByMonth = eventsByYear.reduce((group, event) => {
+      const { filterDate, tags} = event.node;
       group[filterDate] = group[filterDate] ?? [];
 
       // TODO: Remove?
-      if (activeCategory) {
+      if (activeCategory !== 'All') {
         if (tags.id === activeCategory) {
           group[filterDate].push(event);
         }
@@ -36,14 +40,20 @@ function FilterEvents({ events, tags }) {
 
     const grouped = groupByMonth;
     setOrderedEvents(Object.entries(grouped));
-  }, [activeCategory]);
+  }, [activeYear, activeCategory]);
 
   const handlerForm = (item) => {
+
     const category = item.node.id;
 
     // TODO: Discuss...
+    
     setActiveCategory((prevCategory) => (prevCategory !== category ? category : null));
   };
+
+  const handlerYear = (item) => {
+    setActiveYear(item);
+  }
 
   const getActiveCategory = () => {
     const currentCategory = tags.edges.find((tag) => tag.node.id === activeCategory);
@@ -56,9 +66,13 @@ function FilterEvents({ events, tags }) {
         <div className="col-lg-7">
           <div className="filter-action-title">Filter by category</div>
           <div className="category-items">
+            {/* <div>
+              <input type="checkbox" onChange={() => handlerForm('All')} value="All" />
+                <label>All</label>
+            </div> */}
             {tags.edges.map((item) => (
               <div>
-                <input type="checkbox" onChange={() => handlerForm(item)} value="" />
+                <input type="checkbox" onChange={() => handlerForm(item)} value={ item.node.id } />
                 <label>{item.node.title}</label>
               </div>
             ))}
@@ -67,7 +81,9 @@ function FilterEvents({ events, tags }) {
 
         <div className="col-lg-4">
           <div className="filter-action-title">Select Year</div>
-          2022
+          { 
+            yearsFilter.map(item => <div onClick={() => handlerYear(item)}>{ item }</div>)
+          }
         </div>
       </div>
 

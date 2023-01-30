@@ -283,6 +283,7 @@ export const DatoCMS = graphql`
     title
     date: date(formatString: "D MMM")
     filterDate: date(formatString: "MMMM")
+    year: date(formatString: "Y")
     summary
     image {
       alt
