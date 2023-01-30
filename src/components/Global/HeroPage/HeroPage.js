@@ -18,7 +18,7 @@ function HeroPage({ title, context = null, location = null, date = null, isDetai
       <div className="container">
         {crumbs && (
           <div className="breadcrumb-section">
-            <Breadcrumb crumbs={crumbs} crumbSeparator=" / " />
+            {/* <Breadcrumb crumbs={crumbs} crumbSeparator=" / " /> */}
           </div>
         )}
 
