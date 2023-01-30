@@ -49,4 +49,32 @@
 			color: var(--egp-dark-green);
 		}
 	}
+
+	.year-container {
+		display: inline-block;
+		margin: 0 20px;
+
+		input {
+			display: none;
+		}
+
+		label {
+			cursor: pointer;
+			font-family: 'Roboto';
+			font-style: normal;
+			font-weight: 700;
+			font-size: 20px;
+			line-height: 150%;
+			color: var(--egp-light-gray);
+
+			&.active {
+				font-family: 'Roboto';
+				font-style: normal;
+				font-weight: 700;
+				font-size: 31px;
+				line-height: 130%;
+				color: var(--egp-dark-green);
+			}
+		}
+	}
 }

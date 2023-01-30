@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Accordion from '../Accordion/Accordion';
 import CardEvent from '../CardEvent/CardEvent';
 import { isArray } from '../../../utils';
+import yearLeftIcon from '../../Icons/year-left.svg';
+import yearRightIcon from '../../Icons/year-right.svg';
 
 import './index.scss';
 
@@ -18,7 +20,7 @@ function FilterEvents({ events, tags }) {
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
   const [activeCategory, setActiveCategory] = useState('All');
-  const [activeYear, setActiveYear] = useState(new Date().getFullYear());
+  const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
   useEffect(() => {
     let eventsByYear = events.filter((item) => item.node.year === activeYear);
@@ -42,51 +44,64 @@ function FilterEvents({ events, tags }) {
     setOrderedEvents(Object.entries(grouped));
   }, [activeYear, activeCategory]);
 
-  const handlerForm = (item) => {
-    const category = item.node.id;
+  const handlerForm = (event) => {
+    const { name, value } = event.target;
 
-    // TODO: Discuss...
-
-    setActiveCategory((prevCategory) => (prevCategory !== category ? category : null));
-  };
-
-  const handlerYear = (item) => {
-    setActiveYear(item);
+    if (name === 'selected_category') {
+      setActiveCategory(value);
+    } else if (name === 'selected_year') {
+      setActiveYear(value);
+    }
   };
 
   const getActiveCategory = () => {
+    if (activeCategory === 'All') return 'All';
+
     const currentCategory = tags.edges.find((tag) => tag.node.id === activeCategory);
     return currentCategory?.node?.title;
   };
 
-  // todo: agrupar handler en form
-
   return (
     <div className="container filter-events">
-      <div className="row justify-content-between">
-        <div className="col-lg-7">
-          <div className="filter-action-title">Filter by category</div>
-          <div className="category-items">
-            {/* <div>
+      <form onChange={handlerForm}>
+        <div className="row justify-content-between">
+          <div className="col-lg-7">
+            <div className="filter-action-title">Filter by category</div>
+            <div className="category-items">
+              {/* <div>
               <input type="checkbox" onChange={() => handlerForm('All')} value="All" />
                 <label>All</label>
             </div> */}
-            {tags.edges.map((item) => (
-              <div>
-                <input type="checkbox" onChange={() => handlerForm(item)} value={item.node.id} />
-                <label>{item.node.title}</label>
-              </div>
-            ))}
+
+              {tags.edges.map((item) => (
+                <div>
+                  <input id={item.node.id} type="checkbox" name="selected_category" value={item.node.id} />
+                  <label for={item.node.id}>{item.node.title}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="col-lg-4">
+            <div className="filter-action-title">Select Year</div>
+
+            <div className="d-flex align-items-center">
+              <img src={yearLeftIcon} alt="Year left arrow icon" />
+
+              {yearsFilter.map((year) => (
+                <div className="year-container">
+                  <input type="radio" id={year} name="selected_year" value={year} style={{ display: 'none' }} />
+                  <label className={`${activeYear === year ? 'active' : ''}`} for={year}>
+                    {year}
+                  </label>
+                </div>
+              ))}
+
+              <img src={yearRightIcon} alt="Year right arrow icon" />
+            </div>
           </div>
         </div>
-
-        <div className="col-lg-4">
-          <div className="filter-action-title">Select Year</div>
-          {yearsFilter.map((item) => (
-            <div onClick={() => handlerYear(item)}>{item}</div>
-          ))}
-        </div>
-      </div>
+      </form>
 
       {activeCategory && (
         <div className="current-filters">
