@@ -8,7 +8,6 @@ import { isArray, pathToModel } from '../../../utils';
 import './index.scss';
 
 const CardUpdate = ({ post }) => {
-  // Force re-deploy
   const {
     slug,
     meta: { publishedAt },
@@ -35,15 +34,17 @@ const CardUpdate = ({ post }) => {
           )}
         </div>
 
-        {isArray(tags) && (
-          <div className="tags">
-            <Tag title="europe & democracy" />
-          </div>
-        )}
+        <div>
+          {tags && (
+            <div className="tags">
+              <Tag title={tags.title} />
+            </div>
+          )}
 
-        <Link to={postUrl} className="title">
-          {title}
-        </Link>
+          <Link to={postUrl} className="title">
+            {title}
+          </Link>
+        </div>
       </div>
 
       <Link to={postUrl}>

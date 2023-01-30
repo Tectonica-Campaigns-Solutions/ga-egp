@@ -31,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
       listEvents: path.resolve('./src/templates/list-events.js'),
       position: path.resolve('./src/templates/position.js'),
       resolution: path.resolve('./src/templates/resolution.js'),
-      post: path.resolve('./src/templates/post.js'),
+      post: path.resolve('./src/templates/post/post.js'),
       member: path.resolve('./src/templates/member/member.js'),
       person: path.resolve('./src/templates/person/person.js'),
       event: path.resolve('./src/templates/event/event.js'),
@@ -41,8 +41,8 @@ exports.createPages = ({ graphql, actions }) => {
         `
           {
             mainMenu: datoCmsNavigation(codeId: { eq: "main_menu" }) {
-              navigationItems{
-                ... on DatoCmsNavigationItem{
+              navigationItems {
+                ... on DatoCmsNavigationItem {
                   label
                 }
               }
@@ -92,9 +92,9 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            persons: allDatoCmsPerson{
-              edges{
-                node{
+            persons: allDatoCmsPerson {
+              edges {
+                node {
                   name
                   id
                   slug
@@ -102,9 +102,9 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
 
-            events: allDatoCmsEvent{
-              edges{
-                node{
+            events: allDatoCmsEvent {
+              edges {
+                node {
                   title
                   id
                   slug
@@ -136,9 +136,9 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
-            allNews: allDatoCmsPost (limit:1000){
-              edges{
-                node{
+            allNews: allDatoCmsPost(limit: 1000) {
+              edges {
+                node {
                   id
                   title
                   slug
@@ -163,9 +163,9 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            tagsNews: allDatoCmsTagNews{
-              edges{
-                node{
+            tagsNews: allDatoCmsTagNews {
+              edges {
+                node {
                   title
                   slug
                   id
@@ -286,8 +286,8 @@ exports.createPages = ({ graphql, actions }) => {
         });
 
         // tags news
-        tagsNews.map(({node:tag}) => {
-          const items = allNews.filter(item => item.node.tags.id === tag.id)
+        tagsNews.map(({ node: tag }) => {
+          const items = allNews.filter((item) => item.node.tags.id === tag.id);
           createPage({
             path: `news/${tag.slug}`,
             component: templates.listNews,
@@ -295,10 +295,10 @@ exports.createPages = ({ graphql, actions }) => {
               slug: `news/${tag.slug}`,
               id: tag.id,
               items: items,
-              tag: tag.title
+              tag: tag.title,
             },
           });
-        })
+        });
 
         // list positions
         if (result.data.listPositions) {
@@ -356,12 +356,10 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listNews.slug,
               id: result.data.listNews.id,
-              items: allNews
+              items: allNews,
             },
           });
         }
-
-        
 
         // list members
         if (result.data.listMembers) {

@@ -1,0 +1,34 @@
+.author-card {
+  display: flex;
+  gap: 25px;
+  background: #F2F8F3;
+  border-radius: 10px;
+  padding: 20px;
+
+  .image-wrapper {
+    &>div {
+      border-radius: 100%;
+    }
+  }
+
+
+  h4 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 130%;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+
+  .description {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #333333;
+    margin: 0;
+  }
+}

@@ -1,37 +1,41 @@
-import React from 'react'
+import React from 'react';
 import { graphql } from 'gatsby';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import Layout from '../components/Layout/Layout';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
-import CardPost from '../components/Global/CardPost/CardPost';
+import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 
-function ListNews({pageContext, location, data: { page}}) {
-  
+function ListNews({ pageContext, location, data: { page } }) {
   const filteredContent = pageContext.items;
-  
+
+  const shouldRenderMiddleCta = filteredContent.length >= 12;
+
   return (
     <Layout>
-      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location}/>
+      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} />
       <div className="container">
-        <div className="row mt-5">
+        <div className="row g-5 my-5">
           {isArray(filteredContent) && (
             <ListPaginated
               list={filteredContent}
               resetPage={location?.state?.filtered ?? null}
-              renderItem={item => (
-                <div className="col-lg-4" key={item.id }>
-                  <CardPost item={ item }/>
-                </div>
+              renderItem={(item, index) => (
+                <>
+                  <div className="col-lg-4" key={item.id}>
+                    <CardUpdate post={item.node} />
+                  </div>
+
+                  {/* TODO: Add form cta block */}
+                  {shouldRenderMiddleCta && index === 5 && <div className="col-lg-12 mt-5 mb-5">Form CTA here...</div>}
+                </>
               )}
             />
           )}
         </div>
-
       </div>
-
     </Layout>
-  )
+  );
 }
 
 export const ListNewsQuery = graphql`
@@ -40,6 +44,7 @@ export const ListNewsQuery = graphql`
       title
       slug
     }
-  }`
+  }
+`;
 
-export default ListNews
+export default ListNews;
