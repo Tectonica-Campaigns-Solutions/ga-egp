@@ -6,15 +6,13 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardPost from '../components/Global/CardPost/CardPost';
 
-function ListNews({pageContext, location, data: { list, page}}) {
-  let filteredContent = list.edges;
-  if(pageContext.items){
-    filteredContent = pageContext.items;
-  }
+function ListNews({pageContext, location, data: { page}}) {
+  
+  const filteredContent = pageContext.items;
   
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location}/>
+      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location}/>
       <div className="container">
         <div className="row mt-5">
           {isArray(filteredContent) && (
@@ -41,13 +39,6 @@ export const ListNewsQuery = graphql`
     page: datoCmsListNews {
       title
       slug
-    }
-    list: allDatoCmsPost(sort: {date: DESC}) {
-      edges {
-        node {
-          ...PostCard
-        }
-      }
     }
   }`
 

@@ -294,7 +294,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: `news/${tag.slug}`,
               id: tag.id,
-              items: items
+              items: items,
+              tag: tag.title
             },
           });
         })
@@ -355,6 +356,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listNews.slug,
               id: result.data.listNews.id,
+              items: allNews
             },
           });
         }
