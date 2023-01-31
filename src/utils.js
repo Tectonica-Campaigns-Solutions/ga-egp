@@ -28,3 +28,18 @@ export const getPhoneLink = (phone) => {
 export const getEmailLink = (email) => {
   return `mailto:${email}`;
 };
+
+export const monthNames = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];

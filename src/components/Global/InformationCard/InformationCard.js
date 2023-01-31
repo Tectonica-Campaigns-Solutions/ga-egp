@@ -1,6 +1,6 @@
 import React from 'react';
 import { isArray } from '../../../utils';
-import documentIcon from '../../Icons/pdf_icon.svg';
+import Document from '../Document/Document';
 
 import './index.scss';
 
@@ -17,13 +17,7 @@ const InformationCard = ({ preTitle, title, intro, documentKey = 'Related Downlo
           <span>{documentKey}</span>
 
           {documents.map((doc) => (
-            <div className="doc-item">
-              <img src={documentIcon} alt="Document icon" />
-
-              <a href={doc.document.url} target="_blank">
-                <span>{doc.document.title}</span>
-              </a>
-            </div>
+            <Document doc={doc} />
           ))}
         </div>
       )}
