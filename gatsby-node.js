@@ -34,6 +34,8 @@ exports.createPages = ({ graphql, actions }) => {
       member: path.resolve('./src/templates/member/member.js'),
       person: path.resolve('./src/templates/person/person.js'),
       event: path.resolve('./src/templates/event/event.js'),
+      congress: path.resolve('./src/templates/congress/congress.js'),
+      congressInner: path.resolve('./src/templates/congress/congress-inner.js'),
     };
     resolve(
       graphql(
@@ -135,6 +137,22 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
+            allCongress: allDatoCmsCongress{
+              edges{
+                node{
+                  title
+                  id
+                  slug
+                  pages{
+                    ... on DatoCmsCongressInnerPage{
+                      title
+                      slug
+                      id
+                    }
+                  }
+                }
+              }
+            }
             allNews: allDatoCmsPost(limit: 1000) {
               edges {
                 node {
@@ -197,6 +215,7 @@ exports.createPages = ({ graphql, actions }) => {
         const events = result.data.events.edges;
         const tagsNews = result.data.tagsNews.edges;
         const allNews = result.data.allNews.edges;
+        const congress = result.data.allCongress.edges
         // const globalSettings = result.data.globalSettings.nodes;
 
         //home
@@ -247,7 +266,7 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // positions
+        // events
         events.map(({ node: event }) => {
           createPage({
             path: `/events/${event.slug}`,
@@ -258,6 +277,35 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         });
+
+        // congress 
+        congress.map(({ node: congress }) => {
+          createPage({
+            path: `/events/${congress.slug}`,
+            component: templates.congress,
+            context: {
+              slug: congress.slug,
+              id: congress.id,
+            },
+          });
+        });
+
+        // congress inner page
+        congress.map(({ node: congress }) => {
+          congress.pages.map(item => {
+            createPage({
+              path: `/events/${congress.slug}/${item.slug}`,
+              component: templates.congressInner,
+              context: {
+                slug: item.slug,
+                id: item.id,
+                congressTitle: congress.title,
+                congressMenu: congress.pages,
+                congressSlug: congress.slug
+              },
+            });
+          })
+        })
 
         // resolutions
         resolutions.map(({ node: resolution }) => {
