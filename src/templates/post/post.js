@@ -12,7 +12,7 @@ import './index.scss';
 const Post = ({ pageContext, location, data: { page } }) => {
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} date={page.date} />
+      <HeroPage title={page.title} context={pageContext} location={location} date={page.date} isDetailView />
 
       <div className="container">
         <div className="post-detail">

@@ -4,7 +4,7 @@ import accordionClose from '../../Icons/accordion_close.svg';
 
 import './index.scss';
 
-function Accordion({ items, renderChild, renderCustomTitle = null, defaultActive=0 }) {
+function Accordion({ items, renderChild, renderCustomTitle = null, defaultActive = 0 }) {
   const [activeItem, setActiveItem] = useState(defaultActive);
 
   const handleOnChangeAccordion = (newIndex) => setActiveItem(newIndex);

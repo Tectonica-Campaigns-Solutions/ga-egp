@@ -3,7 +3,7 @@ import Link from '../Link';
 import Tag from '../Tag/Tag';
 import ImageWrapper from '../Image/ImageWrapper';
 import podcastArrow from '../../Icons/podcast-arrow.svg';
-import { isArray, pathToModel } from '../../../utils';
+import { pathToModel } from '../../../utils';
 
 import './index.scss';
 
@@ -37,7 +37,7 @@ const CardUpdate = ({ post }) => {
         <div>
           {tags && (
             <div className="tags">
-              <Tag title={tags.title} />
+              <Tag title={tags.title} slug={tags.slug} />
             </div>
           )}
 
