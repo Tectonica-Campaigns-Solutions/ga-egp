@@ -1,0 +1,32 @@
+.filter-members {
+  padding: 62px 0 243px 0;
+
+  .intro {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--egp-dark);
+    margin-bottom: 46px;
+  }
+
+  ul {
+    padding-left: 1rem;
+    padding-right: 10px;
+    list-style: url('../../Icons/member-arrow.svg');
+
+    li {
+      margin-bottom: 16px;
+
+      a {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 23px;
+        line-height: 130%;
+        color: #57B45F;
+      }
+    }
+  }
+}

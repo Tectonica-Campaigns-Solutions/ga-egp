@@ -1,60 +1,107 @@
 .member-detail {
-    .content-member {
-        padding: 133px 0;
+  .top-member {
+    height: 100px;
+    position: relative;
+    background-color: hsla(125, 38%, 52%, 0.3);
 
-        h3 {
-            font-family: 'Jaldi';
-            font-style: normal;
-            font-weight: 800;
-            font-size: 49px;
-            line-height: 110%;
-            color: var(--egp-dark);
-            padding-bottom: 25px;
-            border-bottom: 1px solid hsla(240, 1%, 52%, 0.2);
-            margin-bottom: 25px;
-        }
+    .content {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
 
-        h4 {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 130%;
-            color: var(--egp-dark);
-        }
+      h1 {
+        font-family: 'Jaldi';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 61px;
+        line-height: 100%;
+        color: #184B31;
 
-        .party-leaders-text {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 150%;
-            color: var(--egp-dark);
-        }
+      }
 
-        .contact-details-text,
-        .contact-details-text a {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 150%;
-            color: var(--egp-green);
-        }
+      .member-size {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 150%;
+        color: #184B31;
+        margin-left: 16px;
+      }
 
-        .history-text {
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 150%;
-            color: var(-egp-dark-gray);
-        }
-
-        .history-container {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid hsla(240, 1%, 52%, 0.2);
-        }
+      .close-btn-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     }
+  }
+
+  .content-member {
+    padding: 133px 0;
+
+    h3 {
+      font-family: 'Jaldi';
+      font-style: normal;
+      font-weight: 800;
+      font-size: 49px;
+      line-height: 110%;
+      color: var(--egp-dark);
+      padding-bottom: 25px;
+      border-bottom: 1px solid hsla(240, 1%, 52%, 0.2);
+      margin-bottom: 25px;
+    }
+
+    h4 {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 130%;
+      color: var(--egp-dark);
+    }
+
+    .party-leaders-text {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(--egp-dark);
+    }
+
+    .contact-details-text,
+    .contact-details-text a {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(--egp-green);
+    }
+
+    .history-text {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(-egp-dark-gray);
+    }
+
+    .history-container {
+      margin-top: 25px;
+      padding-top: 25px;
+      border-top: 1px solid hsla(240, 1%, 52%, 0.2);
+    }
+
+    .image-wrapper {
+      &>div {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+      }
+    }
+  }
 }
