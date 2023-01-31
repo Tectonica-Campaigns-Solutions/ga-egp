@@ -131,6 +131,9 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
+              menuInner{
+                id
+              }
             }
             listNews: datoCmsListNews {
               title
@@ -403,6 +406,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPolicyPapers.slug,
               id: result.data.listPolicyPapers.id,
+              menuInner: result.data.listPolicyPapers.menuInner?.id ? result.data.listPolicyPapers.menuInner?.id : null
             },
           });
         }

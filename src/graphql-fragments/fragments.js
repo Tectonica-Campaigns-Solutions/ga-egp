@@ -252,6 +252,51 @@ export const DatoCMS = graphql`
         content {
           ... on DatoCmsPage {
             slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListResolution {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListMember {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListResolution {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPosition {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPolicyPaper {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListMember {
+            slug
+            model {
+              apiKey
+            }
           }
         }
       }
