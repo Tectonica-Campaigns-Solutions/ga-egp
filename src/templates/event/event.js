@@ -7,6 +7,7 @@ import EventTag from '../../components/Global/CardEvent/EventTag/EventTag';
 import Button from '../../components/Global/Button/Button';
 
 import './index.scss';
+import Link from '../../components/Global/Link';
 
 function Event({ data: { event } }) {
   return (
@@ -21,11 +22,14 @@ function Event({ data: { event } }) {
               </div>
 
               <div className="date">
-                <span>10 JAN | 09:00 to 18:00</span>
+                <span>{event.date} | {event.time}</span>
               </div>
 
               <h1>{event.title}</h1>
-              <Button label="Register" />
+              {/* <Button label="Register" /> */}
+              {
+                event.registerLink && <Link to={event.registerLink.url}>{event.registerLink.label }</Link>
+              }
             </div>
           </div>
 
@@ -33,7 +37,17 @@ function Event({ data: { event } }) {
             <div className="col-lg-8 content">
               {event.textContent && <StructuredContentDefault content={event.textContent} />}
             </div>
-            <div className="col-lg-4">documents</div>
+            <div className="col-lg-4">
+              {
+                event.documents.map(item => {
+                  return(
+                    <div>
+                      <Link to={ item.document.url }>{ item.language }</Link>
+                    </div>
+                  )
+                })
+              }
+            </div>
           </div>
         </div>
       </div>
@@ -50,11 +64,27 @@ export const EventQuery = graphql`
         gatsbyImageData(width: 602, height: 401)
         url
       }
+      time
+      date(formatString: "D MMM")
+      registerLink{
+        ... on DatoCmsGlobalLink{
+          label
+          url
+        }
+      }
       tags {
         ... on DatoCmsTagEvent {
           title
           id
           color
+        }
+      }
+      documents{
+        ... on DatoCmsDocument{
+          language
+          document{
+            url
+          }
         }
       }
       textContent {
