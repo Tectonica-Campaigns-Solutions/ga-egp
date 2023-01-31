@@ -66,10 +66,10 @@ function FilterEvents({ events, tags }) {
           <div className="col-lg-7">
             <div className="filter-action-title">Filter by category</div>
             <div className="category-items">
-              {/* <div>
-              <input type="checkbox" onChange={() => handlerForm('All')} value="All" />
-                <label>All</label>
-            </div> */}
+              <div>
+                <input id="all" type="checkbox" name="selected_category" value="All" />
+                <label for="all">All</label>
+              </div>
 
               {tags.edges.map((item) => (
                 <div>
