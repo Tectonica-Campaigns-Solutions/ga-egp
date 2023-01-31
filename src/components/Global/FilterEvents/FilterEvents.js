@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from '../Accordion/Accordion';
 import CardEvent from '../CardEvent/CardEvent';
-import { isArray } from '../../../utils';
+import { isArray, monthNames } from '../../../utils';
 import yearLeftIcon from '../../Icons/year-left.svg';
 import yearRightIcon from '../../Icons/year-right.svg';
 
 import './index.scss';
 
-function FilterEvents({ events, tags }) {
-  // current month
-  // testing date porpuses
-  //const d = new Date("February 6, 2023 11:13:00");
-  const d = new Date();
-  const defaultMonth = d.getMonth();
+const ALL_CATEGORIES = 'All';
 
+function FilterEvents({ events, tags }) {
   // get years from content
   const yearsFilter = [...new Set(events.map((item) => item.node.year))];
 
@@ -22,26 +18,28 @@ function FilterEvents({ events, tags }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
+  const initialMonth = new Date().getMonth();
+
   useEffect(() => {
-    let eventsByYear = events.filter((item) => item.node.year === activeYear);
-    const groupByMonth = eventsByYear.reduce((group, event) => {
-      const { filterDate, tags } = event.node;
-      group[filterDate] = group[filterDate] ?? [];
+    const eventsByYear = events.filter((item) => item.node.year === activeYear);
 
-      // TODO: Remove?
-      if (activeCategory !== 'All') {
-        if (tags.id === activeCategory) {
-          group[filterDate].push(event);
+    const eventsGroupedByMonths = new Array(12).fill(1).map((_, index) => {
+      const currentMonth = monthNames[index];
+
+      const monthEvents = eventsByYear.filter((e) => {
+        const { filterDate, tags } = e.node;
+
+        if (activeCategory !== ALL_CATEGORIES) {
+          return filterDate === currentMonth && tags.id === activeCategory;
         }
-      } else {
-        group[filterDate].push(event);
-      }
 
-      return group;
-    }, {});
+        return filterDate === currentMonth;
+      });
 
-    const grouped = groupByMonth;
-    setOrderedEvents(Object.entries(grouped));
+      return { month: currentMonth, events: monthEvents ?? [] };
+    });
+
+    setOrderedEvents(eventsGroupedByMonths);
   }, [activeYear, activeCategory]);
 
   const handlerForm = (event) => {
@@ -114,14 +112,11 @@ function FilterEvents({ events, tags }) {
       <div className="row mt-5">
         {isArray(orderedEvents) && (
           <Accordion
-            defaultActive={defaultMonth}
+            defaultActive={initialMonth}
             items={orderedEvents}
-            renderCustomTitle={(item) => {
-              const eventMonth = item[0];
-              return eventMonth;
-            }}
+            renderCustomTitle={(item) => item.month}
             renderChild={(item) => {
-              const events = item[1];
+              const events = item.events;
 
               if (!isArray(events)) return null;
 

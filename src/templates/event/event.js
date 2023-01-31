@@ -5,9 +5,9 @@ import StructuredContentDefault from '../../components/StructuredContentDefault 
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import EventTag from '../../components/Global/CardEvent/EventTag/EventTag';
 import Button from '../../components/Global/Button/Button';
+import Link from '../../components/Global/Link';
 
 import './index.scss';
-import Link from '../../components/Global/Link';
 
 function Event({ data: { event } }) {
   return (
@@ -22,14 +22,14 @@ function Event({ data: { event } }) {
               </div>
 
               <div className="date">
-                <span>{event.date} | {event.time}</span>
+                <span>
+                  {event.date} | {event.time}
+                </span>
               </div>
 
               <h1>{event.title}</h1>
               {/* <Button label="Register" /> */}
-              {
-                event.registerLink && <Link to={event.registerLink.url}>{event.registerLink.label }</Link>
-              }
+              {event.registerLink && <Link to={event.registerLink.url}>{event.registerLink.label}</Link>}
             </div>
           </div>
 
@@ -38,15 +38,13 @@ function Event({ data: { event } }) {
               {event.textContent && <StructuredContentDefault content={event.textContent} />}
             </div>
             <div className="col-lg-4">
-              {
-                event.documents.map(item => {
-                  return(
-                    <div>
-                      <Link to={ item.document.url }>{ item.language }</Link>
-                    </div>
-                  )
-                })
-              }
+              {event.documents.map((item) => {
+                return (
+                  <div>
+                    <Link to={item.document.url}>{item.language}</Link>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -66,8 +64,8 @@ export const EventQuery = graphql`
       }
       time
       date(formatString: "D MMM")
-      registerLink{
-        ... on DatoCmsGlobalLink{
+      registerLink {
+        ... on DatoCmsGlobalLink {
           label
           url
         }
@@ -79,10 +77,10 @@ export const EventQuery = graphql`
           color
         }
       }
-      documents{
-        ... on DatoCmsDocument{
+      documents {
+        ... on DatoCmsDocument {
           language
-          document{
+          document {
             url
           }
         }
