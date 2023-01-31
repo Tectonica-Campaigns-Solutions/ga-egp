@@ -11,6 +11,7 @@ import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 
 function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks } }) {
+  console.log(pageContext)
   const filteredContent = list.edges;
   // const [filteredContent, setFilteredContent] = useState([]);
 
@@ -50,7 +51,7 @@ function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks 
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      <InnerNavigation location={location} innerMenu={navLinks} />
+      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
       <div className="container mt-5 pt-5">
         <div className="row">
@@ -93,12 +94,12 @@ export default ListPolicyPapers;
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPositionsQuery = graphql`
-  query ListPolicyPaper {
+  query ListPolicyPaper($menuInner: String) {
     page: datoCmsListPolicyPaper {
       title
       slug
     }
-    navLinks: datoCmsNavigation(codeId: { eq: "positions_navigation" }) {
+    navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
       ...Navigation
     }
     list: allDatoCmsPolicyPaper {

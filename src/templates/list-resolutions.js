@@ -56,7 +56,7 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      <InnerNavigation location={location} innerMenu={navLinks} />
+      {/* <InnerNavigation location={location} innerMenu={navLinks} /> */}
 
       <div className="container mt-5 pt-5">
         <div className="row">
