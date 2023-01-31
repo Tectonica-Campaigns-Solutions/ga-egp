@@ -6,6 +6,8 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import EventTag from '../../components/Global/CardEvent/EventTag/EventTag';
 import Button from '../../components/Global/Button/Button';
 import Link from '../../components/Global/Link';
+import DateTime from '../../components/Global/DateTime/DateTime';
+import Document from '../../components/Global/Document/Document';
 
 import './index.scss';
 
@@ -21,15 +23,11 @@ function Event({ data: { event } }) {
                 <EventTag title={event.tags.title} />
               </div>
 
-              <div className="date">
-                <span>
-                  {event.date} | {event.time}
-                </span>
-              </div>
+              <DateTime date={event.date} time={event.time} />
 
               <h1>{event.title}</h1>
-              {/* <Button label="Register" /> */}
-              {event.registerLink && <Link to={event.registerLink.url}>{event.registerLink.label}</Link>}
+
+              {event.registerLink && <Button label={event.registerLink.label} url={event.registerLink.url} />}
             </div>
           </div>
 
@@ -37,14 +35,12 @@ function Event({ data: { event } }) {
             <div className="col-lg-8 content">
               {event.textContent && <StructuredContentDefault content={event.textContent} />}
             </div>
-            <div className="col-lg-4">
-              {event.documents.map((item) => {
-                return (
-                  <div>
-                    <Link to={item.document.url}>{item.language}</Link>
-                  </div>
-                );
-              })}
+
+            <div className="col-lg-3 offset-lg-1">
+              <p className="downloads">Related Downloads</p>
+              {event.documents.map((item) => (
+                <Document doc={item} />
+              ))}
             </div>
           </div>
         </div>
@@ -82,6 +78,7 @@ export const EventQuery = graphql`
           language
           document {
             url
+            title
           }
         }
       }
