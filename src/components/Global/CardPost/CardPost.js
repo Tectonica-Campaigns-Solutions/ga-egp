@@ -4,7 +4,6 @@ import Link from '../Link'
 
 function CardPost({ item }) {
   const { title, slug, date, image, tags } = item.node
-  console.log(tags)
   return (
     <div>
       <div>{ date }</div>
