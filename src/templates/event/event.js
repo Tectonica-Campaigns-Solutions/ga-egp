@@ -74,10 +74,12 @@ export const EventQuery = graphql`
           color
         }
       }
-      eventType {
-        title
-        icon {
-          url
+      eventType{
+        ... on DatoCmsEventType{
+          title
+          icon{
+            url
+          }
         }
       }
       documents {

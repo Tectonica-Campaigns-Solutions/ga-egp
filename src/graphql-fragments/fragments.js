@@ -364,9 +364,11 @@ export const DatoCMS = graphql`
       }
     }
     eventType {
-      title
-      icon {
-        url
+      ... on DatoCmsEventType{
+        title
+        icon{
+          url
+        }
       }
     }
   }

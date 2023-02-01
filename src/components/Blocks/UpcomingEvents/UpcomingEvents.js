@@ -35,6 +35,7 @@ const UpcomingEvents = ({ block }) => {
             slug={slug}
             color={item.tags.color}
             tag={item.tags.title}
+            type={item.eventType}
         />)
         })
       }
