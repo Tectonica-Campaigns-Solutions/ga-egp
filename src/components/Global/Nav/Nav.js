@@ -103,11 +103,11 @@ export default function Nav({ navData, path }) {
 
       <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
         <ul className="navbar-nav mr-auto">
-          {navLinks?.map((link) =>
+          {navLinks?.map((link, index) =>
             link.links.length === 0 ? (
-              <LinkItem key={link?.mainLink?.id} link={link?.mainLink} label={link?.label} isButton={link?.isButton} />
+              <LinkItem key={index} link={link?.mainLink} label={link?.label} isButton={link?.isButton} />
             ) : (
-              <DropdownItem key={link?.mainLink?.id} link={link?.mainLink} label={link?.label} children={link?.links} />
+              <DropdownItem key={index} link={link?.mainLink} label={link?.label} children={link?.links} />
             )
           )}
 

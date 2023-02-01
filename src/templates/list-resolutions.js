@@ -56,11 +56,16 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      {/* <InnerNavigation location={location} innerMenu={navLinks} /> */}
+      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col">
+            {
+              page.introduction &&  <div
+                dangerouslySetInnerHTML={{__html: page.introduction}}
+              />
+            }
             <form onSubmit={submitHandler}>
               <div>
                 <label htmlFor="tid">Council</label>
@@ -130,10 +135,12 @@ export default ListResolutions;
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPositionsQuery = graphql`
-  query ListResolutions {
+  query ListResolutions($menuInner: String) {
     page: datoCmsListResolution {
       title
       slug
+      id
+      introduction
     }
     list: allDatoCmsResolution {
       edges {
@@ -150,7 +157,7 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsNavigation(codeId: { eq: "positions_navigation" }) {
+    navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
       ...Navigation
     }
   }

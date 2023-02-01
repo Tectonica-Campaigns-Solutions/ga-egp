@@ -29,7 +29,8 @@ exports.createPages = ({ graphql, actions }) => {
       listMembers: path.resolve('./src/templates/list-members.js'),
       listNews: path.resolve('./src/templates/list-news.js'),
       listEvents: path.resolve('./src/templates/list-events.js'),
-      position: path.resolve('./src/templates/position.js'),
+      listPodcast: path.resolve('./src/templates/list-podcast.js'),
+      position: path.resolve('./src/templates/position/position.js'),
       resolution: path.resolve('./src/templates/resolution/resolution.js'),
       member: path.resolve('./src/templates/member/member.js'),
       person: path.resolve('./src/templates/person/person.js'),
@@ -54,6 +55,9 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   slug
                   id
+                  menuInner{
+                    id
+                  }
                 }
               }
             }
@@ -66,7 +70,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            positions: allDatoCmsPosition {
+            positions: allDatoCmsPosition (sort: {position: ASC}) {
               edges {
                 node {
                   title
@@ -116,6 +120,9 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
+              menuInner{
+                id
+              }
             }
             listMembers: datoCmsListMember {
               title
@@ -126,6 +133,9 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
+              menuInner{
+                id
+              }
             }
             listPolicyPapers: datoCmsListPolicyPaper {
               title
@@ -136,6 +146,11 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
             listNews: datoCmsListNews {
+              title
+              id
+              slug
+            }
+            listPodcats: datoCmsListPodcast{
               title
               id
               slug
@@ -218,7 +233,8 @@ exports.createPages = ({ graphql, actions }) => {
         const events = result.data.events.edges;
         const tagsNews = result.data.tagsNews.edges;
         const allNews = result.data.allNews.edges;
-        const congress = result.data.allCongress.edges
+        const congress = result.data.allCongress.edges;
+        
         // const globalSettings = result.data.globalSettings.nodes;
 
         //home
@@ -241,6 +257,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: page.slug,
               id: page.id,
+              menuInner: page.menuInner?.id ? page.menuInner?.id : null
             },
           });
         });
@@ -260,11 +277,14 @@ exports.createPages = ({ graphql, actions }) => {
         // positions
         positions.map(({ node: position }) => {
           createPage({
-            path: position.slug,
+            path: `/positions/${position.slug}`,
             component: templates.position,
             context: {
               slug: position.slug,
               id: position.id,
+              menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null,
+              siblings: positions,
+              parentTitle: result.data.listPositions?.title ? result.data.listPositions?.title : null
             },
           });
         });
@@ -370,6 +390,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPositions.slug,
               id: result.data.listPositions.id,
+              menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null
             },
           });
         }
@@ -394,6 +415,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listResolutions.slug,
               id: result.data.listResolutions.id,
+              menuInner: result.data.listResolutions.menuInner?.id ? result.data.listResolutions.menuInner?.id : null
             },
           });
         }
@@ -420,6 +442,18 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listNews.slug,
               id: result.data.listNews.id,
               items: allNews,
+            },
+          });
+        }
+
+        // list podcast
+        if (result.data.listPodcats) {
+          createPage({
+            path: result.data.listPodcats.slug,
+            component: templates.listPodcast,
+            context: {
+              slug: result.data.listPodcats.slug,
+              id: result.data.listPodcats.id,
             },
           });
         }

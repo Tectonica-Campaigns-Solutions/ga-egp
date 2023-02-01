@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { pathToModel } from '../../../utils';
+import { pathToModel, isActiveTrail } from '../../../utils';
 import Link from '../Link';
 
 import './index.scss';
@@ -13,10 +13,10 @@ const InnerNavigation = ({ location, innerMenu }) => {
         <div className="d-flex py-4">
           {navLinks.map((item) => {
             const link = pathToModel(item.mainLink.content.model.apiKey, item.mainLink.content.slug);
-
+            const active = isActiveTrail(location?.pathname,link) 
             return (
-              <div className="pe-5">
-                <Link className={`link-item ${location?.pathname === link + '/' ? 'active' : ''}`} to={link}>
+              <div className="pe-5" key={item.id}>
+                <Link className={`link-item ${ active ? 'active' : ''}`} to={link}>
                   {item.label}
                 </Link>
               </div>

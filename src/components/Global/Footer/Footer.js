@@ -87,7 +87,7 @@ function Footer() {
                 {isArray(partnersFooter.navigationItems) && (
                   <div className="partners-list">
                     {partnersFooter.navigationItems.map((partner) => (
-                      <Link to={getCtaUrl(partner.mainLink)}>
+                      <Link key={partner.id} to={getCtaUrl(partner.mainLink)}>
                         <img src={partner.icon.url} alt={partner.label} />
                       </Link>
                     ))}
@@ -100,7 +100,7 @@ function Footer() {
             {isArray(menuFooter.navigationItems) && (
               <div className="row">
                 {menuFooter.navigationItems.map((navItem) => (
-                  <div className="col-lg-3 col-md-6 mb-sm-4 mb-0">
+                  <div key={navItem.id} className="col-lg-3 col-md-6 mb-sm-4 mb-0">
                     <FooterGroupLinks item={navItem} />
                   </div>
                 ))}

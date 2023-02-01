@@ -207,6 +207,12 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsCongress {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsListMember {
             slug
             model {
@@ -257,6 +263,12 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsListResolution {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsCongress {
             slug
             model {
               apiKey

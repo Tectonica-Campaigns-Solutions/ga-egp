@@ -10,20 +10,18 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks } }
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      {/* <InnerNavigation location={location} innerMenu={navLinks} /> */}
+      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
       <div className="container mt-5 pt-5 mb-5">
         <div className="row">
           <div className="col">
             <div className="row gy-5">
-              <p>
-                Lorem ipsum dolor sit amet consectetur. Nunc mauris odio pellentesque ut feugiat mauris sagittis. Morbi
-                vitae in volutpat etiam leo. Tellus hac et leo eu tellus tellus neque cursus. Nunc morbi tempor sagittis
-                ultricies vitae. Velit est augue proin vitae commodo. Risus scelerisque viverra consectetur duis
-                volutpat. Aliquet congue etiam amet ullamcorper in eu in. Tristique vulputate mi adipiscing facilisi.
-                Feugiat feugiat senectus nisl mollis amet. Sed gravida viverra quam egestas id egestas enim malesuada
-                consequat.
-              </p>
+              
+              {
+                page.introduction &&  <div
+                  dangerouslySetInnerHTML={{__html: page.introduction}}
+                />
+              }
 
               {list.edges.map((item) => {
                 return (
@@ -43,19 +41,20 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks } }
 export default ListPositions;
 
 export const ListPositionsQuery = graphql`
-  query ListPositions {
+  query ListPositions($menuInner: String) {
     page: datoCmsListPosition {
       title
       slug
+      introduction
     }
-    list: allDatoCmsPosition {
+    list: allDatoCmsPosition(sort: {position: ASC}) {
       edges {
         node {
           ...CardPosition
         }
       }
     }
-    navLinks: datoCmsNavigation(codeId: { eq: "positions_navigation" }) {
+    navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
       ...Navigation
     }
   }

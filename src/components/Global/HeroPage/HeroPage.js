@@ -1,30 +1,20 @@
 import React from 'react';
-import Breadcrumb from 'gatsby-plugin-breadcrumb/components/Breadcrumb';
 
 import './index.scss';
 
-function HeroPage({ title, context = null, location = null, date = null, isDetailView = false }) {
-  const {
-    breadcrumb: { crumbs },
-  } = context;
-
-  // const customCrumbs = crumbs.map((item, index) => {
-  //   return { ...item, crumbLabel: item.crumbLabel.replaceAll('-', ' ').toUpperCase()}
-
-  // });
+function HeroPage({ title, context = null, location = null, date = null, isDetailView = false, parentTitle = null }) {
 
   return (
     <div className="hero-page">
       <div className="container">
-        {crumbs && (
-          <div className="breadcrumb-section">
-            {/* <Breadcrumb crumbs={crumbs} crumbSeparator=" / " /> */}
-          </div>
-        )}
-
         {date && <div className="date">{date}</div>}
-
-        <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>
+        { 
+          parentTitle && <h2>{ parentTitle}</h2>
+        }
+        {
+          !parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>
+        }
+        
       </div>
     </div>
   );

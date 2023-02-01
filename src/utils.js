@@ -3,6 +3,10 @@ export const pathToModel = (model = null, slug = '') => {
     return `/news/${slug}`;
   } else if (model === 'person') {
     return `/organisation/${slug}`;
+  } else if (model === 'congress') {
+    return `/events/${slug}`;
+  } else if (model === 'position') {
+    return `/positions/${slug}`;
   } else {
     return '/' + slug;
   }
@@ -43,3 +47,11 @@ export const monthNames = [
   'November',
   'December',
 ];
+
+export const isActiveTrail = (pathname, link) => {
+  const explodePath = pathname.split('/')
+  if(pathname === link + '/' || explodePath.includes(link.substring(1))){
+    return true
+  }
+  return false
+}
