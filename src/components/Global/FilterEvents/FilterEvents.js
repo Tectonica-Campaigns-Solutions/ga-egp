@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Accordion from '../Accordion/Accordion';
 import CardEvent from '../CardEvent/CardEvent';
 import { isArray, monthNames } from '../../../utils';
-import yearLeftIcon from '../../Icons/year-left.svg';
-import yearRightIcon from '../../Icons/year-right.svg';
+import DateSlider from '../DateSlider/DateSlider';
 
 import './index.scss';
 
@@ -82,21 +81,7 @@ function FilterEvents({ events, tags }) {
 
           <div className="col-lg-4">
             <div className="filter-action-title">Select Year</div>
-
-            <div className="d-flex align-items-center">
-              <img src={yearLeftIcon} alt="Year left arrow icon" />
-
-              {yearsFilter.map((year) => (
-                <div className="year-container">
-                  <input type="radio" id={year} name="selected_year" value={year} style={{ display: 'none' }} />
-                  <label className={`${activeYear === year ? 'active' : ''}`} for={year}>
-                    {year}
-                  </label>
-                </div>
-              ))}
-
-              <img src={yearRightIcon} alt="Year right arrow icon" />
-            </div>
+            <DateSlider years={yearsFilter} activeYear={activeYear} />
           </div>
         </div>
       </form>
@@ -114,7 +99,10 @@ function FilterEvents({ events, tags }) {
           <Accordion
             defaultActive={initialMonth}
             items={orderedEvents}
-            renderCustomTitle={(item) => item.month}
+            renderCustomTitle={(item) => {
+              const eventsOnMonth = item?.events?.length || 0;
+              return `${item.month} (${eventsOnMonth})`;
+            }}
             renderChild={(item) => {
               const events = item.events;
 
@@ -130,6 +118,7 @@ function FilterEvents({ events, tags }) {
                       color={e.node.tags.color}
                       image={e.node.image}
                       tag={e.node.tags.title}
+                      type={e.node.eventType}
                     />
                   ))}
                 </>

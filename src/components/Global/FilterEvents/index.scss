@@ -1,80 +1,52 @@
 .filter-events {
-	padding: 42px 0 285px 0;
+  padding: 42px 0 285px 0;
 
-	.filter-action-title {
-		font-family: 'Roboto';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 16px;
-		line-height: 25px;
-		color: var(--egp-dark);
-		margin-bottom: 20px;
-	}
+  .filter-action-title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--egp-dark);
+    margin-bottom: 20px;
+  }
 
 
-	.category-items {
-		display: flex;
-		align-items: center;
-		gap: 25px;
+  .category-items {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 
-		label {
-			font-family: 'Roboto';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 20px;
-			line-height: 150%;
-			color: #000000;
-			padding-left: 10px;
-		}
-	}
+    label {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: #000000;
+      padding-left: 10px;
+    }
+  }
 
-	.current-filters {
-		padding: 59px 0 0 0;
-		font-family: 'Roboto';
-		font-style: normal;
-		font-weight: 400;
-		font-size: 16px;
-		line-height: 130%;
-		color: var(--egp-gray);
+  .current-filters {
+    padding: 59px 0 0 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: var(--egp-gray);
 
-		span {
-			padding: 0px 5px;
-			background: rgba(87, 180, 95, 0.2);
-			border-radius: 4px;
-			font-family: 'Roboto';
-			font-style: normal;
-			font-weight: 700;
-			font-size: 16px;
-			line-height: 130%;
-			color: var(--egp-dark-green);
-		}
-	}
-
-	.year-container {
-		display: inline-block;
-		margin: 0 20px;
-
-		input {
-			display: none;
-		}
-
-		label {
-			cursor: pointer;
-			font-family: 'Roboto';
-			font-style: normal;
-			font-weight: 700;
-			font-size: 20px;
-			line-height: 150%;
-			color: var(--egp-light-gray);
-
-			&.active {
-				font-family: 'Roboto';
-				font-style: normal;
-				font-weight: 700;
-				font-size: 31px;
-				line-height: 130%;
-				color: var(--egp-dark-green);
-			}
-		}
-	}
+    span {
+      padding: 0px 5px;
+      background: rgba(87, 180, 95, 0.2);
+      border-radius: 4px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 130%;
+      color: var(--egp-dark-green);
+    }
+  }
 }
