@@ -83,6 +83,7 @@ export const PostQuery = graphql`
         name
         slug
         description
+        jobPosition
         image {
           gatsbyImageData(width: 84, height: 84)
         }

@@ -1,18 +1,16 @@
 import React from 'react';
-import SidebarNav from '../../Global/SidebarNav/SidebarNav';
 
 import './index.scss';
 
-const InnerLayout = ({ navMenu=null, children }) => {
+const InnerLayout = ({ navMenu = null, children }) => {
   return (
-    <div className="row">
-      <div className="col-lg-3">
-        {
-          navMenu && <SidebarNav menu={navMenu} />
-        }
-        
+    <div className="inner-layout">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-3 first">{navMenu}</div>
+          <div className="col-lg-9 second">{children}</div>
+        </div>
       </div>
-      <div className="col-lg-9 pb-5">{children}</div>
     </div>
   );
 };

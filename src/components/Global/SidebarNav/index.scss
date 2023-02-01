@@ -1,0 +1,29 @@
+.sidebar-nav {
+  .sidebar-item {
+    margin-bottom: 26px;
+
+    a {
+      font-family: 'Jaldi';
+      font-style: normal;
+      font-weight: 800;
+      font-size: 25px;
+      line-height: 110%;
+      color: var(--egp-dark);
+    }
+
+    &.active a {
+      color: var(--egp-dark-green);
+
+      &::before {
+        content: '';
+        background-image: url('../../Icons/right_arrow.svg');
+        background-repeat: no-repeat;
+        width: 17px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        margin-right: 10px;
+      }
+    }
+  }
+}

@@ -4,9 +4,9 @@ import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import Layout from '../../components/Layout/Layout';
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import BackButton from '../../components/Global/BackButton/BackButton';
+import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 
 import './index.scss';
-import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 
 function Member({ pageContext, location, data: { page } }) {
   return (

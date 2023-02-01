@@ -3,7 +3,6 @@ import { graphql, navigate } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
-import Link from '../components/Global/Link';
 import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
@@ -53,79 +52,64 @@ function ListResolutions({ pageContext, location, data: { list, page, navLinks, 
     setFilteredContent(list.edges);
   }, [list]);
 
+  const sidebarContent = () => (
+    <form onSubmit={submitHandler}>
+      <div>
+        <label htmlFor="tid">Council</label>
+        <select name="tid" id="tid" onChange={(e) => setFilter((prev) => ({ ...prev, councilId: e.target.value }))}>
+          <option value="all">All</option>
+          {councils.edges.map((item) => (
+            <option value={item.node.idFilter}>{item.node.title}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="field_subheading_value">Intro</label>
+        <input
+          type="text"
+          name="field_subheading_value"
+          onChange={(e) => setFilter((prev) => ({ ...prev, intro: e.target.value }))}
+        />
+      </div>
+
+      <div>
+        <input type="submit" value="apply" />
+      </div>
+    </form>
+  );
+
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
-      <div className="container mt-5 pt-5">
-        <div className="row">
-          <div className="col">
-            {
-              page.introduction &&  <div
-                dangerouslySetInnerHTML={{__html: page.introduction}}
-              />
-            }
-            <form onSubmit={submitHandler}>
-              <div>
-                <label htmlFor="tid">Council</label>
-                <select
-                  name="tid"
-                  id="tid"
-                  onChange={(e) => setFilter((prev) => ({ ...prev, councilId: e.target.value }))}
-                >
-                  <option value="all">All</option>
-                  {councils.edges.map((item) => (
-                    <option value={item.node.idFilter}>{item.node.title}</option>
-                  ))}
-                </select>
-              </div>
+      <InnerLayout navMenu={sidebarContent()}>
+        {isArray(filteredContent) && (
+          <ListPaginated
+            list={filteredContent}
+            resetPage={shouldNavigateToFirstPage()}
+            renderItem={(item) => {
+              const { id, council, intro, slug, model, title, documents } = item.node;
 
-              <div>
-                <label htmlFor="field_subheading_value">Intro</label>
-                <input
-                  type="text"
-                  name="field_subheading_value"
-                  onChange={(e) => setFilter((prev) => ({ ...prev, intro: e.target.value }))}
-                />
-              </div>
-
-              <div>
-                <input type="submit" value="apply" />
-              </div>
-            </form>
-
-            <InnerLayout>
-              <div className="row">
-                {isArray(filteredContent) && (
-                  <ListPaginated
-                    list={filteredContent}
-                    resetPage={shouldNavigateToFirstPage()}
-                    renderItem={(item) => {
-                      const { id, council, intro, slug, model, title, documents } = item.node;
-
-                      return (
-                        <div className="mb-5" key={id}>
-                          <InformationCard
-                            preTitle={
-                              <>
-                                Council: <strong>Copenhagen Congress 2022</strong>
-                              </>
-                            }
-                            title={title}
-                            intro={intro}
-                            documents={documents}
-                          />
-                        </div>
-                      );
-                    }}
+              return (
+                <div className="mb-5" key={id}>
+                  <InformationCard
+                    preTitle={
+                      <>
+                        Council: <strong>Copenhagen Congress 2022</strong>
+                      </>
+                    }
+                    title={title}
+                    intro={intro}
+                    documents={documents}
                   />
-                )}
-              </div>
-            </InnerLayout>
-          </div>
-        </div>
-      </div>
+                </div>
+              );
+            }}
+          />
+        )}
+      </InnerLayout>
     </Layout>
   );
 }

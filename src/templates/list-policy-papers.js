@@ -11,7 +11,6 @@ import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 
 function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks } }) {
-  console.log(pageContext)
   const filteredContent = list.edges;
   // const [filteredContent, setFilteredContent] = useState([]);
 
@@ -48,43 +47,39 @@ function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks 
   //   setFilteredContent(list.edges);
   // }, [list]);
 
+  const sidebarContent = () => (
+    <form action="" onSubmit={{}}>
+      <div>
+        <label htmlFor="tid">Council</label>
+        <select name="tid" id="tid">
+          <option value="all">All</option>
+          {/* {(councils).edges.map((item) => (
+            <option value={item.node.idFilter}>{item.node.title}</option>
+          ))} */}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="field_subheading_value">Intro</label>
+        <input type="text" name="field_subheading_value" />
+      </div>
+      <div>
+        <input type="submit" value="apply" />
+      </div>
+    </form>
+  );
+
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
-      <div className="container mt-5 pt-5">
-        <div className="row">
-          <div className="col">
-            {/* <form action="" onSubmit={submitHandler}>
-              <div>
-                <label htmlFor="tid">Council</label>
-                <select name="tid" id="tid">
-                  <option value="all">All</option>
-                  {councils.edges.map((item) => (
-                    <option value={item.node.idFilter}>{item.node.title}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label htmlFor="field_subheading_value">Intro</label>
-                <input type="text" name="field_subheading_value" />
-              </div>
-              <div>
-                <input type="submit" value="apply" />
-              </div>
-            </form> */}
-
-            <InnerLayout>
-              <div className="row g-5">
-                {filteredContent.map((item) => (
-                  <CardPolicy title={item.node.title} intro={item.node.intro} documents={item.node.documents} />
-                ))}
-              </div>
-            </InnerLayout>
-          </div>
+      <InnerLayout navMenu={sidebarContent()}>
+        <div className="row g-5">
+          {filteredContent.map((item) => (
+            <CardPolicy title={item.node.title} intro={item.node.intro} documents={item.node.documents} />
+          ))}
         </div>
-      </div>
+      </InnerLayout>
     </Layout>
   );
 }

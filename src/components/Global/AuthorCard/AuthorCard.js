@@ -4,7 +4,7 @@ import ImageWrapper from '../Image/ImageWrapper';
 import './index.scss';
 
 const AuthorCard = ({ author }) => {
-  const { description, image, name } = author;
+  const { jobPosition, image, name } = author;
 
   return (
     <div className="author-card">
@@ -13,8 +13,7 @@ const AuthorCard = ({ author }) => {
       <div>
         {name && <h4>{name}</h4>}
 
-        {/* TODO: Discuss text length... */}
-        {/* {description && <div className="description" dangerouslySetInnerHTML={{ __html: description }} />} */}
+        {jobPosition && <div className="description" dangerouslySetInnerHTML={{ __html: jobPosition }} />}
       </div>
     </div>
   );
