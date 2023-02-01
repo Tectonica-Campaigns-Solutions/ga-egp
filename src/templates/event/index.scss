@@ -13,16 +13,6 @@
       margin-bottom: 15px;
     }
 
-    .date {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 700;
-      font-size: 25px;
-      line-height: 130%;
-      color: var(--egp-darker-green);
-      margin-bottom: 30px;
-    }
-
     h1 {
       font-family: 'Jaldi';
       font-style: normal;
@@ -72,5 +62,15 @@
       line-height: 150%;
       color: var(--egp-dark);
     }
+  }
+
+  .downloads {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: var(--egp-gray);
+    margin-bottom: 10px;
   }
 }

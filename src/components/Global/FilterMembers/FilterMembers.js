@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { navigate } from 'gatsby';
 import Link from '../Link';
 import EGPMap from '../EGPMap/EGPMap';
+import { isArray } from '../../../utils';
+
+import './index.scss';
 
 function FilterMembers({ members, introduction }) {
   const handleOnClickCountry = (e) => {
@@ -19,21 +22,28 @@ function FilterMembers({ members, introduction }) {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        <div className="col-lg-4">
-          <div dangerouslySetInnerHTML={{ __html: introduction }} />
-          {members.map((item) => {
-            return (
-              <div>
-                <Link to={item.node.slug}>{item.node.title}</Link>
-              </div>
-            );
-          })}
-        </div>
+    <div className="filter-members">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-5">
+            <div className="intro" dangerouslySetInnerHTML={{ __html: introduction }} />
 
-        <div className="col-lg-8">
-          <EGPMap handleOnClickCountry={handleOnClickCountry} />
+            {isArray(members) && (
+              <ul>
+                {members.map((item) => {
+                  return (
+                    <li>
+                      <Link to={item.node.slug}>{item.node.title}</Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+
+          <div className="col-lg-7">
+            <EGPMap handleOnClickCountry={handleOnClickCountry} />
+          </div>
         </div>
       </div>
     </div>

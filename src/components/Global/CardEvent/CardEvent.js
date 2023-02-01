@@ -28,9 +28,7 @@ const CardEvent = ({ day, hour, image, title, description, slug, color, tag }) =
           </div>
 
           <h2>{title}</h2>
-          <div
-            dangerouslySetInnerHTML={{__html: description}}
-          />
+          <div dangerouslySetInnerHTML={{ __html: description }} />
         </div>
       </div>
 

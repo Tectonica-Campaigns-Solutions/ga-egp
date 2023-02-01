@@ -32,41 +32,4 @@
     color: var(--egp-gray);
     margin-bottom: 1.406rem;
   }
-
-  .docs {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.625rem;
-
-    span {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 130%;
-      color: var(--egp-gray);
-    }
-
-    .doc-item {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 10px 7px;
-      gap: 10px;
-      background: rgba(204, 204, 208, 0.3);
-      border: 1px solid rgba(199, 199, 199, 0.6);
-      border-radius: 6px;
-
-      span {
-        font-family: 'Jaldi';
-        font-style: normal;
-        font-weight: 800;
-        font-size: 1rem;
-        line-height: 1.125rem;
-        color: var(--egp-gray);
-      }
-    }
-  }
 }
