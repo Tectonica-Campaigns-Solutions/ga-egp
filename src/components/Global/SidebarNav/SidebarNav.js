@@ -5,13 +5,13 @@ import Link from '../Link';
 import './index.scss';
 
 function SidebarNav({ menu, location }) {
-  const currentPathname = location.pathname;
+  const currentPathname = location ? location?.pathname : null;
 
   return (
     <div className="sidebar-nav">
       {menu.map((item) => {
         const path = pathToModel('position', item.node.slug);
-        const isActivePath = currentPathname?.includes(path);
+        const isActivePath = currentPathname ? currentPathname?.includes(path) : false;
 
         return (
           <div className={`sidebar-item ${isActivePath ? 'active' : ''}`}>
