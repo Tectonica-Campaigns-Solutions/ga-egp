@@ -49,9 +49,9 @@ export const monthNames = [
 ];
 
 export const isActiveTrail = (pathname, link) => {
-  const explodePath = pathname.split('/')
-  if(pathname === link + '/' || explodePath.includes(link.substring(1))){
-    return true
+  const explodePath = pathname.split('/');
+  if (pathname === link + '/' || explodePath.includes(link.substring(1))) {
+    return true;
   }
-  return false
-}
+  return false;
+};

@@ -363,6 +363,12 @@ export const DatoCMS = graphql`
         color
       }
     }
+    eventType {
+      title
+      icon {
+        url
+      }
+    }
   }
   fragment PostCard on DatoCmsPost {
     id

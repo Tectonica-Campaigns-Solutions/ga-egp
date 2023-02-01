@@ -3,11 +3,11 @@ import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
-import EventTag from '../../components/Global/CardEvent/EventTag/EventTag';
+import EventType from '../../components/Global/CardEvent/EventType/EventType';
 import Button from '../../components/Global/Button/Button';
-import Link from '../../components/Global/Link';
 import DateTime from '../../components/Global/DateTime/DateTime';
 import Document from '../../components/Global/Document/Document';
+import Tag from '../../components/Global/Tag/Tag';
 
 import './index.scss';
 
@@ -20,7 +20,8 @@ function Event({ data: { event } }) {
             <div className="col-lg-5">{event.image && <ImageWrapper image={event.image} />}</div>
             <div className="col-lg-7">
               <div className="event-tags">
-                <EventTag title={event.tags.title} />
+                <EventType type={event.eventType} />
+                <Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />
               </div>
 
               <DateTime date={event.date} time={event.time} />
@@ -71,6 +72,12 @@ export const EventQuery = graphql`
           title
           id
           color
+        }
+      }
+      eventType {
+        title
+        icon {
+          url
         }
       }
       documents {

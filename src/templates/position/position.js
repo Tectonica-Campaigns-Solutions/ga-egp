@@ -5,38 +5,37 @@ import StructuredContentDefault from '../../components/StructuredContentDefault 
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
-import Link from '../../components/Global/Link';
-import { pathToModel } from '../../utils';
+import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
+import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 
-const Position = ({pageContext, location, data: { position, navLinks } }) => {
-  const { siblings, parentTitle } = pageContext
+import './index.scss';
+
+const Position = ({ pageContext, location, data: { position, navLinks } }) => {
+  const { siblings, parentTitle } = pageContext;
+
+  const sidebarLinks = () => {
+    const updatedSiblings = [{ node: { slug: 'positions', title: 'All positions' } }, ...siblings];
+    return <>{siblings && <SidebarNav menu={updatedSiblings} location={location} />}</>;
+  };
+
   return (
     <Layout>
-      <HeroPage title={position.title} context={pageContext} location={location} parentTitle={parentTitle}/>
-      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />} 
-      <div className="container mt-5 pt-5">
-        <div className="row">
-          <div className="col-lg-3">
-            <div><Link to="/positions">All positions</Link></div>
-          {
-              siblings && siblings.map(item => {
-                const path = pathToModel('position', item.node.slug);
-                return (
-                  <div>
-                    <Link to={path}>{ item.node.title }</Link>
-                  </div>  
-                )
-              })
-            }
-          </div>
-          <div className="col-lg-9">
-            <h1>{position.title}</h1>
-            {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
-            {position.intro && <div dangerouslySetInnerHTML={{ __html: position.intro }} />}
-            {position.text && <StructuredContentDefault content={position.text} />}
-            
-          </div>
-        </div>
+      <HeroPage title={position.title} context={pageContext} location={location} parentTitle={parentTitle} />
+      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+
+      <div className="position-detail">
+        <InnerLayout navMenu={sidebarLinks()}>
+          <h1>{position.title}</h1>
+
+          {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
+          {position.intro && <div className="intro" dangerouslySetInnerHTML={{ __html: position.intro }} />}
+
+          {position.text && (
+            <div className="content">
+              <StructuredContentDefault content={position.text} />
+            </div>
+          )}
+        </InnerLayout>
       </div>
     </Layout>
   );

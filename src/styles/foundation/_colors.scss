@@ -11,7 +11,12 @@
   --egp-dark: #333333;
   --egp-pink: #ff70bd;
   --egp-darker-green: #184b31;
-  --egp-pale-yellow: #ccc;
+
+  // Colors used as background for agenda/event detail
+  --egp-pale-secondary-yellow: rgba(255, 220, 46, 0.06);
+  --egp-pale-secondary-blue: rgba(203, 228, 238, 0.2);
+  --egp-pale-secondary-gray: rgba(204, 204, 208, 0.1);
+  --egp-pale-secondary-gray: rgba(87, 180, 95, 0.06);
 }
 
 // Global background colors
@@ -28,7 +33,7 @@
 }
 
 .section-yellow {
-  background-color: hsla(50, 100%, 59%, 0.06);
+  background-color: rgba(255, 220, 46, 0.06);
 }
 
 .section-green {
@@ -41,4 +46,14 @@
 
 .section-blue {
   background-color: hsla(197, 51%, 86%, 0.2);
+}
+
+
+// Secondary colors
+.secondary-yellow {
+  background-color: #FFEC8F;
+}
+
+.secondary-blue {
+  background-color: #CBE4EE;
 }

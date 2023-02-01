@@ -3,11 +3,11 @@ import Link from '../Link';
 
 import './index.scss';
 
-const Tag = ({ title, slug = null }) => {
+const Tag = ({ title, bgColor = '', slug = null }) => {
   const url = slug ? `/news/${slug}` : null;
 
   return (
-    <Link to={url} className="tag">
+    <Link to={url} className={`tag ${bgColor}`}>
       {title}
     </Link>
   );
