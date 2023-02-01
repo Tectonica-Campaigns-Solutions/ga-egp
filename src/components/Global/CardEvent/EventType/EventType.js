@@ -2,10 +2,11 @@ import React from 'react';
 import './index.scss';
 
 const EventType = ({ type }) => {
+  const { icon, title } = type;
   return (
     <span className="event-type">
-      <img src={type.icon.url} alt="Event type icon" />
-      {type.title}
+      {icon?.url && <img src={icon?.url} alt="Event type icon" />}
+      {title && title}
     </span>
   );
 };
