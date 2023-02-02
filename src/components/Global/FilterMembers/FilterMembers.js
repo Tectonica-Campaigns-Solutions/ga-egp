@@ -8,7 +8,7 @@ import './index.scss';
 
 function FilterMembers({ members, introduction }) {
   const handleOnClickCountry = (e) => {
-    const countryId = e.target?.id;
+    const countryId = String(e.target?.id).toLowerCase();
 
     if (!countryId) {
       console.warn('No country found.');
@@ -22,7 +22,7 @@ function FilterMembers({ members, introduction }) {
   };
 
   return (
-    <div className="filter-members">
+    <div className="filter-members mb-5">
       <div className="container">
         <div className="row">
           <div className="col-lg-5">
@@ -40,10 +40,9 @@ function FilterMembers({ members, introduction }) {
               </ul>
             )}
           </div>
-
-          
         </div>
       </div>
+
       <div className="col-map">
         <EGPMap handleOnClickCountry={handleOnClickCountry} />
       </div>
