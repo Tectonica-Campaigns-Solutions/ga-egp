@@ -1,0 +1,35 @@
+.detail-doc-layout {
+  .content {
+    padding-right: 76px;
+    border-right: 1px solid hsla(148, 42%, 36%, 0.1);
+
+    p {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(--egp-dark);
+    }
+  }
+
+  .second-content {
+    padding-left: 80px;
+
+    .downloads-title {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+      color: var(--egp-gray);
+      margin-bottom: 10px;
+    }
+
+    .downloads-container {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+}

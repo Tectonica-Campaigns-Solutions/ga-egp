@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
-import Link from '../../components/Global/Link';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
+import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
 
 import './index.scss';
 
@@ -20,26 +20,18 @@ const Resolution = ({ pageContext, location, data: { resolution } }) => {
 
       <div className="resolution-detail">
         <div className="container mt-5 pt-5">
-          <div className="row">
-            <div className="col-lg-10">
-              <h1>{resolution.title}</h1>
+          <DetailDocLayout documents={resolution.documents}>
+            <h1>{resolution.title}</h1>
 
-              {resolution.intro && <div dangerouslySetInnerHTML={{ __html: resolution.intro }} />}
-              {resolution.text && <StructuredContentDefault content={resolution.text} />}
+            {resolution.intro && <div dangerouslySetInnerHTML={{ __html: resolution.intro }} />}
+            {resolution.text && <StructuredContentDefault content={resolution.text} />}
 
-              <hr />
+            <hr />
 
-              {resolution.footnotes.map((item) => {
-                return <div id={item.anchorId}>{item.text}</div>;
-              })}
-            </div>
-
-            <div className="col-lg-2">
-              {resolution.documents.map((item) => {
-                return <Link to={item.url}>{item.title ? item.title : item.filename}</Link>;
-              })}
-            </div>
-          </div>
+            {resolution.footnotes.map((item) => {
+              return <div id={item.anchorId}>{item.text}</div>;
+            })}
+          </DetailDocLayout>
         </div>
       </div>
     </Layout>
