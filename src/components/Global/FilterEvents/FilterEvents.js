@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Accordion from '../Accordion/Accordion';
-import CardEvent from '../CardEvent/CardEvent';
+import EventList from '../EventList/EventList';
 import { isArray, monthNames } from '../../../utils';
 import DateSlider from '../DateSlider/DateSlider';
 
@@ -108,21 +108,7 @@ function FilterEvents({ events, tags }) {
 
               if (!isArray(events)) return null;
 
-              return (
-                <>
-                  {events.map((e) => (
-                    <CardEvent
-                      slug={`/events/${e.node.slug}`}
-                      title={e.node.title}
-                      day={e.node.date}
-                      color={e.node.tags.color}
-                      image={e.node.image}
-                      tag={e.node.tags.title}
-                      type={e.node.eventType}
-                    />
-                  ))}
-                </>
-              );
+              return <EventList events={events} />;
             }}
           />
         )}

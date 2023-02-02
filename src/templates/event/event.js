@@ -6,8 +6,8 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import EventType from '../../components/Global/CardEvent/EventType/EventType';
 import Button from '../../components/Global/Button/Button';
 import DateTime from '../../components/Global/DateTime/DateTime';
-import Document from '../../components/Global/Document/Document';
 import Tag from '../../components/Global/Tag/Tag';
+import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
 
 import './index.scss';
 
@@ -32,18 +32,9 @@ function Event({ data: { event } }) {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-lg-8 content">
-              {event.textContent && <StructuredContentDefault content={event.textContent} />}
-            </div>
-
-            <div className="col-lg-3 offset-lg-1">
-              <p className="downloads">Related Downloads</p>
-              {event.documents.map((item) => (
-                <Document doc={item} />
-              ))}
-            </div>
-          </div>
+          <DetailDocLayout documents={event.documents}>
+            {event.textContent && <StructuredContentDefault content={event.textContent} />}
+          </DetailDocLayout>
         </div>
       </div>
     </Layout>
@@ -74,10 +65,10 @@ export const EventQuery = graphql`
           color
         }
       }
-      eventType{
-        ... on DatoCmsEventType{
+      eventType {
+        ... on DatoCmsEventType {
           title
-          icon{
+          icon {
             url
           }
         }
