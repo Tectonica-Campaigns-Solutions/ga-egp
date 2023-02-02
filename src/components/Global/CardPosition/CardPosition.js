@@ -21,8 +21,7 @@ function CardPosition({ position, small = false, showButtons = true }) {
 
           {showButtons && (
             <div className="ctas">
-              <Button label="Read More" isPrimary={false} url={positionUrl} />
-              <Button label="Related Reading  →" />
+              <Button label="Read More" customVariant={'white'} url={positionUrl} />
             </div>
           )}
         </div>
