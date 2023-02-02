@@ -86,6 +86,28 @@ export const DatoCMS = graphql`
       ... on DatoCmsHighlight {
         title
         description
+        image{
+          url
+          alt
+          gatsbyImageData(width: 400, height:350)
+        }
+        links{
+          ... on DatoCmsGlobalLink{
+            label
+            url
+          }
+        }
+      }
+    }
+    otherCampaigns{
+      ... on DatoCmsHighlight {
+        title
+        description
+        image{
+          url
+          alt
+          gatsbyImageData(width: 300)
+        }
       }
     }
   }
@@ -198,16 +220,7 @@ export const DatoCMS = graphql`
         label
         content {
           ... on DatoCmsPage {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListResolution {
-            slug
-            model {
-              apiKey
-            }
+            ... PageLink
           }
           ... on DatoCmsCongress {
             slug
@@ -228,6 +241,12 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsListResolution {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListNews {
             slug
             model {
               apiKey
@@ -259,16 +278,7 @@ export const DatoCMS = graphql`
         label
         content {
           ... on DatoCmsPage {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListResolution {
-            slug
-            model {
-              apiKey
-            }
+            ... PageLink
           }
           ... on DatoCmsCongress {
             slug
@@ -288,7 +298,7 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
-          ... on DatoCmsListResolution {
+          ... on DatoCmsListNews {
             slug
             model {
               apiKey
@@ -311,6 +321,9 @@ export const DatoCMS = graphql`
             model {
               apiKey
             }
+          }
+          ... on DatoCmsPage {
+            ... PageLink
           }
         }
       }
@@ -397,4 +410,11 @@ export const DatoCMS = graphql`
       publishedAt(formatString: "D MMM YYYY")
     }
   }
+  fragment PageLink on DatoCmsPage{
+    slug
+    model {
+      apiKey
+    }
+  }
+  
 `;

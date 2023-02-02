@@ -11,7 +11,17 @@ const Campaigns = ({ block }) => {
       bgColor="section-light-red"
       extraClassNames="g-5"
     >
-      {block.highlight &&
+      <div className="col-lg-6">
+      {block.highlight && 
+          <CampaignMain
+            title={block.highlight.title}
+            description={block.highlight.description}
+            image={block.highlight.image}
+            links={block.link}
+          />
+      }
+      </div>
+      {/* {block.highlight &&
         block.highlight.map((item, index) => {
           if (index === 0) {
             return (
@@ -19,27 +29,33 @@ const Campaigns = ({ block }) => {
                 <CampaignMain
                   title={item.title}
                   description={item.description}
-                  image={{
-                    url: "https://www.datocms-assets.com/87481/1672133611-madhu-shesharam-kqzzcvyewvk-unsplash.jpg?auto=format",
-                  }}
+                  image={item.image}
                 />
               </div>
             );
           }
-        })}
+        })} */}
 
       <div className="col-lg-6">
-        {block.highlight &&
+        {
+          block.otherCampaigns && block.otherCampaigns.map(item => {
+            return(
+              <div>other</div>
+            )
+          })
+        }
+        {/* {block.highlight &&
           block.highlight.map((item, index) => {
             if (index !== 0) {
               return (
                 <CampaignCard
                   title={item.title}
                   description={item.description}
+                  image={item.image}
                 />
               );
             }
-          })}
+          })} */}
       </div>
     </Section>
   );

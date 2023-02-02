@@ -4,7 +4,8 @@ import ImageWrapper from "../../Image/ImageWrapper";
 
 import "./index.scss";
 
-const CampaignMain = ({ title, description, image }) => {
+const CampaignMain = ({ title, description, image, link=null }) => {
+  console.log(link)
   return (
     <div className="campaign-main">
       {image && (
@@ -17,10 +18,14 @@ const CampaignMain = ({ title, description, image }) => {
       <div dangerouslySetInnerHTML={{ __html: description }} />
 
       {/* Cta */}
-      <div className="ctas">
-        <Button label="Request to Join" />
-        <Button label="Member Login  →" customVariant="light" />
-      </div>
+      {
+        link && 
+          <div className="ctas">
+            {
+              link.map(item => <Button label="Request to Join" />)
+            }
+          </div>
+      }
     </div>
   );
 };
