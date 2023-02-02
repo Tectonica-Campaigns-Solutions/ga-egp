@@ -64,8 +64,8 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
       <h3>Filter</h3>
       <form >
         <div>
-          <input type="radio" value="resolution" checked={formData.type == 'resolution' ? true : false} name="type" />
-          <input type="radio" value="paper" checked={formData.type == 'paper' ? true : false} name="type" />
+          <input type="radio" value="resolution"  name="type" />
+          <input type="radio" value="paper" name="type" />
         </div>
         <div>
           <label htmlFor="tid">Council</label>
