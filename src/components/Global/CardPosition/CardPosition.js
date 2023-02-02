@@ -11,7 +11,7 @@ function CardPosition({ position, small = false, showButtons = true }) {
   return (
     <Link to={!showButtons ? positionUrl : null}>
       <div
-        className={`card-position ${small ? 'small' : ''}`}
+        className={`card-position ${small ? 'small' : ''} primary-${position.backgroundColor}`}
         style={{ backgroundImage: `url(${position.imageCard.url})` }}
       >
         <div className="text-content">
@@ -19,8 +19,7 @@ function CardPosition({ position, small = false, showButtons = true }) {
 
           {showButtons && (
             <div className="ctas">
-              <Button label="Read More" isPrimary={false} url={positionUrl} />
-              <Button label="Related Reading  →" />
+              <Button label="Read More" customVariant={'white'} url={positionUrl} />
             </div>
           )}
         </div>

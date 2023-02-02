@@ -147,6 +147,7 @@ export const DatoCMS = graphql`
     title
     slug
     textWhite
+    backgroundColor
     imageCard {
       url
       alt
@@ -364,9 +365,9 @@ export const DatoCMS = graphql`
       }
     }
     eventType {
-      ... on DatoCmsEventType{
+      ... on DatoCmsEventType {
         title
-        icon{
+        icon {
           url
         }
       }

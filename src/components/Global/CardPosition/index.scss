@@ -2,6 +2,8 @@
   height: 636px;
   border-radius: 10px;
   display: flex;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
 
   @media screen and (max-width: 991px) {
     width: 100%;
