@@ -73,4 +73,14 @@
     color: var(--egp-gray);
     margin-bottom: 10px;
   }
+
+  .downloads-container {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .second-content {
+    padding-left: 80px;
+  }
 }

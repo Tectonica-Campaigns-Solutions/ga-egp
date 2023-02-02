@@ -37,11 +37,14 @@ function Event({ data: { event } }) {
               {event.textContent && <StructuredContentDefault content={event.textContent} />}
             </div>
 
-            <div className="col-lg-3 offset-lg-1">
+            <div className="col-lg-2 second-content">
               <p className="downloads">Related Downloads</p>
-              {event.documents.map((item) => (
-                <Document doc={item} />
-              ))}
+
+              <div className="downloads-container">
+                {event.documents.map((item) => (
+                  <Document doc={item} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -74,10 +77,10 @@ export const EventQuery = graphql`
           color
         }
       }
-      eventType{
-        ... on DatoCmsEventType{
+      eventType {
+        ... on DatoCmsEventType {
           title
-          icon{
+          icon {
             url
           }
         }
