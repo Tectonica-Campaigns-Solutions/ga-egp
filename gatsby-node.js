@@ -132,14 +132,6 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
-            listResolutions: datoCmsListResolution {
-              title
-              id
-              slug
-              menuInner{
-                id
-              }
-            }
             listPolicyPapers: datoCmsListPolicyPaper {
               title
               id
@@ -410,18 +402,18 @@ exports.createPages = ({ graphql, actions }) => {
           });
         }
 
-        // list resolutions
-        if (result.data.listResolutions) {
-          createPage({
-            path: result.data.listResolutions.slug,
-            component: templates.listResolutions,
-            context: {
-              slug: result.data.listResolutions.slug,
-              id: result.data.listResolutions.id,
-              menuInner: result.data.listResolutions.menuInner?.id ? result.data.listResolutions.menuInner?.id : null
-            },
-          });
-        }
+        // // list resolutions
+        // if (result.data.listResolutions) {
+        //   createPage({
+        //     path: result.data.listResolutions.slug,
+        //     component: templates.listResolutions,
+        //     context: {
+        //       slug: result.data.listResolutions.slug,
+        //       id: result.data.listResolutions.id,
+        //       menuInner: result.data.listResolutions.menuInner?.id ? result.data.listResolutions.menuInner?.id : null
+        //     },
+        //   });
+        // }
 
         // list policy papers
         if (result.data.listPolicyPapers) {

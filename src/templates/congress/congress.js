@@ -9,19 +9,6 @@ function Congress({ data: { congress } }) {
   const sidebarLinks = () => {
     const items = congress.pages;
 
-    // const pagesLinks = (
-    //   <>
-    //     {congress.pages &&
-    //       congress.pages.map((item) => {
-    //         return (
-    //           <div>
-    //             <Link to={item.slug}>{item.title}</Link>
-    //           </div>
-    //         );
-    //       })}
-    //   </>
-    // );
-
     return <>{items && <SidebarNav menu={items} />}</>;
   };
 

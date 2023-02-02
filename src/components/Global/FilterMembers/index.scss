@@ -1,6 +1,6 @@
 .filter-members {
   padding: 62px 0 243px 0;
-
+  position:relative;
   .intro {
     font-family: 'Roboto';
     font-style: normal;
@@ -28,5 +28,10 @@
         color: #57B45F;
       }
     }
+  }
+  .col-map{
+    position:absolute;
+    right:0;
+    top:0
   }
 }

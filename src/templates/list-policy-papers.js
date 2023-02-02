@@ -10,10 +10,20 @@ import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 
-function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks } }) {
-  const filteredContent = list.edges;
-  // const [filteredContent, setFilteredContent] = useState([]);
-
+function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
+  const papers = listPapers.edges
+  const list = papers.concat(listResolutions.edges)
+  console.log(list)
+  const [filteredContent, setFilteredContent] = useState(list);
+  const [formData, setDataForm] = useState({})
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if(e.target.name == 'type'){
+      console.log(e.target.value);
+      setDataForm({type: e.target.value})
+      console.log(formData)
+    }
+  }
   // const submitHandler = (e) => {
   //   e.preventDefault();
   //   let url = '/positions/resolutions/?';
@@ -48,24 +58,31 @@ function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks 
   // }, [list]);
 
   const sidebarContent = () => (
-    <form action="" onSubmit={{}}>
-      <div>
-        <label htmlFor="tid">Council</label>
-        <select name="tid" id="tid">
-          <option value="all">All</option>
-          {/* {(councils).edges.map((item) => (
-            <option value={item.node.idFilter}>{item.node.title}</option>
-          ))} */}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="field_subheading_value">Intro</label>
-        <input type="text" name="field_subheading_value" />
-      </div>
-      <div>
-        <input type="submit" value="apply" />
-      </div>
-    </form>
+    <div>
+      <h3>Filter</h3>
+      <form action="" onChange={(e) => submitHandler(e)}>
+        <div>
+          <input type="radio" value="resolution"  checked={formData.type == 'resolution' ? true : false} name="type" />
+          <input type="radio" value="paper"  checked={formData.type == 'paper' ? true : false} name="type" />
+        </div>
+        <div>
+          <label htmlFor="tid">Council</label>
+          <select name="tid" id="tid">
+            <option value="all">All</option>
+            {/* {(councils).edges.map((item) => (
+              <option value={item.node.idFilter}>{item.node.title}</option>
+            ))} */}
+          </select>
+        </div>
+        <div>
+          <label htmlFor="field_subheading_value">Intro</label>
+          <input type="text" name="field_subheading_value" />
+        </div>
+        <div>
+          <input type="submit" value="apply" />
+        </div>
+      </form>
+    </div>
   );
 
   return (
@@ -76,7 +93,7 @@ function ListPolicyPapers({ pageContext, location, data: { list, page, navLinks 
       <InnerLayout navMenu={sidebarContent()}>
         <div className="row g-5">
           {filteredContent.map((item) => (
-            <CardPolicy title={item.node.title} intro={item.node.intro} documents={item.node.documents} />
+            <CardPolicy model={item.node.model.apiKey} title={item.node.title} intro={item.node.intro} documents={item.node.documents} />
           ))}
         </div>
       </InnerLayout>
@@ -97,11 +114,14 @@ export const ListPositionsQuery = graphql`
     navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
       ...Navigation
     }
-    list: allDatoCmsPolicyPaper {
+    listPapers: allDatoCmsPolicyPaper {
       edges {
         node {
           title
           intro
+          model{
+            apiKey
+          }
           documents {
             internalName
             language
@@ -110,6 +130,17 @@ export const ListPositionsQuery = graphql`
               url
               title
             }
+          }
+        }
+      }
+    }
+    listResolutions: allDatoCmsResolution {
+      edges{
+        node{
+          title
+          intro
+          model{
+            apiKey
           }
         }
       }

@@ -155,6 +155,7 @@ export const DatoCMS = graphql`
     model {
       apiKey
     }
+    backgroundColor
   }
   fragment CardResolution on DatoCmsResolution {
     title

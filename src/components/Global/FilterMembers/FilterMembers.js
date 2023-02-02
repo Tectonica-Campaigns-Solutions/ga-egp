@@ -41,10 +41,11 @@ function FilterMembers({ members, introduction }) {
             )}
           </div>
 
-          <div className="col-lg-7">
-            <EGPMap handleOnClickCountry={handleOnClickCountry} />
-          </div>
+          
         </div>
+      </div>
+      <div className="col-map">
+        <EGPMap handleOnClickCountry={handleOnClickCountry} />
       </div>
     </div>
   );

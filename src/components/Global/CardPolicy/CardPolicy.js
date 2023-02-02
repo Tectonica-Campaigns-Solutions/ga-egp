@@ -1,7 +1,7 @@
 import React from 'react';
 import InformationCard from '../InformationCard/InformationCard';
 
-function CardPolicy({ title, intro, documents }) {
+function CardPolicy({ title, intro, documents, model }) {
   return (
     <InformationCard
       preTitle={
