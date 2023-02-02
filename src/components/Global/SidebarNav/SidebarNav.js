@@ -10,7 +10,7 @@ function SidebarNav({ menu, location }) {
   return (
     <div className="sidebar-nav">
       {menu.map((item) => {
-        const path = pathToModel('position', item.node.slug);
+        const path = pathToModel('position', item.node?.slug);
         const isActivePath = currentPathname ? currentPathname?.includes(path) : false;
 
         return (
