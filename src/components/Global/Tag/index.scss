@@ -13,4 +13,9 @@
   &:hover {
     color: var(--egp-white);
   }
+
+  &.primary-darker-green,
+  &.primary-dark-green {
+    color: var(--egp-white);
+  }
 }

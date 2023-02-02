@@ -5,6 +5,7 @@ import Layout from '../../components/Layout/Layout';
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import BackButton from '../../components/Global/BackButton/BackButton';
 import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
+import Tag from '../../components/Global/Tag/Tag';
 
 import './index.scss';
 
@@ -43,15 +44,18 @@ function Member({ pageContext, location, data: { page } }) {
                   </div>
 
                   <div className="col-lg-8 offset-lg-1">
-                    <h3>{item.title}</h3>
+                    <div className="party-main-header">
+                      <h3>{item.title}</h3>
+                      <Tag title="Candidate" bgColor="primary-dark-green" />
+                    </div>
 
                     <div className="row">
-                      <div className="col">
+                      <div className="col-lg-4">
                         <h4>Party Leaders:</h4>
                         <div className="party-leaders-text" dangerouslySetInnerHTML={{ __html: item.partyLeaders }} />
                       </div>
 
-                      <div className="col">
+                      <div className="col-lg-5">
                         <h4>Contact details</h4>
                         <div
                           className="contact-details-text"
@@ -59,7 +63,7 @@ function Member({ pageContext, location, data: { page } }) {
                         />
                       </div>
 
-                      <div className="col">
+                      <div className="col links-right">
                         <SocialLinkList links={item.socialsLinks} />
                       </div>
                     </div>

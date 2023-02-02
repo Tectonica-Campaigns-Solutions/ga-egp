@@ -55,3 +55,7 @@ export const isActiveTrail = (pathname, link) => {
   }
   return false;
 };
+
+export const removeUnderscoreFromString = (string) => {
+  return string.replaceAll('_', ' ');
+};

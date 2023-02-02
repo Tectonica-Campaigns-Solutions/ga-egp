@@ -6,6 +6,7 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
 import { isArray } from '../../utils';
+import Tag from '../../components/Global/Tag/Tag';
 
 import './index.scss';
 
@@ -31,7 +32,14 @@ const Post = ({ pageContext, location, data: { page } }) => {
               )}
 
               {page.textContent && <StructuredContentDefault content={page.textContent} />}
-              {page.tags && page.tags.length > 0 && page.tags.map((item) => <div>{item.title}</div>)}
+
+              {isArray(page.tags) && (
+                <div className="new-tags">
+                  {page.tags.map((tag) => (
+                    <Tag title={tag.title} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

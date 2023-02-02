@@ -28,4 +28,14 @@
     height: 2px;
     opacity: 1;
   }
+
+  a {
+    font-weight: normal;
+    color: var(--egp-green);
+  }
+
+  ul,
+  ol {
+    list-style: initial;
+  }
 }

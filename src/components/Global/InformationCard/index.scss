@@ -5,8 +5,15 @@
     font-weight: 800;
     font-size: 1.938rem;
     line-height: 110%;
-    color: var(--egp-dark-green);
+    color: inherit;
     margin-bottom: 0.625rem;
+  }
+
+  .header-information {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 1rem;
   }
 
   .pre-title {
@@ -16,7 +23,6 @@
     font-size: 1.25rem;
     line-height: 150%;
     color: var(--egp-gray);
-    margin-bottom: 1rem;
 
     strong {
       color: var(--egp-dark);
@@ -31,5 +37,13 @@
     line-height: 130%;
     color: var(--egp-gray);
     margin-bottom: 1.406rem;
+  }
+
+  .active {
+    color: var(--egp-dark-green);
+  }
+
+  .disable {
+    color: var(--egp-darker-green);
   }
 }

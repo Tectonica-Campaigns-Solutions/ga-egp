@@ -3,7 +3,7 @@ import Link from '../Link';
 
 import './index.scss';
 
-const Tag = ({ title, bgColor = '', slug = null }) => {
+const Tag = ({ title, bgColor = 'primary-darker-green', slug = null }) => {
   const url = slug ? `/news/${slug}` : null;
 
   return (

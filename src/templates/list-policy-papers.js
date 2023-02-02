@@ -11,19 +11,21 @@ import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
-  const papers = listPapers.edges
-  const list = papers.concat(listResolutions.edges)
-  console.log(list)
+  const papers = listPapers.edges;
+  const list = papers.concat(listResolutions.edges);
+
   const [filteredContent, setFilteredContent] = useState(list);
-  const [formData, setDataForm] = useState({})
+  const [formData, setDataForm] = useState({});
+
   const submitHandler = (e) => {
     e.preventDefault();
-    if(e.target.name == 'type'){
+    if (e.target.name == 'type') {
       console.log(e.target.value);
-      setDataForm({type: e.target.value})
-      console.log(formData)
+      setDataForm({ type: e.target.value });
+      console.log(formData);
     }
-  }
+  };
+
   // const submitHandler = (e) => {
   //   e.preventDefault();
   //   let url = '/positions/resolutions/?';
@@ -62,8 +64,8 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
       <h3>Filter</h3>
       <form action="" onChange={(e) => submitHandler(e)}>
         <div>
-          <input type="radio" value="resolution"  checked={formData.type == 'resolution' ? true : false} name="type" />
-          <input type="radio" value="paper"  checked={formData.type == 'paper' ? true : false} name="type" />
+          <input type="radio" value="resolution" checked={formData.type == 'resolution' ? true : false} name="type" />
+          <input type="radio" value="paper" checked={formData.type == 'paper' ? true : false} name="type" />
         </div>
         <div>
           <label htmlFor="tid">Council</label>
@@ -93,7 +95,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
       <InnerLayout navMenu={sidebarContent()}>
         <div className="row g-5">
           {filteredContent.map((item) => (
-            <CardPolicy model={item.node.model.apiKey} title={item.node.title} intro={item.node.intro} documents={item.node.documents} />
+            <CardPolicy item={item.node} />
           ))}
         </div>
       </InnerLayout>
@@ -119,7 +121,7 @@ export const ListPositionsQuery = graphql`
         node {
           title
           intro
-          model{
+          model {
             apiKey
           }
           documents {
@@ -135,12 +137,19 @@ export const ListPositionsQuery = graphql`
       }
     }
     listResolutions: allDatoCmsResolution {
-      edges{
-        node{
+      edges {
+        node {
           title
           intro
-          model{
+          model {
             apiKey
+          }
+          council {
+            ... on DatoCmsCouncil {
+              title
+              id
+              idFilter
+            }
           }
         }
       }
