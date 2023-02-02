@@ -3,7 +3,7 @@ import Link from '../Link';
 import Tag from '../Tag/Tag';
 import ImageWrapper from '../Image/ImageWrapper';
 import podcastArrow from '../../Icons/podcast-arrow.svg';
-import { pathToModel } from '../../../utils';
+import { isArray, pathToModel } from '../../../utils';
 
 import './index.scss';
 
@@ -35,9 +35,11 @@ const CardUpdate = ({ post }) => {
         </div>
 
         <div>
-          {tags && (
+          {isArray(tags) && (
             <div className="tags">
-              <Tag title={tags.title} slug={tags.slug} />
+              {tags.map((tag) => (
+                <Tag title={tag.title} slug={tag.slug} />
+              ))}
             </div>
           )}
 
