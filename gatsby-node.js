@@ -76,6 +76,9 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   id
                   slug
+                  model{
+                    apiKey
+                  }
                 }
               }
             }

@@ -10,12 +10,14 @@ function SidebarNav({ menu, location }) {
   return (
     <div className="sidebar-nav">
       {menu.map((item) => {
-        const path = pathToModel('position', item.node?.slug);
+        // TODO Fix normalize data
+        const el = item?.node ? item.node : item;
+        const path = '/positions'
         const isActivePath = currentPathname ? currentPathname?.includes(path) : false;
 
         return (
           <div className={`sidebar-item ${isActivePath ? 'active' : ''}`}>
-            <Link to={path}>{item.node.title}</Link>
+            <Link to={path}>{el.title}</Link>
           </div>
         );
       })}
