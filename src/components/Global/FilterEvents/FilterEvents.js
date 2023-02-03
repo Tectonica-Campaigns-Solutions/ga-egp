@@ -79,7 +79,7 @@ function FilterEvents({ events, tags }) {
             </div>
           </div>
 
-          <div className="col-lg-4">
+          <div className="col-lg-3">
             <div className="filter-action-title">Select Year</div>
             <DateSlider years={yearsFilter} activeYear={activeYear} />
           </div>
