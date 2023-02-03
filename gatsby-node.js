@@ -39,6 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
       congress: path.resolve('./src/templates/congress/congress.js'),
       congressInner: path.resolve('./src/templates/congress/congress-inner.js'),
     };
+
     resolve(
       graphql(
         `
@@ -56,7 +57,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   slug
                   id
-                  menuInner{
+                  menuInner {
                     id
                   }
                 }
@@ -71,13 +72,13 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            positions: allDatoCmsPosition (sort: {position: ASC}) {
+            positions: allDatoCmsPosition(sort: { position: ASC }) {
               edges {
                 node {
                   title
                   id
                   slug
-                  model{
+                  model {
                     apiKey
                   }
                 }
@@ -124,7 +125,7 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
-              menuInner{
+              menuInner {
                 id
               }
             }
@@ -137,7 +138,7 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
-              menuInner{
+              menuInner {
                 id
               }
             }
@@ -146,19 +147,19 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
-            listPodcats: datoCmsListPodcast{
+            listPodcats: datoCmsListPodcast {
               title
               id
               slug
             }
-            allCongress: allDatoCmsCongress{
-              edges{
-                node{
+            allCongress: allDatoCmsCongress {
+              edges {
+                node {
                   title
                   id
                   slug
-                  pages{
-                    ... on DatoCmsCongressInnerPage{
+                  pages {
+                    ... on DatoCmsCongressInnerPage {
                       title
                       slug
                       id
@@ -167,9 +168,9 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-           allPodcasts: allDatoCmsPodcast(limit: 1000){
-              edges{
-                node{
+            allPodcasts: allDatoCmsPodcast(limit: 1000) {
+              edges {
+                node {
                   title
                   id
                   slug
@@ -177,8 +178,8 @@ exports.createPages = ({ graphql, actions }) => {
                     alt
                     gatsbyImageData
                   }
-                  tags{
-                    ... on DatoCmsTagNews{
+                  tags {
+                    ... on DatoCmsTagNews {
                       title
                       id
                       slug
@@ -246,6 +247,7 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors);
           reject(result.errors);
         }
+
         // create the pages
         const pages = result.data.pages.edges;
         const positions = result.data.positions.edges;
@@ -258,7 +260,7 @@ exports.createPages = ({ graphql, actions }) => {
         const allNews = result.data.allNews.edges;
         const congress = result.data.allCongress.edges;
         const allPodcasts = result.data.allPodcasts.edges;
-       
+
         // const globalSettings = result.data.globalSettings.nodes;
 
         //home
@@ -281,7 +283,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: page.slug,
               id: page.id,
-              menuInner: page.menuInner?.id ? page.menuInner?.id : null
+              menuInner: page.menuInner?.id ? page.menuInner?.id : null,
             },
           });
         });
@@ -309,7 +311,6 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         });
-        
 
         // positions
         positions.map(({ node: position }) => {
@@ -321,7 +322,7 @@ exports.createPages = ({ graphql, actions }) => {
               id: position.id,
               menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null,
               siblings: positions,
-              parentTitle: result.data.listPositions?.title ? result.data.listPositions?.title : null
+              parentTitle: result.data.listPositions?.title ? result.data.listPositions?.title : null,
             },
           });
         });
@@ -338,7 +339,7 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // congress 
+        // congress
         congress.map(({ node: congress }) => {
           createPage({
             path: `/events/${congress.slug}`,
@@ -352,7 +353,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // congress inner page
         congress.map(({ node: congress }) => {
-          congress.pages.map(item => {
+          congress.pages.map((item) => {
             createPage({
               path: `/events/${congress.slug}/${item.slug}`,
               component: templates.congressInner,
@@ -361,11 +362,11 @@ exports.createPages = ({ graphql, actions }) => {
                 id: item.id,
                 congressTitle: congress.title,
                 congressMenu: congress.pages,
-                congressSlug: congress.slug
+                congressSlug: congress.slug,
               },
             });
-          })
-        })
+          });
+        });
 
         // resolutions
         resolutions.map(({ node: resolution }) => {
@@ -406,8 +407,11 @@ exports.createPages = ({ graphql, actions }) => {
 
         // tags news
         tagsNews.map(({ node: tag }) => {
-          // TODO tags is and array now
-          const items = allNews.filter((item) => item.node.tags[0].id === tag.id);
+          const items = allNews.filter((newItem) => {
+            const newTags = newItem.node.tags;
+            return newTags.some((newTag) => newTag.id === tag.id);
+          });
+
           createPage({
             path: `news/${tag.slug}`,
             component: templates.listNews,
@@ -422,9 +426,12 @@ exports.createPages = ({ graphql, actions }) => {
 
         // tags podcast
         tagsNews.map(({ node: tag }) => {
-          // TODO tags is and array now
-          const items = allPodcasts.filter((item) => item.node.tags[0].id === tag.id);
-          if(items && items.length > 0){
+          const items = allPodcasts.filter((newItem) => {
+            const newTags = newItem.node.tags;
+            return newTags.some((newTag) => newTag.id === tag.id);
+          });
+
+          if (items && items.length > 0) {
             createPage({
               path: `podcast/${tag.slug}`,
               component: templates.listPodcast,
@@ -446,7 +453,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPositions.slug,
               id: result.data.listPositions.id,
-              menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null
+              menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null,
             },
           });
         }
@@ -471,7 +478,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPolicyPapers.slug,
               id: result.data.listPolicyPapers.id,
-              menuInner: result.data.listPolicyPapers.menuInner?.id ? result.data.listPolicyPapers.menuInner?.id : null
+              menuInner: result.data.listPolicyPapers.menuInner?.id ? result.data.listPolicyPapers.menuInner?.id : null,
             },
           });
         }

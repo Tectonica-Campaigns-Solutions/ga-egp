@@ -1,20 +1,28 @@
 import React from 'react';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 import './index.scss';
 
 function HeroPage({ title, context = null, location = null, date = null, isDetailView = false, parentTitle = null }) {
-
   return (
     <div className="hero-page">
       <div className="container">
-        {date && <div className="date">{date}</div>}
-        { 
-          parentTitle && <h2>{ parentTitle}</h2>
-        }
-        {
-          !parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>
-        }
-        
+        <div>
+          <Breadcrumb
+            items={[
+              { title: 'Home', slug: '1' },
+              { title: 'Positions', slug: '2' },
+              { title: 'Another link', slug: '2' },
+              { title: 'Extra link', slug: '2' },
+            ]}
+          />
+        </div>
+
+        <div>
+          {date && <div className="date">{date}</div>}
+          {parentTitle && <h2>{parentTitle}</h2>}
+          {!parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>}
+        </div>
       </div>
     </div>
   );

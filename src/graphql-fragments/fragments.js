@@ -90,24 +90,24 @@ export const DatoCMS = graphql`
       ... on DatoCmsHighlight {
         title
         description
-        image{
+        image {
           url
           alt
-          gatsbyImageData(width: 400, height:350)
+          gatsbyImageData(width: 400, height: 350)
         }
-        links{
-          ... on DatoCmsGlobalLink{
+        links {
+          ... on DatoCmsGlobalLink {
             label
             url
           }
         }
       }
     }
-    otherCampaigns{
+    otherCampaigns {
       ... on DatoCmsHighlight {
         title
         description
-        image{
+        image {
           url
           alt
           gatsbyImageData(width: 300)
@@ -224,7 +224,7 @@ export const DatoCMS = graphql`
         label
         content {
           ... on DatoCmsPage {
-            ... PageLink
+            ...PageLink
           }
           ... on DatoCmsCongress {
             slug
@@ -288,7 +288,7 @@ export const DatoCMS = graphql`
         label
         content {
           ... on DatoCmsPage {
-            ... PageLink
+            ...PageLink
           }
           ... on DatoCmsCongress {
             slug
@@ -339,7 +339,7 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsPage {
-            ... PageLink
+            ...PageLink
           }
         }
       }
@@ -382,6 +382,7 @@ export const DatoCMS = graphql`
     filterDate: date(formatString: "MMMM")
     year: date(formatString: "Y")
     summary
+    time
     image {
       alt
       url
@@ -426,11 +427,10 @@ export const DatoCMS = graphql`
       publishedAt(formatString: "D MMM YYYY")
     }
   }
-  fragment PageLink on DatoCmsPage{
+  fragment PageLink on DatoCmsPage {
     slug
     model {
       apiKey
     }
   }
-  
 `;
