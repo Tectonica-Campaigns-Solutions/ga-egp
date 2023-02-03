@@ -23,8 +23,8 @@ label,
 a,
 span,
 blockquote,
-ul > li,
-ol > li,
+ul>li,
+ol>li,
 small,
 div,
 article {
@@ -37,10 +37,12 @@ em {
 
 a {
   text-decoration: none;
+
   &:hover {
     color: inherit;
     text-decoration: none;
   }
+
   &:not(.btn) {
     font-weight: 800;
   }
@@ -63,12 +65,12 @@ h2 {
   @media (max-width: 992px) {
     font-size: 1.9375rem;
     line-height: 1;
-    margin-bottom: 15px;
   }
 }
 
 h3 {
   font-size: 40px;
+
   @media (max-width: 992px) {
     font-size: 1.5375rem;
     line-height: 1;
@@ -78,6 +80,7 @@ h3 {
 
 h4 {
   font-size: 30px;
+
   @media (max-width: 992px) {
     font-size: 1.3375rem;
     line-height: 1;

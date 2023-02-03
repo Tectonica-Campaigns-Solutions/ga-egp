@@ -1,11 +1,12 @@
-import React from "react";
-import Button from "../../Button/Button";
-import ImageWrapper from "../../Image/ImageWrapper";
+import React from 'react';
+import Button from '../../Button/Button';
+import ImageWrapper from '../../Image/ImageWrapper';
 
-import "./index.scss";
+import './index.scss';
 
-const CampaignMain = ({ title, description, image, link=null }) => {
-  console.log(link)
+const CampaignMain = ({ title, description, image, link = null }) => {
+  console.log(link);
+
   return (
     <div className="campaign-main">
       {image && (
@@ -18,14 +19,13 @@ const CampaignMain = ({ title, description, image, link=null }) => {
       <div dangerouslySetInnerHTML={{ __html: description }} />
 
       {/* Cta */}
-      {
-        link && 
-          <div className="ctas">
-            {
-              link.map(item => <Button label="Request to Join" />)
-            }
-          </div>
-      }
+      {link && (
+        <div className="ctas">
+          {link.map((item) => (
+            <Button label="Request to Join" />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

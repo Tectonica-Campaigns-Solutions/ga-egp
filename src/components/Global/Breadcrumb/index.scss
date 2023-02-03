@@ -1,0 +1,30 @@
+.egp-breadcrumb {
+  ul {
+    display: flex;
+    align-items: center;
+    margin-bottom: 42px;
+    padding: 0;
+
+    li {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.0125em;
+
+      a {
+        margin-right: 5px;
+        color: var(--egp-green);
+
+        &.active {
+          color: var(--egp-dark);
+        }
+      }
+
+      span {
+        margin-right: 5px;
+      }
+    }
+  }
+}

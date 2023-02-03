@@ -13,6 +13,7 @@ const EventList = ({ events }) => {
             slug={`/events/${e.node?.slug || e.slug}`}
             title={e.node?.title || e.title}
             day={e.node?.date || e.date}
+            hour={e.node?.time || e.time}
             color={e.node?.tags.color || e.tags.color}
             image={e.node?.image || e.image}
             tag={e.node?.tags.title || e.tags.title}
