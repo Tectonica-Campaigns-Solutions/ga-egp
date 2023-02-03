@@ -2,7 +2,12 @@
   background: var(--egp-dark-green);
   padding-bottom: 132px;
 
-  h1 {
+  &.secondaryPage {
+    padding-bottom: 50px;
+  }
+
+  h1,
+  h2 {
     font-family: 'Colby';
     font-style: normal;
     font-weight: 700;

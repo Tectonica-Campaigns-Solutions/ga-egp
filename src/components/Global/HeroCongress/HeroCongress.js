@@ -7,7 +7,7 @@ import * as styles from './herocongress.module.scss';
 
 function HeroCongress({ title, mainPage = false }) {
   return (
-    <div className={styles.heroCongress}>
+    <div className={`${styles.heroCongress} ${!mainPage ? styles.secondaryPage : null}`}>
       <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col-lg-5">
@@ -18,10 +18,12 @@ function HeroCongress({ title, mainPage = false }) {
 
             {mainPage ? <h1>{title}</h1> : <h2>{title}</h2>}
 
-            <p>
-              We are delighted to invite you to join us in Copenhagen, Denmark on 2-4 December 2022 for the 6th European
-              Green Party Congress.
-            </p>
+            {mainPage && (
+              <p>
+                We are delighted to invite you to join us in Copenhagen, Denmark on 2-4 December 2022 for the 6th
+                European Green Party Congress.
+              </p>
+            )}
 
             <div className={styles.actionsContainer}>
               <Button label={'REGISTER NOW'} />
