@@ -34,7 +34,7 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsGroupPerson':
             return <GroupPerson block={block} key={block.id}/>;
           case 'DatoCmsTextSimple':
-            return <div>HOla</div>;
+            return <div key={block.id}>HOla</div>;
           default:
             return '';
         }

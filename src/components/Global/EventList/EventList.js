@@ -10,6 +10,7 @@ const EventList = ({ events }) => {
       {events.map((e, index) => (
         <>
           <CardEvent
+            key={index}
             slug={`/events/${e.node?.slug || e.slug}`}
             title={e.node?.title || e.title}
             day={e.node?.date || e.date}

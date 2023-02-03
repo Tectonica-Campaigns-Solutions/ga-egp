@@ -20,8 +20,8 @@ const Breadcrumb = ({ items }) => {
     <div className="egp-breadcrumb">
       <ul>
         {items.map((item, index) => (
-          <li>
-            <Link to={item.slug} className={`${isActiveLink ? 'active' : ''}`}>
+          <li key={index}>
+            <Link  to={item.slug} className={`${isActiveLink ? 'active' : ''}`}>
               {renderSeparator(index)}
               {item.title}
             </Link>

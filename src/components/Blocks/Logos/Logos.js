@@ -25,8 +25,8 @@ function Logos({ block }) {
               slidesToShow={6}
               slidesToScroll={6}
             >
-              {logos.map((logo) => (
-                <div className="col-lg-2 col-md-3 col-6">
+              {logos.map((logo, index) => (
+                <div className="col-lg-2 col-md-3 col-6" key={index}>
                   <a href={logo.url} target="_blank">
                     <ImageWrapper image={logo.icon} />
                   </a>

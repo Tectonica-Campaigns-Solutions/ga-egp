@@ -13,8 +13,8 @@ const SocialFollow = ({ block }) => {
 
         {isArray(links) && (
           <div className="links">
-            {links.map((link) => (
-              <Link to={link.mainLink?.url}>
+            {links.map((link, index) => (
+              <Link to={link.mainLink?.url} key={index}>
                 <img src={link.icon.url} alt={link.label} />
               </Link>
             ))}

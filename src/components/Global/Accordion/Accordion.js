@@ -12,7 +12,7 @@ function Accordion({ items, renderChild, renderCustomTitle = null, defaultActive
   return (
     <div className="accordion">
       {items.map((item, index) => (
-        <div className={`item ${activeItem === index ? 'active' : ''}`} onClick={() => handleOnChangeAccordion(index)}>
+        <div key={index} className={`item ${activeItem === index ? 'active' : ''}`} onClick={() => handleOnChangeAccordion(index)}>
           <div className="ac-title">
             <h3>{renderCustomTitle ? renderCustomTitle(item) : item?.title}</h3>
             <img src={activeItem === index ? accordionClose : accordionOpen} alt="Accordion close/open icon" />

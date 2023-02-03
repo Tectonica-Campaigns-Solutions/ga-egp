@@ -31,8 +31,8 @@ function HighlightedPositions({ block }) {
             <div className="col-xxl-8 col-slide">
               <div className="row gx-5">
                 <EGPSlider responsive={responsiveSettings}>
-                  {positions.map((item) => (
-                    <CardPosition position={item} />
+                  {positions.map((item, index) => (
+                    <CardPosition position={item} key={index} />
                   ))}
                 </EGPSlider>
               </div>
