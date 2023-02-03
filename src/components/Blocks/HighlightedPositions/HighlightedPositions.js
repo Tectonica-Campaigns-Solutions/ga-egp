@@ -7,9 +7,9 @@ import './index.scss';
 
 function HighlightedPositions({ block }) {
   const { pretitle, title, description, positions } = block;
+
   const responsiveSettings = [
     {
-      breakpoint: 991,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,

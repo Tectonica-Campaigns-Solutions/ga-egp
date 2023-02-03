@@ -1,13 +1,7 @@
-import React from "react";
-import "./index.scss";
+import React from 'react';
+import './index.scss';
 
-const EGPSliderAction = ({
-  currentSlide = 0,
-  totalSlides,
-  onChangeSlide,
-  onPrevSlide,
-  onNextSlide,
-}) => {
+const EGPSliderAction = ({ currentSlide = 0, totalSlides, onChangeSlide, onPrevSlide, onNextSlide }) => {
   return (
     <div className="egp-slider-action">
       <span>
