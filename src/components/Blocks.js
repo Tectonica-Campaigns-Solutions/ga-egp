@@ -33,6 +33,8 @@ export default function Blocks({ blocks }) {
             return <LatestUpdates block={block} key={block.id} />;
           case 'DatoCmsGroupPerson':
             return <GroupPerson block={block} key={block.id}/>;
+          case 'DatoCmsTextSimple':
+            return <div>HOla</div>;
           default:
             return '';
         }

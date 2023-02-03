@@ -1,4 +1,4 @@
-.component-narrative-block {
+.componentnarrativeblock {
   padding-top: 100px;
   padding-bottom: 70px;
 
@@ -35,7 +35,7 @@
     margin-bottom: 1.563rem;
   }
 
-  .text-content {
+  .textcontent {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
@@ -45,7 +45,7 @@
     margin-bottom: 1.563rem;
   }
 
-  .center-content {
+  .centercontent {
     text-align: center;
 
     & > p {
@@ -80,7 +80,7 @@
     }
   }
 
-  + .component-narrative-block {
+  + .componentnarrativeblock {
     padding-top: 0;
   }
 }

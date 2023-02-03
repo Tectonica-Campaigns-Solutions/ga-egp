@@ -49,6 +49,9 @@ export const PageQuery = graphql`
         ... on DatoCmsGroupPerson {
           ...BlockGroupPerson
         }
+        ... on DatoCmsTextSimple {
+          ...BlockTextSimple
+        }
       }
     }
     navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
