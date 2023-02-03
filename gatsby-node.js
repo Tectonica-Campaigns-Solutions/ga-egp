@@ -22,6 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
     const templates = {
       page: path.resolve('./src/templates/page.js'),
       post: path.resolve('./src/templates/post/post.js'),
+      podcast: path.resolve('./src/templates/post/podcast.js'),
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
       listResolutions: path.resolve('./src/templates/list-resolutions.js'),
@@ -166,6 +167,33 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+           allPodcasts: allDatoCmsPodcast(limit: 1000){
+              edges{
+                node{
+                  title
+                  id
+                  slug
+                  image {
+                    alt
+                    gatsbyImageData
+                  }
+                  tags{
+                    ... on DatoCmsTagNews{
+                      title
+                      id
+                      slug
+                    }
+                  }
+                  date(formatString: "D MMM Y")
+                  model {
+                    apiKey
+                  }
+                  meta {
+                    publishedAt(formatString: "D MMM YYYY")
+                  }
+                }
+              }
+            }
             allNews: allDatoCmsPost(limit: 1000) {
               edges {
                 node {
@@ -229,7 +257,8 @@ exports.createPages = ({ graphql, actions }) => {
         const tagsNews = result.data.tagsNews.edges;
         const allNews = result.data.allNews.edges;
         const congress = result.data.allCongress.edges;
-        
+        const allPodcasts = result.data.allPodcasts.edges;
+       
         // const globalSettings = result.data.globalSettings.nodes;
 
         //home
@@ -268,6 +297,19 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         });
+
+        // podcast
+        allPodcasts.map(({ node: post }) => {
+          createPage({
+            path: `/podcast/${post.slug}`,
+            component: templates.podcast,
+            context: {
+              slug: post.slug,
+              id: post.id,
+            },
+          });
+        });
+        
 
         // positions
         positions.map(({ node: position }) => {
@@ -364,7 +406,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         // tags news
         tagsNews.map(({ node: tag }) => {
-          const items = allNews.filter((item) => item.node.tags.id === tag.id);
+          // TODO tags is and array now
+          const items = allNews.filter((item) => item.node.tags[0].id === tag.id);
           createPage({
             path: `news/${tag.slug}`,
             component: templates.listNews,
@@ -375,6 +418,24 @@ exports.createPages = ({ graphql, actions }) => {
               tag: tag.title,
             },
           });
+        });
+
+        // tags podcast
+        tagsNews.map(({ node: tag }) => {
+          // TODO tags is and array now
+          const items = allPodcasts.filter((item) => item.node.tags[0].id === tag.id);
+          if(items && items.length > 0){
+            createPage({
+              path: `podcast/${tag.slug}`,
+              component: templates.listPodcast,
+              context: {
+                slug: `podcast/${tag.slug}`,
+                id: tag.id,
+                items: items,
+                tag: tag.title,
+              },
+            });
+          }
         });
 
         // list positions
@@ -401,19 +462,6 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
-
-        // // list resolutions
-        // if (result.data.listResolutions) {
-        //   createPage({
-        //     path: result.data.listResolutions.slug,
-        //     component: templates.listResolutions,
-        //     context: {
-        //       slug: result.data.listResolutions.slug,
-        //       id: result.data.listResolutions.id,
-        //       menuInner: result.data.listResolutions.menuInner?.id ? result.data.listResolutions.menuInner?.id : null
-        //     },
-        //   });
-        // }
 
         // list policy papers
         if (result.data.listPolicyPapers) {
@@ -449,6 +497,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPodcats.slug,
               id: result.data.listPodcats.id,
+              items: allPodcasts,
             },
           });
         }

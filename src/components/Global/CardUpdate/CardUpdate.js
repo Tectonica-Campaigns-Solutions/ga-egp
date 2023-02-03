@@ -3,7 +3,7 @@ import Link from '../Link';
 import Tag from '../Tag/Tag';
 import ImageWrapper from '../Image/ImageWrapper';
 import podcastArrow from '../../Icons/podcast-arrow.svg';
-import { isArray, pathToModel } from '../../../utils';
+import { isArray, pathToModel, basePathTag } from '../../../utils';
 
 import './index.scss';
 
@@ -15,11 +15,11 @@ const CardUpdate = ({ post }) => {
     title,
     tags,
     image,
-    isPodcast = false,
+    isPodcast = apiKey === 'podcast' ?? true,
   } = post;
 
   const postUrl = pathToModel(apiKey, slug);
-
+  const basePath = basePathTag(apiKey)
   return (
     <article className={`card-update ${isPodcast ? 'podcast' : ''}`}>
       <div className="information">
@@ -38,7 +38,7 @@ const CardUpdate = ({ post }) => {
           {isArray(tags) && (
             <div className="tags">
               {tags.map((tag) => (
-                <Tag title={tag.title} slug={tag.slug} />
+                <Tag basePath={basePath} title={tag.title} slug={tag.slug} />
               ))}
             </div>
           )}

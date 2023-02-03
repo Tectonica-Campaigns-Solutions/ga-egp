@@ -7,10 +7,22 @@ export const pathToModel = (model = null, slug = '') => {
     return `/events/${slug}`;
   } else if (model === 'position') {
     return `/positions/${slug}`;
+  } else if (model === 'podcast') {
+    return `/podcast/${slug}`;
   } else {
     return '/' + slug;
   }
 };
+
+export const basePathTag = (model) => {
+  if(model === 'podcast'){
+    return '/podcast/'
+  }else if( model === 'post'){
+    return '/news/'
+  }else{
+    return '';
+  }
+}
 
 export const isArray = (array) => {
   return Array.isArray(array) && array.length > 0;
