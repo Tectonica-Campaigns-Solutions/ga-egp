@@ -65,7 +65,7 @@ function Member({ pageContext, location, data: { page } }) {
 
                       <div className="col links-right">
                         <SocialLinkList links={item.socialsLinks} />
-                      </div>
+                      </div>                      
                     </div>
 
                     {/* <div className="history-container">

@@ -1,0 +1,45 @@
+.heroCongress {
+  background: var(--egp-dark-green);
+  padding-bottom: 132px;
+
+  h1 {
+    font-family: 'Colby';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 69px;
+    line-height: 100%;
+    color: var(--egp-white);
+    margin-bottom: 31px;
+  }
+
+  p {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 130%;
+    color: var(--egp-white);
+    margin-bottom: 31px;
+  }
+
+  .backBtn {
+    display: flex;
+    align-items: center;
+    margin-bottom: 79px;
+    font-family: 'Jaldi';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 110%;
+    color: var(--egp-white);
+
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .actionsContainer {
+    display: flex;
+    gap: 31px;
+  }
+}
