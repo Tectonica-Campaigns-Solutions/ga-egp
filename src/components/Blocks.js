@@ -8,6 +8,7 @@ import Campaigns from './Blocks/Campaigns/Campaigns';
 import SocialFollow from './Blocks/SocialFollow/SocialFollow';
 import LatestUpdates from './Blocks/LatestUpdates/LatestUpdates';
 import GroupPerson from './Blocks/GroupPerson/GroupPerson';
+import TextSimple from './Blocks/TextSimple/TextSimple';
 
 
 export default function Blocks({ blocks }) {
@@ -34,7 +35,7 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsGroupPerson':
             return <GroupPerson block={block} key={block.id}/>;
           case 'DatoCmsTextSimple':
-            return <div key={block.id}>HOla</div>;
+            return <TextSimple block={block} key={block.id}/>;
           default:
             return '';
         }

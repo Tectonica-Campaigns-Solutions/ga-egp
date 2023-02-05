@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import CardPosition from '../components/Global/CardPosition/CardPosition';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
+import SeoDatoCms from '../components/Global/SeoDatoCms';
 
 const stylesP = {
   fontFamily: 'Roboto',
@@ -43,9 +44,18 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks } }
 
 export default ListPositions;
 
+export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
+
 export const ListPositionsQuery = graphql`
   query ListPositions($menuInner: String) {
     page: datoCmsListPosition {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+      }
       title
       slug
       introduction

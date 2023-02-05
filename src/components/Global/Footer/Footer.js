@@ -88,7 +88,7 @@ function Footer() {
                   <div className="partners-list">
                     {partnersFooter.navigationItems.map((partner) => (
                       <Link key={partner.id} to={getCtaUrl(partner.mainLink)}>
-                        <img src={partner.icon.url} alt={partner.label} />
+                        <img src={partner.icon.url} alt={partner.label} loading="lazy" />
                       </Link>
                     ))}
                   </div>

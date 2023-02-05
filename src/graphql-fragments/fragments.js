@@ -75,6 +75,7 @@ export const DatoCMS = graphql`
   fragment BlockTextSimple on DatoCmsTextSimple{
     __typename
     id
+    text
   }
   fragment BlockCampaings on DatoCmsCampaing {
     __typename

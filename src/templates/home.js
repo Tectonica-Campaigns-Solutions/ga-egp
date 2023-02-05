@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Blocks from '../components/Blocks';
 import HeroHome from '../components/Global/HeroHome/HeroHome';
 import Layout from '../components/Layout/Layout';
+import SeoDatoCms from '../components/Global/SeoDatoCms';
 
 const Home = ({ data: { page } }) => {
   return (
@@ -22,9 +23,18 @@ const Home = ({ data: { page } }) => {
 
 export default Home;
 
+export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
+
 export const HomeQuery = graphql`
   query HomeById {
     page: datoCmsHome {
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+      }
       title
       description
       textWhite
