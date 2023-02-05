@@ -16,7 +16,7 @@ function CardPosition({ position, small = false, showButtons = true }) {
         className={`card-position color-${position.backgroundColor} ${small ? 'small' : ''}`}
         style={{ backgroundImage: `url(${flower})` }}
       >
-        <GatsbyImage image={position.imageCard.gatsbyImageData} className="image-position" alt="image" />
+        <GatsbyImage image={position.imageCard.gatsbyImageData} className="image-position" alt={position.imageCard?.alt ? position.imageCard?.alt : 'position'} />
 
         <div className="text-content">
           <h3 className={`${position.textWhite ? 'white' : ''}`}>{position.title}</h3>

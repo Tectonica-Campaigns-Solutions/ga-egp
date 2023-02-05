@@ -8,7 +8,7 @@ export const DatoCMS = graphql`
     pretitle
     textContent
     image {
-      gatsbyImageData(width: 500, height: 500)
+      gatsbyImageData(width: 700, layout: FIXED )
       alt
       url
     }
@@ -154,7 +154,9 @@ export const DatoCMS = graphql`
         slug
         name
         image {
-          gatsbyImageData
+          gatsbyImageData(width: 350, height: 350)
+          url
+          alt
         }
         socialLinks {
           url
