@@ -26,6 +26,15 @@ module.exports = {
         apiToken: '8a7fbab7233b1fdc6bad69950fee13',
       },
     },
+    {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: [
+          'https://www.datocms-assets.com',
+          'https://forms-eu1.hsforms.com'
+        ]
+      }
+    },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
