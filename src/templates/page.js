@@ -5,13 +5,20 @@ import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigatio
 import SeoDatoCms from '../components/SeoDatoCms';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import Blocks from '../components/Blocks';
+import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 
 const Page = ({ pageContext, location, data: { page, navLinks } }) => {
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location}/>
+      { page.customHeader && 
+        <HeroCustom ctas={page.ctasblock} imageHeader={page.backgroundImage} description={page.description} title={page.title} context={pageContext} location={location}/>
+      }
+      {
+        !page.customHeader && 
+        <HeroPage title={page.title} context={pageContext} location={location}/>
+      }
       { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
-      <div className="container mt-5 pt-5">
+     
         
         {/* <HubspotStepsProvider>
           {page.blocks.map((item) => {
@@ -19,7 +26,7 @@ const Page = ({ pageContext, location, data: { page, navLinks } }) => {
           })}
         </HubspotStepsProvider> */}
         <Blocks blocks={page.blocks}/>
-      </div>
+      
     </Layout>
   );
 };
@@ -34,6 +41,16 @@ export const PageQuery = graphql`
       id
       title
       slug
+      customHeader
+      description
+      backgroundImage{
+        gatsbyImageData
+        alt
+        url
+      }
+      ctasblock{
+        ... BlockCta
+      }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
@@ -42,7 +59,6 @@ export const PageQuery = graphql`
         description
       }
       blocks {
-        __typename
         ... on DatoCmsBlockHubspotFormStep {
           ...BlockFormSteps
         }
@@ -51,6 +67,12 @@ export const PageQuery = graphql`
         }
         ... on DatoCmsTextSimple {
           ...BlockTextSimple
+        }
+        ... on DatoCmsCampaing {
+          ...BlockCampaings
+        }
+        ... on DatoCmsNarrativeBlock {
+          ...BlockNarrativeBlock
         }
       }
     }

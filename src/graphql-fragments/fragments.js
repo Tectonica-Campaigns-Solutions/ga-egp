@@ -1,6 +1,21 @@
 import { graphql } from 'gatsby';
 
 export const DatoCMS = graphql`
+  fragment BlockCta on DatoCmsCta{
+    title
+      isButton
+      link {
+        ... on DatoCmsGlobalLink {
+          label
+          url
+          content {
+            ... on DatoCmsPage {
+              ... PageLink
+            }
+          }
+        }
+      }
+  }
   fragment BlockNarrativeBlock on DatoCmsNarrativeBlock {
     __typename
     id
@@ -13,19 +28,7 @@ export const DatoCMS = graphql`
       url
     }
     ctas {
-      title
-      isButton
-      link {
-        ... on DatoCmsGlobalLink {
-          label
-          url
-          content {
-            ... on DatoCmsPage {
-              slug
-            }
-          }
-        }
-      }
+      ...BlockCta
     }
   }
   fragment BlockTextHubspot on DatoCmsTextHubspotForm {

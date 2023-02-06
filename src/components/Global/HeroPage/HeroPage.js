@@ -1,11 +1,11 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
-import './index.scss';
+import * as styles from './heropage.module.scss'
 
 function HeroPage({ title, context = null, location = null, date = null, isDetailView = false, parentTitle = null }) {
   return (
-    <div className="hero-page">
+    <div className={ styles.heroPage }>
       <div className="container">
         <div>
           <Breadcrumb

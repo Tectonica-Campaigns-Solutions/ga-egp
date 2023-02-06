@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '../Link';
 import { isArray } from '../../../utils';
 
-import './index.scss';
+import * as styles from './breadcrumb.module.scss'
 
 const Breadcrumb = ({ items }) => {
   if (!isArray(items)) return null;
@@ -17,7 +17,7 @@ const Breadcrumb = ({ items }) => {
   };
 
   return (
-    <div className="egp-breadcrumb">
+    <div className={styles.egpBreadcrumb}>
       <ul>
         {items.map((item, index) => (
           <li key={index}>

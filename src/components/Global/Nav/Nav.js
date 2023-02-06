@@ -17,6 +17,7 @@ const LinkItem = ({ link, label, isButton }) => {
 };
 
 const DropdownItem = ({ link, label, children }) => {
+  console.log(children)
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -48,6 +49,7 @@ const DropdownItem = ({ link, label, children }) => {
 };
 
 export default function Nav({ navData, path }) {
+  console.log(navData)
   // data
   const navLinks = navData.datoCmsNavigation.navigationItems;
   // Use States --------

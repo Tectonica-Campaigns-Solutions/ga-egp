@@ -1,0 +1,21 @@
+.heroCustom{
+  background-color:pink;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  h1,
+  h2 {
+    font-family: 'Colby';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 69px;
+    line-height: 100%;
+    color: var(--egp-darker-green);
+
+    &.sm {
+      font-family: 'Jaldi';
+      font-weight: 800;
+      font-size: 61px;
+    }
+  }
+
+}
