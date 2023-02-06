@@ -1,7 +1,9 @@
-.heroCustom{
-  background-color:pink;
+.heroCustom {
+  // background-color: pink;
   padding-top: 150px;
   padding-bottom: 30px;
+  height: 470px;
+
   h1,
   h2 {
     font-family: 'Colby';
@@ -18,4 +20,21 @@
     }
   }
 
+  .heroImage {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 470px;
+
+    &>div {
+      height: 470px;
+    }
+
+    img {
+      height: 470px;
+      object-fit: contain;
+    }
+  }
 }
