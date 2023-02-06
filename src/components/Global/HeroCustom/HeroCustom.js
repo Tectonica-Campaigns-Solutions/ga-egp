@@ -4,12 +4,23 @@ import Button from '../Button/Button';
 import ImageWrapper from '../Image/ImageWrapper';
 import Link from '../Link';
 
-import * as styles from './herocustom.module.scss'
+import * as styles from './herocustom.module.scss';
 
-function HeroCustom({ title, ctas=null, imageHeader=null, description= null, context = null, location = null, date = null, isDetailView = false, parentTitle = null }) {
-  console.log(ctas)
+function HeroCustom({
+  title,
+  ctas = null,
+  imageHeader = null,
+  description = null,
+  context = null,
+  location = null,
+  date = null,
+  isDetailView = false,
+  parentTitle = null,
+}) {
+  console.log(ctas);
+
   return (
-    <div className={ styles.heroCustom}>
+    <div className={styles.heroCustom}>
       <div>
         <div className="container">
           <Breadcrumb
@@ -23,8 +34,11 @@ function HeroCustom({ title, ctas=null, imageHeader=null, description= null, con
         </div>
 
         <div>
-          <ImageWrapper image={imageHeader} />
-          <div className="container">
+          <div className={styles.heroImage}>
+            <ImageWrapper image={imageHeader} />
+          </div>
+
+          <div className={`container ${styles.mainContent}`}>
             <div className="row">
               <div className={ctas && ctas.length > 0 ? 'col-lg-6' : 'col-12'}>
                 {date && <div className="date">{date}</div>}
@@ -32,17 +46,17 @@ function HeroCustom({ title, ctas=null, imageHeader=null, description= null, con
                 {!parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>}
                 <div className={styles.intro} dangerouslySetInnerHTML={{ __html: description }} />
               </div>
-             
-           
-                  {
-                  ctas && <div className="col-lg-6">
-                    { ctas.map(item => <div>{item.title} {item.url} {item.description}</div>)}
-                  </div>
-                }
-              
+
+              {ctas && (
+                <div className="col-lg-6">
+                  {ctas.map((item) => (
+                    <div>
+                      {item.title} {item.url} {item.description}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-            
-           
           </div>
         </div>
       </div>
