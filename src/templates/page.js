@@ -49,7 +49,11 @@ export const PageQuery = graphql`
         url
       }
       ctasblock{
-        ... BlockCta
+        ... on DatoCmsCtaExternal{
+          title
+          url
+          description
+        }
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
