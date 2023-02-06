@@ -5,6 +5,35 @@ exports.onPostBuild = ({ reporter }) => {
   reporter.info(`Your Gatsby site has been built!`);
 };
 
+exports.onPreInit = async ({ actions }) => {
+  // On Pull Request create a new datocms sandbox environment
+  if (process.env.NETLIFY) {
+    if (process.env.gatsby_executing_command === 'build' && process.env.PULL_REQUEST == 'true') {
+      try {
+        execSync(`npx datocms environments:destroy deploy-preview-${process.env.REVIEW_ID}`)
+      } catch (Error) {
+        console.log('not datocms preview environment founded')
+      }
+      // FIXME: Insecure function.
+      execSync(`npx datocms migrations:run --destination=deploy-preview-${process.env.REVIEW_ID}`)
+    }
+  }
+}
+
+exports.onPostBuild = ({ reporter, basePath, pathPrefix }) => {
+  // On Pull Request post build destroy the new datocms sandbox environment
+  if (process.env.NETLIFY) {
+    if (process.env.gatsby_executing_command === 'build' && process.env.PULL_REQUEST == 'true') {
+      try {
+        // FIXME: Insecure function.
+        execSync(`npx datocms environments:destroy deploy-preview-${process.env.REVIEW_ID}`)
+      } catch (Error) {
+        console.log('not datocms preview environment founded')
+      }
+    }
+  }
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
