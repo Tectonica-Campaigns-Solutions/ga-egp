@@ -29,7 +29,7 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks } }
 
               {list.edges.map((item) => {
                 return (
-                  <div className="col-lg-4">
+                  <div className="col-lg-4 col-md-12">
                     <CardPosition position={item.node} showButtons={false} small />
                   </div>
                 );

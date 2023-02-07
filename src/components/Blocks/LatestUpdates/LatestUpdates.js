@@ -22,10 +22,10 @@ const LatestUpdates = ({ block }) => {
   return (
     <>
       {isArray(latestsPosts) && (
-        <Section title={title} link={{ label: linkLabel }}>
+        <Section title={title} link={{ label: linkLabel }} extraClassNames="gy-5">
           {latestsPosts.map((post) => (
-            <div className="col-md-4" key={post.id}>
-              <CardUpdate  post={post} />
+            <div className="col-lg-4 col-md-6" key={post.id}>
+              <CardUpdate post={post} />
             </div>
           ))}
         </Section>

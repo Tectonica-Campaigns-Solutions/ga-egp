@@ -49,14 +49,15 @@
       &:after {
         position: absolute;
         content: '';
-        width: 500px;
+        width: 800px;
         height: 100%;
         background-color: var(--egp-white);
         display: block;
-        left: -500px;
+        left: -800px;
         top: 0;
       }
     }
+
     .col-slide {
       .slick-list {
         overflow: visible;
