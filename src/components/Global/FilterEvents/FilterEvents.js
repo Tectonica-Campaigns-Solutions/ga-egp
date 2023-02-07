@@ -14,7 +14,7 @@ function FilterEvents({ events, tags }) {
 
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [categoriesFilter, setCategoriesFilter] = useState([ALL_CATEGORIES]);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
   const initialMonth = new Date().getMonth();
@@ -28,8 +28,8 @@ function FilterEvents({ events, tags }) {
       const monthEvents = eventsByYear.filter((e) => {
         const { filterDate, tags } = e.node;
 
-        if (activeCategory !== ALL_CATEGORIES) {
-          return filterDate === currentMonth && tags.id === activeCategory;
+        if (!categoriesFilter.includes(ALL_CATEGORIES)) {
+          return filterDate === currentMonth && categoriesFilter.some((c) => c === tags.id);
         }
 
         return filterDate === currentMonth;
@@ -39,23 +39,39 @@ function FilterEvents({ events, tags }) {
     });
 
     setOrderedEvents(eventsGroupedByMonths);
-  }, [activeYear, activeCategory]);
+  }, [activeYear, categoriesFilter]);
 
   const handlerForm = (event) => {
     const { name, value } = event.target;
 
     if (name === 'selected_category') {
-      setActiveCategory(value);
+      const currentCategories = [...categoriesFilter];
+
+      if (currentCategories.find((c) => c === value)) {
+        setCategoriesFilter((prev) => prev.filter((c) => c !== value));
+      } else {
+        setCategoriesFilter((prev) => [...prev, value]);
+      }
     } else if (name === 'selected_year') {
       setActiveYear(value);
     }
   };
 
-  const getActiveCategory = () => {
-    if (activeCategory === 'All') return 'All';
+  const getActiveCategories = () => {
+    if (!categoriesFilter.length) return;
 
-    const currentCategory = tags.edges.find((tag) => tag.node.id === activeCategory);
-    return currentCategory?.node?.title;
+    return categoriesFilter
+      .map((c) => {
+        if (c === ALL_CATEGORIES) return 'All';
+
+        const currentCategory = tags.edges.find((tag) => tag.node.id === c);
+        return currentCategory?.node?.title;
+      })
+      .join(', ');
+  };
+
+  const isCategoryChecked = (category) => {
+    return categoriesFilter.find((c) => c === category);
   };
 
   return (
@@ -66,13 +82,25 @@ function FilterEvents({ events, tags }) {
             <div className="filter-action-title">Filter by category</div>
             <div className="category-items">
               <div>
-                <input id="all" type="checkbox" name="selected_category" value="All" />
+                <input
+                  id="all"
+                  type="checkbox"
+                  name="selected_category"
+                  value={ALL_CATEGORIES}
+                  checked={isCategoryChecked(ALL_CATEGORIES)}
+                />
                 <label for="all">All</label>
               </div>
 
               {tags.edges.map((item) => (
                 <div>
-                  <input id={item.node.id} type="checkbox" name="selected_category" value={item.node.id} />
+                  <input
+                    id={item.node.id}
+                    type="checkbox"
+                    name="selected_category"
+                    value={item.node.id}
+                    checked={isCategoryChecked(item.node.id)}
+                  />
                   <label for={item.node.id}>{item.node.title}</label>
                 </div>
               ))}
@@ -86,10 +114,10 @@ function FilterEvents({ events, tags }) {
         </div>
       </form>
 
-      {activeCategory && (
+      {!!categoriesFilter.length && (
         <div className="current-filters">
           <div>
-            Filtered by <span>{getActiveCategory()}</span> in <span>{activeYear}</span>
+            Filtered by <span>{getActiveCategories()}</span> in <span>{activeYear}</span>
           </div>
         </div>
       )}

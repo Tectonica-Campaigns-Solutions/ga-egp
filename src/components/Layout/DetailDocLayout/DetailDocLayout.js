@@ -3,10 +3,10 @@ import Document from '../../Global/Document/Document';
 
 import './index.scss';
 
-const DetailDocLayout = ({ children, documents }) => {
+const DetailDocLayout = ({ children, documents, withOffset = false }) => {
   return (
     <div className="detail-doc-layout row">
-      <div className="col-lg-8 content">{children}</div>
+      <div className={`content ${withOffset ? 'col-lg-7 offset-lg-1' : 'col-lg-8'}`}>{children}</div>
 
       <div className="col-lg-2 second-content">
         <p className="downloads-title">Related Downloads</p>

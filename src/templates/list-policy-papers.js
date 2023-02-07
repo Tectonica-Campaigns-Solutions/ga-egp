@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { graphql, navigate } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
-import CardPosition from '../components/Global/CardPosition/CardPosition';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
-import Link from '../components/Global/Link';
 import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
@@ -14,72 +12,65 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
 
-  const [filteredContent, setFilteredContent] = useState(list);
-  // const [formData, setDataForm] = useState({});
+  const filteredContent = useCallback(() => {
+    if (location.search === '') return list;
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   if (e.target.name == 'type') {
-  //     console.log(e.target.value);
-  //     setDataForm({ type: e.target.value });
-  //     console.log(formData);
-  //   }
-  // };
+    const params = queryString.parse(location.search);
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   let url = '/positions/resolutions/?';
+    return list.filter(
+      (item) =>
+        (params.type ? item.node.model.apiKey === params.type : true) &&
+        (params.text ? item.node.intro.includes(params.text) : true)
+    );
+  }, [location, list]);
 
-  //   Array.from(e.target.elements).map((item) => {
-  //     if (item.type != 'submit') {
-  //       url += `${item.name}=${item.value}&`;
-  //     }
-  //   });
+  const submitHandler = (e) => {
+    e.preventDefault();
+    let url = '?';
 
-  //   navigate(url);
-  // };
+    Array.from(e.target.elements).forEach((item) => {
+      if (item.type != 'submit') {
+        if (item.type === 'radio' && item.checked) {
+          url += `${item.name}=${item.value}&`;
+        } else if (item.type === 'text' && !!item.value) {
+          url += `${item.name}=${item.value}&`;
+        }
+      }
+    });
 
-  // useEffect(() => {
-  //   if (location.search !== '') {
-  //     const params = queryString.parse(location.search);
-
-  //     const filteredData = list.edges.filter((item) => {
-  //       if (
-  //         (params.tid === 'all' ? true : item.node.council.idFilter === params.tid) &&
-  //         item.node.intro.includes(params.field_subheading_value)
-  //       ) {
-  //         return item;
-  //       }
-  //     });
-
-  //     setFilteredContent(filteredData);
-  //     return;
-  //   }
-
-  //   setFilteredContent(list.edges);
-  // }, [list]);
+    navigate(url);
+  };
 
   const sidebarContent = () => (
     <div>
       <h3>Filter</h3>
-      <form >
+      <form onSubmit={submitHandler}>
         <div>
-          <input type="radio" value="resolution"  name="type" />
-          <input type="radio" value="paper" name="type" />
+          <div>
+            <input id="resolution" type="radio" value="resolution" name="type" />
+            <label htmlFor="resolution">Resolution</label>
+          </div>
+          <div>
+            <input id="policy_paper" type="radio" value="policy_paper" name="type" />
+            <label htmlFor="policy_paper">Policy Paper</label>
+          </div>
         </div>
-        <div>
-          <label htmlFor="tid">Council</label>
+
+        {/*<div>
+           <label htmlFor="tid">Council</label>
           <select name="tid" id="tid">
             <option value="all">All</option>
-            {/* {(councils).edges.map((item) => (
+            {(councils).edges.map((item) => (
               <option value={item.node.idFilter}>{item.node.title}</option>
-            ))} */}
+            ))}
           </select>
-        </div>
+        </div> */}
+
         <div>
-          <label htmlFor="field_subheading_value">Intro</label>
-          <input type="text" name="field_subheading_value" />
+          <label htmlFor="text">Intro</label>
+          <input type="text" name="text" />
         </div>
+
         <div>
           <input type="submit" value="apply" />
         </div>
@@ -94,7 +85,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
 
       <InnerLayout navMenu={sidebarContent()}>
         <div className="row g-5">
-          {filteredContent.map((item) => (
+          {filteredContent()?.map((item) => (
             <CardPolicy item={item.node} />
           ))}
         </div>
