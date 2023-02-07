@@ -17,7 +17,6 @@ function HeroCustom({
   isDetailView = false,
   parentTitle = null,
 }) {
-  console.log(ctas);
 
   return (
     <div className={styles.heroCustom}>

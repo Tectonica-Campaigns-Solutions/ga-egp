@@ -15,7 +15,6 @@ export default function Blocks({ blocks }) {
   return (
     <>
       {blocks.map((block) => {
-        console.log(block)
         switch (block.__typename) {
           case 'DatoCmsNarrativeBlock':
             return <NarrativeBlock block={block} key={block.id} />;
