@@ -19,6 +19,7 @@ const EventList = ({ events }) => {
             image={e.node?.image || e.image}
             tag={e.node?.tags.title || e.tags.title}
             type={e.node?.eventType || e.eventType}
+            description={e.node?.summary || e.summary}
           />
 
           {eventsLength - 1 !== index && <EventDivider />}

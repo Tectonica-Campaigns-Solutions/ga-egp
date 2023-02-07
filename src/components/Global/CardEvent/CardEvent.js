@@ -37,7 +37,7 @@ const CardEvent = ({ day, hour, image, title, description, slug, color, tag, typ
         </div>
       </div>
 
-      <div className="col-lg-2 col-md-12">
+      <div className="col-lg-2 col-md-12 mt-0 mt-md-4">
         <Button label="Learn more" url={slug} />
       </div>
     </article>
