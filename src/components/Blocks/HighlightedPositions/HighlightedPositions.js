@@ -10,6 +10,7 @@ function HighlightedPositions({ block }) {
 
   const responsiveSettings = [
     {
+      breakpoint: 992,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
