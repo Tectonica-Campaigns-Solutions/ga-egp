@@ -49,23 +49,25 @@ function Member({ pageContext, location, data: { page } }) {
                       <Tag title="Candidate" bgColor="primary-dark-green" />
                     </div>
 
-                    <div className="row">
-                      <div className="col-lg-4">
-                        <h4>Party Leaders:</h4>
-                        <div className="party-leaders-text" dangerouslySetInnerHTML={{ __html: item.partyLeaders }} />
-                      </div>
+                    <div className="information">
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <h4>Party Leaders:</h4>
+                          <div className="party-leaders-text" dangerouslySetInnerHTML={{ __html: item.partyLeaders }} />
+                        </div>
 
-                      <div className="col-lg-5">
-                        <h4>Contact details</h4>
-                        <div
-                          className="contact-details-text"
-                          dangerouslySetInnerHTML={{ __html: item.contactDetails }}
-                        />
-                      </div>
+                        <div className="col-lg-5">
+                          <h4>Contact details</h4>
+                          <div
+                            className="contact-details-text"
+                            dangerouslySetInnerHTML={{ __html: item.contactDetails }}
+                          />
+                        </div>
 
-                      <div className="col links-right">
-                        <SocialLinkList links={item.socialsLinks} />
-                      </div>                      
+                        <div className="col links-right">
+                          <SocialLinkList links={item.socialsLinks} />
+                        </div>
+                      </div>
                     </div>
 
                     {/* <div className="history-container">
