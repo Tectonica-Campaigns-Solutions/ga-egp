@@ -18,6 +18,7 @@ module.exports = {
         apiToken: process.env.DATO_API_TOKEN,
         preview: false,
         disableLiveReload: false,
+        environment: process.env.DATO_ENVIRONMENT ? process.env.DATO_ENVIRONMENT : '',
       },
     },
     {
@@ -29,11 +30,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-preconnect',
       options: {
-        domains: [
-          'https://www.datocms-assets.com',
-          'https://forms-eu1.hsforms.com'
-        ]
-      }
+        domains: ['https://www.datocms-assets.com', 'https://forms-eu1.hsforms.com'],
+      },
     },
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
