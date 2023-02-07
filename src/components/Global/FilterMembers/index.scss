@@ -1,6 +1,7 @@
 .filter-members {
   padding: 62px 0 243px 0;
-  position:relative;
+  position: relative;
+
   .intro {
     font-family: 'Roboto';
     font-style: normal;
@@ -29,9 +30,19 @@
       }
     }
   }
-  .col-map{
-    position:absolute;
-    right:0;
-    top:0
+
+  .col-map {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @media screen and (max-width: 1300px) {
+      margin-top: 3rem;
+      position: unset;
+
+      svg {
+        width: 100%;
+      }
+    }
   }
 }
