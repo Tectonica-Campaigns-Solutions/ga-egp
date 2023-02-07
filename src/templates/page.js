@@ -10,23 +10,27 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 const Page = ({ pageContext, location, data: { page, navLinks } }) => {
   return (
     <Layout>
-      { page.customHeader && 
-        <HeroCustom ctas={page.ctasblock} imageHeader={page.backgroundImage} description={page.description} title={page.title} context={pageContext} location={location}/>
-      }
-      {
-        !page.customHeader && 
-        <HeroPage title={page.title} context={pageContext} location={location}/>
-      }
-      { navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
-     
-        
-        {/* <HubspotStepsProvider>
+      {page.customHeader && (
+        <HeroCustom
+          ctas={page.ctasblock}
+          imageHeader={page.backgroundImage}
+          description={page.description}
+          title={page.title}
+          context={pageContext}
+          location={location}
+        />
+      )}
+
+      {!page.customHeader && <HeroPage title={page.title} context={pageContext} location={location} />}
+      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+
+      {/* <HubspotStepsProvider>
           {page.blocks.map((item) => {
             return <HubspotStepsForm forms={item.forms} destination={item.destinationPage.slug} location={location} />;
           })}
         </HubspotStepsProvider> */}
-        <Blocks blocks={page.blocks}/>
-      
+
+      <Blocks blocks={page.blocks} />
     </Layout>
   );
 };
@@ -43,13 +47,13 @@ export const PageQuery = graphql`
       slug
       customHeader
       description
-      backgroundImage{
+      backgroundImage {
         gatsbyImageData
         alt
         url
       }
-      ctasblock{
-        ... on DatoCmsCtaExternal{
+      ctasblock {
+        ... on DatoCmsCtaExternal {
           title
           url
           description
