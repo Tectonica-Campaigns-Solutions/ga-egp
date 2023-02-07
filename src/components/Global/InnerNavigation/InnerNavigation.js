@@ -10,13 +10,14 @@ const InnerNavigation = ({ location, innerMenu }) => {
   return (
     <div className="inner-navigation">
       <div className="container">
-        <div className="d-flex py-4">
+        <div className="items py-4">
           {navLinks.map((item) => {
             const link = pathToModel(item.mainLink.content.model.apiKey, item.mainLink.content.slug);
-            const active = isActiveTrail(location?.pathname,link) 
+            const active = isActiveTrail(location?.pathname, link);
+
             return (
-              <div className="pe-5" key={item.id}>
-                <Link className={`link-item ${ active ? 'active' : ''}`} to={link}>
+              <div className="item" key={item.id}>
+                <Link className={`link-item ${active ? 'active' : ''}`} to={link}>
                   {item.label}
                 </Link>
               </div>

@@ -1,18 +1,38 @@
 .inner-navigation {
   background-color: hsla(125, 38%, 52%, 0.3);
 
-  .link-item {
-    font-family: 'Jaldi';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 25px;
-    line-height: 110%;
-    text-transform: uppercase;
-    color: var(--egp-green);
+  .items {
+    display: flex;
+    flex: 100%;
+    align-items: center;
+    gap: 69px;
 
-    &.active {
-      color: var(--egp-dark);
-      border-bottom: 4px solid var(--egp-dark);
+    .item {
+      .link-item {
+        font-family: 'Jaldi';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 25px;
+        line-height: 110%;
+        text-transform: uppercase;
+        color: var(--egp-green);
+
+        &.active {
+          color: var(--egp-dark);
+          border-bottom: 4px solid var(--egp-dark);
+        }
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      flex-wrap: wrap;
+      gap: 20px;
+
+      .item .link-item {
+        font-size: 20px;
+      }
     }
   }
+
+
 }
