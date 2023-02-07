@@ -18,6 +18,7 @@ module.exports = {
         apiToken: process.env.DATO_API_TOKEN,
         preview: false,
         disableLiveReload: false,
+        environment: process.env.DATO_ENVIRONMENT ? process.env.DATO_ENVIRONMENT : ''
       },
     },
     {
