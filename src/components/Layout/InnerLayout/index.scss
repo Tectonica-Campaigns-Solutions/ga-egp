@@ -2,5 +2,15 @@
   padding: 70px 0 200px 0;
   background: linear-gradient(90deg, hsla(148, 42%, 36%, 0.1) 28%, rgba(255, 255, 255, 1) 28%);
 
-  .second {}
+  .first {
+    h3 {
+      font-family: 'Jaldi';
+      font-style: normal;
+      font-weight: 800;
+      font-size: 31px;
+      line-height: 110%;
+      color: #333333;
+      margin-bottom: 39px;
+    }
+  }
 }

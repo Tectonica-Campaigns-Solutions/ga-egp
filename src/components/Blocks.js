@@ -10,7 +10,6 @@ import LatestUpdates from './Blocks/LatestUpdates/LatestUpdates';
 import GroupPerson from './Blocks/GroupPerson/GroupPerson';
 import TextSimple from './Blocks/TextSimple/TextSimple';
 
-
 export default function Blocks({ blocks }) {
   return (
     <>
@@ -25,7 +24,7 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsHighlightedPosition':
             return <HighlightedPositions block={block} key={block.id} />;
           case 'DatoCmsUpcomingEvent':
-            return <UpcomingEvents key={block.id} block={block}/>;
+            return <UpcomingEvents key={block.id} block={block} />;
           case 'DatoCmsCampaing':
             return <Campaigns block={block} key={block.id} />;
           case 'DatoCmsSocialFollow':
@@ -33,9 +32,9 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsLatestBlog':
             return <LatestUpdates block={block} key={block.id} />;
           case 'DatoCmsGroupPerson':
-            return <GroupPerson block={block} key={block.id}/>;
+            return <GroupPerson block={block} key={block.id} />;
           case 'DatoCmsTextSimple':
-            return <TextSimple block={block} key={block.id}/>;
+            return <TextSimple block={block} key={block.id} />;
           default:
             return '';
         }

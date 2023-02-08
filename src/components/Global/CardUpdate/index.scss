@@ -6,7 +6,6 @@
     justify-content: space-between;
     border-radius: 15px 15px 0px 0px;
     background: #f2f8f3;
-
     padding: 20px 28px;
 
     .title {
@@ -73,6 +72,12 @@
         text-transform: uppercase;
         color: #D3FFD7;
       }
+    }
+  }
+
+  .image-wrapper {
+    &>div {
+      border-radius: 0 0 15px 15px;
     }
   }
 }

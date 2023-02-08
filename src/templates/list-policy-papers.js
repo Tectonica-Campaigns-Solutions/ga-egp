@@ -7,6 +7,7 @@ import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
+import Button from '../components/Global/Button/Button';
 
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
@@ -71,7 +72,10 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
           <input type="text" name="text" />
         </div>
 
-        <div>
+        <div className="d-flex">
+          {/* <Button label="Apply" />
+          <Button label="Clear" /> */}
+
           <input type="submit" value="apply" />
         </div>
       </form>
