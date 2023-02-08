@@ -16,20 +16,14 @@ function HeroCustom({
   date = null,
   isDetailView = false,
   parentTitle = null,
+  currentId = null
 }) {
 
   return (
     <div className={styles.heroCustom}>
       <div>
         <div className="container">
-          <Breadcrumb
-            items={[
-              { title: 'Home', slug: '1' },
-              { title: 'Positions', slug: '2' },
-              { title: 'Another link', slug: '2' },
-              { title: 'Extra link', slug: '2' },
-            ]}
-          />
+          <Breadcrumb currentId='1222'/>
         </div>
 
         <div>
