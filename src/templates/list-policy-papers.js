@@ -8,6 +8,8 @@ import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 import Button from '../components/Global/Button/Button';
+import Input from '../components/Global/Form/Input';
+import Select from '../components/Global/Form/Select';
 
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
@@ -46,26 +48,23 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
     <div>
       <h3>Filter</h3>
       <form onSubmit={submitHandler}>
-        <div>
-          <div>
-            <input id="resolution" type="radio" value="resolution" name="type" />
-            <label htmlFor="resolution">Resolution</label>
-          </div>
-          <div>
-            <input id="policy_paper" type="radio" value="policy_paper" name="type" />
-            <label htmlFor="policy_paper">Policy Paper</label>
-          </div>
+        <div className="mb-5">
+          <Input type="radio" value="resolution" name="type" label="Resolution" />
+          <Input type="radio" value="policy_paper" name="type" label="Policy Paper" />
         </div>
 
-        {/*<div>
-           <label htmlFor="tid">Council</label>
-          <select name="tid" id="tid">
-            <option value="all">All</option>
-            {(councils).edges.map((item) => (
-              <option value={item.node.idFilter}>{item.node.title}</option>
-            ))}
-          </select>
-        </div> */}
+        <div className="mb-5">
+          <Select
+            name="tid"
+            options={['Item 1', 'Item 2', 'Item 3']}
+            renderOption={(item) => <option value={item}>{item}</option>}
+            label="Council Adopted"
+          />
+        </div>
+
+        <div className="mb-5">
+          <Input type="checkbox" areaTitle="Issue or Area" />
+        </div>
 
         <div>
           <label htmlFor="text">Intro</label>
