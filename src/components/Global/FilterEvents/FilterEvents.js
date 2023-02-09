@@ -14,7 +14,7 @@ function FilterEvents({ events, tags }) {
 
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
-  const [categoriesFilter, setCategoriesFilter] = useState([ALL_CATEGORIES]);
+  const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
   const initialMonth = new Date().getMonth();
@@ -74,6 +74,16 @@ function FilterEvents({ events, tags }) {
     return categoriesFilter.find((c) => c === category);
   };
 
+  const handleOnToggleAll = (e) => {
+    const { checked } = e.target;
+
+    if (checked) {
+      setCategoriesFilter(tags.edges.map((item) => item.node.id));
+    } else {
+      setCategoriesFilter([]);
+    }
+  };
+
   return (
     <div className="container filter-events">
       <form onChange={handlerForm}>
@@ -87,6 +97,7 @@ function FilterEvents({ events, tags }) {
                   type="checkbox"
                   name="selected_category"
                   value={ALL_CATEGORIES}
+                  onClick={handleOnToggleAll}
                   checked={isCategoryChecked(ALL_CATEGORIES)}
                 />
                 <label for="all">All</label>
