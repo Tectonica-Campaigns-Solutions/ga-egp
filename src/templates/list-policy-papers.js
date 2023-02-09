@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { graphql, navigate } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
@@ -24,7 +24,17 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
     title: '',
   });
 
-  console.log({ filterOptions });
+  useEffect(() => {
+    // Save params on state
+    const params = queryString.parse(location.search);
+
+    let newFilters = { ...filterOptions };
+    for (const element of Object.keys(params)) {
+      newFilters = { ...newFilters, [element]: params[element] };
+    }
+
+    setFilterOptions(newFilters);
+  }, [location.search]);
 
   const filteredContent = useCallback(() => {
     if (location.search === '') return list;
@@ -47,6 +57,8 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
         if (item.type === 'radio' && item.checked) {
           url += `${item.name}=${item.value}&`;
         } else if (item.type === 'text' && !!item.value) {
+          url += `${item.name}=${item.value}&`;
+        } else if (item.name === 'council' && !!item.value) {
           url += `${item.name}=${item.value}&`;
         }
       }
@@ -91,7 +103,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
             label="Council Adopted"
             value={filterOptions.council}
             onChange={handleOnChangeInputs}
-            options={['-', 'Item 1', 'Item 2', 'Item 3']}
+            options={['', 'Item 1', 'Item 2', 'Item 3']}
             renderOption={(item) => <option value={item}>{item}</option>}
           />
         </div>
