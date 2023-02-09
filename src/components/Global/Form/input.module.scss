@@ -10,6 +10,22 @@
   margin-bottom: 10px;
 }
 
+.inputWhite {
+  background-color: var(--egp-white);
+}
+
+.inputField {
+  background-color: inherit;
+  border: none;
+  width: 100%;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--egp-dark);
+}
+
 .label {
   font-family: 'Roboto';
   font-style: normal;

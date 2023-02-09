@@ -1,7 +1,7 @@
 import React, { useId } from 'react';
 import * as styles from './select.module.scss';
 
-const Select = ({ label, options = [], renderOption, ...selectProps }) => {
+const SelectInput = ({ label, options = [], onChange, renderOption, ...selectProps }) => {
   const selectId = useId();
 
   return (
@@ -10,11 +10,11 @@ const Select = ({ label, options = [], renderOption, ...selectProps }) => {
         Council
       </label>
 
-      <select className={styles.select} htmlFor={selectId} {...selectProps}>
+      <select className={styles.select} htmlFor={selectId} onChange={onChange} {...selectProps}>
         {options.map((item, index) => renderOption(item, index))}
       </select>
     </div>
   );
 };
 
-export default Select;
+export default SelectInput;

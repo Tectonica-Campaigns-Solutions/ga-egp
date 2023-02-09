@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { graphql, navigate } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
@@ -8,12 +8,23 @@ import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
 import Input from '../components/Global/Form/Input';
-import Select from '../components/Global/Form/Select';
+import SelectInput from '../components/Global/Form/SelectInput';
 import ActionButton from '../components/Global/Button/ActionButton';
+import RadioInput from '../components/Global/Form/RadioInput';
+import CheckboxInput from '../components/Global/Form/CheckboxInput';
 
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
+
+  const [filterOptions, setFilterOptions] = useState({
+    type: '',
+    council: '',
+    issueOrArea: '',
+    title: '',
+  });
+
+  console.log({ filterOptions });
 
   const filteredContent = useCallback(() => {
     if (location.search === '') return list;
@@ -49,33 +60,58 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
     window.location.replace(window.location.pathname);
   };
 
+  const handleOnChangeInputs = (e) => {
+    const { name, value } = e.target;
+
+    if (!name || !value) return;
+
+    setFilterOptions((prev) => ({ ...prev, [name]: value }));
+  };
+
   const sidebarContent = () => (
     <div>
       <h3>Filter</h3>
+
       <form onSubmit={submitHandler}>
         <div className="mb-5">
-          <Input type="radio" value="resolution" name="type" label="Resolution" />
-          <Input type="radio" value="policy_paper" name="type" label="Policy Paper" />
-        </div>
-
-        <div className="mb-5">
-          <Select
-            name="tid"
-            options={['Item 1', 'Item 2', 'Item 3']}
-            renderOption={(item) => <option value={item}>{item}</option>}
-            label="Council Adopted"
+          <RadioInput
+            name="type"
+            value={filterOptions.type}
+            onChange={handleOnChangeInputs}
+            options={[
+              { label: 'Policy Papers', value: 'policy_paper' },
+              { label: 'Resolution', value: 'resolution' },
+            ]}
           />
         </div>
 
         <div className="mb-5">
-          <Input type="checkbox" areaTitle="Issue or Area" label="Europe & Democracy" />
-          <Input type="checkbox" label="Climate & Energy" />
-          <Input type="checkbox" label="Economy & Jobs" />
+          <SelectInput
+            name="council"
+            label="Council Adopted"
+            value={filterOptions.council}
+            onChange={handleOnChangeInputs}
+            options={['-', 'Item 1', 'Item 2', 'Item 3']}
+            renderOption={(item) => <option value={item}>{item}</option>}
+          />
         </div>
 
         <div className="mb-5">
-          <label htmlFor="text">Intro</label>
-          <input type="text" name="text" />
+          <CheckboxInput
+            name="issueOrArea"
+            sectionTitle="Issue or Area"
+            value={filterOptions.issueOrArea}
+            onChange={handleOnChangeInputs}
+            options={[
+              { label: 'Europe & Democracy', value: 'policy_paper' },
+              { label: 'Climate & Energy', value: 'resolution' },
+              { label: 'Economy & Jobs', value: 'resolution' },
+            ]}
+          />
+        </div>
+
+        <div className="mb-5">
+          <Input areaTitle="Title" name="title" value={filterOptions.title} onChange={handleOnChangeInputs} isWhite />
         </div>
 
         <div className="d-flex gap-4">
