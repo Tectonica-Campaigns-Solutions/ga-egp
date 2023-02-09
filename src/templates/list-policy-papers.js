@@ -7,9 +7,9 @@ import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
-import Button from '../components/Global/Button/Button';
 import Input from '../components/Global/Form/Input';
 import Select from '../components/Global/Form/Select';
+import ActionButton from '../components/Global/Button/ActionButton';
 
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
@@ -44,6 +44,11 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
     navigate(url);
   };
 
+  const handleOnClearFilters = () => {
+    // TODO: Improve...
+    window.location.replace(window.location.pathname);
+  };
+
   const sidebarContent = () => (
     <div>
       <h3>Filter</h3>
@@ -63,19 +68,19 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
         </div>
 
         <div className="mb-5">
-          <Input type="checkbox" areaTitle="Issue or Area" />
+          <Input type="checkbox" areaTitle="Issue or Area" label="Europe & Democracy" />
+          <Input type="checkbox" label="Climate & Energy" />
+          <Input type="checkbox" label="Economy & Jobs" />
         </div>
 
-        <div>
+        <div className="mb-5">
           <label htmlFor="text">Intro</label>
           <input type="text" name="text" />
         </div>
 
-        <div className="d-flex">
-          {/* <Button label="Apply" />
-          <Button label="Clear" /> */}
-
-          <input type="submit" value="apply" />
+        <div className="d-flex gap-4">
+          <ActionButton label="Apply" type="submit" value="apply" />
+          <ActionButton label="Clear" onClick={handleOnClearFilters} customVariant="light" />
         </div>
       </form>
     </div>
