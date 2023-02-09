@@ -61,9 +61,8 @@ function FilterEvents({ events, tags }) {
     if (!categoriesFilter.length) return;
 
     return categoriesFilter
+      .filter((c) => c !== ALL_CATEGORIES)
       .map((c) => {
-        if (c === ALL_CATEGORIES) return 'All';
-
         const currentCategory = tags.edges.find((tag) => tag.node.id === c);
         return currentCategory?.node?.title;
       })
@@ -83,6 +82,13 @@ function FilterEvents({ events, tags }) {
       setCategoriesFilter([]);
     }
   };
+
+  const shouldRenderCategories =
+    categoriesFilter.length > 0
+      ? categoriesFilter.length === 1 && categoriesFilter.includes(ALL_CATEGORIES)
+        ? false
+        : true
+      : false;
 
   return (
     <div className="container filter-events">
@@ -125,7 +131,7 @@ function FilterEvents({ events, tags }) {
         </div>
       </form>
 
-      {!!categoriesFilter.length && (
+      {shouldRenderCategories && (
         <div className="current-filters">
           <div>
             Filtered by <span>{getActiveCategories()}</span> in <span>{activeYear}</span>
