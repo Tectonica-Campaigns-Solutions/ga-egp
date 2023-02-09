@@ -18,7 +18,12 @@
         font-size: 61px;
         line-height: 100%;
         color: #184B31;
+      }
 
+      .head-content {
+        display: flex;
+        align-items: center;
+        gap: 16px;
       }
 
       .member-size {
@@ -28,7 +33,6 @@
         font-size: 20px;
         line-height: 150%;
         color: #184B31;
-        margin-left: 16px;
       }
 
       .close-btn-container {

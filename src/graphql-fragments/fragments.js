@@ -1,20 +1,20 @@
 import { graphql } from 'gatsby';
 
 export const DatoCMS = graphql`
-  fragment BlockCta on DatoCmsCta{
+  fragment BlockCta on DatoCmsCta {
     title
-      isButton
-      link {
-        ... on DatoCmsGlobalLink {
-          label
-          url
-          content {
-            ... on DatoCmsPage {
-              ... PageLink
-            }
+    isButton
+    link {
+      ... on DatoCmsGlobalLink {
+        label
+        url
+        content {
+          ... on DatoCmsPage {
+            ...PageLink
           }
         }
       }
+    }
   }
   fragment BlockNarrativeBlock on DatoCmsNarrativeBlock {
     __typename
@@ -23,7 +23,7 @@ export const DatoCMS = graphql`
     pretitle
     textContent
     image {
-      gatsbyImageData(width: 700, layout: FIXED )
+      gatsbyImageData(width: 700, layout: FIXED)
       alt
       url
     }
@@ -75,7 +75,7 @@ export const DatoCMS = graphql`
       }
     }
   }
-  fragment BlockTextSimple on DatoCmsTextSimple{
+  fragment BlockTextSimple on DatoCmsTextSimple {
     __typename
     id
     text

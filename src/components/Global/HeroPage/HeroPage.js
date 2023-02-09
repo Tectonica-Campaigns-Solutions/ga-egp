@@ -3,14 +3,20 @@ import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 import * as styles from './heropage.module.scss';
 
-function HeroPage({ title, context = null, location = null, date = null, isDetailView = false, parentTitle = null, currentId = null }) {
+function HeroPage({
+  title,
+  context = null,
+  location = null,
+  date = null,
+  isDetailView = false,
+  parentTitle = null,
+  currentId = null,
+}) {
   return (
     <div className={styles.heroPage}>
       <div className="container">
         <div>
-          <Breadcrumb
-            currentId={context.id}
-          />
+          <Breadcrumb currentId={context.id} />
         </div>
 
         <div>
