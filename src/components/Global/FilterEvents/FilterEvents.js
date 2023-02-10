@@ -14,7 +14,7 @@ function FilterEvents({ events, tags }) {
 
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
-  const [categoriesFilter, setCategoriesFilter] = useState([ALL_CATEGORIES]);
+  const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
   const initialMonth = new Date().getMonth();
@@ -61,9 +61,8 @@ function FilterEvents({ events, tags }) {
     if (!categoriesFilter.length) return;
 
     return categoriesFilter
+      .filter((c) => c !== ALL_CATEGORIES)
       .map((c) => {
-        if (c === ALL_CATEGORIES) return 'All';
-
         const currentCategory = tags.edges.find((tag) => tag.node.id === c);
         return currentCategory?.node?.title;
       })
@@ -73,6 +72,23 @@ function FilterEvents({ events, tags }) {
   const isCategoryChecked = (category) => {
     return categoriesFilter.find((c) => c === category);
   };
+
+  const handleOnToggleAll = (e) => {
+    const { checked } = e.target;
+
+    if (checked) {
+      setCategoriesFilter(tags.edges.map((item) => item.node.id));
+    } else {
+      setCategoriesFilter([]);
+    }
+  };
+
+  const shouldRenderCategories =
+    categoriesFilter.length > 0
+      ? categoriesFilter.length === 1 && categoriesFilter.includes(ALL_CATEGORIES)
+        ? false
+        : true
+      : false;
 
   return (
     <div className="container filter-events">
@@ -87,6 +103,7 @@ function FilterEvents({ events, tags }) {
                   type="checkbox"
                   name="selected_category"
                   value={ALL_CATEGORIES}
+                  onClick={handleOnToggleAll}
                   checked={isCategoryChecked(ALL_CATEGORIES)}
                 />
                 <label for="all">All</label>
@@ -114,7 +131,7 @@ function FilterEvents({ events, tags }) {
         </div>
       </form>
 
-      {!!categoriesFilter.length && (
+      {shouldRenderCategories && (
         <div className="current-filters">
           <div>
             Filtered by <span>{getActiveCategories()}</span> in <span>{activeYear}</span>
