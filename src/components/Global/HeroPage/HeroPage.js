@@ -11,7 +11,7 @@ function HeroPage({
   isDetailView = false,
   parentTitle = null,
   currentId = null,
-  breadcrumb = null
+  breadcrumb = null,
 }) {
   return (
     <div className={styles.heroPage}>

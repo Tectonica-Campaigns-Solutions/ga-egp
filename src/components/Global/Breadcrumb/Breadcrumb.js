@@ -1,67 +1,28 @@
-// import React from 'react';
-// import Link from '../Link';
-// import { isArray } from '../../../utils';
-
-// import * as styles from './breadcrumb.module.scss';
-
-// const Breadcrumb = ({ items }) => {
-//   if (!isArray(items)) return null;
-
-//   const isActiveLink = false;
-
-//   const renderSeparator = (index) => {
-//     if (index === 0) {
-//       return null;
-//     }
-//     return <span>/</span>;
-//   };
-
-//   const findNodeById = (nodes, id) => {
-//     for (const node of nodes) {
-//       if (node.id === id) return node;
-
-//       const { treeChildren } = node;
-
-//       if (treeChildren) {
-//         const nodeFound = findNodeById(treeChildren, id);
-//         if (nodeFound) return nodeFound;
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className={styles.egpBreadcrumb}>
-//       <ul>
-//         {items.map((item, index) => (
-//           <li key={index}>
-//             <Link to={item.slug} className={`${isActiveLink ? 'active' : ''}`}>
-//               {renderSeparator(index)}
-//               {item.title}
-//             </Link>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Breadcrumb;
-
 import React from 'react';
 import Link from '../Link';
-import { isArray, findSiblingsMenu } from '../../../utils';
-import { StaticQuery, graphql } from "gatsby"
+import { pathToModel } from '../../../utils';
 
-import * as styles from './breadcrumb.module.scss'
+import * as styles from './breadcrumb.module.scss';
 
 const Breadcrumb = ({ items }) => {
+  const getItemsReversed = () => {
+    const cloneItems = structuredClone(items);
+    const slugs = getTitlesRecursive(cloneItems, []);
 
-  //TODO get all treeparent in array and reverse to pass to breadcrum component
-  console.log(items)
+    return slugs.reverse();
+  };
 
-  if (!items.treeParent) return null;
+  const getTitlesRecursive = (item, slugs = []) => {
+    if (item.title) {
+      slugs.push({ title: item.title, content: item?.content });
+    }
 
-  const isActiveLink = false;
+    if (item.treeParent) {
+      return getTitlesRecursive(item.treeParent, slugs);
+    }
+
+    return slugs;
+  };
 
   const renderSeparator = (index) => {
     if (index === 0) {
@@ -70,25 +31,26 @@ const Breadcrumb = ({ items }) => {
     return <span>/</span>;
   };
 
+  // TODO
+  const isActiveLink = false;
+
   return (
     <div className={styles.egpBreadcrumb}>
-      holaa
       <ul>
-        {/* {items.map((item, index) => (
+        {getItemsReversed().map((item, index) => (
           <li key={index}>
-            <Link  to={item.slug} className={`${isActiveLink ? 'active' : ''}`}>
+            <Link
+              to={item.content ? pathToModel(item.content.model, item.content.slug) : null}
+              className={`${isActiveLink ? 'active' : ''}`}
+            >
               {renderSeparator(index)}
               {item.title}
             </Link>
           </li>
-        ))} */}
+        ))}
       </ul>
     </div>
   );
-
 };
 
 export default Breadcrumb;
-
-
-
