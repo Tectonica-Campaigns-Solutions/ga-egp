@@ -7,10 +7,11 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `egp`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `EGP`,
+    siteUrl: `https://elaborate-frangipane-2705dc.netlify.app/`,
   },
   plugins: [
+    `gatsby-plugin-advanced-sitemap`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-datocms`,
@@ -19,12 +20,6 @@ module.exports = {
         preview: false,
         disableLiveReload: false,
         environment: process.env.DATO_ENVIRONMENT ? process.env.DATO_ENVIRONMENT : '',
-      },
-    },
-    {
-      resolve: 'gatsby-source-datocms',
-      options: {
-        apiToken: '8a7fbab7233b1fdc6bad69950fee13',
       },
     },
     {
