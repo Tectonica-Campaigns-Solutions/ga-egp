@@ -73,12 +73,16 @@ function Member({ pageContext, location, data: { page } }) {
 
         <div className="container">
           <div className="mt-5">
-            <Dropdown
-              activeValue={orderBy}
-              options={Object.values(Order).map((order) => {
-                return { label: order, onClick: () => handleOnChangeOrderBy(order) };
-              })}
+            {
+              partiesOrdered().length > 1 && 
+              <Dropdown
+                activeValue={orderBy}
+                options={Object.values(Order).map((order) => {
+                  return { label: order, onClick: () => handleOnChangeOrderBy(order) };
+                })}
             />
+            }
+            
           </div>
 
           <div className="content-member">
