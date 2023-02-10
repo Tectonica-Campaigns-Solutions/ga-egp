@@ -16,6 +16,7 @@ import CheckboxInput from '../components/Global/Form/CheckboxInput';
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
+  const councils = listResolutions.edges.map(item => item.node.council)
 
   const [filterOptions, setFilterOptions] = useState({
     type: '',
@@ -103,8 +104,8 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
             label="Council Adopted"
             value={filterOptions.council}
             onChange={handleOnChangeInputs}
-            options={['', 'Item 1', 'Item 2', 'Item 3']}
-            renderOption={(item) => <option value={item}>{item}</option>}
+            options={councils}
+            renderOption={(item) => <option value={item.idFilter}>{item.title}</option>}
           />
         </div>
 
