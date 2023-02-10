@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { graphql, navigate } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
@@ -7,13 +7,34 @@ import SeoDatoCms from '../components/SeoDatoCms';
 import queryString from 'query-string';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
-import Button from '../components/Global/Button/Button';
 import Input from '../components/Global/Form/Input';
-import Select from '../components/Global/Form/Select';
+import SelectInput from '../components/Global/Form/SelectInput';
+import ActionButton from '../components/Global/Button/ActionButton';
+import RadioInput from '../components/Global/Form/RadioInput';
+import CheckboxInput from '../components/Global/Form/CheckboxInput';
 
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
+
+  const [filterOptions, setFilterOptions] = useState({
+    type: '',
+    council: '',
+    issueOrArea: '',
+    title: '',
+  });
+
+  useEffect(() => {
+    // Save params on state
+    const params = queryString.parse(location.search);
+
+    let newFilters = { ...filterOptions };
+    for (const element of Object.keys(params)) {
+      newFilters = { ...newFilters, [element]: params[element] };
+    }
+
+    setFilterOptions(newFilters);
+  }, [location.search]);
 
   const filteredContent = useCallback(() => {
     if (location.search === '') return list;
@@ -37,6 +58,8 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
           url += `${item.name}=${item.value}&`;
         } else if (item.type === 'text' && !!item.value) {
           url += `${item.name}=${item.value}&`;
+        } else if (item.name === 'council' && !!item.value) {
+          url += `${item.name}=${item.value}&`;
         }
       }
     });
@@ -44,38 +67,68 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
     navigate(url);
   };
 
+  const handleOnClearFilters = () => {
+    // TODO: Improve...
+    window.location.replace(window.location.pathname);
+  };
+
+  const handleOnChangeInputs = (e) => {
+    const { name, value } = e.target;
+
+    if (!name || !value) return;
+
+    setFilterOptions((prev) => ({ ...prev, [name]: value }));
+  };
+
   const sidebarContent = () => (
     <div>
       <h3>Filter</h3>
+
       <form onSubmit={submitHandler}>
         <div className="mb-5">
-          <Input type="radio" value="resolution" name="type" label="Resolution" />
-          <Input type="radio" value="policy_paper" name="type" label="Policy Paper" />
-        </div>
-
-        <div className="mb-5">
-          <Select
-            name="tid"
-            options={['Item 1', 'Item 2', 'Item 3']}
-            renderOption={(item) => <option value={item}>{item}</option>}
-            label="Council Adopted"
+          <RadioInput
+            name="type"
+            value={filterOptions.type}
+            onChange={handleOnChangeInputs}
+            options={[
+              { label: 'Policy Papers', value: 'policy_paper' },
+              { label: 'Resolution', value: 'resolution' },
+            ]}
           />
         </div>
 
         <div className="mb-5">
-          <Input type="checkbox" areaTitle="Issue or Area" />
+          <SelectInput
+            name="council"
+            label="Council Adopted"
+            value={filterOptions.council}
+            onChange={handleOnChangeInputs}
+            options={['', 'Item 1', 'Item 2', 'Item 3']}
+            renderOption={(item) => <option value={item}>{item}</option>}
+          />
         </div>
 
-        <div>
-          <label htmlFor="text">Intro</label>
-          <input type="text" name="text" />
+        <div className="mb-5">
+          <CheckboxInput
+            name="issueOrArea"
+            sectionTitle="Issue or Area"
+            value={filterOptions.issueOrArea}
+            onChange={handleOnChangeInputs}
+            options={[
+              { label: 'Europe & Democracy', value: 'policy_paper' },
+              { label: 'Climate & Energy', value: 'resolution' },
+              { label: 'Economy & Jobs', value: 'resolution' },
+            ]}
+          />
         </div>
 
-        <div className="d-flex">
-          {/* <Button label="Apply" />
-          <Button label="Clear" /> */}
+        <div className="mb-5">
+          <Input areaTitle="Title" name="title" value={filterOptions.title} onChange={handleOnChangeInputs} isWhite />
+        </div>
 
-          <input type="submit" value="apply" />
+        <div className="d-flex gap-4">
+          <ActionButton label="Apply" type="submit" value="apply" />
+          <ActionButton label="Clear" onClick={handleOnClearFilters} customVariant="light" />
         </div>
       </form>
     </div>
