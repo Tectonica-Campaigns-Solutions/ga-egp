@@ -11,12 +11,13 @@ function HeroPage({
   isDetailView = false,
   parentTitle = null,
   currentId = null,
+  breadcrumb = null
 }) {
   return (
     <div className={styles.heroPage}>
       <div className="container">
         <div>
-          <Breadcrumb currentId={context.id} />
+          <Breadcrumb items={breadcrumb} />
         </div>
 
         <div>

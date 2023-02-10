@@ -5,20 +5,20 @@ import Link from '../Link';
 import './index.scss';
 
 const InnerNavigation = ({ location, innerMenu }) => {
-  const navLinks = innerMenu.navigationItems;
-
+  
+  const navLinks = innerMenu.treeParent.treeChildren;
   return (
     <div className="inner-navigation">
       <div className="container">
         <div className="items py-4">
           {navLinks.map((item) => {
-            const link = pathToModel(item.mainLink.content.model.apiKey, item.mainLink.content.slug);
+            const link = pathToModel(item.content.model.apiKey, item.content.slug);
             const active = isActiveTrail(location?.pathname, link);
 
             return (
               <div className="item" key={item.id}>
                 <Link className={`link-item ${active ? 'active' : ''}`} to={link}>
-                  {item.label}
+                  {item.title}
                 </Link>
               </div>
             );

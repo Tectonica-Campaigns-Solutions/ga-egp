@@ -7,7 +7,8 @@ import HeroPage from '../components/Global/HeroPage/HeroPage';
 import Blocks from '../components/Blocks';
 import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 
-const Page = ({ pageContext, location, data: { page, navLinks } }) => {
+const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb } }) => {
+
   return (
     <Layout>
       {page.customHeader && (
@@ -18,10 +19,11 @@ const Page = ({ pageContext, location, data: { page, navLinks } }) => {
           title={page.title}
           context={pageContext}
           location={location}
+          breadcrumb={breadcrumb}
         />
       )}
 
-      {!page.customHeader && <HeroPage title={page.title} context={pageContext} location={location} />}
+      {!page.customHeader && <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb}/>}
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
       {/* <HubspotStepsProvider>
@@ -40,7 +42,7 @@ export default Page;
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const PageQuery = graphql`
-  query PageById($id: String, $menuInner: String) {
+  query PageById($id: String) {
     page: datoCmsPage(id: { eq: $id }) {
       id
       title
@@ -84,8 +86,87 @@ export const PageQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
-      ...Navigation
+    navLinks: datoCmsMenu(id: {eq: "DatoCmsMenu-117741821"}) {
+      title
+      treeParent {
+        title
+        treeChildren {
+          id
+          ... on DatoCmsMenu{
+            id
+            title
+            content{
+              ... on DatoCmsPage{
+                slug
+                model{
+                  apiKey
+                }
+              }
+              ... on DatoCmsListNews{
+                slug
+                model{
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPosition{
+                slug
+                model{
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    breadcrumb: datoCmsMenu(id: {eq: "DatoCmsMenu-119373300"}) {
+      title
+      treeParent {
+        title
+        content{
+          ... on DatoCmsPage{
+            slug
+            model{
+              apiKey
+            }
+          }
+          ... on DatoCmsListNews{
+            slug
+            model{
+              apiKey
+            }
+          }
+          ... on DatoCmsListPosition{
+            slug
+            model{
+              apiKey
+            }
+          }
+        }
+        treeParent {
+          title
+          content{
+            ... on DatoCmsPage{
+              slug
+              model{
+                apiKey
+              }
+            }
+            ... on DatoCmsListNews{
+              slug
+              model{
+                apiKey
+              }
+            }
+            ... on DatoCmsListPosition{
+              slug
+              model{
+                apiKey
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

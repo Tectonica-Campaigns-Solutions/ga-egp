@@ -16,14 +16,14 @@ function HeroCustom({
   date = null,
   isDetailView = false,
   parentTitle = null,
-  currentId = null
+  breadcrumb = null
 }) {
 
   return (
     <div className={styles.heroCustom}>
       <div>
         <div className="container">
-          <Breadcrumb currentId='1222'/>
+          <Breadcrumb items={breadcrumb}/>
         </div>
 
         <div>

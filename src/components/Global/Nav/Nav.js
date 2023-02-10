@@ -36,8 +36,8 @@ const DropdownItem = ({ link, label, children }) => {
       <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
         {children?.map((link) => (
           <li className="dropdown-item" key={link?.id}>
-            <Link className="dropdown-link" to={link}>
-              {link?.label}
+            <Link className="dropdown-link" to={link.content.slug}>
+              {link?.title}
             </Link>
           </li>
         ))}
@@ -48,10 +48,10 @@ const DropdownItem = ({ link, label, children }) => {
 
 export default function Nav({ navData, path }) {
   // data
-  const navLinks = navData.datoCmsNavigation.navigationItems;
-  // Use States --------
+  const navLinks = navData.allDatoCmsMenu.nodes;
+  // // Use States --------
   const [expanded, setExpanded] = useState(false);
-  // Sticky Nav handlers are here
+  // // Sticky Nav handlers are here
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
@@ -104,10 +104,10 @@ export default function Nav({ navData, path }) {
       <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
         <ul className="navbar-nav mr-auto">
           {navLinks?.map((link, index) =>
-            link.links.length === 0 ? (
-              <LinkItem key={index} link={link?.mainLink} label={link?.label} isButton={link?.isButton} />
+            link.treeChildren.length === 0 ? (
+              <LinkItem key={index} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />
             ) : (
-              <DropdownItem key={index} link={link?.mainLink} label={link?.label} children={link?.links} />
+              <DropdownItem key={index} link={link?.content?.slug} label={link?.title} children={link?.treeChildren} />
             )
           )}
 

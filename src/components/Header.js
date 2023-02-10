@@ -6,8 +6,10 @@ import { graphql } from 'gatsby';
 const Header = ({ location }) => {
   const mainMenu = useStaticQuery(graphql`
     query {
-      datoCmsNavigation(codeId: { eq: "main_menu" }) {
-        ...Navigation
+      allDatoCmsMenu(filter: {root: {eq: true}}) {
+        nodes {
+           ... MainNavigation
+        }
       }
     }
   `);
