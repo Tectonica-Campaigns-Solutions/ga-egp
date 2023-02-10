@@ -18,6 +18,7 @@ const CheckboxInput = ({ sectionTitle = '', name, value, options = [], onChange,
               value={option.value}
               checked={option.value === value}
               onChange={onChange}
+              hideInput
             />
           </>
         );
