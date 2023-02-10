@@ -21,7 +21,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
   const [filterOptions, setFilterOptions] = useState({
     type: '',
     council: '',
-    issueOrArea: '',
+    issueOrArea: [],
     title: '',
   });
 
@@ -78,6 +78,15 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
 
     if (!name || !value) return;
 
+    if (name === 'issueOrArea') {
+      if (filterOptions.issueOrArea.includes(value)) {
+        setFilterOptions((prev) => ({ ...prev, issueOrArea: prev.issueOrArea.filter((i) => i !== value) }));
+      } else {
+        setFilterOptions((prev) => ({ ...prev, issueOrArea: [...prev.issueOrArea, value] }));
+      }
+      return;
+    }
+
     setFilterOptions((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -113,7 +122,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
           <CheckboxInput
             name="issueOrArea"
             sectionTitle="Issue or Area"
-            value={filterOptions.issueOrArea}
+            values={filterOptions.issueOrArea}
             onChange={handleOnChangeInputs}
             options={[
               { label: 'Europe & Democracy', value: 'europe' },
