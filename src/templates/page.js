@@ -6,9 +6,9 @@ import SeoDatoCms from '../components/SeoDatoCms';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import Blocks from '../components/Blocks';
 import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
+import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
-const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb } }) => {
-
+const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
   return (
     <Layout>
       {page.customHeader && (
@@ -23,16 +23,17 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb } }) =
         />
       )}
 
-      {!page.customHeader && <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb}/>}
+      {!page.customHeader && (
+        <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
+      )}
+
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
-      {/* <HubspotStepsProvider>
-          {page.blocks.map((item) => {
-            return <HubspotStepsForm forms={item.forms} destination={item.destinationPage.slug} location={location} />;
-          })}
-        </HubspotStepsProvider> */}
-
-      <Blocks blocks={page.blocks} />
+      {sideNav ? (
+        <InnerLayout sideNav={sideNav}>{<Blocks blocks={page.blocks} />}</InnerLayout>
+      ) : (
+        <Blocks blocks={page.blocks} />
+      )}
     </Layout>
   );
 };
@@ -86,31 +87,31 @@ export const PageQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsMenu(id: {eq: "DatoCmsMenu-117741821"}) {
+    navLinks: datoCmsMenu(id: { eq: "DatoCmsMenu-117741821" }) {
       title
       treeParent {
         title
         treeChildren {
           id
-          ... on DatoCmsMenu{
+          ... on DatoCmsMenu {
             id
             title
-            content{
-              ... on DatoCmsPage{
+            content {
+              ... on DatoCmsPage {
                 slug
-                model{
+                model {
                   apiKey
                 }
               }
-              ... on DatoCmsListNews{
+              ... on DatoCmsListNews {
                 slug
-                model{
+                model {
                   apiKey
                 }
               }
-              ... on DatoCmsListPosition{
+              ... on DatoCmsListPosition {
                 slug
-                model{
+                model {
                   apiKey
                 }
               }
@@ -119,48 +120,48 @@ export const PageQuery = graphql`
         }
       }
     }
-    breadcrumb: datoCmsMenu(id: {eq: "DatoCmsMenu-119373300"}) {
+    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
       title
       treeParent {
         title
-        content{
-          ... on DatoCmsPage{
+        content {
+          ... on DatoCmsPage {
             slug
-            model{
+            model {
               apiKey
             }
           }
-          ... on DatoCmsListNews{
+          ... on DatoCmsListNews {
             slug
-            model{
+            model {
               apiKey
             }
           }
-          ... on DatoCmsListPosition{
+          ... on DatoCmsListPosition {
             slug
-            model{
+            model {
               apiKey
             }
           }
         }
         treeParent {
           title
-          content{
-            ... on DatoCmsPage{
+          content {
+            ... on DatoCmsPage {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListNews{
+            ... on DatoCmsListNews {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListPosition{
+            ... on DatoCmsListPosition {
               slug
-              model{
+              model {
                 apiKey
               }
             }

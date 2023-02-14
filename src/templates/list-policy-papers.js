@@ -16,12 +16,12 @@ import CheckboxInput from '../components/Global/Form/CheckboxInput';
 function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
-  const councils = listResolutions.edges.map(item => item.node.council)
+  const councils = listResolutions.edges.map((item) => item.node.council);
 
   const [filterOptions, setFilterOptions] = useState({
     type: '',
     council: '',
-    issueOrArea: '',
+    issueOrArea: [],
     title: '',
   });
 
@@ -78,6 +78,15 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
 
     if (!name || !value) return;
 
+    if (name === 'issueOrArea') {
+      if (filterOptions.issueOrArea.includes(value)) {
+        setFilterOptions((prev) => ({ ...prev, issueOrArea: prev.issueOrArea.filter((i) => i !== value) }));
+      } else {
+        setFilterOptions((prev) => ({ ...prev, issueOrArea: [...prev.issueOrArea, value] }));
+      }
+      return;
+    }
+
     setFilterOptions((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -113,12 +122,12 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
           <CheckboxInput
             name="issueOrArea"
             sectionTitle="Issue or Area"
-            value={filterOptions.issueOrArea}
+            values={filterOptions.issueOrArea}
             onChange={handleOnChangeInputs}
             options={[
-              { label: 'Europe & Democracy', value: 'policy_paper' },
-              { label: 'Climate & Energy', value: 'resolution' },
-              { label: 'Economy & Jobs', value: 'resolution' },
+              { label: 'Europe & Democracy', value: 'europe' },
+              { label: 'Climate & Energy', value: 'climate' },
+              { label: 'Economy & Jobs', value: 'economy' },
             ]}
           />
         </div>

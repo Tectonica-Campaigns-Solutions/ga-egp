@@ -5,8 +5,8 @@ import Link from '../Link';
 import './index.scss';
 
 const InnerNavigation = ({ location, innerMenu }) => {
-  
-  const navLinks = innerMenu.treeParent.treeChildren;
+  const navLinks = innerMenu?.treeParent?.treeChildren || [];
+
   return (
     <div className="inner-navigation">
       <div className="container">

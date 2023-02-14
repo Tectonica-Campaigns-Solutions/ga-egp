@@ -3,7 +3,7 @@ import Input from './Input';
 
 import * as styles from './select.module.scss';
 
-const CheckboxInput = ({ sectionTitle = '', name, value, options = [], onChange, ...checkBoxProps }) => {
+const CheckboxInput = ({ sectionTitle = '', name, values, options = [], onChange, ...checkBoxProps }) => {
   return (
     <>
       {sectionTitle && <p className={styles.label}>{sectionTitle}</p>}
@@ -16,8 +16,9 @@ const CheckboxInput = ({ sectionTitle = '', name, value, options = [], onChange,
               type="checkbox"
               name={name}
               value={option.value}
-              checked={option.value === value}
+              checked={values.includes(option.value)}
               onChange={onChange}
+              hideInput
             />
           </>
         );
