@@ -6,14 +6,14 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 
-function ListNews({ pageContext, location, data: { page } }) {
+function ListNews({ pageContext, location, data: { page, breadcrumb } }) {
   const filteredContent = pageContext.items;
 
   const shouldRenderMiddleCta = filteredContent.length >= 12;
 
   return (
     <Layout>
-      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} />
+      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       <div className="container">
         <div className="row g-5 my-5">
           {isArray(filteredContent) && (
@@ -43,6 +43,9 @@ export const ListNewsQuery = graphql`
     page: datoCmsListNews {
       title
       slug
+    }
+    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+      ... Breadcrumb
     }
   }
 `;

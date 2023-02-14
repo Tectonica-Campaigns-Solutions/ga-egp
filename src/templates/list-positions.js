@@ -15,10 +15,10 @@ const stylesP = {
   color: '#333333',
 };
 
-function ListPositions({ pageContext, location, data: { list, page, navLinks } }) {
+function ListPositions({ pageContext, location, data: { list, page, navLinks, breadcrumb } }) {
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} />
+      <HeroPage title={page.title} breadcrumb={breadcrumb} context={pageContext} location={location} />
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
       <div className="container mt-5 pt-5 mb-5">
@@ -99,6 +99,9 @@ export const ListPositionsQuery = graphql`
           }
         }
       }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+      ... Breadcrumb
     }
   }
 `;

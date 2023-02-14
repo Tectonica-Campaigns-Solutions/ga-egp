@@ -472,4 +472,53 @@ export const DatoCMS = graphql`
       apiKey
     }
   }
+  fragment Breadcrumb on DatoCmsMenu {
+    title
+      treeParent {
+        title
+        content {
+          ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPosition {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+        treeParent {
+          title
+          content {
+            ... on DatoCmsPage {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsListNews {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsListPosition {
+              slug
+              model {
+                apiKey
+              }
+            }
+          }
+        }
+      }
+  }
 `;

@@ -211,5 +211,8 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
+    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+      ... Breadcrumb
+    }
   }
 `;

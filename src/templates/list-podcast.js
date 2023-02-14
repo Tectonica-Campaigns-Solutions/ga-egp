@@ -42,6 +42,9 @@ export const ListPodcastQuery = graphql`
       title
       slug
     }
+    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+      ... Breadcrumb
+    }
   }
 `;
 

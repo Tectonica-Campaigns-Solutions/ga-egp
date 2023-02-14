@@ -4,10 +4,10 @@ import Layout from '../components/Layout/Layout';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import FilterEvents from '../components/Global/FilterEvents/FilterEvents';
 
-function ListEvents({ pageContext, location, data: { list, page, tags } }) {
+function ListEvents({ pageContext, location, data: { list, page, tags, breadcrumb } }) {
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} />
+      <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb}/>
       <FilterEvents events={list.edges} tags={tags} />
     </Layout>
   );
@@ -33,6 +33,9 @@ export const ListEventsQuery = graphql`
           ...EventCard
         }
       }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+      ... Breadcrumb
     }
   }
 `;
