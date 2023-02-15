@@ -36,7 +36,7 @@ const DropdownItem = ({ link, label, children }) => {
       <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
         {children?.map((link) => (
           <li className="dropdown-item" key={link?.id}>
-            <Link className="dropdown-link" to={link.content.slug}>
+            <Link className="dropdown-link" to={`/${link.content.slug}`}>
               {link?.title}
             </Link>
           </li>

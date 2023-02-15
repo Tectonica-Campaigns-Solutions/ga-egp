@@ -9,6 +9,7 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
 const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
+  console.log(pageContext)
   return (
     <Layout>
       {page.customHeader && (
@@ -19,7 +20,7 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
           title={page.title}
           context={pageContext}
           location={location}
-          breadcrumb={breadcrumb}
+          breadcrumb={breadcrumb ? breadcrumb : null}
         />
       )}
 
@@ -43,7 +44,7 @@ export default Page;
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const PageQuery = graphql`
-  query PageById($id: String) {
+  query PageById($id: String, $menuPos: String) {
     page: datoCmsPage(id: { eq: $id }) {
       id
       title
@@ -87,7 +88,7 @@ export const PageQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsMenu(id: { eq: "DatoCmsMenu-117741821" }) {
+    navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title
       treeParent {
         title
@@ -120,7 +121,7 @@ export const PageQuery = graphql`
         }
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ... Breadcrumb
     }
   }

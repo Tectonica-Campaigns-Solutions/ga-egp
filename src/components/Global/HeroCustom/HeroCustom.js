@@ -19,12 +19,16 @@ function HeroCustom({
   breadcrumb = null
 }) {
 
+
   return (
     <div className={styles.heroCustom}>
       <div>
-        <div className="container">
+        {
+          breadcrumb &&  <div className="container">
           <Breadcrumb items={breadcrumb}/>
         </div>
+        }
+       
 
         <div>
           <div className={styles.heroImage}>

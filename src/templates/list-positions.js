@@ -47,7 +47,7 @@ export default ListPositions;
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPositionsQuery = graphql`
-  query ListPositions {
+  query ListPositions($menuPos: String) {
     page: datoCmsListPosition {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
@@ -67,7 +67,7 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsMenu(id: {eq: "DatoCmsMenu-117741821"}) {
+    navLinks: datoCmsMenu(id: {eq: $menuPos}) {
       title
       treeParent {
         title
@@ -100,7 +100,7 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ... Breadcrumb
     }
   }

@@ -5,8 +5,10 @@ import Layout from '../components/Layout/Layout';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
+import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 
-function ListNews({ pageContext, location, data: { page, breadcrumb } }) {
+function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } }) {
+  console.log(navLinks)
   const filteredContent = pageContext.items;
 
   const shouldRenderMiddleCta = filteredContent.length >= 12;
@@ -14,6 +16,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb } }) {
   return (
     <Layout>
       <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
+      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
       <div className="container">
         <div className="row g-5 my-5">
           {isArray(filteredContent) && (
@@ -39,12 +42,45 @@ function ListNews({ pageContext, location, data: { page, breadcrumb } }) {
 }
 
 export const ListNewsQuery = graphql`
-  query ListNews {
+  query ListNews($menuPos: String){
     page: datoCmsListNews {
       title
       slug
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    navLinks: datoCmsMenu(id: { eq: $menuPos }) {
+      title
+      treeParent {
+        title
+        treeChildren {
+          id
+          ... on DatoCmsMenu {
+            id
+            title
+            content {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ... Breadcrumb
     }
   }

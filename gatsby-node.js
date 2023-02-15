@@ -8,6 +8,21 @@ exports.onPostBuild = ({ reporter }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
+  const getMenuPosition = (members, key) => {
+    // let children = [];
+    // const flattenMembers = members.map(m => {
+    //   if (m.treeChildren && m.treeChildren.length) {
+    //     children = [...children, ...m.treeChildren];
+    //   }
+    //   return typeof m !== 'null' ? m : [];
+    // });
+    // let items = flattenMembers.concat(children.length > 0 ? getMenuPosition(children.treeChildren) : children);
+    // return items.find(item => item?.content?.id == key) ? items.find(item => item.content.id === key).id : null
+
+    return 'DatoCmsMenu-122576035'
+  };
+
+
   // slices api
   createSlice({
     id: `header`,
@@ -240,6 +255,43 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
             }
+            navTree: allDatoCmsMenu(filter: {root: {eq: true}}){
+              nodes{
+                id
+                content{
+                  ... on DatoCmsPage{
+                    id
+                  }
+                  ... on DatoCmsListNews{
+                    id
+                  }
+                  ... on DatoCmsListPosition{
+                    id
+                  }
+                  ... on DatoCmsListMember {
+                    id
+                  }
+                }
+                treeChildren{
+                  id
+                  content{
+                    ... on DatoCmsPage{
+                      id
+                    }
+                    ... on DatoCmsListNews{
+                      id
+                    }
+                    ... on DatoCmsListPosition{
+                      id
+                    }
+                    ... on DatoCmsListMember {
+                      id
+                    }
+                  }
+                }
+           
+              }
+            }
           }
         `
       ).then((result) => {
@@ -260,6 +312,7 @@ exports.createPages = ({ graphql, actions }) => {
         const allNews = result.data.allNews.edges;
         const congress = result.data.allCongress.edges;
         const allPodcasts = result.data.allPodcasts.edges;
+        const navTree = result.data.navTree.nodes;
 
         // const globalSettings = result.data.globalSettings.nodes;
 
@@ -283,7 +336,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: page.slug,
               id: page.id,
-              menuInner: page.menuInner?.id ? page.menuInner?.id : null,
+              menuPos: getMenuPosition(navTree, page.id),
             },
           });
         });
@@ -453,7 +506,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPositions.slug,
               id: result.data.listPositions.id,
-              menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null,
+              menuPos: getMenuPosition(navTree, result.data.listPositions.id),
             },
           });
         }
@@ -466,6 +519,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listEvents.slug,
               id: result.data.listEvents.id,
+              menuPos: getMenuPosition(navTree, result.data.listEvents.id),
             },
           });
         }
@@ -492,6 +546,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listNews.slug,
               id: result.data.listNews.id,
               items: allNews,
+              menuPos: getMenuPosition(navTree, result.data.listNews.id),
             },
           });
         }
