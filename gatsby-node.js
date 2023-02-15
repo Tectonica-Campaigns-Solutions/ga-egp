@@ -1,4 +1,5 @@
 const path = require(`path`);
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -7,6 +8,24 @@ exports.onPostBuild = ({ reporter }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
+
+  exports.onCreateWebpackConfig = ({ stage, actions }) => {
+    const plugins = []
+  
+    // Remove Conflicting order warning.CSS Modules are scoped to a component the order of importing does not matter.
+    plugins.push(
+      new FilterWarningsPlugin({
+        exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/
+      })
+    )
+  
+    actions.setWebpackConfig({
+      resolve: {
+        modules: [path.resolve(__dirname, 'src'), 'node_modules']
+      },
+      plugins: plugins
+    })
+  }
 
   const getMenuPosition = (members, key) => {
     // let children = [];

@@ -9,7 +9,6 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
 const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
-  console.log(pageContext)
   return (
     <Layout>
       {page.customHeader && (

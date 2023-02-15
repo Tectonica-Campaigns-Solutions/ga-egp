@@ -8,7 +8,7 @@ import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 
 function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } }) {
-  console.log(navLinks)
+
   const filteredContent = pageContext.items;
 
   const shouldRenderMiddleCta = filteredContent.length >= 12;

@@ -38,7 +38,8 @@
     "react-slick": "^0.29.0",
     "sass": "^1.57.1",
     "slick-carousel": "^1.8.1",
-    "swiper": "^8.4.5"
+    "swiper": "^8.4.5",
+    "webpack-filter-warnings-plugin": "^1.2.1"
   },
   "devDependencies": {
     "prettier": "^2.8.1"
