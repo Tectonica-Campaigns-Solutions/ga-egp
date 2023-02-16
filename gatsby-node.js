@@ -1,5 +1,5 @@
 const path = require(`path`);
-const FilterWarningsPlugin = require('webpack-filter-warnings-plugin')
+const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -10,37 +10,61 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
   exports.onCreateWebpackConfig = ({ stage, actions }) => {
-    const plugins = []
-  
+    const plugins = [];
+
     // Remove Conflicting order warning.CSS Modules are scoped to a component the order of importing does not matter.
     plugins.push(
       new FilterWarningsPlugin({
-        exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/
+        exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
       })
-    )
-  
+    );
+
     actions.setWebpackConfig({
       resolve: {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules']
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
       },
-      plugins: plugins
-    })
-  }
-
-  const getMenuPosition = (members, key) => {
-    // let children = [];
-    // const flattenMembers = members.map(m => {
-    //   if (m.treeChildren && m.treeChildren.length) {
-    //     children = [...children, ...m.treeChildren];
-    //   }
-    //   return typeof m !== 'null' ? m : [];
-    // });
-    // let items = flattenMembers.concat(children.length > 0 ? getMenuPosition(children.treeChildren) : children);
-    // return items.find(item => item?.content?.id == key) ? items.find(item => item.content.id === key).id : null
-
-    return 'DatoCmsMenu-122576035'
+      plugins: plugins,
+    });
   };
 
+  // const getMenuPosition = (members, key) => {
+  // let children = [];
+  // const flattenMembers = members.map((m) => {
+  //   if (m.treeChildren && m.treeChildren.length) {
+  //     children = [...children, ...m.treeChildren];
+  //   }
+  //   return typeof m !== 'null' ? m : [];
+  // });
+  // let items = flattenMembers.concat(
+  //   children.length > 0 ? getMenuPosition(children.treeChildren || [], key) : children
+  // );
+  // const position = items.find((item) => item?.content?.id == key)
+  //   ? items.find((item) => item.content.id === key).id
+  //   : null;
+  // console.log('-----');
+  // console.log('-----');
+  // console.log(JSON.stringify(items));
+  // console.log('Key: ', key, '--> Position find: ', position);
+  // console.log('-----');
+  // console.log('-----');
+  // return position;
+  // };
+
+  const getMenuPosition = (menus, key) => {
+    for (const menu of menus) {
+      if (menu.content.id === key) {
+        return menu.id;
+      }
+
+      if (menu.treeChildren) {
+        const menuId = getMenuPosition(menu.treeChildren, key);
+
+        if (menuId) {
+          return menuId;
+        }
+      }
+    }
+  };
 
   // slices api
   createSlice({
@@ -274,33 +298,33 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
             }
-            navTree: allDatoCmsMenu(filter: {root: {eq: true}}){
-              nodes{
+            navTree: allDatoCmsMenu(filter: { root: { eq: true } }) {
+              nodes {
                 id
-                content{
-                  ... on DatoCmsPage{
+                content {
+                  ... on DatoCmsPage {
                     id
                   }
-                  ... on DatoCmsListNews{
+                  ... on DatoCmsListNews {
                     id
                   }
-                  ... on DatoCmsListPosition{
+                  ... on DatoCmsListPosition {
                     id
                   }
                   ... on DatoCmsListMember {
                     id
                   }
                 }
-                treeChildren{
+                treeChildren {
                   id
-                  content{
-                    ... on DatoCmsPage{
+                  content {
+                    ... on DatoCmsPage {
                       id
                     }
-                    ... on DatoCmsListNews{
+                    ... on DatoCmsListNews {
                       id
                     }
-                    ... on DatoCmsListPosition{
+                    ... on DatoCmsListPosition {
                       id
                     }
                     ... on DatoCmsListMember {
@@ -308,7 +332,6 @@ exports.createPages = ({ graphql, actions }) => {
                     }
                   }
                 }
-           
               }
             }
           }
@@ -349,6 +372,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         // pages
         pages.map(({ node: page }) => {
+          console.log('Creating page: ', page.id);
+
           createPage({
             path: page.slug,
             component: templates.page,
@@ -519,6 +544,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         // list positions
         if (result.data.listPositions) {
+          console.log('Creating list position: ', result.data.listPositions.id);
+
           createPage({
             path: result.data.listPositions.slug,
             component: templates.listPositions,
@@ -532,6 +559,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         // list events
         if (result.data.listEvents) {
+          console.log('Creating list events: ', result.data.listEvents.id);
+
           createPage({
             path: result.data.listEvents.slug,
             component: templates.listEvents,
@@ -558,6 +587,8 @@ exports.createPages = ({ graphql, actions }) => {
 
         // list news
         if (result.data.listNews) {
+          console.log('Creating list news: ', result.data.listNews.id);
+
           createPage({
             path: result.data.listNews.slug,
             component: templates.listNews,
