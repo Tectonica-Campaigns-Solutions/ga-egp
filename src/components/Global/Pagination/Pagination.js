@@ -17,7 +17,6 @@ const Pagination = (props) => {
 
   // If there are less than 2 times in pagination range we shall not render the component
   if (currentPage === 0 || paginationRange.length < 2) {
-    console.log('no render');
     return null;
   }
 

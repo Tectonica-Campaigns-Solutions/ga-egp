@@ -121,7 +121,7 @@ export const PageQuery = graphql`
       }
     }
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ... Breadcrumb
+      ...Breadcrumb
     }
   }
 `;

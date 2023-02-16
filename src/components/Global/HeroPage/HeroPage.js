@@ -16,12 +16,11 @@ function HeroPage({
   return (
     <div className={styles.heroPage}>
       <div className="container">
-        {
-          breadcrumb && <div>
-          <Breadcrumb items={breadcrumb} />
-        </div>
-        }
-       
+        {breadcrumb && (
+          <div>
+            <Breadcrumb items={breadcrumb} />
+          </div>
+        )}
 
         <div>
           {date && <div className="date">{date}</div>}
