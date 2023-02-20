@@ -18,7 +18,7 @@ function CongressInner({ pageContext, data: { congressInner } }) {
     <Layout>
       <HeroCongress title={congressTitle} />
 
-      <InnerLayout navMenu={sidebarLinks()}>
+      <InnerLayout sideNav={sidebarLinks()}>
         <h1>{congressInner.title}</h1>
       </InnerLayout>
     </Layout>

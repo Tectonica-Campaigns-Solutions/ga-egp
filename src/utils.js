@@ -15,22 +15,38 @@ export const pathToModel = (model = null, slug = '') => {
 };
 
 export const basePathTag = (model) => {
-  if(model === 'podcast'){
-    return '/podcast/'
-  }else if( model === 'post'){
-    return '/news/'
-  }else{
+  if (model === 'podcast') {
+    return '/podcast/';
+  } else if (model === 'post') {
+    return '/news/';
+  } else {
     return '';
   }
-}
+};
 
 export const isArray = (array) => {
   return Array.isArray(array) && array.length > 0;
 };
 
 export const getCtaUrl = (cta) => {
-  const url = cta.link?.content ? cta.link?.content?.slug : cta.link?.url;
-  return '/' + url;
+  if (!cta) return;
+
+  if (typeof cta === 'string') {
+    return pathToModel(null, cta);
+  }
+
+  if (cta?.content?.model) {
+    const { apiKey: model } = cta.content?.model;
+    return pathToModel(model, cta.content?.slug);
+  }
+
+  if (cta?.link?.content?.model) {
+    const { apiKey: model } = cta.link?.content?.model;
+    return pathToModel(model, cta.link?.content?.slug);
+  }
+
+  const url = cta.link?.content ? '/' + cta.link?.content?.slug : cta.link?.url;
+  return url;
 };
 
 export const getCtaTitle = (cta) => {

@@ -9,10 +9,13 @@ const InnerLayout = ({ sideNav, children }) => {
       <div className="container">
         <div className="row">
           <div className="col-lg-3 first">
-            {
-              sideNav && sideNav.treeChildren.length > 0 && sideNav.treeChildren.map(item => <div><Link to={`/${item.content.slug}`}>{ item.title }</Link></div>)
-            }
-
+            {sideNav && sideNav.treeChildren?.length > 0
+              ? sideNav.treeChildren.map((item) => (
+                  <div>
+                    <Link to={`/${item.content.slug}`}>{item.title}</Link>
+                  </div>
+                ))
+              : sideNav}
           </div>
           <div className="col-lg-9 second">{children}</div>
         </div>

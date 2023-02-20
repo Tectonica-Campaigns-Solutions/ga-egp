@@ -25,15 +25,21 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks, br
         <div className="row">
           <div className="col">
             <div className="row gy-5">
-              {page.introduction && <div style={stylesP} dangerouslySetInnerHTML={{ __html: page.introduction }} />}
+              {page.introduction && (
+                <div className="col-lg-8 mb-5">
+                  <div style={stylesP} dangerouslySetInnerHTML={{ __html: page.introduction }} />
+                </div>
+              )}
 
-              {list.edges.map((item) => {
-                return (
-                  <div className="col-lg-4 col-md-12">
-                    <CardPosition position={item.node} showButtons={false} small />
-                  </div>
-                );
-              })}
+              <div className="col-12 row">
+                {list.edges.map((item) => {
+                  return (
+                    <div className="col-lg-4 col-md-12">
+                      <CardPosition position={item.node} showButtons={false} small />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -67,31 +73,31 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    navLinks: datoCmsMenu(id: {eq: $menuPos}) {
+    navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title
       treeParent {
         title
         treeChildren {
           id
-          ... on DatoCmsMenu{
+          ... on DatoCmsMenu {
             id
             title
-            content{
-              ... on DatoCmsPage{
+            content {
+              ... on DatoCmsPage {
                 slug
-                model{
+                model {
                   apiKey
                 }
               }
-              ... on DatoCmsListNews{
+              ... on DatoCmsListNews {
                 slug
-                model{
+                model {
                   apiKey
                 }
               }
-              ... on DatoCmsListPosition{
+              ... on DatoCmsListPosition {
                 slug
-                model{
+                model {
                   apiKey
                 }
               }
@@ -101,30 +107,30 @@ export const ListPositionsQuery = graphql`
       }
     }
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ... Breadcrumb
+      ...Breadcrumb
     }
-    sideNav: datoCmsMenu(id: {eq: $menuPos}) {
+    sideNav: datoCmsMenu(id: { eq: $menuPos }) {
       treeChildren {
         id
-        ... on DatoCmsMenu{
+        ... on DatoCmsMenu {
           id
           title
-          content{
-            ... on DatoCmsPage{
+          content {
+            ... on DatoCmsPage {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListNews{
+            ... on DatoCmsListNews {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListPosition{
+            ... on DatoCmsListPosition {
               slug
-              model{
+              model {
                 apiKey
               }
             }

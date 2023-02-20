@@ -149,7 +149,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
       <HeroPage title={page.title} context={pageContext} location={location} />
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
-      <InnerLayout navMenu={sidebarContent()}>
+      <InnerLayout sideNav={sidebarContent()}>
         <div className="row g-5">
           {filteredContent()?.map((item) => (
             <CardPolicy item={item.node} />
@@ -212,7 +212,7 @@ export const ListPositionsQuery = graphql`
       }
     }
     breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
-      ... Breadcrumb
+      ...Breadcrumb
     }
   }
 `;

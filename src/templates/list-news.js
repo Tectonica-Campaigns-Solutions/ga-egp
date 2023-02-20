@@ -14,8 +14,15 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
 
   return (
     <Layout>
-      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
+      <HeroPage
+        title={pageContext.tag ? pageContext.tag : page.title}
+        context={pageContext}
+        location={location}
+        breadcrumb={breadcrumb}
+      />
+
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+
       <div className="container">
         <div className="row g-5 my-5">
           {isArray(filteredContent) && (
@@ -41,7 +48,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
 }
 
 export const ListNewsQuery = graphql`
-  query ListNews($menuPos: String){
+  query ListNews($menuPos: String) {
     page: datoCmsListNews {
       title
       slug
@@ -80,7 +87,7 @@ export const ListNewsQuery = graphql`
       }
     }
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ... Breadcrumb
+      ...Breadcrumb
     }
   }
 `;

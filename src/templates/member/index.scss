@@ -22,8 +22,12 @@
 
       .head-content {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         gap: 16px;
+
+        img {
+          align-self: center;
+        }
       }
 
       .member-size {

@@ -10,8 +10,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     plugins: [
       new FilterWarningsPlugin({
-        exclude:
-          /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
+        exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
       }),
     ],
   });
@@ -365,8 +364,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         // pages
         pages.map(({ node: page }) => {
-          console.log('Creating page: ', page.id);
-
           createPage({
             path: page.slug,
             component: templates.page,
@@ -537,8 +534,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         // list positions
         if (result.data.listPositions) {
-          console.log('Creating list position: ', result.data.listPositions.id);
-
           createPage({
             path: result.data.listPositions.slug,
             component: templates.listPositions,
@@ -552,8 +547,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         // list events
         if (result.data.listEvents) {
-          console.log('Creating list events: ', result.data.listEvents.id);
-
           createPage({
             path: result.data.listEvents.slug,
             component: templates.listEvents,
@@ -580,8 +573,6 @@ exports.createPages = ({ graphql, actions }) => {
 
         // list news
         if (result.data.listNews) {
-          console.log('Creating list news: ', result.data.listNews.id);
-
           createPage({
             path: result.data.listNews.slug,
             component: templates.listNews,

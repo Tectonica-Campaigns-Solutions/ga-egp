@@ -7,14 +7,14 @@ import FilterMembers from '../components/Global/FilterMembers/FilterMembers';
 function ListMembers({ pageContext, location, data: { list, page, breadcrumb } }) {
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb}/>
+      <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       <FilterMembers members={list.edges} introduction={page.introduction} />
     </Layout>
   );
 }
 
 export const ListMembersQuery = graphql`
-  query ListMembers ($menuPos: String){
+  query ListMembers($menuPos: String) {
     page: datoCmsListMember {
       title
       slug
@@ -28,7 +28,7 @@ export const ListMembersQuery = graphql`
       }
     }
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ... Breadcrumb
+      ...Breadcrumb
     }
   }
 `;
