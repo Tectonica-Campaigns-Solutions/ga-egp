@@ -9,6 +9,7 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
 const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
+  console.log(pageContext)
   return (
     <Layout>
       {page.customHeader && (
@@ -29,7 +30,7 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
 
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
-      {sideNav ? (
+      {sideNav && sideNav.treeChildren.length > 0 ? (
         <InnerLayout sideNav={sideNav}>{<Blocks blocks={page.blocks} />}</InnerLayout>
       ) : (
         <Blocks blocks={page.blocks} />
@@ -117,6 +118,35 @@ export const PageQuery = graphql`
                 model {
                   apiKey
                 }
+              }
+            }
+          }
+        }
+      }
+    }
+    sideNav: datoCmsMenu(id: {eq: $menuPos}) {
+      treeChildren {
+        id
+        ... on DatoCmsMenu{
+          id
+          title
+          content{
+            ... on DatoCmsPage{
+              slug
+              model{
+                apiKey
+              }
+            }
+            ... on DatoCmsListNews{
+              slug
+              model{
+                apiKey
+              }
+            }
+            ... on DatoCmsListPosition{
+              slug
+              model{
+                apiKey
               }
             }
           }

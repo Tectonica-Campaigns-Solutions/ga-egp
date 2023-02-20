@@ -14,7 +14,7 @@ function ListMembers({ pageContext, location, data: { list, page, breadcrumb } }
 }
 
 export const ListMembersQuery = graphql`
-  query ListMembers {
+  query ListMembers ($menuPos: String){
     page: datoCmsListMember {
       title
       slug
@@ -27,7 +27,7 @@ export const ListMembersQuery = graphql`
         }
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ... Breadcrumb
     }
   }

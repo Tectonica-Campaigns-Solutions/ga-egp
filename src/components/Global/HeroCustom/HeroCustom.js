@@ -35,7 +35,7 @@ function HeroCustom({
             <ImageWrapper image={imageHeader} />
           </div>
 
-          <div className={`container ${styles.mainContent}`}>
+          <div className="container">
             <div className="row">
               <div className={ctas && ctas.length > 0 ? 'col-lg-6' : 'col-12'}>
                 {date && <div className="date">{date}</div>}

@@ -6,26 +6,19 @@ exports.onPostBuild = ({ reporter }) => {
   reporter.info(`Your Gatsby site has been built!`);
 };
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      new FilterWarningsPlugin({
+        exclude:
+          /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
+      }),
+    ],
+  });
+};
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
-
-  exports.onCreateWebpackConfig = ({ stage, actions }) => {
-    const plugins = [];
-
-    // Remove Conflicting order warning.CSS Modules are scoped to a component the order of importing does not matter.
-    plugins.push(
-      new FilterWarningsPlugin({
-        exclude: /mini-css-extract-plugin[^]*Conflicting order. Following module has been added:/,
-      })
-    );
-
-    actions.setWebpackConfig({
-      resolve: {
-        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-      },
-      plugins: plugins,
-    });
-  };
 
   // const getMenuPosition = (members, key) => {
   // let children = [];
@@ -52,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   const getMenuPosition = (menus, key) => {
     for (const menu of menus) {
-      if (menu.content.id === key) {
+      if (menu?.content?.id === key) {
         return menu.id;
       }
 
@@ -622,6 +615,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listMembers.slug,
               id: result.data.listMembers.id,
+              menuPos: getMenuPosition(navTree, result.data.listMembers.id),
             },
           });
         }
