@@ -213,36 +213,36 @@ export const DatoCMS = graphql`
       apiKey
     }
   }
-  fragment MainNavigation on DatoCmsMenu{
+  fragment MainNavigation on DatoCmsMenu {
     title
-    content{
-      ... on DatoCmsPage{
+    content {
+      ... on DatoCmsPage {
         slug
       }
     }
-    treeChildren{
-      ... on DatoCmsMenu{
+    treeChildren {
+      ... on DatoCmsMenu {
         title
-        content{
-          ... on DatoCmsPage{
+        content {
+          ... on DatoCmsPage {
             slug
-            model{
+            model {
               apiKey
             }
           }
-          ... on DatoCmsListNews{
+          ... on DatoCmsListNews {
             slug
-            model{
+            model {
               apiKey
             }
           }
-          ... on DatoCmsListPosition{
+          ... on DatoCmsListPosition {
             slug
-            model{
+            model {
               apiKey
             }
           }
-        }   
+        }
       }
     }
   }
@@ -474,6 +474,28 @@ export const DatoCMS = graphql`
   }
   fragment Breadcrumb on DatoCmsMenu {
     title
+    treeParent {
+      title
+      content {
+        ... on DatoCmsPage {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListNews {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPosition {
+          slug
+          model {
+            apiKey
+          }
+        }
+      }
       treeParent {
         title
         content {
@@ -496,29 +518,7 @@ export const DatoCMS = graphql`
             }
           }
         }
-        treeParent {
-          title
-          content {
-            ... on DatoCmsPage {
-              slug
-              model {
-                apiKey
-              }
-            }
-            ... on DatoCmsListNews {
-              slug
-              model {
-                apiKey
-              }
-            }
-            ... on DatoCmsListPosition {
-              slug
-              model {
-                apiKey
-              }
-            }
-          }
-        }
       }
+    }
   }
 `;

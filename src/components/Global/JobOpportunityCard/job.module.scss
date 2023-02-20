@@ -1,0 +1,39 @@
+.jobDetail {
+  padding: 30px;
+  margin-bottom: 20px;
+  max-width: 900px;
+
+  h3 {
+    font-family: 'Jaldi';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 31px;
+    line-height: 110%;
+    color: var(--egp-dark-green);
+    margin-bottom: 10px;
+  }
+}
+
+.jobDescription {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 130%;
+  color: var(--egp-gray);
+  margin-bottom: 16px;
+}
+
+.location {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--egp-gray);
+  margin-bottom: 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 12.5px;
+}

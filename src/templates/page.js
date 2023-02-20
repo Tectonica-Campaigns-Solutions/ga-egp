@@ -85,6 +85,9 @@ export const PageQuery = graphql`
         ... on DatoCmsNarrativeBlock {
           ...BlockNarrativeBlock
         }
+        ... on DatoCmsListJobOpportunity {
+          __typename
+        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
