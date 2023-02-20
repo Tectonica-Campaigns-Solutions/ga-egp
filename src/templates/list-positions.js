@@ -16,7 +16,6 @@ const stylesP = {
 };
 
 function ListPositions({ pageContext, location, data: { list, page, navLinks, breadcrumb, sideNav } }) {
-  console.log(sideNav)
   return (
     <Layout>
       <HeroPage title={page.title} breadcrumb={breadcrumb} context={pageContext} location={location} />
