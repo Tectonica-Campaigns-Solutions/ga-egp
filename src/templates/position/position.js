@@ -13,9 +13,9 @@ import './index.scss';
 const Position = ({ pageContext, location, data: { position, navLinks } }) => {
   const { siblings, parentTitle } = pageContext;
   // normalize siblings
-  const normSiblings = siblings.map(item => item.node)
+  const normSiblings = siblings.map((item) => item.node);
   const sidebarLinks = () => {
-    const updatedSiblings = [{  slug: 'positions', title: 'All positions' }, ...normSiblings];
+    const updatedSiblings = [{ slug: 'positions', title: 'All positions' }, ...normSiblings];
     return <>{normSiblings && <SidebarNav menu={updatedSiblings} location={location} />}</>;
   };
 
@@ -25,7 +25,7 @@ const Position = ({ pageContext, location, data: { position, navLinks } }) => {
       {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
 
       <div className="position-detail">
-        <InnerLayout navMenu={sidebarLinks()}>
+        <InnerLayout sideNav={sidebarLinks()}>
           <h1>{position.title}</h1>
 
           {position.imageHeader && <ImageWrapper image={position.imageHeader} />}

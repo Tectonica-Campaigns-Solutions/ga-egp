@@ -4,7 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
-import Button from "../../components/Global/Button/Button";
+import Button from '../../components/Global/Button/Button';
 
 import * as styles from './congress.module.scss';
 
@@ -20,7 +20,7 @@ function Congress({ data: { congress } }) {
       <HeroCongress title={congress.title} mainPage={true} />
 
       <div className={styles.congressDetail}>
-        <InnerLayout navMenu={sidebarLinks()}>
+        <InnerLayout sideNav={sidebarLinks()}>
           <div className={styles.topContent}>
             <span>Start</span>
             <h1>{congress.title}</h1>

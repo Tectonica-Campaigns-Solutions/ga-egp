@@ -1,8 +1,6 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import Button from '../Button/Button';
 import ImageWrapper from '../Image/ImageWrapper';
-import Link from '../Link';
 
 import * as styles from './herocustom.module.scss';
 
@@ -16,19 +14,16 @@ function HeroCustom({
   date = null,
   isDetailView = false,
   parentTitle = null,
-  breadcrumb = null
+  breadcrumb = null,
 }) {
-
-
   return (
     <div className={styles.heroCustom}>
       <div>
-        {
-          breadcrumb &&  <div className="container">
-          <Breadcrumb items={breadcrumb}/>
-        </div>
-        }
-       
+        {breadcrumb && (
+          <div className="container">
+            <Breadcrumb items={breadcrumb} />
+          </div>
+        )}
 
         <div>
           <div className={styles.heroImage}>
