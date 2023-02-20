@@ -3,13 +3,14 @@ import Link from '../Link';
 import logo from '../../Icons/logo.svg';
 import searchIcon from '../../Icons/icons-search.svg';
 import userIcon from '../../Icons/icons-user.svg';
+import { getCtaUrl } from '../../../utils';
 
 import './index.scss';
 
 const LinkItem = ({ link, label, isButton }) => {
   return (
     <li className="nav-item">
-      <Link to={link} className={isButton ? 'btn btn-primary' : ''}>
+      <Link to={getCtaUrl(link)} className={isButton ? 'btn btn-primary' : ''}>
         {label}
       </Link>
     </li>
@@ -29,14 +30,14 @@ const DropdownItem = ({ link, label, children }) => {
 
   return (
     <li className="dropdown nav-item" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
-      <Link to={link} type="button" aria-label="Expand" aria-expanded="false" data-bs-toggle="dropdown">
+      <Link to={getCtaUrl(link)} type="button" aria-label="Expand" aria-expanded="false" data-bs-toggle="dropdown">
         {label}
       </Link>
 
       <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
         {children?.map((link) => (
           <li className="dropdown-item" key={link?.id}>
-            <Link className="dropdown-link" to={link.content.slug}>
+            <Link className="dropdown-link" to={getCtaUrl(link)}>
               {link?.title}
             </Link>
           </li>

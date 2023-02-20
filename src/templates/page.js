@@ -123,28 +123,28 @@ export const PageQuery = graphql`
         }
       }
     }
-    sideNav: datoCmsMenu(id: {eq: $menuPos}) {
+    sideNav: datoCmsMenu(id: { eq: $menuPos }) {
       treeChildren {
         id
-        ... on DatoCmsMenu{
+        ... on DatoCmsMenu {
           id
           title
-          content{
-            ... on DatoCmsPage{
+          content {
+            ... on DatoCmsPage {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListNews{
+            ... on DatoCmsListNews {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListPosition{
+            ... on DatoCmsListPosition {
               slug
-              model{
+              model {
                 apiKey
               }
             }
