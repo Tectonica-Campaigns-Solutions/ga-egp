@@ -81,3 +81,30 @@
     }
   }
 }
+
+@media screen and (max-width: 992px) {
+  .card-update {
+    .information {
+      padding: 15px 30px 15px 15px;
+      min-height: auto;
+
+      .title {
+        font-size: 20px;
+        line-height: 110%;
+      }
+
+      .meta span {
+        font-size: 10px;
+        line-height: 130%;
+      }
+
+      &.podcast {
+        .information {
+          .podcast-tag {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
