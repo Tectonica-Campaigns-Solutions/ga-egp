@@ -19,13 +19,13 @@ export default function NarrativeBlock({ block }) {
             {textContent && <div className={styles.textcontent} dangerouslySetInnerHTML={{ __html: textContent }} />}
 
             {isArray(ctas) && (
-              <div>
+              <div className={styles.narrativeCtas}>
                 <CtaList ctas={ctas} />
               </div>
             )}
           </div>
 
-          <div className="col-lg-6">{<ImageWrapper image={image} objectFit="cover" />}</div>
+          <div className={`col-lg-6 ${styles.image}`}>{<ImageWrapper image={image} objectFit="cover" />}</div>
         </div>
       </div>
     </div>

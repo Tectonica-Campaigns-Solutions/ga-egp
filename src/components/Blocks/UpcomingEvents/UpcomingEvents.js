@@ -21,7 +21,6 @@ const UpcomingEvents = ({ block }) => {
   const highlightEvents = block.highlightedEvents ? block.highlightedEvents : nextEvents;
   const globalLink = block.link ? block.link : null;
 
-
   return (
     <Section title="Upcoming Events" linkLabel={globalLink} bgColor="section-green">
       {isArray(highlightEvents) && <EventList events={highlightEvents} />}

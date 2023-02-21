@@ -41,6 +41,7 @@
   }
 
   @media screen and (max-width: 992px) {
+    height: 400px;
     background-size: contain;
     background-position: center 100%;
 
@@ -48,6 +49,10 @@
       img {
         object-fit: contain !important;
       }
+    }
+
+    .ctas {
+      display: none;
     }
   }
 
