@@ -37,6 +37,14 @@
       padding: 0;
     }
   }
+
+  .info-btn {
+    margin-bottom: 20px;
+  }
+
+  .mobile-info-btn {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1492px) {
@@ -100,6 +108,14 @@
       input {
         display: none;
       }
+    }
+
+    .info-btn {
+      display: none;
+    }
+
+    .mobile-info-btn {
+      display: block;
     }
   }
 }

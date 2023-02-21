@@ -2,6 +2,7 @@ import React from 'react';
 import CardPosition from '../../Global/CardPosition/CardPosition';
 import { isArray } from '../../../utils';
 import EGPSlider from '../../Global/EGPSlider/EGPSlider';
+import Button from '../../Global/Button/Button';
 
 import './index.scss';
 
@@ -26,6 +27,10 @@ function HighlightedPositions({ block }) {
             <h3>{pretitle}</h3>
             <h2>{title}</h2>
             <div className="description" dangerouslySetInnerHTML={{ __html: description }} />
+
+            <div className="info-btn">
+              <Button label={'All positions'} />
+            </div>
           </div>
 
           {isArray(positions) && (
@@ -39,6 +44,10 @@ function HighlightedPositions({ block }) {
               </div>
             </div>
           )}
+
+          <div className="mobile-info-btn">
+            <Button label={'All positions'} />
+          </div>
         </div>
       </div>
     </div>
