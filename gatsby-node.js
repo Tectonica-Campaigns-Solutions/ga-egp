@@ -19,29 +19,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
-  // const getMenuPosition = (members, key) => {
-  // let children = [];
-  // const flattenMembers = members.map((m) => {
-  //   if (m.treeChildren && m.treeChildren.length) {
-  //     children = [...children, ...m.treeChildren];
-  //   }
-  //   return typeof m !== 'null' ? m : [];
-  // });
-  // let items = flattenMembers.concat(
-  //   children.length > 0 ? getMenuPosition(children.treeChildren || [], key) : children
-  // );
-  // const position = items.find((item) => item?.content?.id == key)
-  //   ? items.find((item) => item.content.id === key).id
-  //   : null;
-  // console.log('-----');
-  // console.log('-----');
-  // console.log(JSON.stringify(items));
-  // console.log('Key: ', key, '--> Position find: ', position);
-  // console.log('-----');
-  // console.log('-----');
-  // return position;
-  // };
-
   const getMenuPosition = (menus, key) => {
     for (const menu of menus) {
       if (menu?.content?.id === key) {
@@ -88,6 +65,7 @@ exports.createPages = ({ graphql, actions }) => {
       event: path.resolve('./src/templates/event/event.js'),
       congress: path.resolve('./src/templates/congress/congress.js'),
       congressInner: path.resolve('./src/templates/congress/congress-inner.js'),
+      jobOpportunity: path.resolve('./src/templates/job-opportunity/job-opportunity.js'),
     };
 
     resolve(
@@ -290,6 +268,15 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
             }
+            jobs: allDatoCmsJobOpportunity {
+              edges {
+                node {
+                  title
+                  id
+                  slug
+                }
+              }
+            }
             navTree: allDatoCmsMenu(filter: { root: { eq: true } }) {
               nodes {
                 id
@@ -347,6 +334,7 @@ exports.createPages = ({ graphql, actions }) => {
         const congress = result.data.allCongress.edges;
         const allPodcasts = result.data.allPodcasts.edges;
         const navTree = result.data.navTree.nodes;
+        const jobs = result.data.jobs.edges;
 
         // const globalSettings = result.data.globalSettings.nodes;
 
@@ -610,6 +598,18 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         }
+
+        // Job opportunity details
+        jobs.map(({ node: job }) => {
+          createPage({
+            path: `/job-opportunity/${job.slug}`,
+            component: templates.jobOpportunity,
+            context: {
+              slug: job.slug,
+              id: job.id,
+            },
+          });
+        });
       })
     );
   });
