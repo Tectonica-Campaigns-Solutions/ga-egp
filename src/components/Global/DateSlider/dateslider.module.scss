@@ -5,6 +5,7 @@
     }
 
     label {
+      width: 100% !important;
       cursor: pointer;
       font-family: 'Roboto';
       font-style: normal;
@@ -26,11 +27,11 @@
 
   .slick-prev,
   .slick-next {
-    width: 37px;
-    height: 37px;
+    width: 37px !important;
+    height: 37px !important;
   }
 
-    .slick-next {
-      right: -60px;
-    }
+  .slick-next {
+    right: -60px;
+  }
 }

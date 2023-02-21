@@ -42,3 +42,30 @@
     }
   }
 }
+
+@media screen and (max-width:992px) {
+  .campaign-main {
+    h2 {
+      font-family: 'Colby';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 110%;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 130%;
+      margin-bottom: 15px;
+    }
+
+    .img,
+    .image-wrapper {
+      margin-bottom: 20px;
+    }
+  }
+}

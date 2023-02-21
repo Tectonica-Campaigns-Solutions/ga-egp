@@ -5,8 +5,6 @@ import ImageWrapper from '../../Image/ImageWrapper';
 import './index.scss';
 
 const CampaignMain = ({ title, description, image, link = null }) => {
-  console.log(link);
-
   return (
     <div className="campaign-main">
       {image && (

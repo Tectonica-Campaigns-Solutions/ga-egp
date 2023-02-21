@@ -1,26 +1,19 @@
-import React from "react";
-import Button from "../Button/Button";
+import React from 'react';
+import Button from '../Button/Button';
 
-import "./index.scss";
+import './index.scss';
 
-const Section = ({
-  title,
-  link = null,
-  bgColor,
-  extraClassNames = "",
-  children,
-}) => {
+const Section = ({ title, link = null, bgColor, extraClassNames = '', children }) => {
   return (
     <section className={`egp-section ${bgColor}`}>
       <div className="container">
         <div className="title">
           <h2>{title}</h2>
+
           {link && (
-            <Button
-              label={link.label}
-              isPrimary={false}
-              customVariant="light"
-            />
+            <div className="section-cta">
+              <Button label={link.label} isPrimary={false} customVariant="light" />
+            </div>
           )}
         </div>
 

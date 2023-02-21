@@ -12,6 +12,7 @@ function HeroPage({
   parentTitle = null,
   currentId = null,
   breadcrumb = null,
+  children = null,
 }) {
   return (
     <div className={styles.heroPage}>
@@ -26,6 +27,8 @@ function HeroPage({
           {date && <div className="date">{date}</div>}
           {parentTitle && <h2>{parentTitle}</h2>}
           {!parentTitle && <h1 className={`${isDetailView ? styles.sm : ''}`}>{title}</h1>}
+
+          {children}
         </div>
       </div>
     </div>

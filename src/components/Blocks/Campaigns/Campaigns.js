@@ -5,7 +5,7 @@ import Section from '../../Global/Section/Section';
 
 const Campaigns = ({ block }) => {
   return (
-    <Section title={block.title} link={block.link} bgColor="section-light-red" extraClassNames="g-5">
+    <Section title={block.title} link={block.link} bgColor="section-light-red" extraClassNames="g-4">
       <div className="col-lg-6">
         {block.highlight && (
           <CampaignMain

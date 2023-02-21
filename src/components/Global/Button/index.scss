@@ -55,4 +55,11 @@
     background: var(--egp-white);
     color: var(--egp-green);
   }
+
+  @media screen and (max-width:992px) {
+    width: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 18px;
+  }
 }

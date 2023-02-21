@@ -19,3 +19,11 @@
     color: var(--egp-white);
   }
 }
+
+@media screen and (max-width: 992px) {
+  .tag {
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 130%;
+  }
+}
