@@ -22,7 +22,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
         breadcrumb={breadcrumb}
       />
 
-      {secondaryMenu.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+      {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <div className="container">
         <div className="row g-5 my-5">
