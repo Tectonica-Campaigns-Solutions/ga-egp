@@ -135,3 +135,96 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+  .member-detail {
+    .top-member {
+      height: 50px;
+
+      .content {
+        h1 {
+          font-size: 25px;
+          line-height: 100%;
+          margin: 0;
+        }
+
+        .head-content {
+          gap: 10px;
+          align-items: center;
+
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .member-size {
+          align-self: flex-end;
+          font-size: 13px;
+          line-height: 150%;
+        }
+
+        .close-btn-container {
+          display: none;
+        }
+      }
+    }
+
+    .content-member {
+      padding: 25px 0;
+
+      .image-wrapper {
+        width: 174px;
+        height: 116px;
+        margin-bottom: 20px;
+
+        img {
+          object-fit: contain;
+        }
+      }
+
+      .party-main-header {
+        gap: 10px;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+      }
+
+      h3 {
+        font-size: 25px;
+        line-height: 110%;
+      }
+
+      h4 {
+        font-size: 13px;
+        line-height: 130%;
+      }
+
+      .party-leaders-text {
+        font-size: 13px;
+        line-height: 130%;
+      }
+
+      .contact-details-text,
+      .contact-details-text a {
+        font-size: 13px;
+        line-height: 130%;
+      }
+
+      .contact-details-text p {
+        margin-bottom: 0;
+      }
+
+      .links-right {
+        margin-top: 32px;
+
+        .social-list {
+          justify-content: flex-start;
+        }
+      }
+
+      .information {
+        padding: 0;
+      }
+    }
+  }
+}

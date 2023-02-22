@@ -73,22 +73,20 @@ function Member({ pageContext, location, data: { page } }) {
 
         <div className="container">
           <div className="mt-5">
-            {
-              partiesOrdered().length > 1 && 
+            {partiesOrdered().length > 1 && (
               <Dropdown
                 activeValue={orderBy}
                 options={Object.values(Order).map((order) => {
                   return { label: order, onClick: () => handleOnChangeOrderBy(order) };
                 })}
-            />
-            }
-            
+              />
+            )}
           </div>
 
           <div className="content-member">
             {partiesOrdered()?.map((item) => {
               return (
-                <div className="row mb-5 pb-5">
+                <div className="row mb-5 pb-0 pb-md-5">
                   <div className="col-lg-3">
                     <ImageWrapper image={item.logo} />
                   </div>
