@@ -33,7 +33,7 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
         <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       )}
 
-      {secondaryMenu.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+      {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       {siblingMenu && siblingMenu.length > 0 ? (
         <InnerLayout sideNav={siblingMenu}>{<Blocks blocks={page.blocks} />}</InnerLayout>
