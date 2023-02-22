@@ -18,6 +18,7 @@
     font-size: 2.438rem;
     line-height: 100%;
     color: var(--egp-darker-green);
+    text-transform: uppercase;
   }
 
   span {
@@ -33,10 +34,35 @@
     line-height: 130%;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    text-align: center;
     color: var(--egp-white);
   }
 
   @media screen and (max-width: 767px) {
     width: 100%;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .event-date {
+    width: auto;
+    min-height: auto;
+    padding: 0;
+    position: initial;
+
+    h4 {
+      padding: 10px 0px 0px;
+      font-size: 20px;
+      width: 60%;
+    }
+
+    span {
+      width: 100%;
+      position: initial;
+      font-size: 8px;
+      line-height: 130%;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
   }
 }
