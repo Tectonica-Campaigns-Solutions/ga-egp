@@ -98,9 +98,9 @@ function Footer() {
 
             {/* Links section */}
             {isArray(menuFooter.navigationItems) && (
-              <div className="row">
+              <div className="row gy-4">
                 {menuFooter.navigationItems.map((navItem) => (
-                  <div key={navItem.id} className="col-lg-3 col-md-6 mb-sm-4 mb-0">
+                  <div key={navItem.id} className="col-lg-3 col-md-6 col-6 mb-sm-4 mb-0">
                     <FooterGroupLinks item={navItem} />
                   </div>
                 ))}
@@ -115,7 +115,7 @@ function Footer() {
         </div>
 
         {/* Second row */}
-        <div className="row" style={{ marginTop: '78px' }}>
+        <div className="row mt-5">
           <div className="col-lg-8">
             {/* Copyright section */}
             <div className="row align-items-end">
@@ -156,7 +156,7 @@ function Footer() {
 
         {/* Third row - Legal menu */}
         {isArray(menuLegal.navigationItems) && (
-          <div className="row" style={{ marginTop: '60px' }}>
+          <div className="row mt-5">
             <div className="col-lg">
               <div className="bottom-links">
                 {menuLegal.navigationItems.map((navItem) => (

@@ -13,3 +13,16 @@
   text-transform: uppercase;
   color: var(--egp-darker-green);
 }
+
+@media screen and (max-width: 992px) {
+  .event-type {
+    font-weight: 700;
+    font-size: 8px;
+    line-height: 130%;
+
+    img {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}

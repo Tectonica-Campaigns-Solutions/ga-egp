@@ -68,6 +68,26 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    link {
+      url
+      ... on DatoCmsGlobalLink {
+        label
+        content {
+          ... on DatoCmsListEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
+    }
     highlightedEvents {
       title
       ... on DatoCmsEvent {
@@ -222,6 +242,24 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsListPodcast {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListResolution {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListPolicyPaper {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsListNews {
         slug
         model {
@@ -252,6 +290,24 @@ export const DatoCMS = graphql`
         title
         content {
           ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPodcast {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListResolution {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPolicyPaper {
             slug
             model {
               apiKey
@@ -517,6 +573,24 @@ export const DatoCMS = graphql`
       title
       content {
         ... on DatoCmsPage {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPodcast {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListResolution {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPolicyPaper {
           slug
           model {
             apiKey

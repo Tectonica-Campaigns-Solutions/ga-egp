@@ -1,4 +1,5 @@
 import React from 'react';
+import { getCtaUrl } from '../../../utils';
 import Button from '../Button/Button';
 
 import './index.scss';
@@ -12,7 +13,7 @@ const Section = ({ title, link = null, bgColor, extraClassNames = '', children }
 
           {link && (
             <div className="section-cta">
-              <Button label={link.label} isPrimary={false} customVariant="light" />
+              <Button url={getCtaUrl(link)} label={link.label} isPrimary={false} customVariant="light" />
             </div>
           )}
         </div>

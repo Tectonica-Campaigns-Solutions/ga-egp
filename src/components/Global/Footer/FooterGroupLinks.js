@@ -1,6 +1,6 @@
-import React from "react";
-import Link from "../Link";
-import { isArray } from "../../../utils";
+import React from 'react';
+import Link from '../Link';
+import { isArray } from '../../../utils';
 
 const FooterGroupLinks = ({ item }) => {
   const { id, label, links } = item;

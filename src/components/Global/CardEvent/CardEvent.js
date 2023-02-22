@@ -11,11 +11,11 @@ import './index.scss';
 const CardEvent = ({ day, hour, image, title, description, slug, color, tag, type }) => {
   return (
     <article className={`card-event row`}>
-      <div className="col-lg-2 col-md-3 date">
+      <div className="col-lg-2 col-md-3 col-4 date">
         <EventDate day={day} hour={hour} color={color} />
       </div>
 
-      <div className="col-lg-8 col-md-9 content">
+      <div className="col-lg-8 col-md-9 col-8 content">
         {image && (
           <div className="img">
             <Link to={slug}>
@@ -33,11 +33,11 @@ const CardEvent = ({ day, hour, image, title, description, slug, color, tag, typ
           <Link to={slug}>
             <h2>{title}</h2>
           </Link>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <div className="description" dangerouslySetInnerHTML={{ __html: description }} />
         </div>
       </div>
 
-      <div className="col-lg-2 col-md-12 mt-0 mt-md-4">
+      <div className="col-lg-2 col-md-12 mt-0 mt-md-4 card-action">
         <Button label="Learn more" url={slug} />
       </div>
     </article>

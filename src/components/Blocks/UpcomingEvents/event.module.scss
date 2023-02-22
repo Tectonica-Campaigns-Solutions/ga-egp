@@ -1,0 +1,8 @@
+.mobileInfoBtn {
+  display: none;
+
+  @media screen and (max-width:992px) {
+    padding-top: 23px;
+    display: block;
+  }
+}
