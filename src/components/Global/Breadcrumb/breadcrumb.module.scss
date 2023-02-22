@@ -26,8 +26,24 @@
         margin-right: 5px;
       }
     }
-    .currentActive{
+
+    .currentActive {
       margin-right: 5px;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .egpBreadcrumb {
+    ul {
+      margin-bottom: 7px;
+
+      li {
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 12px;
+        letter-spacing: 0.0125em;
+      }
     }
   }
 }
