@@ -68,6 +68,26 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    link {
+      url
+      ... on DatoCmsGlobalLink {
+        label
+        content {
+          ... on DatoCmsListEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
+    }
     highlightedEvents {
       title
       ... on DatoCmsEvent {
