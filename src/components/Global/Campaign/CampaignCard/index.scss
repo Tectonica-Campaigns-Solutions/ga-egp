@@ -23,6 +23,14 @@
     line-height: 150%;
     color: var(--egp-dark-gray);
   }
+
+  &.section-pink {
+
+    h3,
+    p {
+      color: var(--egp-white);
+    }
+  }
 }
 
 @media screen and (max-width:992px) {

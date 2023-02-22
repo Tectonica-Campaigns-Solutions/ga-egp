@@ -32,6 +32,7 @@
     }
 
     &-item {
+
       &:focus,
       &:hover {
         color: #1e2125;
@@ -72,7 +73,9 @@
   .collapse {
     @media (max-width: 991px) {
       background-color: var(--ct-white);
+
       li.nav-item {
+
         a.dropdown-button,
         a.nav-link {
           color: #ffff !important;
@@ -94,6 +97,7 @@
     }
 
     .navbar-toggler {
+
       span,
       span:before,
       span:after {
@@ -107,7 +111,7 @@
       }
     }
 
-    .navbar-brand > img {
+    .navbar-brand>img {
       width: 94%;
     }
   }
@@ -146,6 +150,14 @@
       box-shadow: none;
     }
   }
+
+  .nav-white {
+    @media screen and (min-width: 991px) {
+      li a {
+        color: #fff !important;
+      }
+    }
+  }
 }
 
 // Mobile open/close icon
@@ -172,12 +184,15 @@
     left: 0;
     transition: 0.25s ease-in-out;
   }
+
   &:before {
     top: -10px;
   }
+
   &:after {
     bottom: -10px;
   }
+
   &.open-toggle {
     background-color: var(--egp-dark-green);
     opacity: 1;
@@ -187,10 +202,12 @@
     -moz-transform: rotate(132deg);
     -o-transform: rotate(132deg);
     transform: rotate(132deg);
+
     &:before {
       opacity: 0;
       right: -60px;
     }
+
     &:after {
       background-color: var(--egp-dark-green);
       content: '';
@@ -215,18 +232,23 @@
 @media screen and (max-width: 991px) {
   .navbar {
     padding: 5px 0;
+
     a.navbar-brand {
       padding-left: 15px;
     }
+
     button {
       padding-right: 15px;
     }
+
     .navbar-collapse {
       transition: 0.15s all ease-in-out;
     }
+
     &.expanded {
       background-color: var(--psa-navy);
       padding-bottom: 1rem;
+
       #navNav ul li.nav-item {
         margin-right: 0;
         margin-bottom: 1rem;
@@ -250,6 +272,7 @@
   .navbar.expanded #navNav ul li.nav-item {
     text-align: center;
   }
+
   li.dropdown ul.dropdown-menu {
     background-color: transparent !important;
     border: none;
@@ -257,7 +280,7 @@
   }
 }
 
-.top-message-container + header {
+.top-message-container+header {
   .navbar {
     position: absolute;
     top: 44px;

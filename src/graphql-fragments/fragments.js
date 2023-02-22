@@ -129,12 +129,26 @@ export const DatoCMS = graphql`
     }
     otherCampaigns {
       ... on DatoCmsHighlight {
+        id
         title
         description
         image {
           url
           alt
           gatsbyImageData(width: 300)
+        }
+        backgroundColor
+        bannerImage {
+          url
+          alt
+          gatsbyImageData
+        }
+        form {
+          ... on DatoCmsHubspot {
+            formId
+            portalId
+            region
+          }
         }
       }
     }

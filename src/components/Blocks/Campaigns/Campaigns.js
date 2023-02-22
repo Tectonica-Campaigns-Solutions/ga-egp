@@ -19,8 +19,8 @@ const Campaigns = ({ block }) => {
 
       <div className="col-lg-6">
         {block.otherCampaigns &&
-          block.otherCampaigns.map((item, index) => {
-            return <CampaignCard title={item.title} description={item.description} image={item.image} key={index} />;
+          block.otherCampaigns.map((item) => {
+            return <CampaignCard campaign={item} key={item.id} />;
           })}
       </div>
     </Section>

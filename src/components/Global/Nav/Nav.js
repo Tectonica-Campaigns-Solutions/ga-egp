@@ -47,12 +47,12 @@ const DropdownItem = ({ link, label, children }) => {
   );
 };
 
-export default function Nav({ navData, path }) {
+export default function Nav({ navData, navbarWhite = false, path }) {
   // data
   const navLinks = navData.allDatoCmsMenu.nodes;
-  // // Use States --------
+  // Use States --------
   const [expanded, setExpanded] = useState(false);
-  // // Sticky Nav handlers are here
+  // Sticky Nav handlers are here
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
@@ -103,7 +103,7 @@ export default function Nav({ navData, path }) {
       </button>
 
       <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
-        <ul className="navbar-nav mr-auto">
+        <ul className={`navbar-nav mr-auto ${navbarWhite ? 'nav-white' : ''}`}>
           {navLinks?.map((link, index) =>
             link.treeChildren.length === 0 ? (
               <LinkItem key={index} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />

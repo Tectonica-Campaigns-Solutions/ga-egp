@@ -7,7 +7,7 @@ import SeoDatoCms from '../components/Global/SeoDatoCms';
 
 const Home = ({ data: { page } }) => {
   return (
-    <Layout>
+    <Layout navbarWhite={page.textWhite ?? false}>
       <HeroHome
         title={page.title}
         image={page.backgroundImage.gatsbyImageData}
@@ -80,7 +80,7 @@ export const HomeQuery = graphql`
         ... on DatoCmsLatestBlog {
           ...BlockLatestBlog
         }
-        ... on DatoCmsUpcomingEvent{
+        ... on DatoCmsUpcomingEvent {
           ...BlockUpcomingEvents
         }
       }

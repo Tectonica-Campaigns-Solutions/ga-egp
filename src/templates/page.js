@@ -9,11 +9,14 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
 const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null, menuDepth } }) => {
-  
-  console.log(sideNav)
-  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
-  const siblingMenu = sideNav.treeParent?.treeParent?.treeChildren ? sideNav.treeParent.treeParent.treeChildren : sideNav.treeChildren
-  console.log(siblingMenu)
+  console.log(sideNav);
+
+  const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
+  const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
+    ? sideNav?.treeParent.treeParent.treeChildren
+    : sideNav?.treeChildren;
+
+  console.log(siblingMenu);
 
   return (
     <Layout>
@@ -193,8 +196,8 @@ export const PageQuery = graphql`
           }
         }
       }
-      treeParent{
-        treeParent{
+      treeParent {
+        treeParent {
           treeChildren {
             id
             ... on DatoCmsMenu {
