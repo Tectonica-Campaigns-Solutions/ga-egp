@@ -1,5 +1,5 @@
-import React from "react";
-import { Script } from "gatsby";
+import React from 'react';
+import { Script } from 'gatsby';
 
 const HubspotForm = ({ id, formId, region, portalId }) => {
   return (

@@ -127,11 +127,16 @@
     }
   }
 
+  .form-columns-2 {
+    max-width: 100%;
+  }
+
   .input {
     padding: 17px 20px 17px 10px;
     background: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 8px;
+    width: 100%;
 
     input {
       width: 100%;
