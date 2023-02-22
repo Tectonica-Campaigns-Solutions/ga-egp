@@ -20,19 +20,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
   const getMenuPosition = (menus, key) => {
-    for (const menu of menus) {
-      if (menu?.content?.id === key) {
-        return menu.id;
-      }
-
-      if (menu.treeChildren) {
-        const menuId = getMenuPosition(menu.treeChildren, key);
-
-        if (menuId) {
-          return menuId;
-        }
-      }
-    }
+      const menuId = menus.find(item => item?.content?.id === key)
+      return menuId?.id
   };
 
   // slices api
@@ -277,26 +266,10 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            navTree: allDatoCmsMenu(filter: { root: { eq: true } }) {
-              nodes {
+            navTree: allDatoCmsMenu{
+              nodes{
                 id
                 content {
-                  ... on DatoCmsPage {
-                    id
-                  }
-                  ... on DatoCmsListNews {
-                    id
-                  }
-                  ... on DatoCmsListPosition {
-                    id
-                  }
-                  ... on DatoCmsListMember {
-                    id
-                  }
-                }
-                treeChildren {
-                  id
-                  content {
                     ... on DatoCmsPage {
                       id
                     }
@@ -309,8 +282,10 @@ exports.createPages = ({ graphql, actions }) => {
                     ... on DatoCmsListMember {
                       id
                     }
+                    ... on DatoCmsListPolicyPaper {
+                      id
+                    }
                   }
-                }
               }
             }
           }
@@ -554,7 +529,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: result.data.listPolicyPapers.slug,
               id: result.data.listPolicyPapers.id,
-              menuInner: result.data.listPolicyPapers.menuInner?.id ? result.data.listPolicyPapers.menuInner?.id : null,
+              menuPos: getMenuPosition(navTree, result.data.listPolicyPapers.id),
             },
           });
         }

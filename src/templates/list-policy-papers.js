@@ -17,6 +17,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
   const councils = listResolutions.edges.map((item) => item.node.council);
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
 
   const [filterOptions, setFilterOptions] = useState({
     type: '',
@@ -147,7 +148,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} />
-      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <InnerLayout sideNav={sidebarContent()}>
         <div className="row g-5">
@@ -165,13 +166,10 @@ export default ListPolicyPapers;
 export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPositionsQuery = graphql`
-  query ListPolicyPaper($menuInner: String) {
+  query ListPolicyPaper($menuPos: String) {
     page: datoCmsListPolicyPaper {
       title
       slug
-    }
-    navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
-      ...Navigation
     }
     listPapers: allDatoCmsPolicyPaper {
       edges {
@@ -188,6 +186,75 @@ export const ListPositionsQuery = graphql`
               path
               url
               title
+            }
+          }
+        }
+      }
+    }
+    navLinks: datoCmsMenu(id: { eq: $menuPos }) {
+      title
+      treeParent {
+        title
+        treeChildren {
+          id
+          ... on DatoCmsMenu {
+            id
+            title
+            content {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPolicyPaper {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+        treeParent {
+          title
+          treeChildren {
+            id
+            ... on DatoCmsMenu {
+              id
+              title
+              content {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+              }
             }
           }
         }
@@ -211,7 +278,7 @@ export const ListPositionsQuery = graphql`
         }
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ...Breadcrumb
     }
   }

@@ -11,6 +11,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
   const filteredContent = pageContext.items;
 
   const shouldRenderMiddleCta = filteredContent.length >= 12;
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
 
   return (
     <Layout>
@@ -21,7 +22,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
         breadcrumb={breadcrumb}
       />
 
-      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <div className="container">
         <div className="row g-5 my-5">
@@ -79,6 +80,42 @@ export const ListNewsQuery = graphql`
                 slug
                 model {
                   apiKey
+                }
+              }
+              ... on DatoCmsListPolicyPaper {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+        treeParent {
+          title
+          treeChildren {
+            id
+            ... on DatoCmsMenu {
+              id
+              title
+              content {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
                 }
               }
             }
