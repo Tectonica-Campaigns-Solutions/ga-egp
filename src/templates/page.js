@@ -8,7 +8,13 @@ import Blocks from '../components/Blocks';
 import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
-const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
+const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null, menuDepth } }) => {
+  
+  console.log(sideNav)
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
+  const siblingMenu = sideNav.treeParent?.treeParent?.treeChildren ? sideNav.treeParent.treeParent.treeChildren : sideNav.treeChildren
+  console.log(siblingMenu)
+
   return (
     <Layout>
       {page.customHeader && (
@@ -27,10 +33,10 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
         <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       )}
 
-      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      {secondaryMenu.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
-      {sideNav && sideNav.treeChildren.length > 0 ? (
-        <InnerLayout sideNav={sideNav}>{<Blocks blocks={page.blocks} />}</InnerLayout>
+      {siblingMenu && siblingMenu.length > 0 ? (
+        <InnerLayout sideNav={siblingMenu}>{<Blocks blocks={page.blocks} />}</InnerLayout>
       ) : (
         <Blocks blocks={page.blocks} />
       )}
@@ -118,6 +124,42 @@ export const PageQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsListPolicyPaper {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+        treeParent {
+          title
+          treeChildren {
+            id
+            ... on DatoCmsMenu {
+              id
+              title
+              content {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+              }
             }
           }
         }
@@ -146,6 +188,37 @@ export const PageQuery = graphql`
               slug
               model {
                 apiKey
+              }
+            }
+          }
+        }
+      }
+      treeParent{
+        treeParent{
+          treeChildren {
+            id
+            ... on DatoCmsMenu {
+              id
+              title
+              content {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
               }
             }
           }
