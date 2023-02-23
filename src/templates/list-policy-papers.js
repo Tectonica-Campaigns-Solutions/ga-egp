@@ -13,11 +13,15 @@ import ActionButton from '../components/Global/Button/ActionButton';
 import RadioInput from '../components/Global/Form/RadioInput';
 import CheckboxInput from '../components/Global/Form/CheckboxInput';
 
-function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks, breadcrumb } }) {
+function ListPolicyPapers({
+  pageContext,
+  location,
+  data: { listPapers, listResolutions, page, navLinks, breadcrumb },
+}) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
   const councils = listResolutions.edges.map((item) => item.node.council);
-  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
 
   const [filterOptions, setFilterOptions] = useState({
     type: '',
@@ -46,7 +50,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
     return list.filter(
       (item) =>
         (params.type ? item.node.model.apiKey === params.type : true) &&
-        (params.text ? item.node.intro.includes(params.text) : true)
+        (params.title ? item.node.intro.includes(params.title) : true)
     );
   }, [location, list]);
 
@@ -76,8 +80,6 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
 
   const handleOnChangeInputs = (e) => {
     const { name, value } = e.target;
-
-    if (!name || !value) return;
 
     if (name === 'issueOrArea') {
       if (filterOptions.issueOrArea.includes(value)) {
@@ -147,7 +149,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
 
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb}/>
+      <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <InnerLayout sideNav={sidebarContent()}>

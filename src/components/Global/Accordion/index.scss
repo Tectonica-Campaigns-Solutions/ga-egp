@@ -1,40 +1,56 @@
 .accordion {
-	padding-top: 80px;
+  padding-top: 80px;
 
-	.item {
-		cursor: pointer;
-		margin-bottom: 43px;
+  .item {
+    cursor: pointer;
+    margin-bottom: 43px;
 
-		.ac-title {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding-bottom: 15.5px;
-			border-bottom: 1px solid hsla(240, 1%, 52%, 0.2);
+    .ac-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 15.5px;
+      border-bottom: 1px solid hsla(240, 1%, 52%, 0.2);
 
-			h3 {
-				font-family: 'Jaldi';
-				font-style: normal;
-				font-weight: 800;
-				font-size: 31px;
-				line-height: 110%;
-				color: var(--egp-dark-green);
-			}
-		}
+      h3 {
+        font-family: 'Jaldi';
+        font-style: normal;
+        font-weight: 800;
+        font-size: 31px;
+        line-height: 110%;
+        color: var(--egp-dark-green);
+      }
+    }
 
-		.ac-content {
-			display: none;
-		}
+    .ac-content {
+      display: none;
+    }
 
-		&.active {
-			.ac-title h3 {
-				color: var(--egp-dark);
-			}
+    &.active {
+      .ac-title h3 {
+        color: var(--egp-dark);
+      }
 
-			.ac-content {
-				padding-top: 32px;
-				display: block;
-			}
-		}
-	}
+      .ac-content {
+        padding-top: 32px;
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .accordion {
+    padding-top: 0;
+
+    .item {
+      .ac-title {
+        h3 {
+          font-size: 20px;
+          line-height: 110%;
+          margin: 0;
+        }
+      }
+    }
+  }
 }

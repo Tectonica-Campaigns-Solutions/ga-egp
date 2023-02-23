@@ -515,7 +515,23 @@ export const DatoCMS = graphql`
   fragment BlockLatestBlog on DatoCmsLatestBlog {
     __typename
     title
-    linkLabel
+    link {
+      ... on DatoCmsGlobalLink {
+        label
+        url
+        content {
+          ... on DatoCmsPage {
+            ...PageLink
+          }
+          ... on DatoCmsListNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
+    }
   }
   fragment MemberCard on DatoCmsMember {
     id

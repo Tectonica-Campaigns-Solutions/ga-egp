@@ -11,7 +11,6 @@
     margin-bottom: 20px;
   }
 
-
   .category-items {
     display: flex;
     align-items: center;
@@ -47,6 +46,16 @@
       font-size: 16px;
       line-height: 130%;
       color: var(--egp-dark-green);
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .filter-events {
+    .current-filters {
+      font-size: 13px;
+      line-height: 130%;
+      margin-bottom: 27px;
     }
   }
 }

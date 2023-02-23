@@ -5,7 +5,7 @@ import Section from '../../Global/Section/Section';
 import { isArray } from '../../../utils';
 
 const LatestUpdates = ({ block }) => {
-  const { title, linkLabel } = block;
+  const { title, link } = block;
 
   const {
     allDatoCmsPost: { nodes: latestsPosts },
@@ -22,7 +22,7 @@ const LatestUpdates = ({ block }) => {
   return (
     <>
       {isArray(latestsPosts) && (
-        <Section title={title} link={{ label: linkLabel }} extraClassNames="gy-5">
+        <Section title={title} link={link} extraClassNames="gy-5">
           {latestsPosts.map((post) => (
             <div className="col-lg-4 col-md-6" key={post.id}>
               <CardUpdate post={post} />

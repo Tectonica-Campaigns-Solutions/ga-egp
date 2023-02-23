@@ -35,5 +35,45 @@
     }
   }
 
+  .mobile-icon {
+    cursor: pointer;
+    display: none;
+  }
+}
 
+@media screen and (max-width: 767px) {
+  .inner-navigation {
+    .items {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .link-item {
+          font-size: 18px;
+
+          &.active {
+            border: none;
+          }
+        }
+      }
+
+      .item:not(:first-child) {
+        display: none;
+      }
+
+      &.open>.item:not(:first-child) {
+        display: block;
+      }
+    }
+
+    .mobile-icon {
+      display: block;
+    }
+  }
 }

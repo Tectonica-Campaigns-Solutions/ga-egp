@@ -14,7 +14,7 @@ function FilterEvents({ events, tags }) {
 
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
-  const [categoriesFilter, setCategoriesFilter] = useState([]);
+  const [categoriesFilter, setCategoriesFilter] = useState([ALL_CATEGORIES]);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
   const initialMonth = new Date().getMonth();
@@ -139,7 +139,7 @@ function FilterEvents({ events, tags }) {
         </div>
       )}
 
-      <div className="row mt-5">
+      <div className="row mt-0 mt-md-5">
         {isArray(orderedEvents) && (
           <Accordion
             defaultActive={initialMonth}
