@@ -10,8 +10,12 @@ function SidebarNav({ menu, location }) {
   return (
     <div className="sidebar-nav">
       {menu.map((item, index) => {
-        const path = pathToModel(item.model?.apiKey, item.slug)
-        const isActivePath = currentPathname ? currentPathname?.includes(path) : false;
+        const slug = item.slug || item.content?.slug;
+        const maybeApiKey = item.model?.apiKey || item.content?.model?.apiKey;
+
+        const path = pathToModel(maybeApiKey, slug);
+
+        const isActivePath = currentPathname ? currentPathname.includes(slug) : false;
 
         return (
           <div className={`sidebar-item ${index !== 0 && isActivePath ? 'active' : ''}`}>
