@@ -14,7 +14,7 @@ function FilterEvents({ events, tags }) {
 
   // states
   const [orderedEvents, setOrderedEvents] = useState([{}]);
-  const [categoriesFilter, setCategoriesFilter] = useState([]);
+  const [categoriesFilter, setCategoriesFilter] = useState([ALL_CATEGORIES]);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
 
   const initialMonth = new Date().getMonth();
