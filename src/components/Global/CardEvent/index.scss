@@ -2,7 +2,12 @@
   padding: 50px 0;
   align-items: center;
 
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
   .content {
+    flex: 1;
     display: flex;
     align-items: center;
     gap: 18.5px;
@@ -66,9 +71,15 @@
   }
 
   &:hover {
-    background-color: var(--egp-white);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
+    // background-color: var(--egp-white);
+    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    // border-radius: 16px;
+  }
+
+  .card-action {
+    .egp-btn {
+      width: max-content;
+    }
   }
 }
 
@@ -82,8 +93,6 @@
     }
 
     .content {
-      padding-left: 17px;
-
       .information {
         h2 {
           font-size: 18px;

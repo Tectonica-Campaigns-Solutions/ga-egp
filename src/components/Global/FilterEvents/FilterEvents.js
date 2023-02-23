@@ -139,7 +139,7 @@ function FilterEvents({ events, tags }) {
         </div>
       )}
 
-      <div className="row mt-5">
+      <div className="row mt-0 mt-md-5">
         {isArray(orderedEvents) && (
           <Accordion
             defaultActive={initialMonth}
