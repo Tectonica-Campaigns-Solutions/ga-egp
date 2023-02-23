@@ -51,3 +51,13 @@
     }
   }
 }
+
+@media screen and (max-width: 767px) {
+  .egp-slider-action {
+
+    span,
+    .range {
+      display: none;
+    }
+  }
+}

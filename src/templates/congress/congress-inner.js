@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
-import Link from '../../components/Global/Link';
 import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 

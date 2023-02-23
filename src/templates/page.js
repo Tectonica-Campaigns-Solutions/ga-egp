@@ -9,7 +9,6 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
 const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
-
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
     ? sideNav?.treeParent.treeParent.treeChildren
@@ -36,7 +35,9 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
       {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       {siblingMenu && siblingMenu.length > 0 ? (
-        <InnerLayout sideNav={siblingMenu}>{<Blocks blocks={page.blocks} />}</InnerLayout>
+        <InnerLayout sideNav={siblingMenu} location={location}>
+          {<Blocks blocks={page.blocks} />}
+        </InnerLayout>
       ) : (
         <Blocks blocks={page.blocks} />
       )}

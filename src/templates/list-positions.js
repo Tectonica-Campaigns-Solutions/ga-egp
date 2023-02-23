@@ -5,42 +5,58 @@ import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigatio
 import CardPosition from '../components/Global/CardPosition/CardPosition';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import SeoDatoCms from '../components/Global/SeoDatoCms';
+import EGPSlider from '../components/Global/EGPSlider/EGPSlider';
 
-const stylesP = {
-  fontFamily: 'Roboto',
-  fontStyle: 'normal',
-  fontWeight: 400,
-  fontSize: '20px',
-  lineHeight: '150%',
-  color: '#333333',
-};
+import * as styles from './listposition.module.scss';
 
 function ListPositions({ pageContext, location, data: { list, page, navLinks, breadcrumb, sideNav } }) {
-  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
+
+  const responsiveSettings = [
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ];
 
   return (
     <Layout>
       <HeroPage title={page.title} breadcrumb={breadcrumb} context={pageContext} location={location} />
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
-      <div className="container mt-5 pt-5 mb-5">
+      <div className={`container ${styles.listPositionContainer}`}>
         <div className="row">
           <div className="col">
-            <div className="row gy-5">
+            <div className="row">
               {page.introduction && (
-                <div className="col-lg-8 mb-5">
-                  <div style={stylesP} dangerouslySetInnerHTML={{ __html: page.introduction }} />
+                <div className="col-lg-8">
+                  <div className={styles.listPositionText} dangerouslySetInnerHTML={{ __html: page.introduction }} />
                 </div>
               )}
 
-              <div className="col-12 row">
+              <div className={`col-12 row ${styles.desktopItems}`}>
                 {list.edges.map((item) => {
                   return (
-                    <div className="col-lg-4 col-md-12">
+                    <div className="col-lg-4 col-md-12 mb-5">
                       <CardPosition position={item.node} showButtons={false} small />
                     </div>
                   );
                 })}
+              </div>
+
+              <div className={`col-12 row ${styles.mobileItems}`}>
+                <EGPSlider responsive={responsiveSettings}>
+                  {list.edges.map((item) => {
+                    return (
+                      <div className="col-lg-4 col-md-12">
+                        <CardPosition position={item.node} showButtons={false} />
+                      </div>
+                    );
+                  })}
+                </EGPSlider>
               </div>
             </div>
           </div>
