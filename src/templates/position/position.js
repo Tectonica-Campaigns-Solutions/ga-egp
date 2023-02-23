@@ -14,6 +14,7 @@ const Position = ({ pageContext, location, data: { position, navLinks } }) => {
   const { siblings, parentTitle } = pageContext;
   // normalize siblings
   const normSiblings = siblings.map((item) => item.node);
+
   const sidebarLinks = () => {
     const updatedSiblings = [{ slug: 'positions', title: 'All positions' }, ...normSiblings];
     return <>{normSiblings && <SidebarNav menu={updatedSiblings} location={location} />}</>;
