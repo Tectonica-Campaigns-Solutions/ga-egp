@@ -13,7 +13,7 @@ import ActionButton from '../components/Global/Button/ActionButton';
 import RadioInput from '../components/Global/Form/RadioInput';
 import CheckboxInput from '../components/Global/Form/CheckboxInput';
 
-function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks } }) {
+function ListPolicyPapers({ pageContext, location, data: { listPapers, listResolutions, page, navLinks, breadcrumb } }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
   const councils = listResolutions.edges.map((item) => item.node.council);
@@ -147,7 +147,7 @@ function ListPolicyPapers({ pageContext, location, data: { listPapers, listResol
 
   return (
     <Layout>
-      <HeroPage title={page.title} context={pageContext} location={location} />
+      <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb}/>
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <InnerLayout sideNav={sidebarContent()}>

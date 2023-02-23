@@ -16,10 +16,12 @@ const stylesP = {
 };
 
 function ListPositions({ pageContext, location, data: { list, page, navLinks, breadcrumb, sideNav } }) {
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
+
   return (
     <Layout>
       <HeroPage title={page.title} breadcrumb={breadcrumb} context={pageContext} location={location} />
-      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <div className="container mt-5 pt-5 mb-5">
         <div className="row">
@@ -99,6 +101,42 @@ export const ListPositionsQuery = graphql`
                 slug
                 model {
                   apiKey
+                }
+              }
+              ... on DatoCmsListPolicyPaper {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+        treeParent {
+          title
+          treeChildren {
+            id
+            ... on DatoCmsMenu {
+              id
+              title
+              content {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
                 }
               }
             }

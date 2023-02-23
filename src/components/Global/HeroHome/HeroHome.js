@@ -36,7 +36,7 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
       <style scoped>{css}</style>
       <div className={`hero-home ${textWhite ? 'text-white' : ''}`}>
         <div className="row">
-          <div className="col-md-7 text container">
+          <div className="col-md-8 text container">
             <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
 
             {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}

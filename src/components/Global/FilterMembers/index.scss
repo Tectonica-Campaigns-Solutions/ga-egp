@@ -32,14 +32,27 @@
   }
 
   .col-map {
-    position: absolute;
-    right: 0;
-    top: 0;
-
+    
+    @media screen and (min-width: 1300px){
+      position: absolute;
+      top: 0;
+      left:50%;
+      overflow: hidden;
+      &:after{
+        content:"";
+        position:absolute;
+        width:160px;
+        transform:rotate(-13deg);
+        top:-20px;
+        right:-50px;
+        z-index:10;
+        height:500px;
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 70%);
+      }
+    }
     @media screen and (max-width: 1300px) {
       margin-top: 3rem;
       position: unset;
-
       svg {
         width: 100%;
       }
