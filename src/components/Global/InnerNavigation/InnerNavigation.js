@@ -1,17 +1,21 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { pathToModel, isActiveTrail } from '../../../utils';
 import Link from '../Link';
+import plusIcon from '../../Icons/plus.svg';
 
 import './index.scss';
 
 const InnerNavigation = ({ location, innerMenu }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   const navLinks = innerMenu?.treeChildren || [];
 
   return (
     <div className="inner-navigation">
       <div className="container">
-        <div className="items py-4">
-          {navLinks.map((item) => {
+        <div className={`items py-4 ${isMobileMenuOpen ? 'open' : ''}`}>
+          {navLinks.map((item, index) => {
             const link = pathToModel(item.content.model.apiKey, item.content.slug);
             const active = isActiveTrail(location?.pathname, link);
 
@@ -20,6 +24,12 @@ const InnerNavigation = ({ location, innerMenu }) => {
                 <Link className={`link-item ${active ? 'active' : ''}`} to={link}>
                   {item.title}
                 </Link>
+
+                {index === 0 && (
+                  <span className="mobile-icon" onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+                    <img src={plusIcon} alt="Mobile toggle icon" />
+                  </span>
+                )}
               </div>
             );
           })}
