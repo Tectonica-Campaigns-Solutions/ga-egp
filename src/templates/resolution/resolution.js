@@ -41,7 +41,7 @@ const Resolution = ({ pageContext, location, data: { resolution } }) => {
 
 export default Resolution;
 
-export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
+export const Head = ({ data: { resolution } }) => <SeoDatoCms page={resolution} />;
 
 export const ResolutionQuery = graphql`
   query ResolutionById($id: String) {
@@ -51,6 +51,13 @@ export const ResolutionQuery = graphql`
       slug
       intro
       date
+      seo {
+        title
+        description
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
       text {
         value
       }
