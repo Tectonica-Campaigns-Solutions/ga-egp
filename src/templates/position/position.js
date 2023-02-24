@@ -57,7 +57,7 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
 
 export default Position;
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+export const Head = ({ data: { position } }) => <SeoDatoCMS page={position} />;
 
 export const PositionQuery = graphql`
   query PositionById($id: String, $menuPos: String) {
@@ -73,6 +73,13 @@ export const PositionQuery = graphql`
       }
       text {
         value
+      }
+      seo {
+        title
+        description
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
