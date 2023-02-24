@@ -45,7 +45,7 @@ function person({ pageContext, location, data: { person } }) {
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+export const Head = ({ data: { person } }) => <SeoDatoCMS page={person} />;
 
 export const PersonQuery = graphql`
   query PersonById($id: String) {
@@ -61,6 +61,13 @@ export const PersonQuery = graphql`
       description
       image {
         gatsbyImageData
+      }
+      seo {
+        title
+        description
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
   }
