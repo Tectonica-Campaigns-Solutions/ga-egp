@@ -5,6 +5,7 @@ import HeroPage from '../components/Global/HeroPage/HeroPage';
 import FilterEvents from '../components/Global/FilterEvents/FilterEvents';
 
 function ListEvents({ pageContext, location, data: { list, page, tags, breadcrumb } }) {
+  console.log(breadcrumb)
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
@@ -14,7 +15,7 @@ function ListEvents({ pageContext, location, data: { list, page, tags, breadcrum
 }
 
 export const ListEventsQuery = graphql`
-  query ListEvents {
+  query ListEvents ($menuPos: String){
     page: datoCmsListEvent {
       title
       slug
@@ -34,7 +35,7 @@ export const ListEventsQuery = graphql`
         }
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ...Breadcrumb
     }
   }

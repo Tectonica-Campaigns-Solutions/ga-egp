@@ -6,27 +6,32 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
-import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 
 import './index.scss';
 
-const Position = ({ pageContext, location, data: { position, navLinks } }) => {
-  const { siblings, parentTitle } = pageContext;
+const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav } }) => {
+  console.log(navLinks)
+  const { parentTitle } = pageContext;
+  const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
+  const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
+    ? sideNav?.treeParent.treeChildren
+    : sideNav?.treeChildren;
   // normalize siblings
-  const normSiblings = siblings.map((item) => item.node);
+  // const normSiblings = siblings.map((item) => item.node);
 
-  const sidebarLinks = () => {
-    const updatedSiblings = [{ slug: 'positions', title: 'All positions' }, ...normSiblings];
-    return <>{normSiblings && <SidebarNav menu={updatedSiblings} location={location} />}</>;
-  };
+  // const sidebarLinks = () => {
+  //   const updatedSiblings = [{ slug: 'positions', title: 'All positions' }, ...normSiblings];
+  //   return <>{normSiblings && <SidebarNav menu={updatedSiblings} location={location} />}</>;
+  // };
 
   return (
     <Layout>
-      <HeroPage title={position.title} context={pageContext} location={location} parentTitle={parentTitle} />
-      {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />}
+      <HeroPage title={position.title} context={pageContext} location={location} parentTitle={parentTitle} breadcrumb={breadcrumb}/>
+      {/* {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />} */}
 
       <div className="position-detail">
-        <InnerLayout sideNav={sidebarLinks()}>
+        {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+        <InnerLayout sideNav={siblingMenu}>
           <h1>{position.title}</h1>
 
           {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
@@ -46,7 +51,7 @@ const Position = ({ pageContext, location, data: { position, navLinks } }) => {
 export default Position;
 
 export const PositionQuery = graphql`
-  query PositionById($id: String, $menuInner: String) {
+  query PositionById($id: String, $menuPos: String) {
     position: datoCmsPosition(id: { eq: $id }) {
       id
       title
@@ -61,8 +66,170 @@ export const PositionQuery = graphql`
         value
       }
     }
-    navLinks: datoCmsNavigation(id: { eq: $menuInner }) {
-      ...Navigation
+    navLinks: datoCmsMenu(id: { eq: $menuPos }) {
+      title
+      treeParent {
+        title
+        treeChildren {
+          id
+          ... on DatoCmsMenu {
+            id
+            title
+            content {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPolicyPaper {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+        treeParent {
+          title
+          treeChildren {
+            id
+            ... on DatoCmsMenu {
+              id
+              title
+              content {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPolicyPaper {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    sideNav: datoCmsMenu(id: { eq: $menuPos }) {
+      treeChildren {
+        id
+        ... on DatoCmsMenu {
+          id
+          title
+          content {
+            ... on DatoCmsPage {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsListNews {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsListPosition {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsPosition {
+              slug
+              model {
+                apiKey
+              }
+            }
+          }
+        }
+      }
+      treeParent {
+        treeParent {
+          treeChildren {
+            id
+          }
+        }
+        treeChildren {
+          id
+          ... on DatoCmsMenu {
+            id
+            title
+            content {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+      ...Breadcrumb
     }
   }
 `;

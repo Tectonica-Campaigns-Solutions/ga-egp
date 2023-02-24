@@ -285,6 +285,15 @@ exports.createPages = ({ graphql, actions }) => {
                     ... on DatoCmsListPolicyPaper {
                       id
                     }
+                    ... on DatoCmsListResolution {
+                      id
+                    }
+                    ... on DatoCmsListEvent {
+                      id
+                    }
+                    ... on DatoCmsPosition {
+                      id
+                    }
                   }
               }
             }
@@ -370,8 +379,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: position.slug,
               id: position.id,
-              menuInner: result.data.listPositions.menuInner?.id ? result.data.listPositions.menuInner?.id : null,
-              siblings: positions,
+              menuPos: getMenuPosition(navTree, position.id),
               parentTitle: result.data.listPositions?.title ? result.data.listPositions?.title : null,
             },
           });

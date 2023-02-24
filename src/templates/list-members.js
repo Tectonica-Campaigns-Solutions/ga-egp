@@ -5,6 +5,7 @@ import HeroPage from '../components/Global/HeroPage/HeroPage';
 import FilterMembers from '../components/Global/FilterMembers/FilterMembers';
 
 function ListMembers({ pageContext, location, data: { list, page, breadcrumb } }) {
+  console.log(breadcrumb)
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />

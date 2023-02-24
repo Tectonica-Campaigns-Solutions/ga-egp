@@ -9,9 +9,10 @@ import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
 const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null } }) => {
+
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
-    ? sideNav?.treeParent.treeParent.treeChildren
+    ? sideNav?.treeParent.treeChildren
     : sideNav?.treeChildren;
 
   return (
@@ -131,6 +132,12 @@ export const PageQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
             }
           }
         }
@@ -155,6 +162,12 @@ export const PageQuery = graphql`
                   }
                 }
                 ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPolicyPaper {
                   slug
                   model {
                     apiKey
@@ -198,27 +211,30 @@ export const PageQuery = graphql`
         treeParent {
           treeChildren {
             id
-            ... on DatoCmsMenu {
-              id
-              title
-              content {
-                ... on DatoCmsPage {
-                  slug
-                  model {
-                    apiKey
-                  }
+          }
+        }
+        treeChildren {
+          id
+          ... on DatoCmsMenu {
+            id
+            title
+            content {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
                 }
-                ... on DatoCmsListNews {
-                  slug
-                  model {
-                    apiKey
-                  }
+              }
+              ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
                 }
-                ... on DatoCmsListPosition {
-                  slug
-                  model {
-                    apiKey
-                  }
+              }
+              ... on DatoCmsListPosition {
+                slug
+                model {
+                  apiKey
                 }
               }
             }

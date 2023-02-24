@@ -8,6 +8,7 @@ import TextHubspotForm from '../../Blocks/TextHubspotForm/TextHubsportForm';
 import './index.scss';
 
 function Footer() {
+  
   const {
     menuFooter,
     menuLegal,
@@ -72,7 +73,6 @@ function Footer() {
       }
     }
   `);
-
   return (
     <footer className="footer">
       <div className="container">
@@ -146,7 +146,7 @@ function Footer() {
           {isArray(socialLinks.links) && (
             <div className="col-lg-3 offset-lg-1 social-links">
               {socialLinks.links.map((socialLink) => (
-                <Link key={socialLink.label} to={getCtaUrl(socialLink.mainLink)}>
+                <Link key={socialLink.label} to={socialLink.mainLink}>
                   <img src={socialLink.icon.url} alt={socialLink.label} />
                 </Link>
               ))}
