@@ -5,6 +5,7 @@ import Link from '../Link';
 import Spinner from '../Spinner/Spinner';
 
 import './index.scss';
+import { useEffect } from 'react';
 
 const client = buildClient({ apiToken: 'a835f214689eaa72fa0f49fd3c5c1f' });
 
@@ -16,6 +17,13 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
     buildTriggerId: '26249',
     resultsPerPage: 10,
   });
+
+  useEffect(() => {
+    if (!searchEngineVisible) {
+      setQuery('');
+      state.setQuery('');
+    }
+  }, [searchEngineVisible]);
 
   const handleOnChangeInput = (e) => {
     e.preventDefault();
