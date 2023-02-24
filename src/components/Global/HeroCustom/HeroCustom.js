@@ -36,7 +36,7 @@ function HeroCustom({
                 {date && <div className="date">{date}</div>}
                 {parentTitle && <h2>{parentTitle}</h2>}
                 {!parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>}
-                <div className={styles.intro} dangerouslySetInnerHTML={{ __html: description }} />
+                <div dangerouslySetInnerHTML={{ __html: description }} />
               </div>
 
               {ctas && (

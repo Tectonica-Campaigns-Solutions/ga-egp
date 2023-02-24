@@ -19,7 +19,7 @@ export default function NarrativeBlock({ block }) {
             {textContent && <div className={styles.textcontent} dangerouslySetInnerHTML={{ __html: textContent }} />}
 
             {isArray(ctas) && (
-              <div className={styles.narrativeCtas}>
+              <div>
                 <CtaList ctas={ctas} />
               </div>
             )}

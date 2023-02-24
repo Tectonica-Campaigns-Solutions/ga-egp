@@ -53,6 +53,10 @@ export const JobQuery = graphql`
       content
       publicationDate
       isRemote
+      seo {
+        title
+        description
+      }
     }
   }
 `;
