@@ -47,7 +47,7 @@ const DropdownItem = ({ link, label, children }) => {
   );
 };
 
-export default function Nav({ navData, navbarWhite = false, path }) {
+export default function Nav({ navData, navbarWhite = false, path, setSearchEngineVisible }) {
   // data
   const navLinks = navData.allDatoCmsMenu.nodes;
   // Use States --------
@@ -114,9 +114,10 @@ export default function Nav({ navData, navbarWhite = false, path }) {
 
           {/* Final icons */}
           <div className="nav-actions">
-            <Link to="">
-              <img src={searchIcon} alt="" />
+            <Link onClick={() => setSearchEngineVisible(true)} style={{ cursor: 'pointer' }}>
+              <img src={searchIcon} alt="Search icon" />
             </Link>
+
             <Link to="">
               <img src={userIcon} alt="" />
             </Link>
