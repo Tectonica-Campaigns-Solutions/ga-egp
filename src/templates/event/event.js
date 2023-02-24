@@ -8,6 +8,7 @@ import Button from '../../components/Global/Button/Button';
 import DateTime from '../../components/Global/DateTime/DateTime';
 import Tag from '../../components/Global/Tag/Tag';
 import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -40,6 +41,8 @@ function Event({ data: { event } }) {
     </Layout>
   );
 }
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const EventQuery = graphql`
   query EventById($id: String) {

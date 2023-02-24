@@ -4,9 +4,9 @@ import Layout from '../../components/Layout/Layout';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
-import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
 import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -38,6 +38,8 @@ const Postcast = ({ pageContext, location, data: { page } }) => {
   );
 };
 
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+
 export const PodcastQuery = graphql`
   query PodcastById($id: String) {
     page: datoCmsPodcast(id: { eq: $id }) {
@@ -61,15 +63,15 @@ export const PodcastQuery = graphql`
       textContent {
         value
         blocks {
-          ... on DatoCmsAcordion{
+          ... on DatoCmsAcordion {
             __typename
             id: originalId
             items {
               title
               text
             }
-          } 
-          ... on DatoCmsEmbedAudio{
+          }
+          ... on DatoCmsEmbedAudio {
             __typename
             id: originalId
             url

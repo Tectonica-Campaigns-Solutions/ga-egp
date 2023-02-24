@@ -4,6 +4,7 @@ import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import Layout from '../../components/Layout/Layout';
 import JobLocation from '../../components/Global/JobLocation/JobLocation';
 import Button from '../../components/Global/Button/Button';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import * as styles from './job.module.scss';
 
@@ -38,6 +39,8 @@ const JonOpportunity = ({ pageContext, location, data: { job } }) => {
     </Layout>
   );
 };
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const JobQuery = graphql`
   query JobById($id: String) {

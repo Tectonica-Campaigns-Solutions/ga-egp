@@ -7,6 +7,7 @@ import BackButton from '../../components/Global/BackButton/BackButton';
 import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 import Tag from '../../components/Global/Tag/Tag';
 import Dropdown from '../../components/Global/Dropdown/Dropdown';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -132,6 +133,8 @@ function Member({ pageContext, location, data: { page } }) {
     </Layout>
   );
 }
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const MemberQuery = graphql`
   query MemberById($id: String) {

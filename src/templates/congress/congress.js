@@ -5,6 +5,7 @@ import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import Button from '../../components/Global/Button/Button';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import * as styles from './congress.module.scss';
 
@@ -64,6 +65,8 @@ function Congress({ data: { congress } }) {
     </Layout>
   );
 }
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const CongressQuery = graphql`
   query CongressById($id: String) {

@@ -6,11 +6,12 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import './index.scss';
 
 const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav } }) => {
-  console.log(navLinks)
+  console.log(navLinks);
   const { parentTitle } = pageContext;
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
@@ -26,7 +27,13 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
 
   return (
     <Layout>
-      <HeroPage title={position.title} context={pageContext} location={location} parentTitle={parentTitle} breadcrumb={breadcrumb}/>
+      <HeroPage
+        title={position.title}
+        context={pageContext}
+        location={location}
+        parentTitle={parentTitle}
+        breadcrumb={breadcrumb}
+      />
       {/* {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />} */}
 
       <div className="position-detail">
@@ -49,6 +56,8 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
 };
 
 export default Position;
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const PositionQuery = graphql`
   query PositionById($id: String, $menuPos: String) {

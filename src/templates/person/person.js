@@ -8,6 +8,7 @@ import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 import TextIcon from '../../components/Global/TextIcon/TextIcon';
 import iconEmail from '../../components/Icons/icon_email.svg';
 import { getPhoneLink } from '../../utils';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -43,6 +44,8 @@ function person({ pageContext, location, data: { person } }) {
     </Layout>
   );
 }
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const PersonQuery = graphql`
   query PersonById($id: String) {

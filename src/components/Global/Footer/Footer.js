@@ -8,7 +8,6 @@ import TextHubspotForm from '../../Blocks/TextHubspotForm/TextHubsportForm';
 import './index.scss';
 
 function Footer() {
-  
   const {
     menuFooter,
     menuLegal,
@@ -74,7 +73,7 @@ function Footer() {
     }
   `);
   return (
-    <footer className="footer">
+    <footer className="footer" data-datocms-noindex>
       <div className="container">
         {/* First row */}
         <div className="row">
