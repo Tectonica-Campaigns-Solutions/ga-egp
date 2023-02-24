@@ -66,12 +66,19 @@ function Congress({ data: { congress } }) {
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+export const Head = ({ data: { congress } }) => <SeoDatoCMS page={congress} />;
 
 export const CongressQuery = graphql`
   query CongressById($id: String) {
     congress: datoCmsCongress(id: { eq: $id }) {
       title
+      seo {
+        title
+        description
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
       pages {
         ... on DatoCmsCongressInnerPage {
           title

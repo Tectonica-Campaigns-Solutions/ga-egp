@@ -25,12 +25,19 @@ function CongressInner({ pageContext, data: { congressInner } }) {
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+export const Head = ({ data: { congressInner } }) => <SeoDatoCMS page={congressInner} />;
 
 export const CongressInnerQuery = graphql`
   query CongressInnerById($id: String) {
     congressInner: datoCmsCongressInnerPage(id: { eq: $id }) {
       title
+      seo {
+        title
+        description
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
   }
 `;
