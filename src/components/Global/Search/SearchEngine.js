@@ -3,9 +3,9 @@ import { buildClient } from '@datocms/cma-client-browser';
 import { useSiteSearch } from 'react-datocms';
 import Link from '../Link';
 import Spinner from '../Spinner/Spinner';
+import { useEffect } from 'react';
 
 import './index.scss';
-import { useEffect } from 'react';
 
 const client = buildClient({ apiToken: 'a835f214689eaa72fa0f49fd3c5c1f' });
 
