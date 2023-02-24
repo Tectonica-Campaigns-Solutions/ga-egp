@@ -40,7 +40,9 @@ const JonOpportunity = ({ pageContext, location, data: { job } }) => {
   );
 };
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+export default JonOpportunity;
+
+export const Head = ({ data: { job } }) => <SeoDatoCMS page={job} />;
 
 export const JobQuery = graphql`
   query JobById($id: String) {
@@ -57,8 +59,9 @@ export const JobQuery = graphql`
         title
         description
       }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
   }
 `;
-
-export default JonOpportunity;
