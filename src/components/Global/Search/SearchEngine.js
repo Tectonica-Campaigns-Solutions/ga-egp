@@ -25,10 +25,9 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
     }
   }, [searchEngineVisible]);
 
-  const handleOnChangeInput = (e) => {
-    e.preventDefault();
+  useEffect(() => {
     state.setQuery(query);
-  };
+  }, [query]);
 
   return (
     <div className={`search-engine ${searchEngineVisible ? 'search-engine--visible' : null}`}>
@@ -56,7 +55,11 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
           Search this website
         </label>
 
-        <form onSubmit={handleOnChangeInput}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <input id="search-input" type="search" value={query} onChange={(e) => setQuery(e.target.value)} />
         </form>
 
@@ -74,9 +77,9 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
           </div>
         )}
 
-        {/* {data && data.pageResults.length === 0 && query.length > 0 && (
+        {data && data.pageResults.length == 0 && query.length > 0 && (
           <p className="search-engine__message">Sorry, no results found. Try a different search</p>
-        )} */}
+        )}
       </div>
     </div>
   );
@@ -84,8 +87,6 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
 
 const SearchItem = ({ item }) => (
   <li className="search-engine__results-item">
-    {console.log(item)}
-
     <Link to={item.url}>
       <h6>{item.title || 'Test title'}</h6>
       <p>{item.bodyExcerpt || item.raw.attributes.body_excerpt}</p>
