@@ -4,6 +4,7 @@ import Layout from '../../components/Layout/Layout';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -39,6 +40,8 @@ const Resolution = ({ pageContext, location, data: { resolution } }) => {
 };
 
 export default Resolution;
+
+export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ResolutionQuery = graphql`
   query ResolutionById($id: String) {

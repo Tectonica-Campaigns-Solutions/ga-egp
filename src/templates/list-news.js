@@ -6,12 +6,13 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
+import SeoDatoCMS from '../components/SeoDatoCms';
 
 function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } }) {
   const filteredContent = pageContext.items;
 
   const shouldRenderMiddleCta = filteredContent.length >= 12;
-  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent
+  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
 
   return (
     <Layout>
@@ -47,6 +48,8 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
     </Layout>
   );
 }
+
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const ListNewsQuery = graphql`
   query ListNews($menuPos: String) {

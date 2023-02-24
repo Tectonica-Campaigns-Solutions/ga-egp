@@ -7,6 +7,7 @@ import StructuredContentDefault from '../../components/StructuredContentDefault 
 import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
 import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
+import SeoDatoCMS from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -48,6 +49,8 @@ const Post = ({ pageContext, location, data: { page } }) => {
   );
 };
 
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+
 export const PostQuery = graphql`
   query PostById($id: String) {
     page: datoCmsPost(id: { eq: $id }) {
@@ -71,7 +74,7 @@ export const PostQuery = graphql`
       textContent {
         value
         blocks {
-          ... on DatoCmsAcordion{
+          ... on DatoCmsAcordion {
             __typename
             id: originalId
             items {

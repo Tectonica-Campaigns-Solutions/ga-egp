@@ -5,6 +5,7 @@ import Layout from '../components/Layout/Layout';
 import { isArray } from '../utils';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
+import SeoDatoCms from '../components/SeoDatoCms';
 
 function ListPodcast({ pageContext, location, data: { page } }) {
   const filteredContent = pageContext.items;
@@ -37,6 +38,8 @@ function ListPodcast({ pageContext, location, data: { page } }) {
     </Layout>
   );
 }
+
+export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
 
 export const ListPodcastQuery = graphql`
   query ListPodcast {

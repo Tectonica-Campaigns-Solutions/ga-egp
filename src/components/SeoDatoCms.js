@@ -9,7 +9,7 @@ const SeoDatoCMS = ({ page }) => {
 
   seo?.tags.map((item) => {
     if (item.tagName === 'title') {
-      item.content = `${overrideTitle} - ${sitename}`;
+      return (item.content = `${overrideTitle} - ${sitename}`);
     }
   });
 

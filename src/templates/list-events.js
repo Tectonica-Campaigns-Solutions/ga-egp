@@ -3,9 +3,10 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout/Layout';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import FilterEvents from '../components/Global/FilterEvents/FilterEvents';
+import SeoDatoCMS from '../components/SeoDatoCms';
 
 function ListEvents({ pageContext, location, data: { list, page, tags, breadcrumb } }) {
-  console.log(breadcrumb)
+  console.log(breadcrumb);
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
@@ -14,8 +15,10 @@ function ListEvents({ pageContext, location, data: { list, page, tags, breadcrum
   );
 }
 
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+
 export const ListEventsQuery = graphql`
-  query ListEvents ($menuPos: String){
+  query ListEvents($menuPos: String) {
     page: datoCmsListEvent {
       title
       slug
