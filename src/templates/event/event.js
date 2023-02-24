@@ -42,7 +42,7 @@ function Event({ data: { event } }) {
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
+export const Head = ({ data: { event } }) => <SeoDatoCMS page={event} />;
 
 export const EventQuery = graphql`
   query EventById($id: String) {
@@ -60,6 +60,13 @@ export const EventQuery = graphql`
           label
           url
         }
+      }
+      seo {
+        title
+        description
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
       tags {
         ... on DatoCmsTagEvent {
