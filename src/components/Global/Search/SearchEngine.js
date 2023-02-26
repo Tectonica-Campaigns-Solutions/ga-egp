@@ -85,11 +85,12 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
   );
 }
 
-const SearchItem = ({ item }) => (
+const SearchItem = ({ item }) => { console.log(item)
+  return(
   <li className="search-engine__results-item">
     <Link to={item.url}>
       <h6>{item.title || 'Test title'}</h6>
       <p>{item.bodyExcerpt || item.raw.attributes.body_excerpt}</p>
     </Link>
   </li>
-);
+)};

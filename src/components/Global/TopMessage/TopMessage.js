@@ -46,7 +46,7 @@ const TopMessage = () => {
   }
 
   return (
-    <div className="top-message-container">
+    <div className="top-message-container" data-datocms-noindex>
       <div className="d-flex h-100 align-items-center justify-content-center">
         <span className="information">
           <GlobalImage image={data.datoCmsTopMessage.icon} />
