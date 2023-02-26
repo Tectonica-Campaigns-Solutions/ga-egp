@@ -56,6 +56,13 @@ export const ListNewsQuery = graphql`
     page: datoCmsListNews {
       title
       slug
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+      }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title

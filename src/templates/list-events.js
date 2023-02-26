@@ -22,6 +22,13 @@ export const ListEventsQuery = graphql`
     page: datoCmsListEvent {
       title
       slug
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+      }
     }
     tags: allDatoCmsTagEvent {
       edges {
