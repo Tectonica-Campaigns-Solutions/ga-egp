@@ -12,7 +12,7 @@ const InnerNavigation = ({ location, innerMenu }) => {
   const navLinks = innerMenu?.treeChildren || [];
 
   return (
-    <div className="inner-navigation">
+    <div className="inner-navigation" data-datocms-noindex>
       <div className="container">
         <div className={`items py-4 ${isMobileMenuOpen ? 'open' : ''}`}>
           {navLinks.map((item, index) => {
