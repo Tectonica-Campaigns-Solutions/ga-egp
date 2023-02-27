@@ -66,7 +66,6 @@ export const PostQuery = graphql`
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
-
       seo {
         title
         description

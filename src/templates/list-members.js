@@ -22,6 +22,16 @@ export const ListMembersQuery = graphql`
       title
       slug
       introduction
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+        image {
+          url
+        }
+      }
     }
     list: allDatoCmsMember(sort: { title: ASC }) {
       edges {

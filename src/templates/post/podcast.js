@@ -55,7 +55,6 @@ export const PodcastQuery = graphql`
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
-
       seo {
         title
         description

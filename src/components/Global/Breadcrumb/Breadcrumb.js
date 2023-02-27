@@ -35,7 +35,7 @@ const Breadcrumb = ({ items = null }) => {
   const isActiveLink = false;
 
   return (
-    <div className={styles.egpBreadcrumb}>
+    <div className={styles.egpBreadcrumb} data-datocms-noindex>
       <ul>
         {getItemsReversed().map((item, index) => (
           <li key={index}>
