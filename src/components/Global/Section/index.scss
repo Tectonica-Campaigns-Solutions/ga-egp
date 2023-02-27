@@ -18,6 +18,12 @@
     }
   }
 
+  .egp-btn {
+    &::after {
+      content: '→';
+    }
+  }
+
   @media screen and (max-width:992px) {
     padding: 23px 0;
 

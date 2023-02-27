@@ -210,6 +210,7 @@ export const DatoCMS = graphql`
     }
   }
   fragment CardPosition on DatoCmsPosition {
+    id
     title
     slug
     textWhite
