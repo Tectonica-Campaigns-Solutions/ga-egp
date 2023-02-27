@@ -15,7 +15,7 @@ const DateSlider = ({ years, activeYear }) => {
     autoplay: false,
     slidesToShow: 3,
     slidesToScroll: 1,
-    centerMode: false,
+    centerMode: true,
     initialSlide,
     nextArrow: <img src={yearRightIcon} alt="Year right arrow icon" />,
     prevArrow: <img src={yearLeftIcon} alt="Year left arrow icon" />,

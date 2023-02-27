@@ -4,8 +4,8 @@ import Layout from '../components/Layout/Layout';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import CardPosition from '../components/Global/CardPosition/CardPosition';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
-import SeoDatoCms from '../components/Global/SeoDatoCms';
 import EGPSlider from '../components/Global/EGPSlider/EGPSlider';
+import SeoDatoCMS from '../components/SeoDatoCms';
 
 import * as styles from './listposition.module.scss';
 
@@ -40,7 +40,7 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks, br
               <div className={`col-12 row ${styles.desktopItems}`}>
                 {list.edges.map((item) => {
                   return (
-                    <div className="col-lg-4 col-md-12 mb-5">
+                    <div className="col-lg-4 col-md-12 mb-5" key={item.node.id}>
                       <CardPosition position={item.node} showButtons={false} small />
                     </div>
                   );
@@ -51,7 +51,7 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks, br
                 <EGPSlider responsive={responsiveSettings}>
                   {list.edges.map((item) => {
                     return (
-                      <div className="col-lg-4 col-md-12">
+                      <div className="col-lg-4 col-md-12" key={`responsive-${item.node.id}`}>
                         <CardPosition position={item.node} showButtons={false} />
                       </div>
                     );
@@ -68,7 +68,7 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks, br
 
 export default ListPositions;
 
-export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
+export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
 
 export const ListPositionsQuery = graphql`
   query ListPositions($menuPos: String) {
