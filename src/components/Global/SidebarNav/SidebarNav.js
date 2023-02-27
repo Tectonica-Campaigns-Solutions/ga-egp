@@ -8,7 +8,7 @@ function SidebarNav({ menu, location }) {
   const currentPathname = location ? location?.pathname : null;
 
   return (
-    <div className="sidebar-nav">
+    <div className="sidebar-nav" data-datocms-noindex>
       {menu.map((item, index) => {
         const slug = item.slug || item.content?.slug;
         const maybeApiKey = item.model?.apiKey || item.content?.model?.apiKey;
