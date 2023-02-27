@@ -146,9 +146,15 @@ export const MemberQuery = graphql`
         url
         alt
       }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
       seo {
         title
         description
+        image {
+          url
+        }
       }
       parties {
         ... on DatoCmsParty {

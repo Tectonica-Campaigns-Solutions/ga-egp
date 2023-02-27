@@ -46,6 +46,16 @@ export const ListPodcastQuery = graphql`
     page: datoCmsListPodcast {
       title
       slug
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+        image {
+          url
+        }
+      }
     }
     breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
       ...Breadcrumb

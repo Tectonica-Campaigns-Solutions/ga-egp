@@ -172,6 +172,16 @@ export const ListPositionsQuery = graphql`
     page: datoCmsListPolicyPaper {
       title
       slug
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
+      seo {
+        title
+        description
+        image {
+          url
+        }
+      }
     }
     listPapers: allDatoCmsPolicyPaper {
       edges {
