@@ -1,8 +1,6 @@
 import React from 'react';
-import { HelmetDatoCms } from 'gatsby-source-datocms';
 
 const SeoDatoCMS = ({ page }) => {
-  console.log(page)
   const seo = page.seoMetaTags;
   const sitename = 'EGP';
   const titleIndex = seo?.tags?.find((tag) => tag.tagName === 'title');

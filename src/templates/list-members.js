@@ -6,7 +6,6 @@ import FilterMembers from '../components/Global/FilterMembers/FilterMembers';
 import SeoDatoCMS from '../components/SeoDatoCms';
 
 function ListMembers({ pageContext, location, data: { list, page, breadcrumb } }) {
-  console.log(breadcrumb);
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
