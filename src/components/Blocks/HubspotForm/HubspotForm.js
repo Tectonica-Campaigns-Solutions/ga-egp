@@ -1,7 +1,7 @@
 import React from 'react';
 import { Script } from 'gatsby';
 
-const HubspotForm = ({ id, formId, region, portalId }) => {
+const HubspotForm = ({ id, formId, region, portalId, tags }) => {
   return (
     <>
       <Script
@@ -12,6 +12,13 @@ const HubspotForm = ({ id, formId, region, portalId }) => {
             portalId: portalId,
             formId: formId,
             target: `#hubspotForm-${id}`,
+            onFormReady: function($form) {
+              if(tags){
+                let tagsText = tags.map(item => item.name).join(',')
+                console.log(tagsText)
+                document.querySelector('input[name="tags"]').value = tagsText;
+              }
+            }
           });
         }}
         onError={(e) => console.error(e)}
