@@ -16,6 +16,7 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
 
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} />
       {page.customHeader && (
         <HeroCustom
           ctas={page.ctasblock}
@@ -47,7 +48,7 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
 
 export default Page;
 
-export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
+//export const Head = ({ data: { page, defaultSeo } }) => <SeoDatoCms page={page} defaultSeo={defaultSeo} />;
 
 export const PageQuery = graphql`
   query PageById($id: String, $menuPos: String) {
@@ -69,15 +70,8 @@ export const PageQuery = graphql`
           description
         }
       }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
       blocks {
         ... on DatoCmsBlockHubspotFormStep {
