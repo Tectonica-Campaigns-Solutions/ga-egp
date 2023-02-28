@@ -1,9 +1,10 @@
 import React from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 
-const SeoDatoCMS = ({ seo }) => {
-
-  console.log(seo)
+const SeoDatoCMS = ({ seo, favicon = null }) => {
+  
+  // override if necessary 
+  
   // const sitename = 'European Greens';
   // const titleIndex = seo?.tags?.find((tag) => tag.tagName === 'title');
   // const overrideTitle = page.seo?.title ? page.seo.title : titleIndex?.content;
@@ -31,7 +32,7 @@ const SeoDatoCMS = ({ seo }) => {
   //   </>
   // );
   return (
-    <HelmetDatoCms seo={seo} />
+    <HelmetDatoCms seo={seo} favicon={favicon.faviconMetaTags} />
   )
 };
 export default SeoDatoCMS;
