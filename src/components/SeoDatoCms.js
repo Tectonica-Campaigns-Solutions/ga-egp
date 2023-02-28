@@ -4,7 +4,7 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 const SeoDatoCMS = ({ seo, favicon = null }) => {
   
   // override if necessary 
-  
+
   // const sitename = 'European Greens';
   // const titleIndex = seo?.tags?.find((tag) => tag.tagName === 'title');
   // const overrideTitle = page.seo?.title ? page.seo.title : titleIndex?.content;
@@ -32,7 +32,7 @@ const SeoDatoCMS = ({ seo, favicon = null }) => {
   //   </>
   // );
   return (
-    <HelmetDatoCms seo={seo} favicon={favicon.faviconMetaTags} />
+    <HelmetDatoCms seo={seo} favicon={favicon?.faviconMetaTags} />
   )
 };
 export default SeoDatoCMS;
