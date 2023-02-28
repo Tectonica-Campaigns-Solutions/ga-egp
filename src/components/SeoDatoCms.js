@@ -1,51 +1,22 @@
 import React from 'react';
+import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 const SeoDatoCMS = ({ page, children }) => {
   const seo = page.seoMetaTags;
-
-  const sitename = 'European Greens';
+  const sitename = 'EGP'
   const titleIndex = seo?.tags?.find((tag) => tag.tagName === 'title');
   const overrideTitle = page.seo?.title ? page.seo.title : titleIndex?.content;
+  if (seo.tags) {
+    const og_datocms_title = seo.tags?.find((tag) => tag.attributes?.property === 'og:title')
+    const og_datocms_sitename = seo.tags?.findIndex((tag) => tag.attributes?.property === 'og:site_name')
+    // Override og:title because share same CMS
+    seo.tags[og_datocms_sitename].attributes.content = sitename
+    // Override Title because share same CMS
+    const titleIndex = seo.tags?.findIndex((tag) => tag.tagName === 'title')
+    const newTitle = overrideTitle ? overrideTitle : og_datocms_title.attributes.content
+    seo.tags[titleIndex].content = `${newTitle} | ${sitename}`
+  }
 
-  // seo?.tags.map((item) => {
-  //   if (item.tagName === 'title') {
-  //     return (item.content = `${overrideTitle} - ${sitename}`);
-  //   }
-  // });
-
-  return (
-    <>
-      {seo?.tags?.map((seoTag) => {
-        if (seoTag.tagName === 'title') {
-          return <title>{`${overrideTitle} - ${sitename}`}</title>;
-        }
-
-        const name = seoTag.attributes?.property || seoTag.attributes?.name;
-        let content = seoTag.attributes?.content;
-
-        if (name === 'description') {
-          content = page.seo?.description || seoTag.attributes?.content;
-        }
-
-        return <meta name={name} content={content} />;
-      })}
-
-      {/* <meta name="description" content={seo.description} />
-      <meta name="image" content={seo.image} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={seo.title} />
-      <meta name="twitter:url" content={seo.url} />
-      <meta name="twitter:description" content={seo.description} />
-      <meta name="twitter:image" content={seo.image} />
-      <meta name="twitter:creator" content={seo.twitterUsername} /> */}
-
-      <link
-        rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
-      />
-
-      {children}
-    </>
-  );
+  return <HelmetDatoCms seo={seo}>{children}</HelmetDatoCms>
 };
 export default SeoDatoCMS;
