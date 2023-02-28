@@ -131,7 +131,7 @@ function FilterEvents({ events, tags }) {
               </div>
             </div>
 
-            <div className="col-lg-2">
+            <div className="col-lg-3">
               <div className="filter-action-title">Select Year</div>
               <DateSlider years={yearsFilter} activeYear={activeYear} />
             </div>
@@ -147,6 +147,7 @@ function FilterEvents({ events, tags }) {
                 Filter by category
                 <img src={mobileToggleFilter.category ? openIcon : closeIcon} alt="open/close icon" />
               </div>
+
               {mobileToggleFilter.category && (
                 <div className="category-items">
                   <div>
@@ -178,8 +179,11 @@ function FilterEvents({ events, tags }) {
             </div>
 
             {/* Year filter item */}
-            <div className="item" onClick={() => setMobileToggleFilter((prev) => ({ ...prev, year: !prev.year }))}>
-              <div className="filter-action-title">
+            <div className="item">
+              <div
+                className="filter-action-title"
+                onClick={() => setMobileToggleFilter((prev) => ({ ...prev, year: !prev.year }))}
+              >
                 Filter by category
                 <img src={mobileToggleFilter.year ? openIcon : closeIcon} alt="open/close icon" />
               </div>
