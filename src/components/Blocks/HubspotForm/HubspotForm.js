@@ -15,7 +15,6 @@ const HubspotForm = ({ id, formId, region, portalId, tags }) => {
             onFormReady: function($form) {
               if(tags){
                 let tagsText = tags.map(item => item.name).join(',')
-                console.log(tagsText)
                 document.querySelector('input[name="tags"]').value = tagsText;
               }
             }
