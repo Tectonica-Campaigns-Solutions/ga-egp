@@ -58,6 +58,9 @@ export const PodcastQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       textContent {
         value

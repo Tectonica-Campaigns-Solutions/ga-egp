@@ -58,6 +58,9 @@ export const JobQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

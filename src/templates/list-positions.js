@@ -79,6 +79,9 @@ export const ListPositionsQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       title
       slug

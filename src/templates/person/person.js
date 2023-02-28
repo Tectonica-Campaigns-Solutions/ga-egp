@@ -65,6 +65,9 @@ export const PersonQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

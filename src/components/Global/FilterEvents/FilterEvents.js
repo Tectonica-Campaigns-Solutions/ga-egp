@@ -3,12 +3,17 @@ import Accordion from '../Accordion/Accordion';
 import EventList from '../EventList/EventList';
 import { isArray, monthNames } from '../../../utils';
 import DateSlider from '../DateSlider/DateSlider';
+import openIcon from '../../Icons/event_open.svg';
+import closeIcon from '../../Icons/event-close.svg';
 
 import './index.scss';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const ALL_CATEGORIES = 'All';
 
 function FilterEvents({ events, tags }) {
+  const { width } = useWindowSize();
+
   // get years from content
   const yearsFilter = [...new Set(events.map((item) => item.node.year))];
 
@@ -16,6 +21,7 @@ function FilterEvents({ events, tags }) {
   const [orderedEvents, setOrderedEvents] = useState([{}]);
   const [categoriesFilter, setCategoriesFilter] = useState([ALL_CATEGORIES]);
   const [activeYear, setActiveYear] = useState(new Date().getFullYear().toString());
+  const [mobileToggleFilter, setMobileToggleFilter] = useState({ category: false, year: false });
 
   const initialMonth = new Date().getMonth();
 
@@ -93,42 +99,94 @@ function FilterEvents({ events, tags }) {
   return (
     <div className="container filter-events">
       <form onChange={handlerForm}>
-        <div className="row justify-content-between">
-          <div className="col-lg-7">
-            <div className="filter-action-title">Filter by category</div>
-            <div className="category-items">
-              <div>
-                <input
-                  id="all"
-                  type="checkbox"
-                  name="selected_category"
-                  value={ALL_CATEGORIES}
-                  onClick={handleOnToggleAll}
-                  checked={isCategoryChecked(ALL_CATEGORIES)}
-                />
-                <label for="all">All</label>
-              </div>
-
-              {tags.edges.map((item) => (
+        {width > 992 ? (
+          <div className="desktop-form row justify-content-between">
+            <div className="col-lg-7">
+              <div className="filter-action-title">Filter by category</div>
+              <div className="category-items">
                 <div>
                   <input
-                    id={item.node.id}
+                    id="all"
                     type="checkbox"
                     name="selected_category"
-                    value={item.node.id}
-                    checked={isCategoryChecked(item.node.id)}
+                    value={ALL_CATEGORIES}
+                    onClick={handleOnToggleAll}
+                    checked={isCategoryChecked(ALL_CATEGORIES)}
                   />
-                  <label for={item.node.id}>{item.node.title}</label>
+                  <label for="all">All</label>
                 </div>
-              ))}
+
+                {tags.edges.map((item) => (
+                  <div>
+                    <input
+                      id={item.node.id}
+                      type="checkbox"
+                      name="selected_category"
+                      value={item.node.id}
+                      checked={isCategoryChecked(item.node.id)}
+                    />
+                    <label for={item.node.id}>{item.node.title}</label>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="col-lg-2">
+              <div className="filter-action-title">Select Year</div>
+              <DateSlider years={yearsFilter} activeYear={activeYear} />
             </div>
           </div>
+        ) : (
+          <div className="mobile-form">
+            {/* Category filter item */}
+            <div className="item">
+              <div
+                className="filter-action-title"
+                onClick={() => setMobileToggleFilter((prev) => ({ ...prev, category: !prev.category }))}
+              >
+                Filter by category
+                <img src={mobileToggleFilter.category ? openIcon : closeIcon} alt="open/close icon" />
+              </div>
+              {mobileToggleFilter.category && (
+                <div className="category-items">
+                  <div>
+                    <input
+                      id="all"
+                      type="checkbox"
+                      name="selected_category"
+                      value={ALL_CATEGORIES}
+                      onClick={handleOnToggleAll}
+                      checked={isCategoryChecked(ALL_CATEGORIES)}
+                    />
+                    <label for="all">All</label>
+                  </div>
 
-          <div className="col-lg-2">
-            <div className="filter-action-title">Select Year</div>
-            <DateSlider years={yearsFilter} activeYear={activeYear} />
+                  {tags.edges.map((item) => (
+                    <div>
+                      <input
+                        id={item.node.id}
+                        type="checkbox"
+                        name="selected_category"
+                        value={item.node.id}
+                        checked={isCategoryChecked(item.node.id)}
+                      />
+                      <label for={item.node.id}>{item.node.title}</label>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Year filter item */}
+            <div className="item" onClick={() => setMobileToggleFilter((prev) => ({ ...prev, year: !prev.year }))}>
+              <div className="filter-action-title">
+                Filter by category
+                <img src={mobileToggleFilter.year ? openIcon : closeIcon} alt="open/close icon" />
+              </div>
+              {mobileToggleFilter.year && <DateSlider years={yearsFilter} activeYear={activeYear} />}
+            </div>
           </div>
-        </div>
+        )}
       </form>
 
       {shouldRenderCategories && (

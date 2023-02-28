@@ -62,6 +62,9 @@ export const ListNewsQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {

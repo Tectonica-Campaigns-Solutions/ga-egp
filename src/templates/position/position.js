@@ -11,7 +11,6 @@ import SeoDatoCMS from '../../components/SeoDatoCms';
 import './index.scss';
 
 const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav } }) => {
-  console.log(navLinks);
   const { parentTitle } = pageContext;
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
@@ -77,6 +76,9 @@ export const PositionQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

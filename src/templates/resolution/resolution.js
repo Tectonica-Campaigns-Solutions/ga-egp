@@ -54,6 +54,9 @@ export const ResolutionQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

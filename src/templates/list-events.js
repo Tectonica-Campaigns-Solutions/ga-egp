@@ -6,7 +6,6 @@ import FilterEvents from '../components/Global/FilterEvents/FilterEvents';
 import SeoDatoCMS from '../components/SeoDatoCms';
 
 function ListEvents({ pageContext, location, data: { list, page, tags, breadcrumb } }) {
-  console.log(breadcrumb);
   return (
     <Layout>
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
@@ -28,6 +27,9 @@ export const ListEventsQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
     }
     tags: allDatoCmsTagEvent {

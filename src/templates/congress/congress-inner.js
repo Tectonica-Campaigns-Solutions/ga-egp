@@ -34,6 +34,9 @@ export const CongressInnerQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
