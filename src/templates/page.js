@@ -75,6 +75,9 @@ export const PageQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
       blocks {
         ... on DatoCmsBlockHubspotFormStep {

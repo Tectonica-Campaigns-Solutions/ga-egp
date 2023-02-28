@@ -27,6 +27,9 @@ export const ListEventsQuery = graphql`
       seo {
         title
         description
+        image {
+          url
+        }
       }
     }
     tags: allDatoCmsTagEvent {
