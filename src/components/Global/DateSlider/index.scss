@@ -1,5 +1,4 @@
 .date-slider {
-
   input {
     display: none;
   }
@@ -24,24 +23,22 @@
       margin-right: 10px;
     }
   }
+}
 
-  .slick-prev,
-  .slick-next {
-    width: 40px;
-    height: 40px;
-  }
+@media screen and (max-width: 992px) {
+  .date-slider {
+    margin-bottom: 39px;
 
-  .slick-prev {
-    left: -40px;
-  }
+    label {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 150%;
 
-  .slick-next {
-    right: -40px;
-  }
-
-  .slick-list {
-    padding: 0;
-    margin-left: 10px;
-    margin-right: 10px;
+      &.active {
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 130%;
+      }
+    }
   }
 }
