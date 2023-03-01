@@ -8,15 +8,20 @@ import Blocks from '../components/Blocks';
 import HeroCustom from '../components/Global/HeroCustom/HeroCustom';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
-const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideNav = null, favicon } }) => {
+const Page = ({
+  pageContext,
+  location,
+  data: { page, navLinks, breadcrumb, sideNav = null, favicon, siteTitle = null },
+}) => {
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
     ? sideNav?.treeParent.treeChildren
     : sideNav?.treeChildren;
-  console.log(favicon.faviconMetaTags)
+
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} />
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       {page.customHeader && (
         <HeroCustom
           ctas={page.ctasblock}
@@ -48,13 +53,16 @@ const Page = ({ pageContext, location, data: { page, navLinks, breadcrumb, sideN
 
 export default Page;
 
-//export const Head = ({ data: { page, defaultSeo } }) => <SeoDatoCms page={page} defaultSeo={defaultSeo} />;
-
 export const PageQuery = graphql`
   query PageById($id: String, $menuPos: String) {
-    favicon: datoCmsSite{
+    favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
       }
     }
     page: datoCmsPage(id: { eq: $id }) {

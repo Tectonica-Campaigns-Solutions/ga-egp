@@ -8,13 +8,15 @@ import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 import TextIcon from '../../components/Global/TextIcon/TextIcon';
 import iconEmail from '../../components/Icons/icon_email.svg';
 import { getPhoneLink } from '../../utils';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-function person({ pageContext, location, data: { person } }) {
+function person({ pageContext, location, data: { person, favicon, siteTitle } }) {
   return (
     <Layout>
+      <SeoDatoCms seo={person.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage title={person.title} context={pageContext} location={location} />
       <div className="person-detail">
         <div className="btn-back">
@@ -45,10 +47,18 @@ function person({ pageContext, location, data: { person } }) {
   );
 }
 
-export const Head = ({ data: { person } }) => <SeoDatoCMS page={person} />;
-
 export const PersonQuery = graphql`
   query PersonById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     person: datoCmsPerson(id: { eq: $id }) {
       name
       phone
@@ -62,14 +72,7 @@ export const PersonQuery = graphql`
       image {
         gatsbyImageData
       }
-      seo {
-        title
-        description
-        image {
-          url
-        }
-      }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
     }

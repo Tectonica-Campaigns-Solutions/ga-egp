@@ -8,13 +8,15 @@ import Button from '../../components/Global/Button/Button';
 import DateTime from '../../components/Global/DateTime/DateTime';
 import Tag from '../../components/Global/Tag/Tag';
 import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-function Event({ data: { event } }) {
+function Event({ data: { event, favicon, siteTitle } }) {
   return (
     <Layout>
+      <SeoDatoCms seo={event.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <div className={`event-page section-${event.tags.color}`}>
         <div className="container">
           <div className="header row">
@@ -42,10 +44,18 @@ function Event({ data: { event } }) {
   );
 }
 
-export const Head = ({ data: { event } }) => <SeoDatoCMS page={event} />;
-
 export const EventQuery = graphql`
   query EventById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     event: datoCmsEvent(id: { eq: $id }) {
       title
       image {
@@ -61,14 +71,7 @@ export const EventQuery = graphql`
           url
         }
       }
-      seo {
-        title
-        description
-        image {
-          url
-        }
-      }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
       tags {

@@ -8,9 +8,11 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-const Resolution = ({ pageContext, location, data: { resolution } }) => {
+const Resolution = ({ pageContext, location, data: { resolution, favicon, siteTitle } }) => {
   return (
     <Layout>
+      <SeoDatoCms seo={resolution.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage
         title={resolution.title}
         context={pageContext}
@@ -41,24 +43,25 @@ const Resolution = ({ pageContext, location, data: { resolution } }) => {
 
 export default Resolution;
 
-export const Head = ({ data: { resolution } }) => <SeoDatoCms page={resolution} />;
-
 export const ResolutionQuery = graphql`
   query ResolutionById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     resolution: datoCmsResolution(id: { eq: $id }) {
       id
       title
       slug
       intro
       date
-      seo {
-        title
-        description
-        image {
-          url
-        }
-      }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
       text {

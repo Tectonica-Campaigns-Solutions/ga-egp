@@ -7,7 +7,7 @@ import BackButton from '../../components/Global/BackButton/BackButton';
 import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 import Tag from '../../components/Global/Tag/Tag';
 import Dropdown from '../../components/Global/Dropdown/Dropdown';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
@@ -16,7 +16,7 @@ const Order = {
   TEST: 'Test',
 };
 
-function Member({ pageContext, location, data: { page } }) {
+function Member({ pageContext, location, data: { page, favicon, siteTitle } }) {
   const parties = page.parties;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
@@ -46,6 +46,8 @@ function Member({ pageContext, location, data: { page } }) {
 
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage
         title={pageContext.titleParent ? pageContext.titleParent : page.title}
         context={pageContext}
@@ -134,10 +136,18 @@ function Member({ pageContext, location, data: { page } }) {
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
-
 export const MemberQuery = graphql`
   query MemberById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     page: datoCmsMember(id: { eq: $id }) {
       id
       title
@@ -146,15 +156,8 @@ export const MemberQuery = graphql`
         url
         alt
       }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
       parties {
         ... on DatoCmsParty {

@@ -5,11 +5,15 @@ import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigatio
 import CardPosition from '../components/Global/CardPosition/CardPosition';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import EGPSlider from '../components/Global/EGPSlider/EGPSlider';
-import SeoDatoCMS from '../components/SeoDatoCms';
+import SeoDatoCms from '../components/SeoDatoCms';
 
 import * as styles from './listposition.module.scss';
 
-function ListPositions({ pageContext, location, data: { list, page, navLinks, breadcrumb, sideNav } }) {
+function ListPositions({
+  pageContext,
+  location,
+  data: { list, page, navLinks, breadcrumb, sideNav, favicon, siteTitle },
+}) {
   const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
 
   const responsiveSettings = [
@@ -24,6 +28,8 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks, br
 
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage title={page.title} breadcrumb={breadcrumb} context={pageContext} location={location} />
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
@@ -68,20 +74,21 @@ function ListPositions({ pageContext, location, data: { list, page, navLinks, br
 
 export default ListPositions;
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
-
 export const ListPositionsQuery = graphql`
   query ListPositions($menuPos: String) {
-    page: datoCmsListPosition {
-      seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
       }
-      seo {
-        title
-        description
-        image {
-          url
-        }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
+    page: datoCmsListPosition {
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
       title
       slug

@@ -6,13 +6,15 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-const Postcast = ({ pageContext, location, data: { page } }) => {
+const Podcast = ({ pageContext, location, data: { page, favicon, siteTitle } }) => {
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage title={page.title} context={pageContext} location={location} date={page.date} isDetailView />
 
       <div className="container">
@@ -38,10 +40,18 @@ const Postcast = ({ pageContext, location, data: { page } }) => {
   );
 };
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
-
 export const PodcastQuery = graphql`
   query PodcastById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     page: datoCmsPodcast(id: { eq: $id }) {
       id
       title
@@ -52,15 +62,8 @@ export const PodcastQuery = graphql`
         title
       }
       date(formatString: "D MMM Y")
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
       textContent {
         value
@@ -91,4 +94,4 @@ export const PodcastQuery = graphql`
   }
 `;
 
-export default Postcast;
+export default Podcast;

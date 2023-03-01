@@ -6,11 +6,11 @@ import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav } }) => {
+const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav, favicon, siteTitle } }) => {
   const { parentTitle } = pageContext;
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
@@ -26,6 +26,8 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
 
   return (
     <Layout>
+      <SeoDatoCms seo={position.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage
         title={position.title}
         context={pageContext}
@@ -56,10 +58,18 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
 
 export default Position;
 
-export const Head = ({ data: { position } }) => <SeoDatoCMS page={position} />;
-
 export const PositionQuery = graphql`
   query PositionById($id: String, $menuPos: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     position: datoCmsPosition(id: { eq: $id }) {
       id
       title
@@ -73,14 +83,7 @@ export const PositionQuery = graphql`
       text {
         value
       }
-      seo {
-        title
-        description
-        image {
-          url
-        }
-      }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
