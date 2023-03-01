@@ -7,13 +7,15 @@ import StructuredContentDefault from '../../components/StructuredContentDefault 
 import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
 import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-const Post = ({ pageContext, location, data: { page } }) => {
+const Post = ({ pageContext, location, data: { page, favicon, siteTitle } }) => {
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage title={page.title} context={pageContext} location={location} date={page.date} isDetailView />
 
       <div className="container">
@@ -49,10 +51,18 @@ const Post = ({ pageContext, location, data: { page } }) => {
   );
 };
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
-
 export const PostQuery = graphql`
   query PostById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     page: datoCmsPost(id: { eq: $id }) {
       id
       title
@@ -63,15 +73,8 @@ export const PostQuery = graphql`
         title
       }
       date(formatString: "D MMM Y")
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
       textContent {
         value

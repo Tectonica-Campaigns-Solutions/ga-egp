@@ -16,7 +16,7 @@ import CheckboxInput from '../components/Global/Form/CheckboxInput';
 function ListPolicyPapers({
   pageContext,
   location,
-  data: { listPapers, listResolutions, page, navLinks, breadcrumb },
+  data: { listPapers, listResolutions, page, navLinks, breadcrumb, favicon, siteTitle },
 }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
@@ -149,6 +149,8 @@ function ListPolicyPapers({
 
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
@@ -165,22 +167,23 @@ function ListPolicyPapers({
 
 export default ListPolicyPapers;
 
-export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
-
 export const ListPositionsQuery = graphql`
   query ListPolicyPaper($menuPos: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     page: datoCmsListPolicyPaper {
       title
       slug
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
     }
     listPapers: allDatoCmsPolicyPaper {

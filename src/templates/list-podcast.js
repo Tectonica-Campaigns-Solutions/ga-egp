@@ -7,12 +7,14 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import SeoDatoCms from '../components/SeoDatoCms';
 
-function ListPodcast({ pageContext, location, data: { page } }) {
+function ListPodcast({ pageContext, location, data: { page, favicon, siteTitle } }) {
   const filteredContent = pageContext.items;
   const shouldRenderMiddleCta = filteredContent.length >= 12;
 
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} />
 
       <div className="container">
@@ -39,22 +41,23 @@ function ListPodcast({ pageContext, location, data: { page } }) {
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
-
 export const ListPodcastQuery = graphql`
   query ListPodcast {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     page: datoCmsListPodcast {
       title
       slug
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
     }
     breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {

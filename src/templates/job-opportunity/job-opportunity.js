@@ -4,15 +4,17 @@ import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import Layout from '../../components/Layout/Layout';
 import JobLocation from '../../components/Global/JobLocation/JobLocation';
 import Button from '../../components/Global/Button/Button';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import * as styles from './job.module.scss';
 
-const JonOpportunity = ({ pageContext, location, data: { job } }) => {
+const JonOpportunity = ({ pageContext, location, data: { job, favicon, siteTitle } }) => {
   const { title, description, content, urlApply, isRemote, location: locationJob } = job;
 
   return (
     <Layout>
+      <SeoDatoCms seo={job.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage
         title={title}
         context={pageContext}
@@ -42,10 +44,18 @@ const JonOpportunity = ({ pageContext, location, data: { job } }) => {
 
 export default JonOpportunity;
 
-export const Head = ({ data: { job } }) => <SeoDatoCMS page={job} />;
-
 export const JobQuery = graphql`
   query JobById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     job: datoCmsJobOpportunity(id: { eq: $id }) {
       title
       slug
@@ -55,14 +65,7 @@ export const JobQuery = graphql`
       content
       publicationDate
       isRemote
-      seo {
-        title
-        description
-        image {
-          url
-        }
-      }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
     }

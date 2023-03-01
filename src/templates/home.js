@@ -5,10 +5,12 @@ import HeroHome from '../components/Global/HeroHome/HeroHome';
 import Layout from '../components/Layout/Layout';
 import SeoDatoCms from '../components/SeoDatoCms';
 
-const Home = ({ data: { page } }) => {
+const Home = ({ data: { page, favicon, siteTitle } }) => {
   return (
     <div data-datocms-noindex>
       <Layout navbarWhite={page.textWhite ?? false}>
+        <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
         <HeroHome
           title={page.title}
           image={page.backgroundImage.gatsbyImageData}
@@ -25,20 +27,21 @@ const Home = ({ data: { page } }) => {
 
 export default Home;
 
-export const Head = ({ data: { page } }) => <SeoDatoCms page={page} />;
-
 export const HomeQuery = graphql`
   query HomeById {
-    page: datoCmsHome {
-      seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
       }
-      seo {
-        title
-        description
-        image {
-          url
-        }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
+    page: datoCmsHome {
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
       title
       description

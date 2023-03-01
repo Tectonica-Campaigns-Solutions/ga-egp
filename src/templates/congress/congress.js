@@ -5,11 +5,11 @@ import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import Button from '../../components/Global/Button/Button';
-import SeoDatoCMS from '../../components/SeoDatoCms';
+import SeoDatoCms from '../../components/SeoDatoCms';
 
 import * as styles from './congress.module.scss';
 
-function Congress({ data: { congress } }) {
+function Congress({ data: { congress, favicon, siteTitle } }) {
   const sidebarLinks = () => {
     const items = congress.pages;
 
@@ -18,6 +18,8 @@ function Congress({ data: { congress } }) {
 
   return (
     <Layout>
+      <SeoDatoCms seo={congress.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroCongress title={congress.title} mainPage={true} />
 
       <div className={styles.congressDetail}>
@@ -66,20 +68,21 @@ function Congress({ data: { congress } }) {
   );
 }
 
-export const Head = ({ data: { congress } }) => <SeoDatoCMS page={congress} />;
-
 export const CongressQuery = graphql`
   query CongressById($id: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     congress: datoCmsCongress(id: { eq: $id }) {
       title
-      seo {
-        title
-        description
-        image {
-          url
-        }
-      }
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
       pages {

@@ -6,9 +6,9 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
-import SeoDatoCMS from '../components/SeoDatoCms';
+import SeoDatoCms from '../components/SeoDatoCms';
 
-function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } }) {
+function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, favicon, siteTitle } }) {
   const filteredContent = pageContext.items;
 
   const shouldRenderMiddleCta = filteredContent.length >= 12;
@@ -16,6 +16,8 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
 
   return (
     <Layout>
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+
       <HeroPage
         title={pageContext.tag ? pageContext.tag : page.title}
         context={pageContext}
@@ -49,22 +51,23 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks } 
   );
 }
 
-export const Head = ({ data: { page } }) => <SeoDatoCMS page={page} />;
-
 export const ListNewsQuery = graphql`
   query ListNews($menuPos: String) {
+    favicon: datoCmsSite {
+      faviconMetaTags {
+        ...GatsbyDatoCmsFaviconMetaTags
+      }
+    }
+    siteTitle: datoCmsSite {
+      globalSeo {
+        siteName
+      }
+    }
     page: datoCmsListNews {
       title
       slug
-      seoMetaTags {
+      seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
-      }
-      seo {
-        title
-        description
-        image {
-          url
-        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
