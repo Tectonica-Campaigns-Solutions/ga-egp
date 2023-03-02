@@ -1,6 +1,5 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import ImageWrapper from '../Image/ImageWrapper';
 
 import * as styles from './herocustom.module.scss';
 
@@ -15,9 +14,10 @@ function HeroCustom({
   isDetailView = false,
   parentTitle = null,
   breadcrumb = null,
+  bgColor = null,
 }) {
   return (
-    <div className={styles.heroCustom}>
+    <div className={`${styles.heroCustom} section-${bgColor}`} style={{ backgroundImage: `url(${imageHeader?.url})` }}>
       <div>
         {breadcrumb && (
           <div className="container">
@@ -26,17 +26,13 @@ function HeroCustom({
         )}
 
         <div>
-          <div className={styles.heroImage}>
-            <ImageWrapper image={imageHeader} />
-          </div>
-
           <div className="container">
             <div className="row">
               <div className={ctas && ctas.length > 0 ? 'col-lg-6' : 'col-12'}>
                 {date && <div className="date">{date}</div>}
                 {parentTitle && <h2>{parentTitle}</h2>}
                 {!parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>}
-                <div dangerouslySetInnerHTML={{ __html: description }} />
+                <div className={styles.description} dangerouslySetInnerHTML={{ __html: description }} />
               </div>
 
               {ctas && (
