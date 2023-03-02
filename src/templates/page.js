@@ -31,6 +31,7 @@ const Page = ({
           context={pageContext}
           location={location}
           breadcrumb={breadcrumb ? breadcrumb : null}
+          bgColor={page.backgroundColor}
         />
       )}
 
@@ -70,6 +71,7 @@ export const PageQuery = graphql`
       title
       slug
       customHeader
+      backgroundColor
       description
       backgroundImage {
         gatsbyImageData
