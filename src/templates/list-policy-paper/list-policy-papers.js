@@ -1,17 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { graphql, navigate } from 'gatsby';
-import Layout from '../components/Layout/Layout';
-import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
-import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
-import SeoDatoCms from '../components/SeoDatoCms';
+import Layout from '../../components/Layout/Layout';
+import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
+import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
+import SeoDatoCms from '../../components/SeoDatoCms';
 import queryString from 'query-string';
-import HeroPage from '../components/Global/HeroPage/HeroPage';
-import CardPolicy from '../components/Global/CardPolicy/CardPolicy';
-import Input from '../components/Global/Form/Input';
-import SelectInput from '../components/Global/Form/SelectInput';
-import ActionButton from '../components/Global/Button/ActionButton';
-import RadioInput from '../components/Global/Form/RadioInput';
-import CheckboxInput from '../components/Global/Form/CheckboxInput';
+import HeroPage from '../../components/Global/HeroPage/HeroPage';
+import CardPolicy from '../../components/Global/CardPolicy/CardPolicy';
+import Input from '../../components/Global/Form/Input';
+import SelectInput from '../../components/Global/Form/SelectInput';
+import ActionButton from '../../components/Global/Button/ActionButton';
+import RadioInput from '../../components/Global/Form/RadioInput';
+import CheckboxInput from '../../components/Global/Form/CheckboxInput';
+
+import * as styles from './styles.module.scss';
 
 function ListPolicyPapers({
   pageContext,
@@ -155,6 +157,15 @@ function ListPolicyPapers({
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <InnerLayout sideNav={sidebarContent()}>
+        <div className={styles.filterTitle}>
+          <h4>
+            Showing {filteredContent()?.length} {filterOptions.type.replace('_', ' ')}
+          </h4>
+          <p>
+            Filtered by <span>HARDCODED TAG</span> in <span>HARDCODED TAG</span>
+          </p>
+        </div>
+
         <div className="row g-5">
           {filteredContent()?.map((item) => (
             <CardPolicy item={item.node} />
