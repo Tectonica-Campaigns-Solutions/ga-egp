@@ -21,8 +21,8 @@ const UpcomingEvents = ({ block }) => {
     }
   `);
 
-  const highlightEvents = block.highlightedEvents ? block.highlightedEvents : nextEvents;
-  const globalLink = block.link ? block.link : null;
+  const highlightEvents = block?.highlightedEvents ? block.highlightedEvents : nextEvents;
+  const globalLink = block?.link ? block.link : null;
 
   return (
     <Section title="Upcoming Events" link={globalLink} bgColor="section-green">

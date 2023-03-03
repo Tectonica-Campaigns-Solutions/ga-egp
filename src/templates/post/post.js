@@ -8,6 +8,7 @@ import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
 import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
 import SeoDatoCms from '../../components/SeoDatoCms';
+import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
 
 import './index.scss';
 
@@ -46,6 +47,8 @@ const Post = ({ pageContext, location, data: { page, favicon, siteTitle } }) => 
             </div>
           </div>
         </div>
+
+        <LatestUpdates block={{ title: 'Related News' }} />
       </div>
     </Layout>
   );

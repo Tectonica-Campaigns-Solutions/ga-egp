@@ -20,8 +20,8 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
   const getMenuPosition = (menus, key) => {
-      const menuId = menus.find(item => item?.content?.id === key)
-      return menuId?.id
+    const menuId = menus.find((item) => item?.content?.id === key);
+    return menuId?.id;
   };
 
   // slices api
@@ -42,7 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
       listResolutions: path.resolve('./src/templates/list-resolutions.js'),
-      listPolicyPapers: path.resolve('./src/templates/list-policy-papers.js'),
+      listPolicyPapers: path.resolve('./src/templates/list-policy-paper/list-policy-papers.js'),
       listMembers: path.resolve('./src/templates/list-members.js'),
       listNews: path.resolve('./src/templates/list-news.js'),
       listEvents: path.resolve('./src/templates/list-events.js'),
@@ -266,35 +266,35 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            navTree: allDatoCmsMenu{
-              nodes{
+            navTree: allDatoCmsMenu {
+              nodes {
                 id
                 content {
-                    ... on DatoCmsPage {
-                      id
-                    }
-                    ... on DatoCmsListNews {
-                      id
-                    }
-                    ... on DatoCmsListPosition {
-                      id
-                    }
-                    ... on DatoCmsListMember {
-                      id
-                    }
-                    ... on DatoCmsListPolicyPaper {
-                      id
-                    }
-                    ... on DatoCmsListResolution {
-                      id
-                    }
-                    ... on DatoCmsListEvent {
-                      id
-                    }
-                    ... on DatoCmsPosition {
-                      id
-                    }
+                  ... on DatoCmsPage {
+                    id
                   }
+                  ... on DatoCmsListNews {
+                    id
+                  }
+                  ... on DatoCmsListPosition {
+                    id
+                  }
+                  ... on DatoCmsListMember {
+                    id
+                  }
+                  ... on DatoCmsListPolicyPaper {
+                    id
+                  }
+                  ... on DatoCmsListResolution {
+                    id
+                  }
+                  ... on DatoCmsListEvent {
+                    id
+                  }
+                  ... on DatoCmsPosition {
+                    id
+                  }
+                }
               }
             }
           }

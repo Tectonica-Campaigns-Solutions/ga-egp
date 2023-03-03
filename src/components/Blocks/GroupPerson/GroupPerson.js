@@ -12,7 +12,7 @@ function GroupPerson({ block }) {
       <div className={`group-person ${isHighlighted ? 'highlighted' : ''}`}>
         {block.title && <h2>{block.title}</h2>}
 
-        <div className="row">
+        <div className="row gy-5">
           {isArray(block.people) &&
             block.people.map((person) => {
               return (
