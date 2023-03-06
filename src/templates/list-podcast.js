@@ -42,7 +42,7 @@ function ListPodcast({ pageContext, location, data: { page, favicon, siteTitle }
 }
 
 export const ListPodcastQuery = graphql`
-  query ListPodcast {
+  query ListPodcast($menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -60,7 +60,7 @@ export const ListPodcastQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: "DatoCmsMenu-119373300" }) {
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ...Breadcrumb
     }
   }
