@@ -50,6 +50,7 @@ const DropdownItem = ({ link, label, children }) => {
 export default function Nav({ navData, navbarWhite = false, path, setSearchEngineVisible }) {
   // data
   const navLinks = navData.allDatoCmsMenu.nodes;
+
   // Use States --------
   const [expanded, setExpanded] = useState(false);
   // Sticky Nav handlers are here

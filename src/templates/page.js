@@ -20,7 +20,9 @@ const Page = ({
 
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} noIndex={page.noIndex} />
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>
+        {page.noIndex && <meta name="robots" content="noindex" />}
+      </SeoDatoCms>
 
       {page.customHeader && (
         <HeroCustom
@@ -132,6 +134,12 @@ export const PageQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsListPodcast {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListPosition {
                 slug
                 model {
@@ -168,6 +176,12 @@ export const PageQuery = graphql`
                   }
                 }
                 ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPodcast {
                   slug
                   model {
                     apiKey
@@ -210,6 +224,12 @@ export const PageQuery = graphql`
                 apiKey
               }
             }
+            ... on DatoCmsListPodcast {
+              slug
+              model {
+                apiKey
+              }
+            }
             ... on DatoCmsListPosition {
               slug
               model {
@@ -238,6 +258,12 @@ export const PageQuery = graphql`
                 }
               }
               ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPodcast {
                 slug
                 model {
                   apiKey

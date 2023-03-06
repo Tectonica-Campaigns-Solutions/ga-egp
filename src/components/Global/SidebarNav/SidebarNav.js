@@ -1,11 +1,13 @@
 import React from 'react';
-import { pathToModel } from '../../../utils';
+import { isActiveTrail, pathToModel } from '../../../utils';
 import Link from '../Link';
 
 import './index.scss';
 
 function SidebarNav({ menu, location }) {
-  const currentPathname = location ? location?.pathname : null;
+  const currentPathname = location ? location?.pathname : '';
+
+  console.log({ menu });
 
   return (
     <div className="sidebar-nav" data-datocms-noindex>
@@ -15,10 +17,12 @@ function SidebarNav({ menu, location }) {
 
         const path = pathToModel(maybeApiKey, slug);
 
-        const isActivePath = currentPathname ? currentPathname.includes(slug) : false;
+        console.log({ item, path });
+
+        const isActivePath = isActiveTrail(currentPathname, path);
 
         return (
-          <div className={`sidebar-item ${index !== 0 && isActivePath ? 'active' : ''}`}>
+          <div className={`sidebar-item ${isActivePath ? 'active' : ''}`} key={item.id}>
             <Link to={path}>{item.title}</Link>
           </div>
         );

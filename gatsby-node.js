@@ -276,6 +276,9 @@ exports.createPages = ({ graphql, actions }) => {
                   ... on DatoCmsListNews {
                     id
                   }
+                  ... on DatoCmsListPodcast {
+                    id
+                  }
                   ... on DatoCmsListPosition {
                     id
                   }

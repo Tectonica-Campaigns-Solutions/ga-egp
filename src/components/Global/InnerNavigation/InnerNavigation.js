@@ -16,7 +16,7 @@ const InnerNavigation = ({ location, innerMenu }) => {
       <div className="container">
         <div className={`items py-4 ${isMobileMenuOpen ? 'open' : ''}`}>
           {navLinks.map((item, index) => {
-            const link = pathToModel(item.content.model.apiKey, item.content.slug);
+            const link = pathToModel(item.content?.model?.apiKey, item.content?.slug);
             const active = isActiveTrail(location?.pathname, link);
 
             return (

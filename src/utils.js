@@ -9,6 +9,8 @@ export const pathToModel = (model = null, slug = '') => {
     return `/positions/${slug}`;
   } else if (model === 'podcast') {
     return `/podcast/${slug}`;
+  } else if (model === 'resolution') {
+    return `/resolution/${slug}`;
   } else {
     return '/' + slug;
   }
@@ -77,7 +79,12 @@ export const monthNames = [
 ];
 
 export const isActiveTrail = (pathname, link) => {
+  // console.log({ pathname, link });
+
   const explodePath = pathname.split('/');
+
+  // console.log({ explodePath: explodePath.includes(link.substring(1)), pathname });
+
   if (pathname === link + '/' || explodePath.includes(link.substring(1))) {
     return true;
   }
