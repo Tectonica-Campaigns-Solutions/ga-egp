@@ -6,12 +6,12 @@ import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 
-function CongressInner({ pageContext, data: { congressInner, favicon, siteTitle } }) {
+function CongressInner({ pageContext, location, data: { congressInner, favicon, siteTitle } }) {
   const { congressTitle, congressSlug, congressMenu } = pageContext;
 
   const sidebarLinks = () => {
     const items = congressMenu;
-    return <>{items && <SidebarNav menu={items} />}</>;
+    return <>{items && <SidebarNav menu={items} location={location} />}</>;
   };
 
   return (

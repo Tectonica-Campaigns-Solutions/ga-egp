@@ -5,19 +5,15 @@ import Link from '../Link';
 import './index.scss';
 
 function SidebarNav({ menu, location }) {
-  const currentPathname = location ? location?.pathname : '';
-
-  console.log({ menu });
-
   return (
     <div className="sidebar-nav" data-datocms-noindex>
-      {menu.map((item, index) => {
+      {menu.map((item) => {
+        const currentPathname = location ? location?.pathname : null;
+
         const slug = item.slug || item.content?.slug;
         const maybeApiKey = item.model?.apiKey || item.content?.model?.apiKey;
 
         const path = pathToModel(maybeApiKey, slug);
-
-        console.log({ item, path });
 
         const isActivePath = isActiveTrail(currentPathname, path);
 
