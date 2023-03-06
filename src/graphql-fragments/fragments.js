@@ -40,7 +40,7 @@ export const DatoCMS = graphql`
       url
       alt
     }
-    tags{
+    tags {
       name
     }
     hubspot {
@@ -612,12 +612,7 @@ export const DatoCMS = graphql`
             apiKey
           }
         }
-        ... on DatoCmsListPodcast {
-          slug
-          model {
-            apiKey
-          }
-        }
+
         ... on DatoCmsListResolution {
           slug
           model {

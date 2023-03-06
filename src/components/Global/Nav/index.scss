@@ -26,6 +26,7 @@
             font-size: 1.25rem;
             line-height: 130%;
             color: var(--egp-dark);
+            text-transform: none;
           }
         }
       }
@@ -153,7 +154,7 @@
 
   .nav-white {
     @media screen and (min-width: 991px) {
-      > li > a {
+      >li>a {
         color: #fff !important;
       }
     }

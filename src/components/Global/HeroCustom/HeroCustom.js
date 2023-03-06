@@ -21,7 +21,7 @@ function HeroCustom({
       <div>
         {breadcrumb && (
           <div className="container">
-            <Breadcrumb items={breadcrumb} />
+            <Breadcrumb items={breadcrumb} textWhite />
           </div>
         )}
 

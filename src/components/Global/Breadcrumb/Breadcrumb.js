@@ -4,7 +4,7 @@ import { pathToModel } from '../../../utils';
 
 import * as styles from './breadcrumb.module.scss';
 
-const Breadcrumb = ({ items = null }) => {
+const Breadcrumb = ({ items = null, textWhite = false }) => {
   const getItemsReversed = () => {
     const cloneItems = structuredClone(items);
     const slugs = getTitlesRecursive(cloneItems, []);
@@ -31,17 +31,14 @@ const Breadcrumb = ({ items = null }) => {
     return <span>/</span>;
   };
 
-  // TODO
-  const isActiveLink = false;
-
   return (
-    <div className={styles.egpBreadcrumb} data-datocms-noindex>
+    <div className={`${styles.egpBreadcrumb} ${textWhite ? styles.textWhite : null}`} data-datocms-noindex>
       <ul>
         {getItemsReversed().map((item, index) => (
           <li key={index}>
             <Link
               to={item.content ? pathToModel(item.content.model, item.content.slug) : null}
-              className={`${isActiveLink ? 'active' : ''}`}
+              className={`${getItemsReversed().length - 1 === index ? styles.active : ''}`}
             >
               {renderSeparator(index)}
               {item.title}

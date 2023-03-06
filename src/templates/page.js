@@ -134,6 +134,12 @@ export const PageQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsListPodcast {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListPosition {
                 slug
                 model {
@@ -170,6 +176,12 @@ export const PageQuery = graphql`
                   }
                 }
                 ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPodcast {
                   slug
                   model {
                     apiKey
@@ -212,6 +224,12 @@ export const PageQuery = graphql`
                 apiKey
               }
             }
+            ... on DatoCmsListPodcast {
+              slug
+              model {
+                apiKey
+              }
+            }
             ... on DatoCmsListPosition {
               slug
               model {
@@ -240,6 +258,12 @@ export const PageQuery = graphql`
                 }
               }
               ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPodcast {
                 slug
                 model {
                   apiKey

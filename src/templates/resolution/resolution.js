@@ -8,7 +8,7 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-const Resolution = ({ pageContext, location, data: { resolution, favicon, siteTitle } }) => {
+const Resolution = ({ pageContext, location, data: { resolution, breadcrumb, favicon, siteTitle } }) => {
   return (
     <Layout>
       <SeoDatoCms seo={resolution.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -19,6 +19,7 @@ const Resolution = ({ pageContext, location, data: { resolution, favicon, siteTi
         location={location}
         date={resolution.date}
         isDetailView
+        breadcrumb={breadcrumb}
       />
 
       <div className="resolution-detail">
@@ -44,7 +45,7 @@ const Resolution = ({ pageContext, location, data: { resolution, favicon, siteTi
 export default Resolution;
 
 export const ResolutionQuery = graphql`
-  query ResolutionById($id: String) {
+  query ResolutionById($id: String, $menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -54,6 +55,9 @@ export const ResolutionQuery = graphql`
       globalSeo {
         siteName
       }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+      ...Breadcrumb
     }
     resolution: datoCmsResolution(id: { eq: $id }) {
       id

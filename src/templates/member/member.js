@@ -16,7 +16,7 @@ const Order = {
   TEST: 'Test',
 };
 
-function Member({ pageContext, location, data: { page, favicon, siteTitle } }) {
+function Member({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) {
   const parties = page.parties;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
@@ -137,11 +137,14 @@ function Member({ pageContext, location, data: { page, favicon, siteTitle } }) {
 }
 
 export const MemberQuery = graphql`
-  query MemberById($id: String) {
+  query MemberById($id: String, $menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
       }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+      ...Breadcrumb
     }
     siteTitle: datoCmsSite {
       globalSeo {
