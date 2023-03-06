@@ -20,7 +20,9 @@ const Page = ({
 
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} noIndex={page.noIndex} />
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>
+        {page.noIndex && <meta name="robots" content="noindex" />}
+      </SeoDatoCms>
 
       {page.customHeader && (
         <HeroCustom
