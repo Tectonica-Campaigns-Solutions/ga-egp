@@ -22,15 +22,16 @@ module.exports = {
         environment: process.env.DATO_ENVIRONMENT ? process.env.DATO_ENVIRONMENT : '',
       },
     },
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-transition-link',
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-preconnect',
       options: {
         domains: ['https://www.datocms-assets.com', 'https://forms-eu1.hsforms.com'],
       },
     },
-    'gatsby-plugin-image',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-transition-link',
   ],
 };
