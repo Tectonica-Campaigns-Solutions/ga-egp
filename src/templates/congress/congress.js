@@ -9,11 +9,11 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 
 import * as styles from './congress.module.scss';
 
-function Congress({ data: { congress, favicon, siteTitle } }) {
+function Congress({ location, data: { congress, favicon, siteTitle } }) {
   const sidebarLinks = () => {
     const items = congress.pages;
 
-    return <>{items && <SidebarNav menu={items} />}</>;
+    return <>{items && <SidebarNav menu={items} location={location} />}</>;
   };
 
   return (

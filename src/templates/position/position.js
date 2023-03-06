@@ -12,17 +12,12 @@ import './index.scss';
 
 const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav, favicon, siteTitle } }) => {
   const { parentTitle } = pageContext;
+
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
+
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
     ? sideNav?.treeParent.treeChildren
     : sideNav?.treeChildren;
-  // normalize siblings
-  // const normSiblings = siblings.map((item) => item.node);
-
-  // const sidebarLinks = () => {
-  //   const updatedSiblings = [{ slug: 'positions', title: 'All positions' }, ...normSiblings];
-  //   return <>{normSiblings && <SidebarNav menu={updatedSiblings} location={location} />}</>;
-  // };
 
   return (
     <Layout>
@@ -35,11 +30,11 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
         parentTitle={parentTitle}
         breadcrumb={breadcrumb}
       />
-      {/* {navLinks && <InnerNavigation location={location} innerMenu={navLinks} />} */}
 
       <div className="position-detail">
         {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
-        <InnerLayout sideNav={siblingMenu}>
+
+        <InnerLayout sideNav={siblingMenu} location={location}>
           <h1>{position.title}</h1>
 
           {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
