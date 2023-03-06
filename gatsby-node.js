@@ -358,6 +358,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              menuPos: getMenuPosition(navTree, post.id),
             },
           });
         });
@@ -370,6 +371,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              menuPos: getMenuPosition(navTree, post.id),
             },
           });
         });

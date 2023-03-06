@@ -53,6 +53,7 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
         context={pageContext}
         location={location}
         date={page.date}
+        breadcrumb={breadcrumb}
       />
 
       <div className="member-detail">

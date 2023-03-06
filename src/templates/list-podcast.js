@@ -7,7 +7,7 @@ import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import SeoDatoCms from '../components/SeoDatoCms';
 
-function ListPodcast({ pageContext, location, data: { page, favicon, siteTitle } }) {
+function ListPodcast({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) {
   const filteredContent = pageContext.items;
   const shouldRenderMiddleCta = filteredContent.length >= 12;
 
@@ -15,7 +15,12 @@ function ListPodcast({ pageContext, location, data: { page, favicon, siteTitle }
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroPage title={pageContext.tag ? pageContext.tag : page.title} context={pageContext} location={location} />
+      <HeroPage
+        title={pageContext.tag ? pageContext.tag : page.title}
+        context={pageContext}
+        location={location}
+        breadcrumb={breadcrumb}
+      />
 
       <div className="container">
         <div className="row g-5 my-5">
