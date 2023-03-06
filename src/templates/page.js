@@ -20,7 +20,7 @@ const Page = ({
 
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} noIndex={page.noIndex} />
 
       {page.customHeader && (
         <HeroCustom
@@ -78,6 +78,7 @@ export const PageQuery = graphql`
         alt
         url
       }
+      noIndex
       ctasblock {
         ... on DatoCmsCtaExternal {
           title
