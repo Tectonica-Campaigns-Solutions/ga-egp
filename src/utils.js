@@ -10,7 +10,7 @@ export const pathToModel = (model = null, slug = '') => {
   } else if (model === 'podcast') {
     return `/podcast/${slug}`;
   } else if (model === 'resolution') {
-    return `/resolution/${slug}`;
+    return `/resolutions/${slug}`;
   } else {
     return '/' + slug;
   }

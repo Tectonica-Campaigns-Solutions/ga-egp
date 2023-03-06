@@ -432,7 +432,7 @@ exports.createPages = ({ graphql, actions }) => {
         // resolutions
         resolutions.map(({ node: resolution }) => {
           createPage({
-            path: `/positions/resolutions/${resolution.slug}`,
+            path: `/resolutions/${resolution.slug}`,
             component: templates.resolution,
             context: {
               slug: resolution.slug,
