@@ -200,6 +200,7 @@ export const ListPositionsQuery = graphql`
     listPapers: allDatoCmsPolicyPaper {
       edges {
         node {
+          slug
           title
           intro
           model {
@@ -302,6 +303,7 @@ export const ListPositionsQuery = graphql`
       edges {
         node {
           title
+          slug
           intro
           model {
             apiKey

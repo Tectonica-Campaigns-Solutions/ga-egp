@@ -1,15 +1,15 @@
 import React from 'react';
 import InformationCard from '../InformationCard/InformationCard';
-import { removeUnderscoreFromString } from '../../../utils';
+import { pathToModel, removeUnderscoreFromString } from '../../../utils';
 
 function CardPolicy({ item }) {
-  const { title, documents, intro, model = null } = item;
+  const { title, documents, intro, model = null, slug, council = null } = item;
 
   const isPolicyPaper = model ? model.apiKey === 'policy_paper' : false;
   const policyType = isPolicyPaper ? removeUnderscoreFromString(model?.apiKey) : model?.apiKey;
 
   // TODO: Add correct slug or use path to model util
-  const url = isPolicyPaper ? null : 'slug';
+  const url = isPolicyPaper ? null : pathToModel(model.apiKey, slug);
 
   return (
     <InformationCard
@@ -21,7 +21,7 @@ function CardPolicy({ item }) {
             </>
           ) : (
             <>
-              Council: <strong>Copenhagen Congress 2022</strong>
+              Council: <strong>{council.title || 'N/A'}</strong>
             </>
           )}
         </>
