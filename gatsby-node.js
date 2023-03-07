@@ -570,6 +570,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listPodcats.slug,
               id: result.data.listPodcats.id,
               items: allPodcasts,
+              menuPos: getMenuPosition(navTree, result.data.listPodcats.id),
             },
           });
         }
