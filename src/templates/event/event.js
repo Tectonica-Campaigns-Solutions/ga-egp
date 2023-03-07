@@ -9,16 +9,19 @@ import DateTime from '../../components/Global/DateTime/DateTime';
 import Tag from '../../components/Global/Tag/Tag';
 import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
+import Breadcrumb from '../../components/Global/Breadcrumb/Breadcrumb';
 
 import './index.scss';
 
-function Event({ data: { event, favicon, siteTitle } }) {
+function Event({ data: { event, breadcrumb, favicon, siteTitle } }) {
   return (
     <Layout>
       <SeoDatoCms seo={event.seo} favicon={favicon} siteTitle={siteTitle} />
 
       <div className={`event-page section-${event.tags.color}`}>
         <div className="container">
+          {breadcrumb && <Breadcrumb items={breadcrumb} />}
+
           <div className="header row">
             <div className="col-lg-5">{event.image && <ImageWrapper image={event.image} />}</div>
             <div className="col-lg-7">
@@ -45,7 +48,7 @@ function Event({ data: { event, favicon, siteTitle } }) {
 }
 
 export const EventQuery = graphql`
-  query EventById($id: String) {
+  query EventById($id: String, $menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -55,6 +58,9 @@ export const EventQuery = graphql`
       globalSeo {
         siteName
       }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+      ...Breadcrumb
     }
     event: datoCmsEvent(id: { eq: $id }) {
       title

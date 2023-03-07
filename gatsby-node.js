@@ -358,6 +358,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              menuPos: getMenuPosition(navTree, post.id),
             },
           });
         });
@@ -370,6 +371,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              menuPos: getMenuPosition(navTree, post.id),
             },
           });
         });
@@ -432,7 +434,7 @@ exports.createPages = ({ graphql, actions }) => {
         // resolutions
         resolutions.map(({ node: resolution }) => {
           createPage({
-            path: `/positions/resolutions/${resolution.slug}`,
+            path: `/resolutions/${resolution.slug}`,
             component: templates.resolution,
             context: {
               slug: resolution.slug,

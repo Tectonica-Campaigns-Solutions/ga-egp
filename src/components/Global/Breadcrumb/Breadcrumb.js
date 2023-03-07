@@ -31,14 +31,16 @@ const Breadcrumb = ({ items = null, textWhite = false }) => {
     return <span>/</span>;
   };
 
+  const finalItems = [{ title: 'Home', to: '/' }, ...getItemsReversed()];
+
   return (
     <div className={`${styles.egpBreadcrumb} ${textWhite ? styles.textWhite : null}`} data-datocms-noindex>
       <ul>
-        {getItemsReversed().map((item, index) => (
+        {finalItems.map((item, index) => (
           <li key={index}>
             <Link
-              to={item.content ? pathToModel(item.content.model, item.content.slug) : null}
-              className={`${getItemsReversed().length - 1 === index ? styles.active : ''}`}
+              to={item.content ? pathToModel(item.content.model, item.content.slug) : item ? item.to : null}
+              className={`${finalItems.length - 1 === index ? styles.active : ''}`}
             >
               {renderSeparator(index)}
               {item.title}

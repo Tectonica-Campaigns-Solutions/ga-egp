@@ -12,12 +12,19 @@ import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
 
 import './index.scss';
 
-const Post = ({ pageContext, location, data: { page, favicon, siteTitle } }) => {
+const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
   return (
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroPage title={page.title} context={pageContext} location={location} date={page.date} isDetailView />
+      <HeroPage
+        title={page.title}
+        context={pageContext}
+        location={location}
+        date={page.date}
+        breadcrumb={breadcrumb}
+        isDetailView
+      />
 
       <div className="container">
         <div className="post-detail">
@@ -55,7 +62,7 @@ const Post = ({ pageContext, location, data: { page, favicon, siteTitle } }) => 
 };
 
 export const PostQuery = graphql`
-  query PostById($id: String) {
+  query PostById($id: String, $menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -65,6 +72,9 @@ export const PostQuery = graphql`
       globalSeo {
         siteName
       }
+    }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+      ...Breadcrumb
     }
     page: datoCmsPost(id: { eq: $id }) {
       id
