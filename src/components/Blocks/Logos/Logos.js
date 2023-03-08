@@ -34,9 +34,13 @@ function Logos({ block }) {
             >
               {logos.map((logo, index) => (
                 <div className="col-lg-2 col-md-3 col-4" key={index}>
-                  <Link to={logo.url ? logo.url : null} target="_blank">
+                  {logo.url ? (
+                    <Link to={logo.url} target="_blank">
+                      <ImageWrapper image={logo.icon} />
+                    </Link>
+                  ) : (
                     <ImageWrapper image={logo.icon} />
-                  </Link>
+                  )}
                 </div>
               ))}
             </EGPSlider>
