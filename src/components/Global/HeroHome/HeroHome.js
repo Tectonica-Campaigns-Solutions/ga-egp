@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import HubspotForm from '../../Blocks/HubspotForm/HubspotForm';
+
 import './index.scss';
 
 function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
@@ -13,24 +15,6 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
         }
   }`;
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.id = 'hubspot-contact-form';
-    script.src = 'https://js.hsforms.net/forms/v2.js';
-    document.body.appendChild(script);
-
-    script.addEventListener('load', () => {
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          region: form.region,
-          portalId: form.portalId,
-          formId: form.formId,
-          target: `#hubspotForm-${form.id}`,
-        });
-      }
-    });
-  }, [form]);
-
   return (
     <>
       <style scoped>{css}</style>
@@ -41,7 +25,9 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
 
             {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
 
-            {form && <div id={`hubspotForm-${form.id}`} />}
+            {form && (
+              <HubspotForm id={form.formId} formId={form.formId} region={form.region} portalId={form.portalId} />
+            )}
           </div>
         </div>
 
