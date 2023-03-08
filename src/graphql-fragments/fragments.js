@@ -40,9 +40,6 @@ export const DatoCMS = graphql`
       url
       alt
     }
-    tags {
-      name
-    }
     hubspot {
       ... on DatoCmsHubspot {
         formId

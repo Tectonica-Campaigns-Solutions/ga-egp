@@ -1,7 +1,8 @@
 import React from 'react';
 import { Script } from 'gatsby';
+import * as styles from './hubspot.module.scss';
 
-const HubspotForm = ({ id, formId, region, portalId, tags }) => {
+const HubspotForm = ({ id, formId, region, portalId }) => {
   return (
     <>
       <Script
@@ -12,17 +13,11 @@ const HubspotForm = ({ id, formId, region, portalId, tags }) => {
             portalId: portalId,
             formId: formId,
             target: `#hubspotForm-${id}`,
-            onFormReady: function($form) {
-              if(tags){
-                let tagsText = tags.map(item => item.name).join(',')
-                document.querySelector('input[name="tags"]').value = tagsText;
-              }
-            }
           });
         }}
         onError={(e) => console.error(e)}
       />
-      <div id={`hubspotForm-${id}`}></div>
+      <div id={`hubspotForm-${id}`} className={styles.form}></div>
     </>
   );
 };

@@ -4,7 +4,7 @@ import HubspotForm from '../HubspotForm/HubspotForm';
 import './index.scss';
 
 function TextHubspotForm({ block }) {
-  const { id, text, title, backgroundColor, backgroundImage, tags = null } = block;
+  const { id, text, title, backgroundColor, backgroundImage } = block;
   const { formId, region, portalId } = block.hubspot;
 
   return (
@@ -12,7 +12,7 @@ function TextHubspotForm({ block }) {
       <div className="container">
         {title && <h2>{title}</h2>}
 
-        <HubspotForm id={id} formId={formId} region={region} portalId={portalId} tags={tags} />
+        <HubspotForm id={id} formId={formId} region={region} portalId={portalId} />
       </div>
 
       {backgroundImage?.url && (

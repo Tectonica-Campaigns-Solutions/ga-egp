@@ -62,4 +62,38 @@
       color: var(--egp-white);
     }
   }
+  form{
+    position:relative;
+    display:flex;
+    flex-wrap: wrap;
+    input[type="submit"]{
+      padding:13px 20px;
+      background-color:var(--egp-green);
+      color:#fff;
+      text-transform: uppercase;
+      font-weight: bold;
+      border:2px solid #fff;
+      transition: all .3s;
+      font-size:20px;
+      &:hover{
+        background-color:var(--egp-darker-green);
+      }
+    }
+    .hs_error_rollup{
+      color:red;
+      width:100%;
+      position:absolute;
+      bottom:-30px;
+      left:0;
+      ul{
+        padding-left:0;
+      }
+      *{
+        display:block!important;
+      }
+    }
+  }
+  + .narrative{
+    padding-top:0;
+  }
 }

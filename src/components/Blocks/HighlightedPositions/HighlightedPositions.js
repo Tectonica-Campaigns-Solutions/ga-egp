@@ -7,6 +7,7 @@ import Button from '../../Global/Button/Button';
 import './index.scss';
 
 function HighlightedPositions({ block }) {
+  console.log(block)
   const { pretitle, title, description, positions } = block;
 
   const responsiveSettings = [

@@ -9,7 +9,7 @@ export default function NarrativeBlock({ block }) {
   const { pretitle, title, textContent, image, ctas } = block;
 
   return (
-    <div className={styles.componentnarrativeblock}>
+    <div className={`${styles.componentnarrativeblock} narrative`}>
       <div className="container pb-5">
         <div className={`row align-items-center`}>
           <div className="col-lg-6">
