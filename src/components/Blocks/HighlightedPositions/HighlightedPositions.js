@@ -1,14 +1,13 @@
 import React from 'react';
 import CardPosition from '../../Global/CardPosition/CardPosition';
-import { isArray } from '../../../utils';
+import { getCtaUrl, isArray } from '../../../utils';
 import EGPSlider from '../../Global/EGPSlider/EGPSlider';
 import Button from '../../Global/Button/Button';
 
 import './index.scss';
 
 function HighlightedPositions({ block }) {
-  console.log(block)
-  const { pretitle, title, description, positions } = block;
+  const { pretitle, title, description, positions, link } = block;
 
   const responsiveSettings = [
     {
@@ -29,9 +28,11 @@ function HighlightedPositions({ block }) {
             <h2>{title}</h2>
             <div className="description" dangerouslySetInnerHTML={{ __html: description }} />
 
-            <div className="info-btn">
-              <Button label={'All positions'} />
-            </div>
+            {link && (
+              <div className="info-btn">
+                <Button url={getCtaUrl(link)} label={link.label} />
+              </div>
+            )}
           </div>
 
           {isArray(positions) && (
