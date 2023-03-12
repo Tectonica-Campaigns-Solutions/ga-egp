@@ -54,7 +54,7 @@ function ListPolicyPapers({
         (params.type ? item.node.model.apiKey === params.type : true) &&
         (params.title ? item.node.intro.includes(params.title) : true)
     );
-  }, [location, list]);
+  }, [location.search, list]);
 
   const submitHandler = (e) => {
     e.preventDefault();

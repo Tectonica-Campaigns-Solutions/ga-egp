@@ -42,6 +42,10 @@
       display: flex;
       justify-content: center;
     }
+
+    img {
+      object-fit: contain !important;
+    }
   }
 
   .logos-ctas {

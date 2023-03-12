@@ -1,16 +1,17 @@
-
-  input{
-    border-radius:8px;
-    padding:17px 20px;
-    box-shadow:none;
-    background-color:#fff;
-    border:0;
+.form {
+  input {
+    border-radius: 8px;
+    padding: 17px 20px;
+    box-shadow: none;
+    background-color: #fff;
+    border: 0;
   }
 
-  input[type="submit"]{
-    padding:8px;
+  input[type="submit"] {
+    padding: 8px;
   }
 
-  label{
-    display:none!important;
+  label {
+    display: none !important;
   }
+}

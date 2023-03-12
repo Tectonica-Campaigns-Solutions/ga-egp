@@ -17,6 +17,7 @@ const HubspotForm = ({ id, formId, region, portalId }) => {
         }}
         onError={(e) => console.error(e)}
       />
+
       <div id={`hubspotForm-${id}`} className={styles.form}></div>
     </>
   );

@@ -164,6 +164,72 @@ export const DatoCMS = graphql`
         ...CardPosition
       }
     }
+    link {
+      url
+      label
+      id
+      url
+      label
+      content {
+        ... on DatoCmsPage {
+          ...PageLink
+        }
+        ... on DatoCmsCongress {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListMember {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListEvent {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListResolution {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListNews {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPodcast {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPosition {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPolicyPaper {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListMember {
+          slug
+          model {
+            apiKey
+          }
+        }
+      }
+    }
   }
   fragment BlockFormSteps on DatoCmsBlockHubspotFormStep {
     __typename
