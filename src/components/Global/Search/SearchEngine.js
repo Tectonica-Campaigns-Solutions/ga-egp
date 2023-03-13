@@ -32,14 +32,14 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
   return (
     <div className={`search-engine ${searchEngineVisible ? 'search-engine--visible' : null}`}>
       {/* Close icon */}
-      <div class="search-engine__close-icon" onClick={() => setSearchEngineVisible((prev) => !prev)}>
+      <div className="search-engine__close-icon" onClick={() => setSearchEngineVisible((prev) => !prev)}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0_2912_30965)">
+          <g clipPath="url(#clip0_2912_30965)">
             <path
               d="M3.77817 4.22183L11.5563 12M19.3345 19.7782L11.5563 12M11.5563 12L3.77817 19.7782M11.5563 12L19.3345 4.22183"
               stroke="white"
-              stroke-width="4"
-              stroke-linecap="round"
+              strokeWidth={4}
+              strokeLinecap="round"
             ></path>
           </g>
           <defs>
@@ -85,12 +85,14 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
   );
 }
 
-const SearchItem = ({ item }) => { console.log(item)
-  return(
-  <li className="search-engine__results-item">
-    <Link to={item.url}>
-      <h6>{item.title || 'Test title'}</h6>
-      <p>{item.bodyExcerpt || item.raw.attributes.body_excerpt}</p>
-    </Link>
-  </li>
-)};
+const SearchItem = ({ item }) => {
+  console.log(item);
+  return (
+    <li className="search-engine__results-item">
+      <Link to={item.url}>
+        <h6>{item.title || 'Test title'}</h6>
+        <p>{item.bodyExcerpt || item.raw.attributes.body_excerpt}</p>
+      </Link>
+    </li>
+  );
+};

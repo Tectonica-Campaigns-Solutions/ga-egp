@@ -119,6 +119,13 @@
   a:hover {
     color: var(--egp-yellow) !important;
   }
+
+  // Form
+  form {
+    .field {
+      margin-bottom: 10px;
+    }
+  }
 }
 
 @media screen and (max-width: 992px) {

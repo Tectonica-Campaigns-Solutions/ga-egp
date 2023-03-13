@@ -13,7 +13,8 @@
 
   .dropdown {
     &-menu {
-      padding: 1.25rem;
+      padding: 20px;
+      border-radius: 5px !important;
 
       &.open {
         display: block;
@@ -33,6 +34,7 @@
     }
 
     &-item {
+      padding: 0;
 
       &:focus,
       &:hover {
@@ -113,7 +115,12 @@
     }
 
     .navbar-brand>img {
-      width: 94%;
+      width: 85%;
+    }
+
+    .nav-item a {
+      font-size: 20px !important;
+      color: var(--egp-dark) !important;
     }
   }
 
@@ -134,6 +141,11 @@
           line-height: 130%;
           text-transform: uppercase;
           color: var(--egp-dark-green);
+          transition: all 0.3s ease;
+
+          &:hover {
+            color: var(--egp-dark) !important;
+          }
         }
       }
     }
