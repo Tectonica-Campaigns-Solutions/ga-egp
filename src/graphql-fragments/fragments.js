@@ -315,6 +315,7 @@ export const DatoCMS = graphql`
     }
   }
   fragment MainNavigation on DatoCmsMenu {
+    id
     title
     content {
       ... on DatoCmsPage {
