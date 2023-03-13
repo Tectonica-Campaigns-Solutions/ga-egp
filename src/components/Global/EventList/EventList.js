@@ -8,9 +8,8 @@ const EventList = ({ events }) => {
   return (
     <>
       {events.map((e, index) => (
-        <>
+        <React.Fragment key={e.node?.id || e.id}>
           <CardEvent
-            key={index}
             slug={`/events/${e.node?.slug || e.slug}`}
             title={e.node?.title || e.title}
             day={e.node?.date || e.date}
@@ -23,7 +22,7 @@ const EventList = ({ events }) => {
           />
 
           {eventsLength - 1 !== index && <EventDivider />}
-        </>
+        </React.Fragment>
       ))}
     </>
   );

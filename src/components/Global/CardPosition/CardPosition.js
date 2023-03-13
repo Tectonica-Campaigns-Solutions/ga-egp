@@ -9,27 +9,27 @@ import './index.scss';
 function CardPosition({ position, small = false, showButtons = true }) {
   const positionUrl = pathToModel(position.model.apiKey, position.slug);
 
-  return (
-    <Link to={!showButtons ? positionUrl : null}>
-      <div className={`card-position color-${position.backgroundColor} ${small ? 'small' : ''}`}>
-        <GatsbyImage
-          image={position.imageCard.gatsbyImageData}
-          className="image-position"
-          alt={position.imageCard?.alt ? position.imageCard?.alt : 'position'}
-        />
+  const renderContent = () => (
+    <div className={`card-position color-${position.backgroundColor} ${small ? 'small' : ''}`}>
+      <GatsbyImage
+        image={position.imageCard.gatsbyImageData}
+        className="image-position"
+        alt={position.imageCard?.alt ? position.imageCard?.alt : 'position'}
+      />
 
-        <div className="text-content">
-          <h3 className={`${position.textWhite ? 'white' : ''}`}>{position.title}</h3>
+      <div className="text-content">
+        <h3 className={`${position.textWhite ? 'white' : ''}`}>{position.title}</h3>
 
-          {showButtons && (
-            <div className="ctas">
-              <Button label="Read More" customVariant={'white'} url={positionUrl} />
-            </div>
-          )}
-        </div>
+        {showButtons && (
+          <div className="ctas">
+            <Button label="Read More" customVariant={'white'} url={positionUrl} />
+          </div>
+        )}
       </div>
-    </Link>
+    </div>
   );
+
+  return !showButtons ? <Link to={positionUrl}>{renderContent()}</Link> : renderContent();
 }
 
 export default CardPosition;

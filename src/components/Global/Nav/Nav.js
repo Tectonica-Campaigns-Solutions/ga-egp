@@ -105,11 +105,16 @@ export default function Nav({ navData, navbarWhite = false, path, setSearchEngin
 
       <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
         <ul className={`navbar-nav mr-auto ${navbarWhite ? 'nav-white' : ''}`}>
-          {navLinks?.map((link, index) =>
+          {navLinks?.map((link) =>
             link.treeChildren.length === 0 ? (
-              <LinkItem key={index} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />
+              <LinkItem key={link.id} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />
             ) : (
-              <DropdownItem key={index} link={link?.content?.slug} label={link?.title} children={link?.treeChildren} />
+              <DropdownItem
+                key={link.id}
+                link={link?.content?.slug}
+                label={link?.title}
+                children={link?.treeChildren}
+              />
             )
           )}
 
