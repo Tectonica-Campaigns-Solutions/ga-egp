@@ -74,6 +74,7 @@ function Footer() {
       }
     }
   `);
+
   return (
     <footer className="footer" data-datocms-noindex>
       <div className="container">
@@ -110,7 +111,7 @@ function Footer() {
           </div>
 
           {/* Hubspot form */}
-          <div className="col-lg-3 offset-lg-1"> 
+          <div className="col-lg-3 offset-lg-1">
             {formFooter && formFooter.hubspot && <TextHubspotForm block={formFooter} />}
           </div>
         </div>
