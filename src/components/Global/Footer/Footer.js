@@ -51,6 +51,7 @@ function Footer() {
       }
       formFooter: datoCmsFormFooter {
         title
+        id
         hubspot {
           ... on DatoCmsHubspot {
             formId

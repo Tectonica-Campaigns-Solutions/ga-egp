@@ -9,7 +9,6 @@ import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigatio
 import SeoDatoCms from '../components/SeoDatoCms';
 
 function ListPodcast({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle, navLinks } }) {
-  console.log(pageContext)
   const filteredContent = pageContext.items;
   const shouldRenderMiddleCta = filteredContent.length >= 12;
   const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
