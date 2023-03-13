@@ -50,6 +50,7 @@ function Footer() {
         value
       }
       formFooter: datoCmsFormFooter {
+        title
         hubspot {
           ... on DatoCmsHubspot {
             formId
@@ -108,7 +109,7 @@ function Footer() {
           </div>
 
           {/* Hubspot form */}
-          <div className="col-lg-3 offset-lg-1">
+          <div className="col-lg-3 offset-lg-1"> 
             {formFooter && formFooter.hubspot && <TextHubspotForm block={formFooter} />}
           </div>
         </div>
