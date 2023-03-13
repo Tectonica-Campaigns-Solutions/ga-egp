@@ -74,9 +74,6 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   slug
                   id
-                  menuInner {
-                    id
-                  }
                 }
               }
             }
@@ -142,9 +139,6 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
-              menuInner {
-                id
-              }
             }
             listMembers: datoCmsListMember {
               title
@@ -155,9 +149,6 @@ exports.createPages = ({ graphql, actions }) => {
               title
               id
               slug
-              menuInner {
-                id
-              }
             }
             listNews: datoCmsListNews {
               title
