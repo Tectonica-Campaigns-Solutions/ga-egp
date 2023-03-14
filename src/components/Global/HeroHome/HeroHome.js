@@ -20,10 +20,13 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
       <style scoped>{css}</style>
       <div className={`hero-home ${textWhite ? 'text-white' : ''}`}>
         <div className="row">
-          <div className="col-xl-9 col-lg-9 text container">
-            <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
-
-            {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
+          <div className="col-xl-9 col-lg-9 container">
+            <div className="row">
+              <div className="col-10">
+                <div className="title" dangerouslySetInnerHTML={{ __html: title }} />
+                {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
+              </div>
+            </div>
 
             {form && (
               <HubspotForm id={form.formId} formId={form.formId} region={form.region} portalId={form.portalId} />
@@ -31,7 +34,7 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
           </div>
         </div>
 
-        <div className="col-md-5"></div>
+        <div className="col-lg-5"></div>
       </div>
     </>
   );

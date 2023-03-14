@@ -92,11 +92,12 @@
     position: fixed;
     top: 0;
     height: 65px;
-    background: #fff;
+    background: var(--egp-white) !important;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
 
     @media (max-width: 992px) {
       position: fixed;
+      background: var(--egp-white);
     }
 
     .navbar-toggler {
@@ -175,8 +176,8 @@
 
 // Mobile open/close icon
 .navbar-toggler-icon {
-  height: 4px;
-  background-color: var(--egp-dark-green);
+  height: 4px !important;
+  background-color: var(--egp-dark) !important;
   position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -192,7 +193,7 @@
     content: '';
     position: absolute;
     height: 4px;
-    background-color: var(--egp-dark-green);
+    background-color: var(--egp-dark) !important;
     width: 1.5em;
     left: 0;
     transition: 0.25s ease-in-out;
@@ -207,7 +208,7 @@
   }
 
   &.open-toggle {
-    background-color: var(--egp-dark-green);
+    background-color: var(--egp-dark) !important;
     opacity: 1;
     top: 0px;
     height: 4px;
@@ -244,10 +245,21 @@
 
 @media screen and (max-width: 991px) {
   .navbar {
+    min-height: auto;
     padding: 5px 0;
+    background-color: var(--egp-white) !important;
 
-    a.navbar-brand {
+
+    a.navbar-brand img {
       padding-left: 15px;
+      width: 70%;
+    }
+
+    &.sticky-nav {
+      .navbar-brand>img {
+        padding-left: 15px;
+        width: 70%;
+      }
     }
 
     button {
@@ -297,5 +309,23 @@
   .navbar {
     position: absolute;
     top: 44px;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+  .navbar {
+
+    .navbar-brand img {
+      padding-left: 15px;
+      width: 87%;
+    }
+
+    .nav-item {
+      margin-right: 25px !important;
+
+      a {
+        font-size: 20px !important;
+      }
+    }
   }
 }
