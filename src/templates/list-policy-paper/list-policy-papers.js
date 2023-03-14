@@ -61,7 +61,7 @@ function ListPolicyPapers({
     let url = '?';
 
     Array.from(e.target.elements).forEach((item) => {
-      if (item.type != 'submit') {
+      if (item.type !== 'submit') {
         if (item.type === 'radio' && item.checked) {
           url += `${item.name}=${item.value}&`;
         } else if (item.type === 'text' && !!item.value) {

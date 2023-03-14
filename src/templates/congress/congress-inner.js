@@ -7,7 +7,7 @@ import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 
 function CongressInner({ pageContext, location, data: { congressInner, favicon, siteTitle } }) {
-  const { congressTitle, congressSlug, congressMenu } = pageContext;
+  const { congressTitle, congressMenu } = pageContext;
 
   const sidebarLinks = () => {
     const items = congressMenu;
