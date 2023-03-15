@@ -60,13 +60,13 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
         <div className="top-member">
           <div className="container h-100">
             <div className="content">
-              <diV className="head-content">
+              <div className="head-content">
                 {page.flag && <img src={page.flag.url} alt={page.flag.alt || 'Flag'} />}
 
                 <h1>{page.title}</h1>
 
                 {page.parties.length > 1 && <div className="member-size">{page.parties.length} Member Parties </div>}
-              </diV>
+              </div>
 
               <div className="close-btn-container">
                 <BackButton location={location} />
@@ -90,7 +90,7 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
           <div className="content-member">
             {partiesOrdered()?.map((item) => {
               return (
-                <div className="row mb-5 pb-0 pb-md-5">
+                <div className="row mb-5 pb-0 pb-md-5" key={item.id}>
                   <div className="col-lg-3">
                     <ImageWrapper image={item.logo} />
                   </div>
@@ -165,6 +165,7 @@ export const MemberQuery = graphql`
       }
       parties {
         ... on DatoCmsParty {
+          id
           title
           contactDetails
           partyLeaders

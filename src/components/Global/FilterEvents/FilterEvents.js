@@ -5,9 +5,9 @@ import { isArray, monthNames } from '../../../utils';
 import DateSlider from '../DateSlider/DateSlider';
 import openIcon from '../../Icons/event_open.svg';
 import closeIcon from '../../Icons/event-close.svg';
+import useWindowSize from '../../hooks/useWindowSize';
 
 import './index.scss';
-import useWindowSize from '../../hooks/useWindowSize';
 
 const ALL_CATEGORIES = 'All';
 
@@ -111,21 +111,21 @@ function FilterEvents({ events, tags }) {
                     name="selected_category"
                     value={ALL_CATEGORIES}
                     onClick={handleOnToggleAll}
-                    checked={isCategoryChecked(ALL_CATEGORIES)}
+                    defaultChecked={isCategoryChecked(ALL_CATEGORIES)}
                   />
-                  <label for="all">All</label>
+                  <label htmlFor="all">All</label>
                 </div>
 
                 {tags.edges.map((item) => (
-                  <div>
+                  <div key={item.node.id}>
                     <input
                       id={item.node.id}
                       type="checkbox"
                       name="selected_category"
                       value={item.node.id}
-                      checked={isCategoryChecked(item.node.id)}
+                      defaultChecked={isCategoryChecked(item.node.id)}
                     />
-                    <label for={item.node.id}>{item.node.title}</label>
+                    <label htmlFor={item.node.id}>{item.node.title}</label>
                   </div>
                 ))}
               </div>
@@ -157,21 +157,21 @@ function FilterEvents({ events, tags }) {
                       name="selected_category"
                       value={ALL_CATEGORIES}
                       onClick={handleOnToggleAll}
-                      checked={isCategoryChecked(ALL_CATEGORIES)}
+                      defaultChecked={isCategoryChecked(ALL_CATEGORIES)}
                     />
-                    <label for="all">All</label>
+                    <label htmlFor="all">All</label>
                   </div>
 
                   {tags.edges.map((item) => (
-                    <div>
+                    <div key={item.node.id}>
                       <input
                         id={item.node.id}
                         type="checkbox"
                         name="selected_category"
                         value={item.node.id}
-                        checked={isCategoryChecked(item.node.id)}
+                        defaultChecked={isCategoryChecked(item.node.id)}
                       />
-                      <label for={item.node.id}>{item.node.title}</label>
+                      <label htmlFor={item.node.id}>{item.node.title}</label>
                     </div>
                   ))}
                 </div>
@@ -184,7 +184,7 @@ function FilterEvents({ events, tags }) {
                 className="filter-action-title"
                 onClick={() => setMobileToggleFilter((prev) => ({ ...prev, year: !prev.year }))}
               >
-                Filter by category
+                Select Year
                 <img src={mobileToggleFilter.year ? openIcon : closeIcon} alt="open/close icon" />
               </div>
               {mobileToggleFilter.year && <DateSlider years={yearsFilter} activeYear={activeYear} />}

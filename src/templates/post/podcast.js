@@ -35,7 +35,7 @@ const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, sit
               {isArray(page.tags) && (
                 <div className="new-tags">
                   {page.tags.map((tag) => (
-                    <Tag title={tag.title} />
+                    <Tag key={tag.id} title={tag.title} />
                   ))}
                 </div>
               )}

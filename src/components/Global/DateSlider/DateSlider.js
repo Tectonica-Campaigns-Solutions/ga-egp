@@ -28,10 +28,10 @@ const DateSlider = ({ years, activeYear }) => {
         }}
       >
         {years.map((year) => (
-          <SwiperSlide>
-            <div key={year}>
+          <SwiperSlide key={year}>
+            <div>
               <input type="radio" id={year} name="selected_year" value={year} />
-              <label className={`${activeYear === year ? 'active' : ''}`} for={year}>
+              <label className={`${activeYear === year ? 'active' : ''}`} htmlFor={year}>
                 {year}
               </label>
             </div>

@@ -33,7 +33,7 @@ const InformationCard = ({
           <span>{documentKey}</span>
 
           {documents.map((doc) => (
-            <Document doc={doc} />
+            <Document key={doc.id} doc={doc} />
           ))}
         </div>
       )}

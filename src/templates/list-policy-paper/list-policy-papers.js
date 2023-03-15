@@ -119,7 +119,11 @@ function ListPolicyPapers({
             value={filterOptions.council}
             onChange={handleOnChangeInputs}
             options={councils}
-            renderOption={(item) => <option value={item.idFilter}>{item.title}</option>}
+            renderOption={(item) => (
+              <option key={item.idFilter} value={item.idFilter}>
+                {item.title}
+              </option>
+            )}
           />
         </div>
 
@@ -168,7 +172,7 @@ function ListPolicyPapers({
 
         <div className="row g-5">
           {filteredContent()?.map((item) => (
-            <CardPolicy item={item.node} />
+            <CardPolicy key={item.node.id} item={item.node} />
           ))}
         </div>
       </InnerLayout>
@@ -200,6 +204,7 @@ export const ListPositionsQuery = graphql`
     listPapers: allDatoCmsPolicyPaper {
       edges {
         node {
+          id
           slug
           title
           intro
@@ -207,6 +212,7 @@ export const ListPositionsQuery = graphql`
             apiKey
           }
           documents {
+            id
             internalName
             language
             document {
@@ -302,6 +308,7 @@ export const ListPositionsQuery = graphql`
     listResolutions: allDatoCmsResolution {
       edges {
         node {
+          id
           title
           slug
           intro
