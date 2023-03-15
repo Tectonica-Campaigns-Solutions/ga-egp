@@ -369,6 +369,7 @@ export const DatoCMS = graphql`
     }
     treeChildren {
       ... on DatoCmsMenu {
+        id
         title
         content {
           ... on DatoCmsPage {
@@ -583,6 +584,7 @@ export const DatoCMS = graphql`
   fragment BlockLatestBlog on DatoCmsLatestBlog {
     __typename
     title
+    id
     link {
       ... on DatoCmsGlobalLink {
         label

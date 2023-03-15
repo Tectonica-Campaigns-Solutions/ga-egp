@@ -12,7 +12,7 @@ const SocialLinkList = ({ links, iconWhite = false }) => {
   return (
     <div className="social-list">
       {links.map((link) => (
-        <SocialLink name={link.socialNetwork} url={link.url} iconWhite={iconWhite} />
+        <SocialLink key={link.url} name={link.socialNetwork} url={link.url} iconWhite={iconWhite} />
       ))}
     </div>
   );

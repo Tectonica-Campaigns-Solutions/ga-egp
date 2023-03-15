@@ -95,6 +95,9 @@ export const PageQuery = graphql`
         ... on DatoCmsBlockHubspotFormStep {
           ...BlockFormSteps
         }
+        ... on DatoCmsTextHubspotForm {
+          ...BlockTextHubspot
+        }
         ... on DatoCmsGroupPerson {
           ...BlockGroupPerson
         }

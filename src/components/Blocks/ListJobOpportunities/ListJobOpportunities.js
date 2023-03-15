@@ -4,7 +4,7 @@ import React from 'react';
 import { isArray } from '../../../utils';
 import JobOpportunityCard from '../../Global/JobOpportunityCard/JobOpportunityCard';
 
-const ListJobOpportunities = ({}) => {
+const ListJobOpportunities = () => {
   const {
     allDatoCmsJobOpportunity: { nodes: jobs },
   } = useStaticQuery(graphql`

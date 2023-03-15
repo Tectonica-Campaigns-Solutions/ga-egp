@@ -18,6 +18,7 @@ const LinkItem = ({ link, label, isButton }) => {
 };
 
 const DropdownItem = ({ link, label, children }) => {
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const mouseEnter = () => {
@@ -36,7 +37,7 @@ const DropdownItem = ({ link, label, children }) => {
 
       <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
         {children?.map((link) => (
-          <li className="dropdown-item" key={link?.id}>
+          <li className="dropdown-item" key={link.id}>
             <Link className="dropdown-link" to={getCtaUrl(link)}>
               {link?.title}
             </Link>
@@ -50,7 +51,6 @@ const DropdownItem = ({ link, label, children }) => {
 export default function Nav({ navData, navbarWhite = false, path, setSearchEngineVisible }) {
   // data
   const navLinks = navData.allDatoCmsMenu.nodes;
-
   // Use States --------
   const [expanded, setExpanded] = useState(false);
   // Sticky Nav handlers are here

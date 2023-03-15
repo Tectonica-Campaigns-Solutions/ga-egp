@@ -8,7 +8,7 @@ import Button from '../../Global/Button/Button';
 
 import * as styles from './event.module.scss';
 
-const UpcomingEvents = ({ block }) => {
+const UpcomingEvents = ({ id, block }) => {
   const nextEvents = useStaticQuery(graphql`
     query {
       allDatoCmsEvent {
@@ -25,7 +25,7 @@ const UpcomingEvents = ({ block }) => {
   const globalLink = block?.link ? block.link : null;
 
   return (
-    <Section title="Upcoming Events" link={globalLink} bgColor="section-green">
+    <Section key={id} title="Upcoming Events" link={globalLink} bgColor="section-green">
       {isArray(highlightEvents) && <EventList events={highlightEvents} />}
 
       <div className={styles.mobileInfoBtn}>

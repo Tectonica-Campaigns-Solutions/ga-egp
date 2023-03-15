@@ -32,7 +32,7 @@ function FilterMembers({ members, introduction }) {
               <ul>
                 {members.map((item) => {
                   return (
-                    <li>
+                    <li key={item.node.id}>
                       <Link to={item.node.slug}>{item.node.title}</Link>
                     </li>
                   );

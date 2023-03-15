@@ -6,7 +6,7 @@ import Button from '../../Global/Button/Button';
 
 import './index.scss';
 
-function HighlightedPositions({ block }) {
+function HighlightedPositions({ id, block }) {
   const { pretitle, title, description, positions, link } = block;
 
   const responsiveSettings = [
@@ -20,7 +20,7 @@ function HighlightedPositions({ block }) {
   ];
 
   return (
-    <div className="highlighted-positions">
+    <div className="highlighted-positions" key={id}>
       <div className="container">
         <div className="row">
           <div className="col-xxl-4 col-text">

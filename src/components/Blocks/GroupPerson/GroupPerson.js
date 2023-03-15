@@ -16,7 +16,7 @@ function GroupPerson({ block }) {
           {isArray(block.people) &&
             block.people.map((person) => {
               return (
-                <div className={`${isHighlighted ? 'col-lg-8' : 'col-lg-4'}`}>
+                <div key={person.id} className={`${isHighlighted ? 'col-lg-8' : 'col-lg-4'}`}>
                   <CardPerson person={person} key={person.id} animated />
                 </div>
               );
