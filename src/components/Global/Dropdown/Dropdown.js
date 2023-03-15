@@ -12,7 +12,7 @@ const Dropdown = ({ activeValue, options = [] }) => {
         className={`btn ${styles.egpDropdown}  dropdown-toggle ${isOpen ? 'show' : ''}`}
         type="button"
         data-bs-toggle="dropdown"
-        aria-expanded={`${isOpen ? 'open' : 'false'}`}
+        aria-expanded={`${isOpen ? true : false}`}
         onClick={toggleOpen}
       >
         {activeValue}

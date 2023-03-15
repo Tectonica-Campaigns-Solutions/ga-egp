@@ -9,7 +9,7 @@ const CampaignCard = ({ campaign }) => {
 
   return (
     <div className={`campaign-card section-${backgroundColor}`} style={{ backgroundImage: `url(${image?.url})` }}>
-      <div className="row">
+      <div className="row align-items-center">
         {bannerImage && (
           <div className="col-4">
             <ImageWrapper image={bannerImage} />

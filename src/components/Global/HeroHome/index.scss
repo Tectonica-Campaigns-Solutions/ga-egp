@@ -106,3 +106,38 @@
     padding-top: 0;
   }
 }
+
+@media screen and (max-width:992px) {
+  .hero-home {
+    height: fit-content;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 3rem;
+
+    .title {
+      font-size: 40px;
+    }
+
+    .text-content {
+      font-size: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1270px) and (min-width: 992px) {
+  .hero-home {
+    height: fit-content;
+
+    .title {
+      font-size: 45px;
+    }
+
+    .text-content {
+      font-size: 22px;
+    }
+
+    .col-10 {
+      width: 100%;
+    }
+  }
+}

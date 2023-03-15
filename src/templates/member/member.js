@@ -40,7 +40,7 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
     });
 
     return ordered;
-  }, [orderBy]);
+  }, [orderBy, parties]);
 
   const handleOnChangeOrderBy = (newOrder) => setOrderBy(newOrder);
 

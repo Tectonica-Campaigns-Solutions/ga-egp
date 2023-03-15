@@ -3,7 +3,7 @@ import Link from '../Link';
 import { isArray } from '../../../utils';
 
 const FooterGroupLinks = ({ item }) => {
-  const { id, label, links } = item;
+  const { label, links } = item;
 
   return (
     <div className="group-links">

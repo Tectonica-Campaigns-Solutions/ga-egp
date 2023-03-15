@@ -4,7 +4,7 @@ import HubspotForm from '../HubspotForm/HubspotForm';
 import './index.scss';
 
 function TextHubspotForm({ block }) {
-  const { id, text, title, backgroundColor, backgroundImage } = block;
+  const { id, title, backgroundColor, backgroundImage } = block;
   const { formId, region, portalId } = block.hubspot;
 
   return (

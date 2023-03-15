@@ -45,7 +45,7 @@ function FilterEvents({ events, tags }) {
     });
 
     setOrderedEvents(eventsGroupedByMonths);
-  }, [activeYear, categoriesFilter]);
+  }, [activeYear, categoriesFilter, events]);
 
   const handlerForm = (event) => {
     const { name, value } = event.target;

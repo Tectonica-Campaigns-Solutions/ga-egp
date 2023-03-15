@@ -11,7 +11,7 @@ const BackButton = ({ location, animated = false }) => {
 
   const navigateBack = () => {
     const splittedUrl = pathname.split('/');
-    const [_, backUrl] = splittedUrl;
+    const [, backUrl] = splittedUrl;
     return '/' + backUrl;
   };
 
