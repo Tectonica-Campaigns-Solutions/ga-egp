@@ -10,17 +10,16 @@ const CheckboxInput = ({ sectionTitle = '', name, values, options = [], onChange
 
       {options.map((option) => {
         return (
-          <>
-            <Input
-              label={option.label}
-              type="checkbox"
-              name={name}
-              value={option.value}
-              checked={values.includes(option.value)}
-              onChange={onChange}
-              hideInput
-            />
-          </>
+          <Input
+            label={option.label}
+            type="checkbox"
+            name={name}
+            value={option.value}
+            checked={values.includes(option.value)}
+            onChange={onChange}
+            hideInput
+            key={option.value}
+          />
         );
       })}
     </>

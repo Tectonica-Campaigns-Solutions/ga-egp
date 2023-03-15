@@ -8,17 +8,16 @@ const RadioInput = ({ sectionTitle = '', name, value, options, onChange }) => {
 
       {options.map((option) => {
         return (
-          <>
-            <Input
-              label={option.label}
-              type="radio"
-              name={name}
-              value={option.value}
-              checked={option.value === value}
-              onChange={onChange}
-              hideInput
-            />
-          </>
+          <Input
+            label={option.label}
+            type="radio"
+            name={name}
+            value={option.value}
+            checked={option.value === value}
+            onChange={onChange}
+            hideInput
+            key={option.value}
+          />
         );
       })}
     </>

@@ -16,14 +16,12 @@ function ListPodcast({ pageContext, location, data: { page, breadcrumb, favicon,
   return (
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
-
       <HeroPage
         title={pageContext.tag ? pageContext.tag : page.title}
         context={pageContext}
         location={location}
         breadcrumb={breadcrumb}
       />
-
       {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <div className="container">
@@ -33,14 +31,14 @@ function ListPodcast({ pageContext, location, data: { page, breadcrumb, favicon,
               list={filteredContent}
               resetPage={location?.state?.filtered ?? null}
               renderItem={(item, index) => (
-                <>
-                  <div className="col-lg-4" key={item.id}>
+                <React.Fragment key={item.node.id}>
+                  <div className="col-lg-4">
                     <CardUpdate post={item.node} />
                   </div>
 
                   {/* TODO: Add form cta block */}
                   {shouldRenderMiddleCta && index === 5 && <div className="col-lg-12 mt-5 mb-5">Form CTA here...</div>}
-                </>
+                </React.Fragment>
               )}
             />
           )}

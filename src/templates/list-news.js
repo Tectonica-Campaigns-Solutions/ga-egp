@@ -34,14 +34,14 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, f
               list={filteredContent}
               resetPage={location?.state?.filtered ?? null}
               renderItem={(item, index) => (
-                <>
-                  <div className="col-lg-4" key={item.id}>
+                <React.Fragment key={item.node.id}>
+                  <div className="col-lg-4">
                     <CardUpdate post={item.node} />
                   </div>
 
                   {/* TODO: Add form cta block */}
                   {shouldRenderMiddleCta && index === 5 && <div className="col-lg-12 mt-5 mb-5">Form CTA here...</div>}
-                </>
+                </React.Fragment>
               )}
             />
           )}

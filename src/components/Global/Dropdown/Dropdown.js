@@ -21,8 +21,8 @@ const Dropdown = ({ activeValue, options = [] }) => {
       <ul className={`dropdown-menu ${isOpen ? 'show' : ''}`}>
         {options.map((option) => {
           return (
-            <li>
-              <a class="dropdown-item" onClick={option.onClick}>
+            <li key={option.label}>
+              <a className="dropdown-item" onClick={option.onClick}>
                 {option.label}
               </a>
             </li>

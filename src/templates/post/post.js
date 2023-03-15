@@ -35,8 +35,8 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
               {isArray(page.authors) && (
                 <div className="authors-list row gy-4">
                   {page.authors.map((author) => (
-                    <div className="col-lg-6">
-                      <AuthorCard author={author} key={author.id} />
+                    <div className="col-lg-6" key={author.id}>
+                      <AuthorCard author={author} />
                     </div>
                   ))}
                 </div>
@@ -47,7 +47,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
               {isArray(page.tags) && (
                 <div className="new-tags">
                   {page.tags.map((tag) => (
-                    <Tag title={tag.title} />
+                    <Tag key={tag.id} title={tag.title} />
                   ))}
                 </div>
               )}
