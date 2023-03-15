@@ -8,7 +8,7 @@ const AnimateLink = ({ to, children = null }) => {
       // paintDrip={false}
       // swipe={true}
       cover={true}
-      fade={false}
+      // fade={false}
       direction="bottom"
       bg="#36845b"
       component={Link}
@@ -20,4 +20,3 @@ const AnimateLink = ({ to, children = null }) => {
 };
 
 export default AnimateLink;
-
