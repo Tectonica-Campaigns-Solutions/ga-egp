@@ -13,11 +13,11 @@ const Page = ({
   location,
   data: { page, navLinks, breadcrumb, sideNav = null, favicon, siteTitle = null },
 }) => {
+  console.log(page)
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
     ? sideNav?.treeParent.treeChildren
     : sideNav?.treeChildren;
-
   return (
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>
@@ -41,9 +41,9 @@ const Page = ({
         <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       )}
 
-      {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+      {!page.hideSidebarNavigation && secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
-      {siblingMenu && siblingMenu.length > 0 ? (
+      {!page.hideSidebarNavigation && siblingMenu && siblingMenu.length > 0 ? (
         <InnerLayout sideNav={siblingMenu} location={location}>
           {<Blocks blocks={page.blocks} />}
         </InnerLayout>
@@ -75,6 +75,8 @@ export const PageQuery = graphql`
       customHeader
       backgroundColor
       description
+      hideSidebarNavigation
+      hideInnerNavigation
       backgroundImage {
         gatsbyImageData
         alt
