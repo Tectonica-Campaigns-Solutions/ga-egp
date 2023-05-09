@@ -4,12 +4,13 @@ import Button from '../Button/Button';
 
 import './index.scss';
 
-const Section = ({ title, link = null, bgColor, extraClassNames = '', children }) => {
+const Section = ({ title, introduction = null, link = null, bgColor, extraClassNames = '', children }) => {
   return (
     <section className={`egp-section ${bgColor}`}>
       <div className="container">
         <div className="title">
           <h2>{title}</h2>
+          {introduction && <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
 
           {link && (
             <div className="section-cta">

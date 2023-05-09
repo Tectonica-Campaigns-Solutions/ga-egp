@@ -22,6 +22,8 @@ export const DatoCMS = graphql`
     title
     pretitle
     textContent
+    imageAlignment
+    backgroundColor
     image {
       gatsbyImageData(width: 700, layout: FIXED)
       alt
@@ -104,6 +106,8 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    introduction
+    backgroundColor
     link {
       url
       ... on DatoCmsGlobalLink {
@@ -136,6 +140,12 @@ export const DatoCMS = graphql`
           url
           alt
           gatsbyImageData(width: 300)
+        }
+        links {
+          ... on DatoCmsGlobalLink {
+            label
+            url
+          }
         }
         backgroundColor
         bannerImage {

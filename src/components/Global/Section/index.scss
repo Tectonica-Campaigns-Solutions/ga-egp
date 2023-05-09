@@ -3,9 +3,10 @@
 
   .title {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 24px;
     justify-content: space-between;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 
     h2 {
       font-family: "Jaldi";
@@ -15,6 +16,16 @@
       line-height: 110%;
       text-transform: uppercase;
       color: var(--egp-darker-green);
+    }
+
+    .introduction {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(--egp-dark);
+      max-width: 1250px;
     }
   }
 
