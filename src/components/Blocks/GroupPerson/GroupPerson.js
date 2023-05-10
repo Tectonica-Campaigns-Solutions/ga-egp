@@ -5,16 +5,16 @@ import CardPerson from '../../Global/CardPerson/CardPerson';
 import './index.scss';
 
 function GroupPerson({ block }) {
-  const isHighlighted = block.highlighted;
+  const { title, useContainer, people = [], isHighlighted = false } = block;
 
   return (
-    <div className="container mt-5">
+    <div className={`${useContainer ? 'container mt-5' : ''}`}>
       <div className={`group-person ${isHighlighted ? 'highlighted' : ''}`}>
-        {block.title && <h2>{block.title}</h2>}
+        {title && <h2>{title}</h2>}
 
         <div className="row gy-5">
-          {isArray(block.people) &&
-            block.people.map((person) => {
+          {isArray(people) &&
+            people.map((person) => {
               return (
                 <div key={person.id} className={`${isHighlighted ? 'col-lg-8' : 'col-lg-4'}`}>
                   <CardPerson person={person} key={person.id} animated />

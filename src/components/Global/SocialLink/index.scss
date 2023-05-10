@@ -1,10 +1,20 @@
 .social-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 21px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 21px;
 
-    img.white {
-        filter: brightness(10);
-    }
+  img.white {
+    filter: brightness(10);
+  }
+}
+
+.title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 130%;
+  color: var(--egp-green);
+  margin-left: 13px;
 }

@@ -101,6 +101,7 @@ export const DatoCMS = graphql`
     __typename
     id
     text
+    useContainer
   }
   fragment BlockCampaings on DatoCmsCampaing {
     __typename
@@ -262,6 +263,7 @@ export const DatoCMS = graphql`
     id
     title
     highlighted
+    useContainer
     people {
       ... on DatoCmsPerson {
         id
@@ -327,6 +329,7 @@ export const DatoCMS = graphql`
   fragment MainNavigation on DatoCmsMenu {
     id
     title
+    hideInInnerNavigation
     content {
       ... on DatoCmsPage {
         slug
@@ -381,6 +384,7 @@ export const DatoCMS = graphql`
       ... on DatoCmsMenu {
         id
         title
+        hideInInnerNavigation
         content {
           ... on DatoCmsPage {
             slug
@@ -679,6 +683,7 @@ export const DatoCMS = graphql`
   }
   fragment Breadcrumb on DatoCmsMenu {
     title
+    hideInInnerNavigation
     treeParent {
       title
       content {
@@ -757,6 +762,67 @@ export const DatoCMS = graphql`
                 apiKey
               }
             }
+          }
+        }
+      }
+    }
+  }
+  fragment BlockTwoColumns on DatoCmsTwoColumn {
+    __typename
+    id
+    backgroundColor
+    leftColumnTitle
+    leftContent {
+      ...BlockTextSimple
+      ...BlockTextHubspot
+      ... on DatoCmsGroupPerson {
+        ...BlockGroupPerson
+      }
+      ... on DatoCmsVerticalCtaList {
+        __typename
+        id
+        item {
+          ...BlockCta
+        }
+      }
+      ... on DatoCmsSocialGrid {
+        __typename
+        id
+        title
+        items {
+          ... on DatoCmsSocialLink {
+            id
+            url
+            socialNetwork
+            title
+          }
+        }
+      }
+    }
+    rightColumnTitle
+    rightContent {
+      ...BlockTextSimple
+      ...BlockTextHubspot
+      ... on DatoCmsGroupPerson {
+        ...BlockGroupPerson
+      }
+      ... on DatoCmsVerticalCtaList {
+        __typename
+        id
+        item {
+          ...BlockCta
+        }
+      }
+      ... on DatoCmsSocialGrid {
+        __typename
+        id
+        title
+        items {
+          ... on DatoCmsSocialLink {
+            id
+            url
+            socialNetwork
+            title
           }
         }
       }

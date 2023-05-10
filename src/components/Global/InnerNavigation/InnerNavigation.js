@@ -11,9 +11,12 @@ const InnerNavigation = ({ location, innerMenu }) => {
 
   const navLinks = innerMenu?.treeChildren || [];
 
-  const navLinksOrdered = navLinks.sort(function (a, b) {
-    return a.position - b.position;
-  });
+  // Filter links by 'hide' field and sort by order
+  const navLinksOrdered = navLinks
+    .filter((link) => !link.hideInInnerNavigation)
+    .sort(function (a, b) {
+      return a.position - b.position;
+    });
 
   return (
     <div className="inner-navigation" data-datocms-noindex>

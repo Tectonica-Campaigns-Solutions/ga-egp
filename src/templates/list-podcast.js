@@ -57,6 +57,7 @@ export const ListPodcastQuery = graphql`
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title
+      hideInInnerNavigation
       treeParent {
         title
         treeChildren {
@@ -64,6 +65,7 @@ export const ListPodcastQuery = graphql`
           ... on DatoCmsMenu {
             id
             title
+            hideInInnerNavigation
             content {
               ... on DatoCmsPage {
                 slug
@@ -105,6 +107,7 @@ export const ListPodcastQuery = graphql`
             ... on DatoCmsMenu {
               id
               title
+              hideInInnerNavigation
               content {
                 ... on DatoCmsPage {
                   slug

@@ -16,12 +16,13 @@ const SocialMap = {
   flickr: iconFlickr,
 };
 
-const SocialLink = ({ name, url, iconWhite = false }) => {
+const SocialLink = ({ name, url, title = '', iconWhite = false }) => {
   const socialImg = SocialMap[name];
 
   return (
     <Link to={url}>
       <img height={40} src={socialImg} alt={name} className={`${iconWhite ? 'white' : ''}`} />
+      {title && <span className="title">{title}</span>}
     </Link>
   );
 };

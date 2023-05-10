@@ -1,10 +1,12 @@
 import React from 'react';
-import * as styles from './textsimple.module.css';
+import * as styles from './textsimple.module.scss';
 
 function TextSimple({ block }) {
+  const { text, useContainer = false } = block;
+
   return (
-    <div className="container my-5">
-      <div className={styles.simpleText} dangerouslySetInnerHTML={{ __html: block.text }} />
+    <div className={`${useContainer ? 'container my-5' : ''}`}>
+      {text && <div className={styles.simpleText} dangerouslySetInnerHTML={{ __html: text }} />}
     </div>
   );
 }

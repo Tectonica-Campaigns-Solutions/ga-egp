@@ -118,10 +118,14 @@ export const PageQuery = graphql`
         ... on DatoCmsListJobOpportunity {
           __typename
         }
+        ... on DatoCmsTwoColumn {
+          ...BlockTwoColumns
+        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title
+      hideInInnerNavigation
       treeParent {
         title
         treeChildren {
@@ -129,6 +133,7 @@ export const PageQuery = graphql`
           ... on DatoCmsMenu {
             id
             title
+            hideInInnerNavigation
             position
             content {
               ... on DatoCmsPage {
@@ -177,6 +182,7 @@ export const PageQuery = graphql`
             ... on DatoCmsMenu {
               id
               title
+              hideInInnerNavigation
               position
               content {
                 ... on DatoCmsPage {
@@ -221,6 +227,7 @@ export const PageQuery = graphql`
         ... on DatoCmsMenu {
           id
           title
+          hideInInnerNavigation
           position
           content {
             ... on DatoCmsPage {
@@ -261,6 +268,7 @@ export const PageQuery = graphql`
           ... on DatoCmsMenu {
             id
             title
+            hideInInnerNavigation
             position
             content {
               ... on DatoCmsPage {

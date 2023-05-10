@@ -103,6 +103,7 @@ export const ListPositionsQuery = graphql`
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title
+      hideInInnerNavigation
       treeParent {
         title
         treeChildren {
@@ -110,6 +111,7 @@ export const ListPositionsQuery = graphql`
           ... on DatoCmsMenu {
             id
             title
+            hideInInnerNavigation
             content {
               ... on DatoCmsPage {
                 slug
@@ -151,6 +153,7 @@ export const ListPositionsQuery = graphql`
             ... on DatoCmsMenu {
               id
               title
+              hideInInnerNavigation
               content {
                 ... on DatoCmsPage {
                   slug
@@ -188,9 +191,11 @@ export const ListPositionsQuery = graphql`
     sideNav: datoCmsMenu(id: { eq: $menuPos }) {
       treeChildren {
         id
+        hideInInnerNavigation
         ... on DatoCmsMenu {
           id
           title
+          hideInInnerNavigation
           content {
             ... on DatoCmsPage {
               slug

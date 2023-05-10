@@ -72,6 +72,7 @@ export const ListNewsQuery = graphql`
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
       title
+      hideInInnerNavigation
       treeParent {
         title
         treeChildren {
@@ -79,6 +80,7 @@ export const ListNewsQuery = graphql`
           ... on DatoCmsMenu {
             id
             title
+            hideInInnerNavigation
             content {
               ... on DatoCmsPage {
                 slug
