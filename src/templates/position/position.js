@@ -91,6 +91,7 @@ export const PositionQuery = graphql`
           ... on DatoCmsMenu {
             id
             title
+            position
             content {
               ... on DatoCmsPage {
                 slug
@@ -138,6 +139,7 @@ export const PositionQuery = graphql`
             ... on DatoCmsMenu {
               id
               title
+              position
               content {
                 ... on DatoCmsPage {
                   slug

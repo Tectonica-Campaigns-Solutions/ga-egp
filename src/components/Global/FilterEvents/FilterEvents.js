@@ -105,27 +105,33 @@ function FilterEvents({ events, tags }) {
               <div className="filter-action-title">Filter by category</div>
               <div className="category-items">
                 <div>
-                  <input
-                    id="all"
-                    type="checkbox"
-                    name="selected_category"
-                    value={ALL_CATEGORIES}
-                    onClick={handleOnToggleAll}
-                    defaultChecked={isCategoryChecked(ALL_CATEGORIES)}
-                  />
-                  <label htmlFor="all">All</label>
+                  <label htmlFor="all">All
+                    <input
+                      id="all"
+                      type="checkbox"
+                      name="selected_category"
+                      value={ALL_CATEGORIES}
+                      onClick={handleOnToggleAll}
+                      defaultChecked={isCategoryChecked(ALL_CATEGORIES)}
+                    />
+                    <span class="checkmark"></span>
+                  </label>
                 </div>
 
                 {tags.edges.map((item) => (
                   <div key={item.node.id}>
-                    <input
-                      id={item.node.id}
-                      type="checkbox"
-                      name="selected_category"
-                      value={item.node.id}
-                      defaultChecked={isCategoryChecked(item.node.id)}
-                    />
-                    <label htmlFor={item.node.id}>{item.node.title}</label>
+                    <label htmlFor={item.node.id}>{item.node.title}
+                      <input
+                        id={item.node.id}
+                        type="checkbox"
+                        name="selected_category"
+                        value={item.node.id}
+                        defaultChecked={isCategoryChecked(item.node.id)}
+                        checked={isCategoryChecked(item.node.id)}
+                      />
+                       <span class="checkmark"></span>
+                    </label>
+                    
                   </div>
                 ))}
               </div>
