@@ -5,9 +5,14 @@ import Link from '../Link';
 import './index.scss';
 
 function SidebarNav({ menu, location }) {
+
+  const menuOrdered = menu.sort(function (a, b) {
+    return a.position - b.position;
+  });
+  
   return (
     <div className="sidebar-nav" data-datocms-noindex>
-      {menu.map((item) => {
+      {menuOrdered.map((item) => {
         const currentPathname = location ? location?.pathname : null;
 
         const slug = item.slug || item.content?.slug;

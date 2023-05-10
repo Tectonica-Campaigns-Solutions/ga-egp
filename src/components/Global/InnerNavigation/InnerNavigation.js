@@ -11,11 +11,15 @@ const InnerNavigation = ({ location, innerMenu }) => {
 
   const navLinks = innerMenu?.treeChildren || [];
 
+  const navLinksOrdered = navLinks.sort(function (a, b) {
+    return a.position - b.position;
+  });
+
   return (
     <div className="inner-navigation" data-datocms-noindex>
       <div className="container">
         <div className={`items py-4 ${isMobileMenuOpen ? 'open' : ''}`}>
-          {navLinks.map((item, index) => {
+          {navLinksOrdered.map((item, index) => {
             const link = pathToModel(item.content?.model?.apiKey, item.content?.slug);
             const active = isActiveTrail(location?.pathname, link);
 

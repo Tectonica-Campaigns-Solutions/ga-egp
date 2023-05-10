@@ -10,6 +10,8 @@ import 'swiper/css/navigation';
 import './index.scss';
 
 const DateSlider = ({ years, activeYear }) => {
+  console.log(years)
+  console.log(activeYear)
   const initialSlide = years.findIndex((y) => y === activeYear);
 
   return (
