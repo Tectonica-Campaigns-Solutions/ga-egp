@@ -105,7 +105,8 @@ function FilterEvents({ events, tags }) {
               <div className="filter-action-title">Filter by category</div>
               <div className="category-items">
                 <div>
-                  <label htmlFor="all">All
+                  <label htmlFor="all">
+                    All
                     <input
                       id="all"
                       type="checkbox"
@@ -114,13 +115,14 @@ function FilterEvents({ events, tags }) {
                       onClick={handleOnToggleAll}
                       defaultChecked={isCategoryChecked(ALL_CATEGORIES)}
                     />
-                    <span class="checkmark"></span>
+                    <span class="checkmark" />
                   </label>
                 </div>
 
                 {tags.edges.map((item) => (
                   <div key={item.node.id}>
-                    <label htmlFor={item.node.id}>{item.node.title}
+                    <label htmlFor={item.node.id}>
+                      {item.node.title}
                       <input
                         id={item.node.id}
                         type="checkbox"
@@ -129,9 +131,8 @@ function FilterEvents({ events, tags }) {
                         defaultChecked={isCategoryChecked(item.node.id)}
                         checked={isCategoryChecked(item.node.id)}
                       />
-                       <span class="checkmark"></span>
+                      <span class="checkmark"></span>
                     </label>
-                    
                   </div>
                 ))}
               </div>

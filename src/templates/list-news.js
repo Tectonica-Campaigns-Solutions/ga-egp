@@ -5,14 +5,11 @@ import Layout from '../components/Layout/Layout';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
-// import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import SeoDatoCms from '../components/SeoDatoCms';
 
 function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, favicon, siteTitle } }) {
   const filteredContent = pageContext.items;
-
   const shouldRenderMiddleCta = filteredContent.length >= 12;
-  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
 
   return (
     <Layout>
@@ -24,8 +21,6 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, f
         location={location}
         breadcrumb={breadcrumb}
       />
-
-      {/* {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />} */}
 
       <div className="container">
         <div className="row g-5 my-5">
