@@ -5,7 +5,7 @@ import Layout from '../components/Layout/Layout';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import { isArray } from '../utils';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
-import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
+// import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import SeoDatoCms from '../components/SeoDatoCms';
 
 function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, favicon, siteTitle } }) {
@@ -25,7 +25,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, f
         breadcrumb={breadcrumb}
       />
 
-      {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+      {/* {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />} */}
 
       <div className="container">
         <div className="row g-5 my-5">

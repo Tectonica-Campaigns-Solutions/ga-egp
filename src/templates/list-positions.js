@@ -112,6 +112,7 @@ export const ListPositionsQuery = graphql`
             id
             title
             hideInInnerNavigation
+            position
             content {
               ... on DatoCmsPage {
                 slug
@@ -154,6 +155,7 @@ export const ListPositionsQuery = graphql`
               id
               title
               hideInInnerNavigation
+              position
               content {
                 ... on DatoCmsPage {
                   slug
