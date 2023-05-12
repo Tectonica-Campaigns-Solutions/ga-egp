@@ -19,8 +19,10 @@ const Page = ({
     ? sideNav?.treeParent.treeChildren
     : sideNav?.treeChildren;
 
+  const shouldUseNavbarWhite = page.customHeader && page.backgroundColor === 'pink';
+
   return (
-    <Layout>
+    <Layout navbarWhite={shouldUseNavbarWhite}>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>
         {page.noIndex && <meta name="robots" content="noindex" />}
       </SeoDatoCms>
@@ -43,7 +45,7 @@ const Page = ({
       )}
 
       {!page.hideSidebarNavigation && secondaryMenu?.treeChildren && (
-        <InnerNavigation location={location} innerMenu={secondaryMenu} />
+        <InnerNavigation location={location} linkParent={navLinks.treeParent} innerMenu={secondaryMenu} />
       )}
 
       {!page.hideSidebarNavigation && siblingMenu && siblingMenu.length > 0 ? (

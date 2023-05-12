@@ -24,6 +24,13 @@ function ListPositions({
         slidesToScroll: 1,
       },
     },
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
   ];
 
   return (
@@ -46,7 +53,7 @@ function ListPositions({
               <div className={`col-12 row ${styles.desktopItems}`}>
                 {list.edges.map((item) => {
                   return (
-                    <div className="col-lg-4 col-md-12 mb-5" key={item.node.id}>
+                    <div className="col-xl-4 col-lg-6 col-md-12 mb-5" key={item.node.id}>
                       <CardPosition position={item.node} showButtons={false} small />
                     </div>
                   );

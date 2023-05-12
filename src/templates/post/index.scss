@@ -14,8 +14,11 @@
     color: var(--egp-dark);
   }
 
-  .image-wrapper {
+  .post-main-image {
+    margin-bottom: 40px;
+  }
 
+  .image-wrapper {
     &>div {
       border-radius: 15px;
     }

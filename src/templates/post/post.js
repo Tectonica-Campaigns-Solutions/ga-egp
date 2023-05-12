@@ -30,7 +30,11 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
         <div className="post-detail">
           <div className="row justify-content-center">
             <div className="col-lg-9">
-              {page.image && <ImageWrapper image={page.image} />}
+              {page.image && (
+                <div className="post-main-image">
+                  <ImageWrapper image={page.image} />
+                </div>
+              )}
 
               {isArray(page.authors) && (
                 <div className="authors-list row gy-4">

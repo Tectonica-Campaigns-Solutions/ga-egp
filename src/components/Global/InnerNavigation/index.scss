@@ -9,6 +9,8 @@
     gap: 69px;
 
     .item {
+      padding-bottom: 1px;
+
       .link-item {
         font-family: 'Jaldi';
         font-style: normal;
@@ -17,11 +19,11 @@
         line-height: 110%;
         text-transform: uppercase;
         color: var(--egp-green);
+      }
 
-        &.active {
-          color: var(--egp-dark);
-          border-bottom: 4px solid var(--egp-dark);
-        }
+      &.active {
+        color: var(--egp-dark);
+        border-bottom: 4px solid var(--egp-dark);
       }
     }
 

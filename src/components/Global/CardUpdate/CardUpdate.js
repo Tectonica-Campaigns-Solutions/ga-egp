@@ -19,12 +19,13 @@ const CardUpdate = ({ post }) => {
   } = post;
 
   const postUrl = pathToModel(apiKey, slug);
-  const basePath = basePathTag(apiKey)
+  const basePath = basePathTag(apiKey);
+
   return (
     <article className={`card-update ${isPodcast ? 'podcast' : ''}`}>
       <div className="information">
         <div className="meta">
-          <span>{publishedAt}</span>
+          {publishedAt && <span>{publishedAt}</span>}
 
           {isPodcast && (
             <span className="podcast-tag">

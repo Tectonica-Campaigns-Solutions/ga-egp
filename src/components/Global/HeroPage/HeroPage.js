@@ -24,9 +24,9 @@ function HeroPage({
         )}
 
         <div>
-          {date && <div className="date">{date}</div>}
+          {date && <div className={styles.heroDate}>{date}</div>}
           {parentTitle && <h2>{parentTitle}</h2>}
-          {!parentTitle && <h1 className={`${isDetailView ? styles.sm : ''}`}>{title}</h1>}
+          {!parentTitle && <h1 className={`${styles.heroTitle} ${isDetailView ? styles.sm : ''}`}>{title}</h1>}
 
           {children}
         </div>

@@ -27,8 +27,8 @@ const InnerNavigation = ({ location, innerMenu }) => {
             const active = isActiveTrail(location?.pathname, link);
 
             return (
-              <div className="item" key={item.id}>
-                <Link className={`link-item ${active ? 'active' : ''}`} to={link}>
+              <div className={`item ${active ? 'active' : ''}`} key={item.id}>
+                <Link className="link-item" to={link}>
                   {item.title}
                 </Link>
 

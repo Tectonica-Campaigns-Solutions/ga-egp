@@ -5,11 +5,10 @@ import Link from '../Link';
 import './index.scss';
 
 function SidebarNav({ menu, location }) {
-
   const menuOrdered = menu.sort(function (a, b) {
     return a.position - b.position;
   });
-  
+
   return (
     <div className="sidebar-nav" data-datocms-noindex>
       {menuOrdered.map((item) => {
@@ -19,7 +18,6 @@ function SidebarNav({ menu, location }) {
         const maybeApiKey = item.model?.apiKey || item.content?.model?.apiKey;
 
         const path = pathToModel(maybeApiKey, slug);
-
         const isActivePath = isActiveTrail(currentPathname, path);
 
         return (

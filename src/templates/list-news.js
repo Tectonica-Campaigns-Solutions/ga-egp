@@ -23,7 +23,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, f
       />
 
       <div className="container">
-        <div className="row g-5 my-5">
+        <div className="row g-5 my-3">
           {isArray(filteredContent) && (
             <ListPaginated
               list={filteredContent}

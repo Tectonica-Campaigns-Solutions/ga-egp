@@ -1,6 +1,6 @@
 .card-update {
   .information {
-    min-height: 350px;
+    min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,7 +16,7 @@
       font-size: 1.938rem;
       line-height: 110%;
       color: var(--egp-dark-green);
-      margin-bottom: 1.25rem;
+      margin: 0;
     }
 
     .meta {
@@ -78,6 +78,7 @@
   .image-wrapper {
     &>div {
       border-radius: 0 0 15px 15px;
+      height: 310px;
     }
   }
 }
@@ -104,6 +105,12 @@
             font-size: 13px;
           }
         }
+      }
+    }
+
+    .image-wrapper {
+      &>div {
+        height: auto;
       }
     }
   }

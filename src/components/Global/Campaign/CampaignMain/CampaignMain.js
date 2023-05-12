@@ -4,7 +4,7 @@ import ImageWrapper from '../../Image/ImageWrapper';
 
 import './index.scss';
 
-const CampaignMain = ({ title, description, image, link = null }) => {
+const CampaignMain = ({ title, description, image, links = null }) => {
   return (
     <div className="campaign-main">
       {image && (
@@ -13,14 +13,14 @@ const CampaignMain = ({ title, description, image, link = null }) => {
         </div>
       )}
 
-      <h2>{title}</h2>
-      <div dangerouslySetInnerHTML={{ __html: description }} />
+      {title && <h2>{title}</h2>}
+      {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
 
       {/* Cta */}
-      {link && (
+      {links && (
         <div className="ctas">
-          {link.map((item) => (
-            <Button label="Request to Join" />
+          {links.map((item) => (
+            <Button {...item} />
           ))}
         </div>
       )}

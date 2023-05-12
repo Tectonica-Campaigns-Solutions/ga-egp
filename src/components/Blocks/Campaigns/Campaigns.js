@@ -4,39 +4,28 @@ import CampaignMain from '../../Global/Campaign/CampaignMain/CampaignMain';
 import Section from '../../Global/Section/Section';
 
 const Campaigns = ({ block }) => {
-  const hasHighlightBlock = block.highlight;
+  const { title, introduction, link, backgroundColor, highlight, otherCampaigns } = block;
 
   return (
-    <Section
-      title={block.title}
-      introduction={block.introduction}
-      link={block.link}
-      bgColor={block.backgroundColor}
-      extraClassNames="g-4"
-    >
-      {hasHighlightBlock && (
+    <Section title={title} introduction={introduction} link={link} bgColor={backgroundColor} extraClassNames="g-4">
+      {highlight && (
         <div className="col-lg-6">
           <CampaignMain
-            title={block.highlight.title}
-            description={block.highlight.description}
-            image={block.highlight.image}
-            links={block.link}
+            title={highlight.title}
+            description={highlight.description}
+            image={highlight.image}
+            links={highlight.links}
           />
         </div>
       )}
 
-      <div className={`${hasHighlightBlock ? 'col-lg-6' : 'col'}`}>
-        {hasHighlightBlock ? (
-          <>
-            {block.otherCampaigns &&
-              block.otherCampaigns.map((item) => {
-                return <CampaignCard campaign={item} key={item.id} />;
-              })}
-          </>
+      <div className={`${highlight ? 'col-lg-6' : 'col'}`}>
+        {highlight ? (
+          <>{otherCampaigns && otherCampaigns.map((item) => <CampaignCard campaign={item} key={item.id} />)}</>
         ) : (
           <div className="row">
-            {block.otherCampaigns &&
-              block.otherCampaigns.map((campaign) => (
+            {otherCampaigns &&
+              otherCampaigns.map((campaign) => (
                 <div className="col-lg-6" key={campaign.id}>
                   <CampaignCard campaign={campaign} />
                 </div>
