@@ -306,10 +306,11 @@
 }
 
 .top-message-container+header {
-  .navbar {
-    position: absolute;
-    top: 44px;
-  }
+  // margin-top: 44px;
+  // .navbar {
+  // position: sticky;
+  // top: 44px;
+  // }
 }
 
 @media screen and (max-width: 1200px) and (min-width: 992px) {

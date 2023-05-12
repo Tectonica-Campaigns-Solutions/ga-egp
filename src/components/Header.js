@@ -19,7 +19,7 @@ const Header = ({ location, navbarWhite = false }) => {
   `);
 
   return (
-    <header data-datocms-noindex>
+    <header data-datocms-noindex className="position-relative">
       <SearchEngine searchEngineVisible={searchEngineVisible} setSearchEngineVisible={setSearchEngineVisible} />
 
       <Nav
