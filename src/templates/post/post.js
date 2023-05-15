@@ -13,15 +13,19 @@ import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
 import './index.scss';
 
 const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
+  const { seo, title, date, image, authors = [], textContent, tags = [] } = page;
+
+  console.log({ breadcrumb });
+
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+      <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />
 
       <HeroPage
-        title={page.title}
+        title={title}
         context={pageContext}
         location={location}
-        date={page.date}
+        date={date}
         breadcrumb={breadcrumb}
         isDetailView
       />
@@ -30,15 +34,15 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
         <div className="post-detail">
           <div className="row justify-content-center">
             <div className="col-lg-9">
-              {page.image && (
+              {image && (
                 <div className="post-main-image">
-                  <ImageWrapper image={page.image} />
+                  <ImageWrapper image={image} />
                 </div>
               )}
 
-              {isArray(page.authors) && (
+              {isArray(authors) && (
                 <div className="authors-list row gy-4">
-                  {page.authors.map((author) => (
+                  {authors.map((author) => (
                     <div className="col-lg-6" key={author.id}>
                       <AuthorCard author={author} />
                     </div>
@@ -46,11 +50,11 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
                 </div>
               )}
 
-              {page.textContent && <StructuredContentDefault content={page.textContent} />}
+              {textContent && <StructuredContentDefault content={textContent} />}
 
-              {isArray(page.tags) && (
+              {isArray(tags) && (
                 <div className="new-tags">
-                  {page.tags.map((tag) => (
+                  {tags.map((tag) => (
                     <Tag key={tag.id} title={tag.title} />
                   ))}
                 </div>

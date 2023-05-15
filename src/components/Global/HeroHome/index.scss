@@ -21,10 +21,15 @@
     background-color: rgba(0, 0, 0, 0.4);
   }
 
-  >.row {
-    padding-top: 150px;
+  >.container>.row {
     position: relative;
     z-index: 10;
+
+    &:first-child {
+      @media screen and (max-width: 1270px) {
+        padding-top: 150px;
+      }
+    }
   }
 
   .title {
@@ -101,6 +106,32 @@
         display: block !important;
       }
     }
+
+    .hs-error-msgs {
+      margin: 0;
+    }
+
+    @media screen and (max-width: 992px) {
+      flex-direction: column;
+
+      fieldset {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        width: 100%;
+      }
+
+      .hs-form-field {
+        width: 100% !important;
+      }
+
+      input {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+
+    }
   }
 
   +.narrative {
@@ -135,10 +166,6 @@
 
     .text-content {
       font-size: 22px;
-    }
-
-    .col-10 {
-      width: 100%;
     }
   }
 }
