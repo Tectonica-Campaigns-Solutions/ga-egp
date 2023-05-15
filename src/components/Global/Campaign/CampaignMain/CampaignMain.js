@@ -20,7 +20,7 @@ const CampaignMain = ({ title, description, image, links = null }) => {
       {links && (
         <div className="ctas">
           {links.map((item) => (
-            <Button {...item} />
+            <Button {...item} key={`campaign-link-${item.url}`} />
           ))}
         </div>
       )}
