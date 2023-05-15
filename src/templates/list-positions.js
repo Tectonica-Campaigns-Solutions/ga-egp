@@ -14,6 +14,9 @@ function ListPositions({
   location,
   data: { list, page, navLinks, breadcrumb, sideNav, favicon, siteTitle },
 }) {
+  const { seo, title, introduction } = page;
+  const items = list.edges ?? [];
+
   const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
 
   const responsiveSettings = [
@@ -35,25 +38,25 @@ function ListPositions({
 
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+      <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroPage title={page.title} breadcrumb={breadcrumb} context={pageContext} location={location} />
+      <HeroPage title={title} breadcrumb={breadcrumb} context={pageContext} location={location} />
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
       <div className={`container ${styles.listPositionContainer}`}>
         <div className="row">
           <div className="col">
             <div className="row">
-              {page.introduction && (
+              {introduction && (
                 <div className="col-lg-8">
-                  <div className={styles.listPositionText} dangerouslySetInnerHTML={{ __html: page.introduction }} />
+                  <div className={styles.listPositionText} dangerouslySetInnerHTML={{ __html: introduction }} />
                 </div>
               )}
 
               <div className={`col-12 row ${styles.desktopItems}`}>
-                {list.edges.map((item) => {
+                {items.map((item) => {
                   return (
-                    <div className="col-xl-4 col-lg-6 col-md-12 mb-5" key={item.node.id}>
+                    <div className="col-xxl-4 col-xl-6 col-lg-6 col-md-12 mb-5" key={item.node.id}>
                       <CardPosition position={item.node} showButtons={false} small />
                     </div>
                   );
@@ -62,7 +65,7 @@ function ListPositions({
 
               <div className={`col-12 row ${styles.mobileItems}`}>
                 <EGPSlider responsive={responsiveSettings}>
-                  {list.edges.map((item) => {
+                  {items.map((item) => {
                     return (
                       <div className="col-lg-4 col-md-12" key={`responsive-${item.node.id}`}>
                         <CardPosition position={item.node} showButtons={false} />
