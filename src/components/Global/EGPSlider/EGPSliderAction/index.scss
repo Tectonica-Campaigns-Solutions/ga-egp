@@ -48,6 +48,11 @@
       justify-content: center;
       border-radius: 100%;
       color: var(--egp-dark-green);
+
+      &:hover {
+        color: var(--egp-white);
+        background-color: var(--egp-dark-green);
+      }
     }
   }
 }
