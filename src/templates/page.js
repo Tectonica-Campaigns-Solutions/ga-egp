@@ -20,7 +20,7 @@ const Page = ({
     : sideNav?.treeChildren;
 
   const shouldUseNavbarWhite = page.customHeader && page.backgroundColor === 'pink';
-  
+
   return (
     <Layout navbarWhite={shouldUseNavbarWhite}>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>
@@ -44,7 +44,7 @@ const Page = ({
         <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       )}
 
-      {!page.hideSidebarNavigation && secondaryMenu?.treeChildren && (
+      {!page.hideInnerNavigation && secondaryMenu?.treeChildren && (
         <InnerNavigation location={location} linkParent={navLinks.treeParent} innerMenu={secondaryMenu} />
       )}
 

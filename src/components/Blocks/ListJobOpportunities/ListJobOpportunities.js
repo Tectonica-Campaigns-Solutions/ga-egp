@@ -16,6 +16,10 @@ const ListJobOpportunities = () => {
           location
           description
           isRemote
+          slug
+          model {
+            apiKey
+          }
         }
       }
     }

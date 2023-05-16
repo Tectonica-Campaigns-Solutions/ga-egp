@@ -13,8 +13,9 @@ export const pathToModel = (model = null, slug = '') => {
     return `/resolutions/${slug}`;
   } else if (model === 'congress_inner_page') {
     return `/events/${slug}`;
-  } 
-  else {
+  } else if (model === 'job_opportunity') {
+    return `/job-opportunity/${slug}`;
+  } else {
     return '/' + slug;
   }
 };
@@ -93,6 +94,10 @@ export const isActiveTrail = (pathname, link) => {
 
 export const removeUnderscoreFromString = (string) => {
   return string.replaceAll('_', ' ');
+};
+
+export const truncate = (text, limit = 30) => {
+  return text.slice(0, limit).concat('...');
 };
 
 // Policy papers filters
