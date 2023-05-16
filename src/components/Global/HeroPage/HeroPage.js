@@ -13,13 +13,14 @@ function HeroPage({
   currentId = null,
   breadcrumb = null,
   children = null,
+  breadcrumbDetail = null
 }) {
   return (
     <div className={styles.heroPage}>
       <div className="container">
         {breadcrumb && (
           <div>
-            <Breadcrumb items={breadcrumb} />
+            <Breadcrumb items={breadcrumb} breadcrumbDetail={breadcrumbDetail} />
           </div>
         )}
 

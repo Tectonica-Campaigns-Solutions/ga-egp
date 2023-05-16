@@ -14,9 +14,8 @@ import './index.scss';
 
 const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
   const { seo, title, date, image, authors = [], textContent, tags = [] } = page;
-
-  console.log({ breadcrumb });
-
+  // const postBreadcrumb = [...breadcrumb, ...{ title: 'hola', content: null }]
+  
   return (
     <Layout>
       <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />
@@ -27,6 +26,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
         location={location}
         date={date}
         breadcrumb={breadcrumb}
+        breadcrumbDetail={title}
         isDetailView
       />
 

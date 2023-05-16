@@ -4,7 +4,8 @@ import { pathToModel } from '../../../utils';
 
 import * as styles from './breadcrumb.module.scss';
 
-const Breadcrumb = ({ items = null, textWhite = false }) => {
+const Breadcrumb = ({ items = null, textWhite = false, breadcrumbDetail = null }) => {
+
   const getItemsReversed = () => {
     const cloneItems = structuredClone(items);
     const slugs = getTitlesRecursive(cloneItems, []);
@@ -13,14 +14,14 @@ const Breadcrumb = ({ items = null, textWhite = false }) => {
   };
 
   const getTitlesRecursive = (item, slugs = []) => {
+
     if (item.title) {
-      slugs.push({ title: item.title, content: item?.content });
+      slugs.push({ title: item.title, content: item?.slug });
     }
 
     if (item.treeParent) {
       return getTitlesRecursive(item.treeParent, slugs);
     }
-
     return slugs;
   };
 
@@ -32,6 +33,11 @@ const Breadcrumb = ({ items = null, textWhite = false }) => {
   };
 
   const finalItems = [{ title: 'Home', to: '/' }, ...getItemsReversed()];
+  
+  //add current page is detail post or event
+  if(breadcrumbDetail){
+    finalItems.push({title:breadcrumbDetail, content: null})
+  }
 
   return (
     <div className={`${styles.egpBreadcrumb} ${textWhite ? styles.textWhite : null}`} data-datocms-noindex>
