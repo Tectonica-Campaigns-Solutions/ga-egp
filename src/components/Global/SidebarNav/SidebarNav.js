@@ -12,6 +12,7 @@ function SidebarNav({ menu, location }) {
   return (
     <div className="sidebar-nav" data-datocms-noindex>
       {menuOrdered.map((item) => {
+   
         const currentPathname = location ? location?.pathname : null;
 
         const slug = item.slug || item.content?.slug;

@@ -11,7 +11,10 @@ export const pathToModel = (model = null, slug = '') => {
     return `/podcast/${slug}`;
   } else if (model === 'resolution') {
     return `/resolutions/${slug}`;
-  } else {
+  } else if (model === 'congress_inner_page') {
+    return `/events/${slug}`;
+  } 
+  else {
     return '/' + slug;
   }
 };
