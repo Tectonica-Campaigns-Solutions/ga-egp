@@ -171,8 +171,19 @@ exports.createPages = ({ graphql, actions }) => {
                       title
                       slug
                       id
+                      model{
+                        apiKey
+                      }
                     }
                   }
+                }
+              }
+            }
+            allInnerCongress: allDatoCmsCongressInnerPage {
+              edges{
+                node{
+                  title
+                  slug
                 }
               }
             }
@@ -310,6 +321,7 @@ exports.createPages = ({ graphql, actions }) => {
         const tagsNews = result.data.tagsNews.edges;
         const allNews = result.data.allNews.edges;
         const congress = result.data.allCongress.edges;
+        const congressInnerPages = result.data.allInnerCongress.edges;
         const allPodcasts = result.data.allPodcasts.edges;
         const navTree = result.data.navTree.nodes;
         const jobs = result.data.jobs.edges;
@@ -349,7 +361,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
-              menuPos: getMenuPosition(navTree, post.id),
+              menuPos: 'DatoCmsMenu-117741848',
             },
           });
         });
@@ -389,6 +401,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: event.slug,
               id: event.id,
+              menuPos: 'DatoCmsMenu-125901354',
             },
           });
         });
@@ -405,11 +418,10 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
 
-        // congress inner page
         congress.map(({ node: congress }) => {
           congress.pages.map((item) => {
             createPage({
-              path: `/events/${congress.slug}/${item.slug}`,
+              path: `/events/${item.slug}`,
               component: templates.congressInner,
               context: {
                 slug: item.slug,

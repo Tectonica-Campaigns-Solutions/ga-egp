@@ -20,7 +20,7 @@ const Page = ({
     : sideNav?.treeChildren;
 
   const shouldUseNavbarWhite = page.customHeader && page.backgroundColor === 'pink';
-
+  
   return (
     <Layout navbarWhite={shouldUseNavbarWhite}>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>

@@ -337,6 +337,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsCongress {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsListPodcast {
         slug
         model {
@@ -387,6 +393,12 @@ export const DatoCMS = graphql`
         hideInInnerNavigation
         content {
           ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsCongress {
             slug
             model {
               apiKey

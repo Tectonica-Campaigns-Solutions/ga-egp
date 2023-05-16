@@ -20,7 +20,7 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle } }) {
 
       <div className={`event-page section-${event.tags.color}`}>
         <div className="container">
-          {breadcrumb && <Breadcrumb items={breadcrumb} />}
+          {breadcrumb && <Breadcrumb items={breadcrumb} breadcrumbDetail={event.title} />}
 
           <div className="header row">
             <div className="col-lg-5">{event.image && <ImageWrapper image={event.image} />}</div>

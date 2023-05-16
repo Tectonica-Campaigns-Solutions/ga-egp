@@ -90,6 +90,9 @@ export const CongressQuery = graphql`
           title
           slug
           id
+          model{
+            apiKey
+          }
         }
       }
     }
