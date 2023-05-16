@@ -12,6 +12,13 @@ import SelectInput from '../../components/Global/Form/SelectInput';
 import ActionButton from '../../components/Global/Button/ActionButton';
 import RadioInput from '../../components/Global/Form/RadioInput';
 import CheckboxInput from '../../components/Global/Form/CheckboxInput';
+import {
+  DATE_FILTERS,
+  filterPolicyPapersByDateRange,
+  filterPolicyPapersByLastMonth,
+  filterPolicyPapersByLastSixMonths,
+  filterPolicyPapersByLastYear,
+} from '../../utils';
 
 import * as styles from './styles.module.scss';
 
@@ -30,6 +37,9 @@ function ListPolicyPapers({
     council: '',
     issueOrArea: [],
     title: '',
+    date: 'all',
+    start_date: null,
+    end_date: null,
   });
 
   useEffect(() => {
@@ -40,8 +50,6 @@ function ListPolicyPapers({
     for (const element of Object.keys(params)) {
       newFilters = { ...newFilters, [element]: params[element] };
     }
-
-    setFilterOptions(newFilters);
   }, [location.search]);
 
   const filteredContent = useCallback(() => {
@@ -49,11 +57,25 @@ function ListPolicyPapers({
 
     const params = queryString.parse(location.search);
 
-    return list.filter(
+    let finalList = [];
+
+    finalList = list.filter(
       (item) =>
         (params.type ? item.node.model.apiKey === params.type : true) &&
         (params.title ? item.node.intro.includes(params.title) : true)
     );
+
+    if (params.date && params.date === 'last_month') {
+      finalList = filterPolicyPapersByLastMonth(finalList);
+    } else if (params.date && params.date === 'last_six_months') {
+      finalList = filterPolicyPapersByLastSixMonths(finalList);
+    } else if (params.date && params.date === 'year') {
+      finalList = filterPolicyPapersByLastYear(finalList);
+    } else if (params.date && params.date === 'between_dates') {
+      finalList = filterPolicyPapersByDateRange(finalList, filterOptions.start_date, filterOptions.end_date);
+    }
+
+    return finalList;
   }, [location.search, list]);
 
   const submitHandler = (e) => {
@@ -68,6 +90,10 @@ function ListPolicyPapers({
           url += `${item.name}=${item.value}&`;
         } else if (item.name === 'council' && !!item.value) {
           url += `${item.name}=${item.value}&`;
+        } else if (item.name === 'date' && !!item.value) {
+          url += `${item.name}=${item.value}&`;
+        } else if ((item.name === 'start_date' || item.name === 'end_date') && !!item.value) {
+          url += `${item.name}=${new Date(item.value).getTime()}&`;
         }
       }
     });
@@ -142,6 +168,43 @@ function ListPolicyPapers({
         </div>
 
         <div className="mb-5">
+          <SelectInput
+            name="date"
+            label="Post date"
+            value={filterOptions.date}
+            onChange={handleOnChangeInputs}
+            options={Object.values(DATE_FILTERS)}
+            renderOption={(item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            )}
+          />
+
+          {filterOptions.date === 'between_dates' && (
+            <div className="mt-5">
+              <div className="d-flex align-items-center flex-wrap gap-2">
+                <Input
+                  type="date"
+                  name="start_date"
+                  value={filterOptions.start_date}
+                  onChange={handleOnChangeInputs}
+                  required
+                />
+                <span>and</span>
+                <Input
+                  type="date"
+                  name="end_date"
+                  value={filterOptions.end_date}
+                  onChange={handleOnChangeInputs}
+                  required
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="mb-5">
           <Input areaTitle="Title" name="title" value={filterOptions.title} onChange={handleOnChangeInputs} isWhite />
         </div>
 
@@ -208,6 +271,7 @@ export const ListPositionsQuery = graphql`
           slug
           title
           intro
+          date
           model {
             apiKey
           }
@@ -317,6 +381,7 @@ export const ListPositionsQuery = graphql`
           title
           slug
           intro
+          date
           model {
             apiKey
           }

@@ -7,7 +7,7 @@ const SelectInput = ({ label, options = [], onChange, renderOption, ...selectPro
   return (
     <div className={styles.selectContainer}>
       <label className={styles.label} htmlFor={selectId}>
-        Council
+        {label}
       </label>
 
       <select className={styles.select} htmlFor={selectId} onChange={onChange} {...selectProps}>
