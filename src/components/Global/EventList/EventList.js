@@ -9,7 +9,7 @@ const EventList = ({ events }) => {
   return (
     <>
       {events.map((e, index) => {
-        const url = pathToModel(e.node.model.apiKey || e.model.apiKey, e.node.slug || e.slug);
+        const url = pathToModel(e.node?.model?.apiKey || e.model?.apiKey, e.node?.slug || e.slug);
 
         return (
           <React.Fragment key={e.node?.id || e.id}>
