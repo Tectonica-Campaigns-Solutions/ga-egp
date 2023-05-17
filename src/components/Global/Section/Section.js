@@ -10,7 +10,6 @@ const Section = ({ title, introduction = null, link = null, bgColor, extraClassN
       <div className="container">
         <div className="title">
           <h2>{title}</h2>
-          {introduction && <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
 
           {link && (
             <div className="section-cta">
@@ -19,7 +18,9 @@ const Section = ({ title, introduction = null, link = null, bgColor, extraClassN
           )}
         </div>
 
-        <div className={`row ${extraClassNames}`}>{children}</div>
+        {introduction && <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+
+        <div className={`main-content row ${extraClassNames}`}>{children}</div>
       </div>
     </section>
   );
