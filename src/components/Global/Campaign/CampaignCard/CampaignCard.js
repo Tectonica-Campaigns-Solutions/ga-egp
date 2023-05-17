@@ -2,7 +2,7 @@ import React from 'react';
 import HubspotForm from '../../../Blocks/HubspotForm/HubspotForm';
 import ImageWrapper from '../../Image/ImageWrapper';
 import { isArray } from '../../../../utils';
-import Button from '../../Button/Button';
+import CtaList from '../../Cta/CtaList';
 
 import './index.scss';
 
@@ -11,7 +11,7 @@ const CampaignCard = ({ campaign, fullHeight = false }) => {
     title,
     description,
     backgroundColor = '',
-    links = null,
+    ctas = [],
     image = null,
     bannerImage = null,
     form = null,
@@ -37,13 +37,7 @@ const CampaignCard = ({ campaign, fullHeight = false }) => {
         </div>
       </div>
 
-      {isArray(links) && (
-        <div className="campaign-links">
-          {links.map((link) => (
-            <Button label={link.label} url={link.url} />
-          ))}
-        </div>
-      )}
+      {isArray(ctas) && <CtaList ctas={ctas} />}
     </div>
   );
 };

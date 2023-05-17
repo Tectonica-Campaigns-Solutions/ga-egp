@@ -1,10 +1,12 @@
 import React from 'react';
-import Button from '../../Button/Button';
 import ImageWrapper from '../../Image/ImageWrapper';
+import CtaList from '../../Cta/CtaList';
 
 import './index.scss';
 
-const CampaignMain = ({ title, description, image, links = null }) => {
+const CampaignMain = ({ campaign }) => {
+  const { title, description, image, ctas = [] } = campaign;
+
   return (
     <div className="campaign-main">
       {image && (
@@ -17,13 +19,7 @@ const CampaignMain = ({ title, description, image, links = null }) => {
       {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
 
       {/* Cta */}
-      {links && (
-        <div className="ctas">
-          {links.map((item) => (
-            <Button {...item} key={`campaign-link-${item.url}`} />
-          ))}
-        </div>
-      )}
+      {ctas && <CtaList ctas={ctas} />}
     </div>
   );
 };

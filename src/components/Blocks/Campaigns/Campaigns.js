@@ -10,12 +10,7 @@ const Campaigns = ({ block }) => {
     <Section title={title} introduction={introduction} link={link} bgColor={backgroundColor} extraClassNames="g-4">
       {highlight && (
         <div className="col-lg-6">
-          <CampaignMain
-            title={highlight.title}
-            description={highlight.description}
-            image={highlight.image}
-            links={highlight.links}
-          />
+          <CampaignMain campaign={highlight} />
         </div>
       )}
 

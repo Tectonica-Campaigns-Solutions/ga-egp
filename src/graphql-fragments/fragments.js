@@ -124,11 +124,8 @@ export const DatoCMS = graphql`
           alt
           gatsbyImageData(width: 400, height: 350)
         }
-        links {
-          ... on DatoCmsGlobalLink {
-            label
-            url
-          }
+        ctas {
+          ...BlockCta
         }
       }
     }
@@ -142,11 +139,8 @@ export const DatoCMS = graphql`
           alt
           gatsbyImageData(width: 300)
         }
-        links {
-          ... on DatoCmsGlobalLink {
-            label
-            url
-          }
+        ctas {
+          ...BlockCta
         }
         backgroundColor
         bannerImage {

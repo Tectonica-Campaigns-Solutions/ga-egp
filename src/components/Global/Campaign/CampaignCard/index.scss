@@ -43,12 +43,13 @@
     }
   }
 
-  .campaign-links {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 23px;
+  .egp-btn.light {
+    background-color: var(--egp-white);
+
+    &:hover {
+      color: var(--egp-white);
+      background-color: var(--egp-green);
+    }
   }
 
   &.bg-yellow {

@@ -171,7 +171,7 @@ exports.createPages = ({ graphql, actions }) => {
                       title
                       slug
                       id
-                      model{
+                      model {
                         apiKey
                       }
                     }
@@ -180,8 +180,8 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
             allInnerCongress: allDatoCmsCongressInnerPage {
-              edges{
-                node{
+              edges {
+                node {
                   title
                   slug
                 }
@@ -409,7 +409,7 @@ exports.createPages = ({ graphql, actions }) => {
         // congress
         congress.map(({ node: congress }) => {
           createPage({
-            path: `/events/${congress.slug}`,
+            path: congress.slug,
             component: templates.congress,
             context: {
               slug: congress.slug,
@@ -421,14 +421,12 @@ exports.createPages = ({ graphql, actions }) => {
         congress.map(({ node: congress }) => {
           congress.pages.map((item) => {
             createPage({
-              path: `/events/${item.slug}`,
+              path: item.slug,
               component: templates.congressInner,
               context: {
                 slug: item.slug,
                 id: item.id,
-                congressTitle: congress.title,
-                congressMenu: congress.pages,
-                congressSlug: congress.slug,
+                parentId: congress.id,
               },
             });
           });

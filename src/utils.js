@@ -3,16 +3,12 @@ export const pathToModel = (model = null, slug = '') => {
     return `/news/${slug}`;
   } else if (model === 'person') {
     return `/organisation/${slug}`;
-  } else if (model === 'congress') {
-    return `/events/${slug}`;
   } else if (model === 'position') {
     return `/positions/${slug}`;
   } else if (model === 'podcast') {
     return `/podcast/${slug}`;
   } else if (model === 'resolution') {
     return `/resolutions/${slug}`;
-  } else if (model === 'congress_inner_page') {
-    return `/events/${slug}`;
   } else if (model === 'job_opportunity') {
     return `/job-opportunity/${slug}`;
   } else {
