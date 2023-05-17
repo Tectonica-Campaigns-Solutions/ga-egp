@@ -1,6 +1,10 @@
 .heroCongress {
-  background: var(--egp-dark-green);
+  position: relative;
+  z-index: 100;
   padding-bottom: 132px;
+  height: 100%;
+  padding-top: 160px;
+  overflow: hidden;
 
   &.secondaryPage {
     padding-bottom: 50px;
@@ -46,5 +50,16 @@
   .actionsContainer {
     display: flex;
     gap: 31px;
+  }
+}
+
+.heroBgImage {
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  img {
+    object-fit: contain !important;
   }
 }

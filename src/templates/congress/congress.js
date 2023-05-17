@@ -10,16 +10,25 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 import * as styles from './congress.module.scss';
 
 function Congress({ location, data: { congress, favicon, siteTitle } }) {
+  const { title, introduction, backgroundColor, backgroundImage, ctas = [], pages, seo } = congress;
+
   const sidebarLinks = () => {
-    const items = congress.pages;
+    const items = pages;
     return <>{items && <SidebarNav menu={items} location={location} />}</>;
   };
 
   return (
-    <Layout>
-      <SeoDatoCms seo={congress.seo} favicon={favicon} siteTitle={siteTitle} />
+    <Layout navbarWhite>
+      <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroCongress title={congress.title} mainPage={true} />
+      <HeroCongress
+        title={title}
+        introduction={introduction}
+        ctas={ctas}
+        bgImage={backgroundImage}
+        bgColor={backgroundColor}
+        mainPage={true}
+      />
 
       <div className={styles.congressDetail}>
         <InnerLayout sideNav={sidebarLinks()}>
@@ -82,11 +91,21 @@ export const CongressQuery = graphql`
     congress: datoCmsCongress(id: { eq: $id }) {
       slug
       title
+      introduction
+      backgroundColor
+      backgroundImage {
+        url
+        gatsbyImageData
+      }
+      backgroundImageForInnerPages {
+        url
+        gatsbyImageData
+      }
+      ctas {
+        ...BlockCta
+      }
       date
       isCongress
-      seo: seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
       pages {
         ... on DatoCmsCongressInnerPage {
           title
@@ -96,6 +115,9 @@ export const CongressQuery = graphql`
             apiKey
           }
         }
+      }
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
   }

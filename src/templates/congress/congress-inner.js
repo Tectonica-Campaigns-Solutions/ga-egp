@@ -8,11 +8,10 @@ import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import { isArray } from '../../utils';
 
-// todo on querys
-// TODO ctas
-// TODO images
-function CongressInner({ pageContext, location, data: { congressInner, favicon, siteTitle } }) {
-  const { congressTitle, congressMenu } = pageContext;
+import * as styles from './congress-inner.module.scss';
+
+function CongressInner({ location, data: { congressInner, congressParent, favicon, siteTitle } }) {
+  const { title, backgroundColor, backgroundImageForInnerPages, ctas = [], pages: congressMenu = [] } = congressParent;
 
   const sidebarLinks = () => {
     const items = congressMenu;
@@ -20,13 +19,13 @@ function CongressInner({ pageContext, location, data: { congressInner, favicon, 
   };
 
   return (
-    <Layout>
+    <Layout navbarWhite>
       <SeoDatoCms seo={congressInner.seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroCongress title={congressTitle} />
+      <HeroCongress title={title} bgColor={backgroundColor} bgImage={backgroundImageForInnerPages} ctas={ctas} />
 
       <InnerLayout sideNav={sidebarLinks()}>
-        <h1>{congressInner.title}</h1>
+        <h1 className={styles.mainTitle}>{congressInner.title}</h1>
         {isArray(congressInner.blocks) && <Blocks blocks={congressInner.blocks} />}
       </InnerLayout>
     </Layout>
@@ -56,6 +55,29 @@ export const CongressInnerQuery = graphql`
     }
     congressParent: datoCmsCongress(id: { eq: $parentId }) {
       title
+      slug
+      introduction
+      backgroundColor
+      backgroundImageForInnerPages {
+        url
+        gatsbyImageData
+      }
+      ctas {
+        ...BlockCta
+      }
+      date
+      isCongress
+      pages {
+        id
+        title
+        slug
+        model {
+          apiKey
+        }
+      }
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
+      }
     }
   }
 `;

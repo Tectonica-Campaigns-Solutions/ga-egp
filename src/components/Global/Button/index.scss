@@ -58,6 +58,11 @@
   &.white {
     background: var(--egp-white);
     color: var(--egp-green);
+
+    &:hover {
+      color: var(--egp-white);
+      background-color: var(--egp-green);
+    }
   }
 
   &:hover {
