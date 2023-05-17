@@ -12,7 +12,6 @@ import * as styles from './congress.module.scss';
 function Congress({ location, data: { congress, favicon, siteTitle } }) {
   const sidebarLinks = () => {
     const items = congress.pages;
-
     return <>{items && <SidebarNav menu={items} location={location} />}</>;
   };
 
@@ -81,7 +80,10 @@ export const CongressQuery = graphql`
       }
     }
     congress: datoCmsCongress(id: { eq: $id }) {
+      slug
       title
+      date
+      isCongress
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
@@ -90,7 +92,7 @@ export const CongressQuery = graphql`
           title
           slug
           id
-          model{
+          model {
             apiKey
           }
         }
