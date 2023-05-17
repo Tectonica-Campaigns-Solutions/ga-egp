@@ -8,7 +8,7 @@ import EventType from './EventType/EventType';
 
 import './index.scss';
 
-const CardEvent = ({ day, hour, image, title, description, slug, color, tag, type }) => {
+const CardEvent = ({ day, hour, image, title, description, url, color, tag, type }) => {
   return (
     <article className="card-event">
       <div className="date">
@@ -18,7 +18,7 @@ const CardEvent = ({ day, hour, image, title, description, slug, color, tag, typ
       <div className="content">
         {image && (
           <div className="img">
-            <Link to={slug}>
+            <Link to={url}>
               <ImageWrapper image={image} />
             </Link>
           </div>
@@ -26,11 +26,11 @@ const CardEvent = ({ day, hour, image, title, description, slug, color, tag, typ
 
         <div className="information">
           <div className="meta">
-            <EventType type={type} />
+            {type && <EventType type={type} />}
             <Tag title={tag} bgColor={`secondary-${color}`} />
           </div>
 
-          <Link to={slug}>
+          <Link to={url}>
             <h2>{title}</h2>
           </Link>
 
@@ -38,7 +38,7 @@ const CardEvent = ({ day, hour, image, title, description, slug, color, tag, typ
         </div>
 
         <div className="card-action">
-          <Button label="Learn more" url={slug} />
+          <Button label="Learn more" url={url} />
         </div>
       </div>
     </article>

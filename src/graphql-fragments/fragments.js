@@ -657,6 +657,9 @@ export const DatoCMS = graphql`
         }
       }
     }
+    model {
+      apiKey
+    }
   }
   fragment PostCard on DatoCmsPost {
     id

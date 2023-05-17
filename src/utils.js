@@ -11,6 +11,8 @@ export const pathToModel = (model = null, slug = '') => {
     return `/resolutions/${slug}`;
   } else if (model === 'job_opportunity') {
     return `/job-opportunity/${slug}`;
+  } else if (model === 'event') {
+    return `/events/${slug}`;
   } else {
     return '/' + slug;
   }

@@ -115,7 +115,7 @@ function FilterEvents({ events, tags }) {
                       onClick={handleOnToggleAll}
                       defaultChecked={isCategoryChecked(ALL_CATEGORIES)}
                     />
-                    <span class="checkmark" />
+                    <span className="checkmark" />
                   </label>
                 </div>
 
@@ -131,7 +131,7 @@ function FilterEvents({ events, tags }) {
                         defaultChecked={isCategoryChecked(item.node.id)}
                         checked={isCategoryChecked(item.node.id)}
                       />
-                      <span class="checkmark"></span>
+                      <span className="checkmark"></span>
                     </label>
                   </div>
                 ))}
