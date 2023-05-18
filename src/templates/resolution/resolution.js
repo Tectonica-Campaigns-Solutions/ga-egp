@@ -28,7 +28,7 @@ const Resolution = ({ pageContext, location, data: { resolution, breadcrumb, fav
             <h1>{resolution.title}</h1>
 
             {resolution.intro && <div dangerouslySetInnerHTML={{ __html: resolution.intro }} />}
-            {resolution.text && <StructuredContentDefault content={resolution.text} />}
+            {resolution.text?.value && <StructuredContentDefault content={resolution.text} />}
 
             <hr />
 
