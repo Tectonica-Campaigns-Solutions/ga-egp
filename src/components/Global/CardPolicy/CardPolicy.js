@@ -20,9 +20,11 @@ function CardPolicy({ item }) {
               Adopted: <strong>Madrid, 10-12 May 2013</strong>
             </>
           ) : (
-            <>
-              Council: <strong>{council.title || 'N/A'}</strong>
-            </>
+            council && (
+              <>
+                Council: <strong>{council.title || 'N/A'}</strong>
+              </>
+            )
           )}
         </>
       }

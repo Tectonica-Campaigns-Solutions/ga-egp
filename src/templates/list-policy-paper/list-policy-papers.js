@@ -144,7 +144,7 @@ function ListPolicyPapers({
             label="Council Adopted"
             value={filterOptions.council}
             onChange={handleOnChangeInputs}
-            options={councils}
+            options={councils.filter(Boolean)}
             renderOption={(item) => (
               <option key={item.idFilter} value={item.idFilter}>
                 {item.title}
