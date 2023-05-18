@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
@@ -6,16 +6,28 @@ import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import Button from '../../components/Global/Button/Button';
 import SeoDatoCms from '../../components/SeoDatoCms';
+import { isArray } from '../../utils';
+import Blocks from '../../components/Blocks';
+import Link from '../../components/Global/Link';
 
 import * as styles from './congress.module.scss';
 
 function Congress({ location, data: { congress, favicon, siteTitle } }) {
   const { title, introduction, backgroundColor, backgroundImage, ctas = [], pages, seo } = congress;
-
+  const [showPlenary, setShowPlenary] = useState(false);
   const sidebarLinks = () => {
     const items = pages;
     return <>{items && <SidebarNav menu={items} location={location} />}</>;
   };
+
+
+  useEffect(()=> {
+    setShowPlenary(false)
+    const params = new URLSearchParams(window.location.search)
+    if(params.has('item')){
+      setShowPlenary(true)
+    }
+  })
 
   return (
     <Layout navbarWhite>
@@ -28,20 +40,26 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
         bgImage={backgroundImage}
         bgColor={backgroundColor}
         mainPage={true}
+        isCongress={congress.isCongress}
       />
 
       <div className={styles.congressDetail}>
         <InnerLayout sideNav={sidebarLinks()}>
-          <div className={styles.topContent}>
+          {isArray(congress.blocks) && !showPlenary && <Blocks blocks={congress.blocks} />}
+          { showPlenary !== false && <div>
+            <h2>Plenary</h2>
+            <Link to='/congres-1'>Back</Link>
+            </div> }
+          {/* <div className={styles.topContent}>
             <span>Start</span>
             <h1>{congress.title}</h1>
 
             <p className={styles.date}>Friday, 2 December, 2022 - 13:00 to Sunday, 4 December, 2022 - 14:30</p>
 
             <Button label={'REGISTER'} />
-          </div>
+          </div> */}
 
-          <div className={styles.content}>
+          {/* <div className={styles.content}>
             <p>
               We are delighted to invite you to join us in Copenhagen, Denmark on 2–4 December 2022 for the 6th European
               Green Party Congress. Every five years, our Congress gathers over 1000 Green representatives, from
@@ -69,7 +87,10 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
               Council in the coming weeks. We encourage all Green party members and delegates to save the date, book
               their travels, and join us on 2–4 December 2022.
             </p>
-          </div>
+          </div> */}
+          {
+
+          }
         </InnerLayout>
       </div>
     </Layout>
@@ -115,6 +136,10 @@ export const CongressQuery = graphql`
             apiKey
           }
         }
+      }
+      blocks {
+        ...BlockTextSimple
+        ...BlockListSessions
       }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

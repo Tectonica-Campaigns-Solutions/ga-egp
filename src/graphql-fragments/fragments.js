@@ -103,6 +103,32 @@ export const DatoCMS = graphql`
     text
     useContainer
   }
+
+  fragment BlockListSessions on DatoCmsListSession{
+    __typename
+    id
+    sessionItems{
+      ... on DatoCmsDaySession{
+        __typename
+        id
+        date
+        session{
+          ... on DatoCmsSession{
+            time
+            title
+            sessionType{
+              ... on DatoCmsSessionType{
+                title
+                color{
+                  hex
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   fragment BlockCampaings on DatoCmsCampaing {
     __typename
     id

@@ -13,6 +13,7 @@ import ListJobOpportunities from './Blocks/ListJobOpportunities/ListJobOpportuni
 import TwoColumns from './Blocks/TwoColumns/TwoColumns';
 import SocialGrid from './Blocks/SocialGrid/SocialGrid';
 import VerticalCtaList from './Blocks/VerticalCtaList/VerticalCtaList';
+import ListSessions from './Blocks/ListSessions/ListSessions';
 
 export default function Blocks({ blocks }) {
   return (
@@ -47,6 +48,8 @@ export default function Blocks({ blocks }) {
             return <SocialGrid block={block} key={block.id} />;
           case 'DatoCmsVerticalCtaList':
             return <VerticalCtaList block={block} key={block.id} />;
+          case 'DatoCmsListSession':
+            return <ListSessions block={block} key={block.id}/>;
           default:
             return '';
         }

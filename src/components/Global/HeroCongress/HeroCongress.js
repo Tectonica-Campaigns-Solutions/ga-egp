@@ -7,7 +7,7 @@ import ImageWrapper from '../Image/ImageWrapper';
 
 import * as styles from './herocongress.module.scss';
 
-function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], mainPage = false }) {
+function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], mainPage = false, isCongress = false }) {
   return (
     <div className={`${styles.heroCongress} ${!mainPage ? styles.secondaryPage : null} primary-${bgColor}`}>
       {bgImage && (
@@ -19,11 +19,12 @@ function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], m
       <div className="container">
         <div className="row">
           <div className={`${mainPage ? 'col-lg-5' : 'colg-lg-8'}`}>
-            <Link className={styles.backBtn} to={'/events'}>
-              <img src={leftArrow} alt="Left arrow icon" />
-              All events
-            </Link>
-
+            { isCongress && 
+              <Link className={styles.backBtn} to={'/events'}>
+                <img src={leftArrow} alt="Left arrow icon" />
+                All events
+              </Link>
+            }
             {mainPage ? <h1>{title}</h1> : <h2>{title}</h2>}
             {mainPage && introduction && <p>{introduction}</p>}
 
