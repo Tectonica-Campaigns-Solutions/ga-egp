@@ -104,22 +104,24 @@ export const DatoCMS = graphql`
     useContainer
   }
 
-  fragment BlockListSessions on DatoCmsListSession{
+  fragment BlockListSessions on DatoCmsListSession {
     __typename
     id
-    sessionItems{
-      ... on DatoCmsDaySession{
+    sessionItems {
+      ... on DatoCmsDaySession {
         __typename
         id
         date
-        session{
-          ... on DatoCmsSession{
+        session {
+          ... on DatoCmsSession {
+            id
             time
             title
-            sessionType{
-              ... on DatoCmsSessionType{
+            sessionType {
+              ... on DatoCmsSessionType {
+                id
                 title
-                color{
+                color {
                   hex
                 }
               }

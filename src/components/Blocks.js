@@ -49,7 +49,7 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsVerticalCtaList':
             return <VerticalCtaList block={block} key={block.id} />;
           case 'DatoCmsListSession':
-            return <ListSessions block={block} key={block.id}/>;
+            return <ListSessions block={block} key={block.id} />;
           default:
             return '';
         }

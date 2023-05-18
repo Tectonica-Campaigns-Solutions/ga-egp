@@ -1,65 +1,60 @@
-import React from 'react'
-import * as styles from './listsessions.module.scss'
-import { StaticQuery, graphql, navigate } from "gatsby"
-import Link from '../../Global/Link'
+import React from 'react';
+import { useStaticQuery, graphql, navigate } from 'gatsby';
+import SessionType from './SessionType/SessionType';
+import Accordion from '../../Global/Accordion/Accordion';
+import SessionItem from './SessionItem/SessionItem';
 
 function ListSessions(block) {
-  const items = block.block.sessionItems
-  const handleSession = () => {
-    navigate('?item=1')
-  }
-  return (
-    <StaticQuery
-      query={graphql`
-        query SessionTypes{
-          allDatoCmsSessionType{
-            edges{
-              node{
-                id
-                title
-                color{
-                  hex
-                }
-              }
-            }  
+  const items = block.block.sessionItems;
+
+  const data = useStaticQuery(graphql`
+    query SessionTypes {
+      allDatoCmsSessionType {
+        edges {
+          node {
+            id
+            title
+            color {
+              hex
+            }
           }
         }
-      `}
-      render={data => (
-        <div className={styles.list_sessions}>
-          <div>
-             {
-              data.allDatoCmsSessionType.edges.map(item => <div>{ item.node.title } {item.node.color.hex }</div> )
-             } 
+      }
+    }
+  `);
+
+  const handleSession = (sessionId) => {
+    const parsedId = sessionId.replace('DatoCmsSession-', '');
+    navigate(`?item=${parsedId}`);
+  };
+
+  return (
+    <div>
+      <div className="row mb-5">
+        {data.allDatoCmsSessionType.edges.map((item) => (
+          <div className="col-4" key={item.id}>
+            <SessionType item={item} />
           </div>
-            {
-              items.map(item => 
-                <div className={styles.listItem}>
-                  <h3>
-                    { item.date }
-                  </h3>
-                  <div className={styles.listContent}>
-                    {
-                      item.session.map(el => 
-                        <div>
-                          { el.sessionType.color?.hex } 
-                          { el.time }
-                          { el.title }
-                         
-                          <div onClick={handleSession}>Read more</div>
-                        </div>
-      
-                      )
-                    }
-                  </div>
-                </div>
-              )
-            }
-        </div>
-     )}
-    />
-    
-  )
+        ))}
+      </div>
+
+      <Accordion
+        items={items}
+        renderCustomTitle={(item) => item.date}
+        renderChild={(item, index) => {
+          const sessions = item.session;
+
+          return (
+            <React.Fragment key={item.id}>
+              {sessions.map((session) => (
+                <SessionItem key={session.id} item={session} handleSession={handleSession} />
+              ))}
+            </React.Fragment>
+          );
+        }}
+      />
+    </div>
+  );
 }
 
-export default ListSessions
+export default ListSessions;

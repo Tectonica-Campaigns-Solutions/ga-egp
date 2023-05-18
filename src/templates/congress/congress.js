@@ -11,23 +11,44 @@ import Blocks from '../../components/Blocks';
 import Link from '../../components/Global/Link';
 
 import * as styles from './congress.module.scss';
+import SessionDetail from './session-detail';
 
 function Congress({ location, data: { congress, favicon, siteTitle } }) {
+  const [showPlenary, setShowPlenary] = useState(null);
   const { title, introduction, backgroundColor, backgroundImage, ctas = [], pages, seo } = congress;
-  const [showPlenary, setShowPlenary] = useState(false);
+
   const sidebarLinks = () => {
     const items = pages;
     return <>{items && <SidebarNav menu={items} location={location} />}</>;
   };
 
+  useEffect(() => {
+    setShowPlenary(null);
+    const params = new URLSearchParams(window.location.search);
 
-  useEffect(()=> {
-    setShowPlenary(false)
-    const params = new URLSearchParams(window.location.search)
-    if(params.has('item')){
-      setShowPlenary(true)
+    if (params.has('item')) {
+      const maybeListSessionBlock = congress.blocks.find((b) => b.__typename === 'DatoCmsListSession');
+
+      if (maybeListSessionBlock) {
+        let existSession = null;
+
+        const sessionItems = maybeListSessionBlock.sessionItems;
+        const paramId = params.get('item').replace('DatoCmsSession-', '');
+
+        for (const item of sessionItems) {
+          const sessionItem = item.session.find((s) => s.id.replace('DatoCmsSession-', '') === paramId);
+
+          if (sessionItem) {
+            existSession = sessionItem;
+            break;
+          }
+        }
+
+        console.log({ existSession });
+        setShowPlenary(existSession);
+      }
     }
-  })
+  });
 
   return (
     <Layout navbarWhite>
@@ -46,10 +67,9 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
       <div className={styles.congressDetail}>
         <InnerLayout sideNav={sidebarLinks()}>
           {isArray(congress.blocks) && !showPlenary && <Blocks blocks={congress.blocks} />}
-          { showPlenary !== false && <div>
-            <h2>Plenary</h2>
-            <Link to='/congres-1'>Back</Link>
-            </div> }
+
+          {showPlenary && <SessionDetail session={showPlenary} />}
+
           {/* <div className={styles.topContent}>
             <span>Start</span>
             <h1>{congress.title}</h1>
@@ -88,9 +108,6 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
               their travels, and join us on 2–4 December 2022.
             </p>
           </div> */}
-          {
-
-          }
         </InnerLayout>
       </div>
     </Layout>
