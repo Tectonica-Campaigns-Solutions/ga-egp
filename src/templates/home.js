@@ -8,7 +8,7 @@ import SeoDatoCms from '../components/SeoDatoCms';
 const Home = ({ data: { page, favicon, siteTitle } }) => {
   return (
     <div data-datocms-noindex>
-      <Layout navbarWhite={page.textWhite ?? false}>
+      <Layout navbarWhite={page.textWhite ?? false} navbarYellowHover={page.textWhite ?? false}>
         <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
         <HeroHome

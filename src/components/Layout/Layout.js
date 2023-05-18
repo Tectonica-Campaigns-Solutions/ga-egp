@@ -5,11 +5,11 @@ import TopMessage from '../Global/TopMessage/TopMessage';
 
 import '../../styles/main.scss';
 
-const Layout = ({ navbarWhite = false, location, children }) => {
+const Layout = ({ navbarWhite = false, navbarYellowHover = false, location, children }) => {
   return (
     <>
       <TopMessage />
-      <Slice alias="header" location={location} navbarWhite={navbarWhite} />
+      <Slice alias="header" location={location} navbarWhite={navbarWhite} navbarYellowHover={navbarYellowHover} />
       <main>{children}</main>
       <Slice alias="footer" />
     </>

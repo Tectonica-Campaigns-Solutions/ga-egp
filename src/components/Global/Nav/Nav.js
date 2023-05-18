@@ -18,8 +18,6 @@ const LinkItem = ({ link, label, isButton }) => {
 };
 
 const DropdownItem = ({ link, label, children }) => {
-
-
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const mouseEnter = () => {
@@ -49,7 +47,7 @@ const DropdownItem = ({ link, label, children }) => {
   );
 };
 
-export default function Nav({ navData, navbarWhite = false, path, setSearchEngineVisible }) {
+export default function Nav({ navData, navbarWhite = false, navbarYellowHover = false, path, setSearchEngineVisible }) {
   // data
   const navLinks = navData.allDatoCmsMenu.nodes;
   // Use States --------
@@ -85,7 +83,7 @@ export default function Nav({ navData, navbarWhite = false, path, setSearchEngin
     <nav
       className={`navbar navbar-expand-lg ${isHome ? 'home-nav' : ''} ${expanded ? 'expanded' : ''} ${
         scrollPosition > 75 ? 'sticky-nav' : ''
-      }`}
+      } ${navbarYellowHover ? 'nav-yellow-hover' : ''}`}
     >
       <Link className="navbar-brand" to={'/'}>
         <img src={logo} alt="EGP Logo" />

@@ -159,6 +159,18 @@
     }
   }
 
+  &.nav-yellow-hover .egp-nav {
+    ul {
+      li.nav-item {
+        a {
+          &:hover {
+            color: var(--egp-yellow) !important;
+          }
+        }
+      }
+    }
+  }
+
   .navbar-toggler {
     &:focus {
       box-shadow: none;
