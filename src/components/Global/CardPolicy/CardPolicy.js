@@ -3,7 +3,7 @@ import InformationCard from '../InformationCard/InformationCard';
 import { pathToModel, removeUnderscoreFromString } from '../../../utils';
 
 function CardPolicy({ item }) {
-  const { title, documents, intro, model = null, slug, council = null } = item;
+  const { title, documents, intro, model = null, slug, council = null, date = null } = item;
 
   const isPolicyPaper = model ? model.apiKey === 'policy_paper' : false;
   const policyType = isPolicyPaper ? removeUnderscoreFromString(model?.apiKey) : model?.apiKey;
@@ -17,7 +17,8 @@ function CardPolicy({ item }) {
         <>
           {isPolicyPaper ? (
             <>
-              Adopted: <strong>Madrid, 10-12 May 2013</strong>
+              {/* TODO: Format date, add correct country */}
+              Adopted: <strong>Madrid, {date}</strong>
             </>
           ) : (
             council && (
