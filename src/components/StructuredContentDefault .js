@@ -12,7 +12,7 @@ const StructuredContentDefault = ({ content }) => {
           case 'DatoCmsAcordion':
             return <Accordion items={record.items} renderChild={(item) => <div>{item.text}</div>} />;
           case 'DatoCmsEmbedAudio':
-            return <EmbedAudio />;
+            return <EmbedAudio file={record.file} iframeContent={record.iframeContent} />;
           default:
             return <></>;
         }

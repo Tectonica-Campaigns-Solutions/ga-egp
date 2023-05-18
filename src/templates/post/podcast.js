@@ -89,7 +89,10 @@ export const PodcastQuery = graphql`
           ... on DatoCmsEmbedAudio {
             __typename
             id: originalId
-            url
+            iframeContent
+            file {
+              url
+            }
           }
         }
       }

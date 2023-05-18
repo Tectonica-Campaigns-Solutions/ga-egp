@@ -1,9 +1,22 @@
 import React from 'react';
+import AudioPlayer from 'react-h5-audio-player';
 
-function EmbedAudio({ src }) {
+import 'react-h5-audio-player/lib/styles.css';
+import './index.scss';
+
+function EmbedAudio({ file, iframeContent = '' }) {
+  console.log({ file });
+
   return (
-    <div>
-      <iframe title="iframe" src={src}></iframe>
+    <div className="embed-audio">
+      {/* <iframe title="iframe" src={iframeContent}></iframe> */}
+
+      <AudioPlayer
+        autoPlay
+        src={file.url}
+        onPlay={(e) => console.log('onPlay')}
+        // other props here
+      />
     </div>
   );
 }
