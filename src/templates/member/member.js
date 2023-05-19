@@ -16,8 +16,8 @@ const Order = {
   TEST: 'Test',
 };
 
-function Member({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) {
-  const parties = page.parties;
+function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
+  const parties = members.edges;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
 
@@ -26,8 +26,9 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
     console.log('Ordenar parties por ', orderBy);
 
     const ordered = parties.sort((current, previous) => {
-      const currentTitle = current.title.toUpperCase();
-      const previousTitle = previous.title.toUpperCase();
+
+      const currentTitle = current.node.title.toUpperCase();
+      const previousTitle = previous.node.title.toUpperCase();
 
       if (currentTitle < previousTitle) {
         return -1;
@@ -65,7 +66,7 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
 
                 <h1>{page.title}</h1>
 
-                {page.parties.length > 1 && <div className="member-size">{page.parties.length} Member Parties </div>}
+                {parties.length > 1 && <div className="member-size">{parties.length} Member Parties </div>}
               </div>
 
               <div className="close-btn-container">
@@ -88,11 +89,13 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
           </div>
 
           <div className="content-member">
-            {partiesOrdered()?.map((item) => {
+            {partiesOrdered()?.map((el) => {
+              const item = el.node;
               return (
                 <div className="row mb-5 pb-0 pb-md-5" key={item.id}>
                   <div className="col-lg-3">
-                    <ImageWrapper image={item.logo} />
+                   { item.logo && <img src={item.logo} />}
+                    
                   </div>
 
                   <div className="col-lg-8 offset-lg-1">
@@ -121,11 +124,6 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
                         </div>
                       </div>
                     </div>
-
-                    {/* <div className="history-container">
-                      <h4>History</h4>
-                      <div className="history-text" dangerouslySetInnerHTML={{ __html: item.history }} />
-                    </div> */}
                   </div>
                 </div>
               );
@@ -138,7 +136,7 @@ function Member({ pageContext, location, data: { page, breadcrumb, favicon, site
 }
 
 export const MemberQuery = graphql`
-  query MemberById($id: String, $menuPos: String) {
+  query MemberById($id: String, $menuPos: String, $isoCode: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -163,24 +161,33 @@ export const MemberQuery = graphql`
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
-      parties {
-        ... on DatoCmsParty {
-          id
-          title
-          contactDetails
-          partyLeaders
-          history
-          logo {
-            gatsbyImageData
-            url
-          }
-          socialsLinks {
-            url
-            socialNetwork
+      # parties {
+      #   ... on DatoCmsParty {
+      #     id
+      #     title
+      #     contactDetails
+      #     partyLeaders
+      #     history
+      #     logo {
+      #       gatsbyImageData
+      #       url
+      #     }
+      #     socialsLinks {
+      #       url
+      #       socialNetwork
+      #     }
+      #   }
+      # }
+    }
+    members: allMemberParty(filter: {iso_code: {eq: $isoCode}}) {
+        edges{
+          node{
+            id
+            title
+            logo
           }
         }
       }
-    }
   }
 `;
 

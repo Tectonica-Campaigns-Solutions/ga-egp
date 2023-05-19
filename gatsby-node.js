@@ -16,6 +16,58 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
+const fetch = (...args) =>
+  import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+
+exports.sourceNodes = async ({
+  actions: { createNode },
+  createContentDigest,
+}) => {
+  const bodyRequest = {
+    filterGroups:[
+      {
+        filters:[
+          {
+            propertyName: "egp",
+            operator: "EQ",
+            value: "true"
+          }
+        ]
+      }
+    ],
+    properties: ["image", "iso_code", "name"]
+  }
+  // get data from GitHub API at build time
+  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies/search`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + process.env.HUBSPOT_API,
+    },
+    body: JSON.stringify(bodyRequest)
+  })
+  const resultData = await result.json()
+
+  //create node for build time of member parties from hubspot
+  resultData.results.map(item => {
+
+    createNode({
+      title: item.properties.name,
+      logo: item.properties.image,
+      iso_code: item.properties.iso_code,
+      // required fields
+      id: item.id,
+      parent: null,
+      children: [],
+      internal: {
+        type: `MemberParty`,
+        contentDigest: createContentDigest(item),
+      },
+    })
+  })
+}
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
 
@@ -33,6 +85,7 @@ exports.createPages = ({ graphql, actions }) => {
     id: `footer`,
     component: require.resolve(`./src/components/Global/Footer/Footer.js`),
   });
+
 
   return new Promise((resolve, reject) => {
     const templates = {
@@ -113,6 +166,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   id
                   slug
+                  isoCode
                 }
               }
             }
@@ -453,6 +507,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listMembers ? `${result.data.listMembers.slug}/${member.slug}` : member.slug,
               id: member.id,
               titleParent: result.data.listMembers ? result.data.listMembers.title : null,
+              isoCode: member.isoCode
             },
           });
         });
