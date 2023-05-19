@@ -1,0 +1,28 @@
+.descriptionContainer {}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(131, 131, 134, .2);
+
+  span {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 130%;
+    color: var(--egp-dark-green);
+  }
+}
+
+.text {
+  margin-top: 10px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 130%;
+  color: var(--egp-dark-gray);
+}

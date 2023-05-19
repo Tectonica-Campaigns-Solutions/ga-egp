@@ -7,3 +7,78 @@
   color: var(--egp-darker-green);
   margin-bottom: 71px;
 }
+
+.speakerImage {
+  img {
+    width: 100%;
+    border-radius: 15px;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 15px;
+      z-index: 10000;
+    }
+  }
+}
+
+.speakerTitle {
+  font-family: 'Jaldi';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 39px;
+  line-height: 110%;
+  color: #184B31;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(131, 131, 134, .2);
+  margin-bottom: 40px;
+}
+
+.speakerName {
+  ont-family: 'Jaldi';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 31px;
+  line-height: 110%;
+  color: #36845B;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.speakerPosition {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--egp-gray);
+  margin: 0;
+  padding: 0;
+  margin-bottom: 5px;
+}
+
+.speakerInformation {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--egp-dark);
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.speakerLink {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 150%;
+  color: var(--egp-dark-green);
+}
