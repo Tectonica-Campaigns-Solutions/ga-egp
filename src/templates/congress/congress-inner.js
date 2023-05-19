@@ -11,7 +11,14 @@ import { isArray } from '../../utils';
 import * as styles from './congress-inner.module.scss';
 
 function CongressInner({ location, data: { congressInner, congressParent, favicon, siteTitle } }) {
-  const { title, backgroundColor, backgroundImageForInnerPages, ctas = [], pages: congressMenu = [], isCongress } = congressParent;
+  const {
+    title,
+    backgroundColor,
+    backgroundImageForInnerPages,
+    ctas = [],
+    pages: congressMenu = [],
+    isCongress,
+  } = congressParent;
 
   const sidebarLinks = () => {
     const items = congressMenu;
@@ -22,7 +29,13 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
     <Layout navbarWhite>
       <SeoDatoCms seo={congressInner.seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroCongress title={title} bgColor={backgroundColor} bgImage={backgroundImageForInnerPages} ctas={ctas} isCongress={isCongress} />
+      <HeroCongress
+        title={title}
+        bgColor={backgroundColor}
+        bgImage={backgroundImageForInnerPages}
+        ctas={ctas}
+        isCongress={isCongress}
+      />
 
       <InnerLayout sideNav={sidebarLinks()}>
         <h1 className={styles.mainTitle}>{congressInner.title}</h1>
@@ -57,6 +70,7 @@ export const CongressInnerQuery = graphql`
     congressParent: datoCmsCongress(id: { eq: $parentId }) {
       title
       slug
+      label
       introduction
       backgroundColor
       isCongress

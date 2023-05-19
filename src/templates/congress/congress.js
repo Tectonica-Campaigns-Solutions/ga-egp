@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
@@ -9,18 +9,23 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 import { isArray } from '../../utils';
 import Blocks from '../../components/Blocks';
 import Link from '../../components/Global/Link';
+import SessionDetail from './session-detail';
 
 import * as styles from './congress.module.scss';
-import SessionDetail from './session-detail';
 
 function Congress({ location, data: { congress, favicon, siteTitle } }) {
   const [showPlenary, setShowPlenary] = useState(null);
-  const { title, introduction, backgroundColor, backgroundImage, ctas = [], pages, seo } = congress;
+  const { slug, title, label, introduction, backgroundColor, backgroundImage, ctas = [], pages, seo } = congress;
 
-  const sidebarLinks = () => {
+  const sidebarLinks = useCallback(() => {
     const items = pages;
+
+    console.log({ items });
+
+    items.push({ title: label, slug });
+
     return <>{items && <SidebarNav menu={items} location={location} />}</>;
-  };
+  }, []);
 
   useEffect(() => {
     setShowPlenary(null);
@@ -129,6 +134,7 @@ export const CongressQuery = graphql`
     congress: datoCmsCongress(id: { eq: $id }) {
       slug
       title
+      label
       introduction
       backgroundColor
       backgroundImage {

@@ -25,7 +25,7 @@ import * as styles from './styles.module.scss';
 function ListPolicyPapers({
   pageContext,
   location,
-  data: { listPapers, listResolutions, page, navLinks, breadcrumb, favicon, siteTitle },
+  data: { listPapers, listResolutions, areas, page, navLinks, breadcrumb, favicon, siteTitle },
 }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
@@ -48,8 +48,15 @@ function ListPolicyPapers({
 
     let newFilters = { ...filterOptions };
     for (const element of Object.keys(params)) {
-      newFilters = { ...newFilters, [element]: params[element] };
+      if (element === 'issueOrArea') {
+        const items = params[element].split(',');
+        console.log({ items });
+      } else {
+        newFilters = { ...newFilters, [element]: params[element] };
+      }
     }
+
+    // console.log({ newFilters });
   }, [location.search]);
 
   const filteredContent = useCallback(() => {
@@ -59,10 +66,13 @@ function ListPolicyPapers({
 
     let finalList = [];
 
+    // console.log({ list });
+
     finalList = list.filter(
       (item) =>
         (params.type ? item.node.model.apiKey === params.type : true) &&
-        (params.title ? item.node.intro.includes(params.title) : true)
+        (params.title ? item.node.intro.includes(params.title) : true) &&
+        (params.council ? item.node.council?.idFilter === params.council : true)
     );
 
     if (params.date && params.date === 'last_month') {
@@ -94,6 +104,9 @@ function ListPolicyPapers({
           url += `${item.name}=${item.value}&`;
         } else if ((item.name === 'start_date' || item.name === 'end_date') && !!item.value) {
           url += `${item.name}=${new Date(item.value).getTime()}&`;
+        } else if (item.name === 'issueOrArea' && !!item.value) {
+          const areas = filterOptions.issueOrArea.join();
+          url += `${item.name}=${areas}`;
         }
       }
     });
@@ -121,6 +134,18 @@ function ListPolicyPapers({
     setFilterOptions((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Remove duplicated items and null values
+  const councilsCleaned = councils.filter(Boolean).filter((c, index, array) => {
+    return (
+      index ===
+      array.findIndex((item) => {
+        return item.title === c.title && item.id === c.id && item.idFilter === c.idFilter;
+      })
+    );
+  });
+
+  const areasOptions = areas.edges?.map((i) => ({ label: i.node.title, value: i.node.id }));
+
   const sidebarContent = () => (
     <div>
       <h3>Filter</h3>
@@ -144,7 +169,7 @@ function ListPolicyPapers({
             label="Council Adopted"
             value={filterOptions.council}
             onChange={handleOnChangeInputs}
-            options={councils.filter(Boolean)}
+            options={[{ title: 'Any', idFilter: '' }, ...councilsCleaned]}
             renderOption={(item) => (
               <option key={item.idFilter} value={item.idFilter}>
                 {item.title}
@@ -159,11 +184,7 @@ function ListPolicyPapers({
             sectionTitle="Issue or Area"
             values={filterOptions.issueOrArea}
             onChange={handleOnChangeInputs}
-            options={[
-              { label: 'Europe & Democracy', value: 'europe' },
-              { label: 'Climate & Energy', value: 'climate' },
-              { label: 'Economy & Jobs', value: 'economy' },
-            ]}
+            options={areasOptions}
           />
         </div>
 
@@ -264,6 +285,14 @@ export const ListPositionsQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
+    areas: allDatoCmsArea {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
     listPapers: allDatoCmsPolicyPaper {
       edges {
         node {
@@ -271,6 +300,12 @@ export const ListPositionsQuery = graphql`
           slug
           title
           intro
+          areas {
+            ... on DatoCmsArea {
+              id
+              title
+            }
+          }
           date
           model {
             apiKey
@@ -380,6 +415,12 @@ export const ListPositionsQuery = graphql`
           id
           title
           slug
+          areas {
+            ... on DatoCmsArea {
+              id
+              title
+            }
+          }
           intro
           date
           model {

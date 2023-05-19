@@ -117,6 +117,7 @@ export const DatoCMS = graphql`
             id
             time
             title
+            room
             sessionType {
               ... on DatoCmsSessionType {
                 id
@@ -124,6 +125,21 @@ export const DatoCMS = graphql`
                 color {
                   hex
                 }
+              }
+            }
+            speakers {
+              id
+              name
+              jobPosition
+              description
+              image {
+                gatsbyImageData
+              }
+              socialLinks {
+                id
+                url
+                socialNetwork
+                title
               }
             }
           }
