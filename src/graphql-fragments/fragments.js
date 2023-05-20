@@ -47,6 +47,14 @@ export const DatoCMS = graphql`
         formId
         region
         portalId
+        redirectTo{
+          ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
       }
     }
   }
@@ -115,6 +123,7 @@ export const DatoCMS = graphql`
         session {
           ... on DatoCmsSession {
             id
+            date
             time
             title
             room
@@ -283,16 +292,15 @@ export const DatoCMS = graphql`
   fragment BlockFormSteps on DatoCmsBlockHubspotFormStep {
     __typename
     id
-    destinationPage {
-      ... on DatoCmsPage {
-        slug
-      }
-    }
-    forms {
-      ... on DatoCmsHubspotFormStep {
-        formId
-        portalId
-        region
+    steps{
+      ... on DatoCmsFormStep{
+        description
+        formFields{
+          ... on DatoCmsFormField{
+            label
+          }
+          
+        }
       }
     }
   }

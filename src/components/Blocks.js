@@ -14,6 +14,7 @@ import TwoColumns from './Blocks/TwoColumns/TwoColumns';
 import SocialGrid from './Blocks/SocialGrid/SocialGrid';
 import VerticalCtaList from './Blocks/VerticalCtaList/VerticalCtaList';
 import ListSessions from './Blocks/ListSessions/ListSessions';
+import HubspotStepsForm from './Blocks/HubspotStepsForm/HubspotStepsForm';
 
 export default function Blocks({ blocks }) {
   return (
@@ -50,6 +51,8 @@ export default function Blocks({ blocks }) {
             return <VerticalCtaList block={block} key={block.id} />;
           case 'DatoCmsListSession':
             return <ListSessions block={block} key={block.id} />;
+          case 'DatoCmsBlockHubspotFormStep':
+            return <HubspotStepsForm key={block.id} block={block} />;
           default:
             return '';
         }

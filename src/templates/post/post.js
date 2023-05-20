@@ -12,9 +12,9 @@ import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
 
 import './index.scss';
 
-const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
+const Post = ({ pageContext, location, data: { page, parentNew, favicon, siteTitle } }) => {
   const { seo, title, date, image, authors = [], textContent, tags = [] } = page;
-  // const postBreadcrumb = [...breadcrumb, ...{ title: 'hola', content: null }]
+  const breadcrumb = {title:parentNew.title, slug: parentNew.slug, model: parentNew.model }
   
   return (
     <Layout>
@@ -70,7 +70,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
 };
 
 export const PostQuery = graphql`
-  query PostById($id: String, $menuPos: String) {
+  query PostById($id: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -81,8 +81,12 @@ export const PostQuery = graphql`
         siteName
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ...Breadcrumb
+    parentNew: datoCmsListNews{
+      title
+      slug
+      model{
+        apiKey
+      }
     }
     page: datoCmsPost(id: { eq: $id }) {
       id

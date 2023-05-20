@@ -18,11 +18,14 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
     ctas = [],
     pages: congressMenu = [],
     isCongress,
+    slug,
+    label
   } = congressParent;
-
+ 
+  
   const sidebarLinks = () => {
     const items = congressMenu;
-    return <>{items && <SidebarNav menu={items} location={location} />}</>;
+    return <>{items && <SidebarNav menu={items} location={location} landing={{title:congressParent.label != '' ? congressParent.label : 'Start', slug}} />}</>;
   };
 
   return (
@@ -37,7 +40,7 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
         isCongress={isCongress}
       />
 
-      <InnerLayout sideNav={sidebarLinks()}>
+      <InnerLayout sideNav={sidebarLinks()} landing={{ title: label, slug }}>
         <h1 className={styles.mainTitle}>{congressInner.title}</h1>
         {isArray(congressInner.blocks) && <Blocks blocks={congressInner.blocks} />}
       </InnerLayout>

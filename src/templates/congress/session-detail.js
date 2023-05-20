@@ -11,7 +11,7 @@ import locationIcon from '../../components/Icons/location.svg';
 import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
-  const { room, title, time, sessionType, speakers = [] } = session;
+  const { room, title, time, sessionType, speakers = [], date } = session;
 
   return (
     <div>
@@ -20,7 +20,7 @@ const SessionDetail = ({ session }) => {
       {/* Basic information */}
       <div className="row mb-5">
         <div className="col-4">
-          <DescriptionIcon title={'Day'} icon={dayIcon} text={''} />
+          <DescriptionIcon title={'Day'} icon={dayIcon} text={date} />
         </div>
         <div className="col-4">
           <DescriptionIcon title={'Time'} icon={timeIcon} text={time} />

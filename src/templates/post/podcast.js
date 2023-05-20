@@ -10,7 +10,8 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 
 import './index.scss';
 
-const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
+const Podcast = ({ pageContext, location, data: { page, parentPodcast, favicon, siteTitle } }) => {
+  const breadcrumb = {title:parentPodcast.title, slug: parentPodcast.slug, model: parentPodcast.model }
   return (
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -21,6 +22,7 @@ const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, sit
         location={location}
         date={page.date}
         breadcrumb={breadcrumb}
+        breadcrumbDetail={page.title}
         isDetailView
       />
 
@@ -48,7 +50,7 @@ const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, sit
 };
 
 export const PodcastQuery = graphql`
-  query PodcastById($id: String, $menuPos: String) {
+  query PodcastById($id: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -59,8 +61,12 @@ export const PodcastQuery = graphql`
         siteName
       }
     }
-    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ...Breadcrumb
+    parentPodcast: datoCmsListPodcast{
+      title
+      slug
+      model{
+        apiKey
+      }
     }
     page: datoCmsPodcast(id: { eq: $id }) {
       id

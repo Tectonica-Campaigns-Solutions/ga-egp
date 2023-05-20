@@ -1,8 +1,8 @@
 import React from 'react';
-import { Script } from 'gatsby';
+import { Script, navigate } from 'gatsby';
 import * as styles from './hubspot.module.scss';
 
-const HubspotForm = ({ id, formId, region, portalId }) => {
+const HubspotForm = ({ id, formId, region, portalId, redirectTo = null }) => {
   return (
     <>
       <Script
@@ -13,6 +13,11 @@ const HubspotForm = ({ id, formId, region, portalId }) => {
             portalId: portalId,
             formId: formId,
             target: `#hubspotForm-${id}`,
+            onFormSubmit: function($form) {
+              if(redirectTo){
+                navigate(`/${redirectTo.slug}`)
+              }
+            }
           });
         }}
         onError={(e) => console.error(e)}

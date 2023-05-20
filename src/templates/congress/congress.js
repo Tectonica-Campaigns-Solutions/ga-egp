@@ -17,15 +17,10 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
   const [showPlenary, setShowPlenary] = useState(null);
   const { slug, title, label, introduction, backgroundColor, backgroundImage, ctas = [], pages, seo } = congress;
 
-  const sidebarLinks = useCallback(() => {
+  const sidebarLinks = () => {
     const items = pages;
-
-    console.log({ items });
-
-    items.push({ title: label, slug });
-
-    return <>{items && <SidebarNav menu={items} location={location} />}</>;
-  }, []);
+    return <>{items && <SidebarNav menu={items} location={location} landing={{title:label !== '' ? label : 'Start', slug}}/>}</>;
+  };
 
   useEffect(() => {
     setShowPlenary(null);
