@@ -745,6 +745,50 @@ export const DatoCMS = graphql`
   fragment Breadcrumb on DatoCmsMenu {
     title
     hideInInnerNavigation
+    content {
+        ... on DatoCmsPage {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPodcast {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListResolution {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPolicyPaper {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListNews {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListEvent {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListPosition {
+          slug
+          model {
+            apiKey
+          }
+        }
+      }
     treeParent {
       title
       content {
@@ -754,8 +798,19 @@ export const DatoCMS = graphql`
             apiKey
           }
         }
-
+        ... on DatoCmsListPodcast {
+          slug
+          model {
+            apiKey
+          }
+        }
         ... on DatoCmsListResolution {
+          slug
+          model {
+            apiKey
+          }
+        }
+        ... on DatoCmsListEvent {
           slug
           model {
             apiKey
@@ -784,6 +839,18 @@ export const DatoCMS = graphql`
         title
         content {
           ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPodcast {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListEvent {
             slug
             model {
               apiKey
@@ -818,6 +885,12 @@ export const DatoCMS = graphql`
               }
             }
             ... on DatoCmsListPosition {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsListPodcast {
               slug
               model {
                 apiKey

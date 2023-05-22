@@ -5,7 +5,6 @@ import { pathToModel, truncate } from '../../../utils';
 import * as styles from './breadcrumb.module.scss';
 
 const Breadcrumb = ({ items = null, textWhite = false, breadcrumbDetail = null }) => {
-
   const getItemsReversed = () => {
     const cloneItems = structuredClone(items);
     const slugs = getTitlesRecursive(cloneItems, []);
@@ -15,7 +14,7 @@ const Breadcrumb = ({ items = null, textWhite = false, breadcrumbDetail = null }
 
   const getTitlesRecursive = (item, slugs = []) => {
     if (item.title) {
-      slugs.push({ title: item.title, content: {slug: item?.slug, model: item?.model} });
+      slugs.push({ title: item.title, content: {slug: item.content?.slug, model: item.content?.model} });
     }
 
     if (item.treeParent) {

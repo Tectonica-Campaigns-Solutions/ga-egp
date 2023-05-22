@@ -13,8 +13,7 @@ import Breadcrumb from '../../components/Global/Breadcrumb/Breadcrumb';
 
 import './index.scss';
 
-function Event({ data: { event, parentEvent, favicon, siteTitle, eventPage } }) {
-  const breadcrumb = {title:parentEvent.title, slug: parentEvent.slug, model: parentEvent.model }
+function Event({ data: { event, breadcrumb, favicon, siteTitle, eventPage } }) {
   return (
     <Layout>
       <SeoDatoCms seo={event.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -49,7 +48,7 @@ function Event({ data: { event, parentEvent, favicon, siteTitle, eventPage } }) 
 }
 
 export const EventQuery = graphql`
-  query EventById($id: String) {
+  query EventById($id: String, $menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -60,12 +59,8 @@ export const EventQuery = graphql`
         siteName
       }
     }
-    parentEvent: datoCmsListEvent{
-      title
-      slug
-      model{
-        apiKey
-      }
+    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+      ...Breadcrumb
     }
     event: datoCmsEvent(id: { eq: $id }) {
       title

@@ -428,7 +428,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
-              menuPos: getMenuPosition(navTree, post.id),
+              menuPos: 'DatoCmsMenu-132907294',
             },
           });
         });
@@ -455,7 +455,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: event.slug,
               id: event.id,
-              menuPos: 'DatoCmsMenu-125901354',
+              menuPos: getMenuPosition(navTree, result.data.listEvents.id)
             },
           });
         });
