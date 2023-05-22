@@ -49,7 +49,11 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
                 </div>
               )}
 
-              {textContent && <StructuredContentDefault content={textContent} />}
+              {textContent && (
+                <div className="post-text-content">
+                  <StructuredContentDefault content={textContent} />
+                </div>
+              )}
 
               {isArray(tags) && (
                 <div className="new-tags">

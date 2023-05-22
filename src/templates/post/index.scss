@@ -24,6 +24,12 @@
     }
   }
 
+  .post-text-content {
+    a {
+      color: var(--egp-green);
+    }
+  }
+
   ul,
   ol {
     list-style: initial;
