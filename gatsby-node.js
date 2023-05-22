@@ -16,42 +16,37 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-const fetch = (...args) =>
-  import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
-exports.sourceNodes = async ({
-  actions: { createNode },
-  createContentDigest,
-}) => {
+exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
   const bodyRequest = {
-    filterGroups:[
+    filterGroups: [
       {
-        filters:[
+        filters: [
           {
-            propertyName: "egp",
-            operator: "EQ",
-            value: "true"
-          }
-        ]
-      }
+            propertyName: 'egp',
+            operator: 'EQ',
+            value: 'true',
+          },
+        ],
+      },
     ],
-    properties: ["image", "iso_code", "name"]
-  }
+    properties: ['image', 'iso_code', 'name'],
+  };
   // get data from GitHub API at build time
   const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies/search`, {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + process.env.HUBSPOT_API,
+      Authorization: 'Bearer ' + process.env.HUBSPOT_API,
     },
-    body: JSON.stringify(bodyRequest)
-  })
-  const resultData = await result.json()
+    body: JSON.stringify(bodyRequest),
+  });
+  const resultData = await result.json();
 
   //create node for build time of member parties from hubspot
-  resultData.results.map(item => {
-
+  resultData.results.map((item) => {
     createNode({
       title: item.properties.name,
       logo: item.properties.image,
@@ -64,9 +59,9 @@ exports.sourceNodes = async ({
         type: `MemberParty`,
         contentDigest: createContentDigest(item),
       },
-    })
-  })
-}
+    });
+  });
+};
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
@@ -85,7 +80,6 @@ exports.createPages = ({ graphql, actions }) => {
     id: `footer`,
     component: require.resolve(`./src/components/Global/Footer/Footer.js`),
   });
-
 
   return new Promise((resolve, reject) => {
     const templates = {
@@ -268,7 +262,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            allNews: allDatoCmsPost(limit: 1000) {
+            allNews: allDatoCmsPost(limit: 1000, sort: { date: DESC }) {
               edges {
                 node {
                   id
@@ -288,9 +282,6 @@ exports.createPages = ({ graphql, actions }) => {
                   date(formatString: "D MMM Y")
                   model {
                     apiKey
-                  }
-                  meta {
-                    publishedAt(formatString: "D MMM YYYY")
                   }
                 }
               }
@@ -455,7 +446,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: event.slug,
               id: event.id,
-              menuPos: getMenuPosition(navTree, result.data.listEvents.id)
+              menuPos: getMenuPosition(navTree, result.data.listEvents.id),
             },
           });
         });
@@ -507,7 +498,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listMembers ? `${result.data.listMembers.slug}/${member.slug}` : member.slug,
               id: member.id,
               titleParent: result.data.listMembers ? result.data.listMembers.title : null,
-              isoCode: member.isoCode
+              isoCode: member.isoCode,
             },
           });
         });

@@ -10,7 +10,7 @@ import './index.scss';
 const CardUpdate = ({ post }) => {
   const {
     slug,
-    meta: { publishedAt },
+    date,
     model: { apiKey },
     title,
     tags,
@@ -25,7 +25,7 @@ const CardUpdate = ({ post }) => {
     <article className={`card-update ${isPodcast ? 'podcast' : ''}`}>
       <div className="information">
         <div className="meta">
-          {publishedAt && <span>{publishedAt}</span>}
+          {date && <span>{date}</span>}
 
           {isPodcast && (
             <span className="podcast-tag">
