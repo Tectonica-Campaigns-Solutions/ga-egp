@@ -3,7 +3,7 @@ import { usePagination, DOTS } from './hooks/usePagination';
 
 import './index.scss';
 
-export const PAGE_SIZE = 8;
+export const PAGE_SIZE = 12;
 
 const Pagination = (props) => {
   const { onPageChange, totalCount, siblingCount = 1, currentPage, pageSize } = props;
