@@ -42,13 +42,16 @@ const Breadcrumb = ({ items = null, textWhite = false, breadcrumbDetail = null }
       <ul>
         {finalItems.map((item, index) => (
           <li key={index}>
-            <Link
-              to={item.content ? pathToModel(item.content.model, item.content.slug) : item ? item.to : null}
-              className={`${finalItems.length - 1 === index ? styles.active : ''}`}
-            >
-              {renderSeparator(index)}
-              {item.title}
-            </Link>
+            { item.content?.slug || item.to === '/' ? <Link
+                  to={item.content ? pathToModel(item.content.model, item.content.slug) : item ? item.to : null}
+                  className={`${finalItems.length - 1 === index ? styles.active : ''}`}
+                >
+                  {renderSeparator(index)}
+                  {item.title}
+                </Link>
+                : 
+                <span>{renderSeparator(index)}{ item.title }</span>
+            }     
           </li>
         ))}
       </ul>

@@ -43,6 +43,11 @@
   color: var(--egp-dark);
 }
 
+.unactive{
+  pointer-events: none;
+  opacity:0.5;
+}
+
 @media screen and (max-width: 767px) {
   .egpBreadcrumb {
     ul {
