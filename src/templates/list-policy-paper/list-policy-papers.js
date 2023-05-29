@@ -62,17 +62,14 @@ function ListPolicyPapers({
   const filteredContent = useCallback(() => {
     if (location.search === '') return list;
 
-    const params = queryString.parse(location.search);
-
     let finalList = [];
-
-    // console.log({ list });
+    const params = queryString.parse(location.search);
 
     finalList = list.filter(
       (item) =>
         (params.type ? item.node.model.apiKey === params.type : true) &&
         (params.title ? item.node.intro.includes(params.title) : true) &&
-        (params.council ? item.node.council?.idFilter === params.council : true)
+        (params.council ? item.node.council?.idFilter == params.council : true)
     );
 
     if (params.date && params.date === 'last_month') {
