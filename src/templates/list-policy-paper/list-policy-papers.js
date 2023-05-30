@@ -65,11 +65,14 @@ function ListPolicyPapers({
     let finalList = [];
     const params = queryString.parse(location.search);
 
+    // console.log({ list });
+
     finalList = list.filter(
       (item) =>
         (params.type ? item.node.model.apiKey === params.type : true) &&
-        (params.title ? item.node.intro.includes(params.title) : true) &&
-        (params.council ? item.node.council?.idFilter == params.council : true)
+        (params.title ? item.node.title.includes(params.title) : true) &&
+        (params.council ? item.node.council?.idFilter == params.council : true) &&
+        (params.issueOrArea ? item.node.areas?.find((a) => params.issueOrArea.includes(a.id)) : true)
     );
 
     if (params.date && params.date === 'last_month') {
@@ -101,7 +104,7 @@ function ListPolicyPapers({
           url += `${item.name}=${item.value}&`;
         } else if ((item.name === 'start_date' || item.name === 'end_date') && !!item.value) {
           url += `${item.name}=${new Date(item.value).getTime()}&`;
-        } else if (item.name === 'issueOrArea' && !!item.value) {
+        } else if (item.name === 'issueOrArea' && !!item.value && item.checked) {
           const areas = filterOptions.issueOrArea.join();
           url += `${item.name}=${areas}`;
         }
