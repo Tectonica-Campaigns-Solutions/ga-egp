@@ -297,7 +297,7 @@ export const DatoCMS = graphql`
         description
         formFields{
           ... on DatoCmsFormField{
-            label
+            idHubspotField
           }
           
         }
