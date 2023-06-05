@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import FieldsSelector from './FieldsSelector';
 
 function HubspotStepsForm({ block }) {
-  // useEffect(() => {
-  //   fetch('https://api.hubapi.com/properties/v1/contacts/properties')
-  //   .catch(e => {
-  //     console.log(e)
-  //   })
-  // })
+  useEffect(() => {
+    fetch('https://api.hubapi.com/properties/v1/contacts/properties')
+    .catch(e => {
+      console.log(e)
+    })
+  })
   // TODO get from hubspot api
   const contactFields = [
     {
