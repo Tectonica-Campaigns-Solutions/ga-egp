@@ -18,6 +18,8 @@ module.exports = {
         tracesSampleRate: parseFloat(process.env.GATSBY_SENTRY_SAMPLERATE) || 1,
         environment: process.env.GATSBY_SENTRY_ENV,
         enabled: process.env.NODE_ENV === 'production',
+        replaysSessionSampleRate: 0.1,
+        replaysOnErrorSampleRate: 1.0,
       }
     },
     `gatsby-plugin-advanced-sitemap`,
