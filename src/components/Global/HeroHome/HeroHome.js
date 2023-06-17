@@ -15,14 +15,10 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
         }
   }`;
 
-  const methodDoesNotExist = () => {
-    throw new Error('error');
-  }
-
   return (
     <>
       <style scoped>{css}</style>
-      
+
       <div className={`hero-home ${textWhite ? 'text-white' : ''}`}>
         <div className="container">
           <div className="row">
@@ -31,13 +27,12 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite }) {
               {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
             </div>
           </div>
-          
+
           <div className="row">
             <div className="col-xxl-8 col-12">
               {form && (
                 <HubspotForm id={form.formId} formId={form.formId} region={form.region} portalId={form.portalId} />
               )}
-              <button onClick={methodDoesNotExist}>Break the world</button>
             </div>
           </div>
         </div>
