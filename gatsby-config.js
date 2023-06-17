@@ -11,6 +11,15 @@ module.exports = {
     siteUrl: `https://elaborate-frangipane-2705dc.netlify.app/`,
   },
   plugins: [
+    {
+      resolve: "@sentry/gatsby",
+      options: {
+        dsn: process.env.GATSBY_SENTRY_DSN, // this is the default
+        tracesSampleRate: parseFloat(process.env.GATSBY_SENTRY_SAMPLERATE) || 1,
+        environment: process.env.GATSBY_SENTRY_ENV,
+        enabled: process.env.NODE_ENV === 'production',
+      }
+    },
     `gatsby-plugin-advanced-sitemap`,
     `gatsby-plugin-sass`,
     {
