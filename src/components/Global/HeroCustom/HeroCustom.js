@@ -1,6 +1,6 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
-
+import Link from '../Link';
 import * as styles from './herocustom.module.scss';
 
 function HeroCustom({
@@ -28,7 +28,7 @@ function HeroCustom({
         <div>
           <div className="container">
             <div className="row">
-              <div className={ctas && ctas.length > 0 ? 'col-lg-6' : 'col-12'}>
+              <div className={ctas && ctas.length > 0 ? 'col-lg-7' : 'col-12'}>
                 {date && <div className="date">{date}</div>}
                 {parentTitle && <h2>{parentTitle}</h2>}
                 {!parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>}
@@ -36,10 +36,14 @@ function HeroCustom({
               </div>
 
               {ctas && (
-                <div className="col-lg-6">
+                <div className={`col-lg-5 ${styles.ctasBox}`}>
                   {ctas.map((item) => (
-                    <div>
-                      {item.title} {item.url} {item.description}
+                    <div className="d-flex align-items-center">
+                       <Link to={item.url.url}>{item.url.label}</Link>
+                       {
+                        item.description && <div dangerouslySetInnerHTML={{__html: item.description}} />
+                       }
+                       
                     </div>
                   ))}
                 </div>

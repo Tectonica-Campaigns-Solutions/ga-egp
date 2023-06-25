@@ -289,6 +289,17 @@ export const DatoCMS = graphql`
       }
     }
   }
+  fragment BlockDonation on DatoCmsBlockDonation {
+    __typename
+    id
+    title
+    cta{
+      ... on DatoCmsGlobalLink{
+        label
+        url
+      }
+    }
+  }
   fragment BlockFormSteps on DatoCmsBlockHubspotFormStep {
     __typename
     id

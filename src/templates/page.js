@@ -90,8 +90,12 @@ export const PageQuery = graphql`
       noIndex
       ctasblock {
         ... on DatoCmsCtaExternal {
-          title
-          url
+          url{
+            ... on DatoCmsGlobalLink{
+              label
+              url
+            }
+          }
           description
         }
       }
@@ -122,6 +126,9 @@ export const PageQuery = graphql`
         }
         ... on DatoCmsTwoColumn {
           ...BlockTwoColumns
+        }
+        ... on DatoCmsBlockDonation {
+          ...BlockDonation
         }
       }
     }

@@ -1,11 +1,11 @@
 .heroCustom {
   padding-top: 150px;
-  padding-bottom: 100px;
+  padding-bottom: 150px;
   min-height: 470px;
   overflow: hidden;
   background-position: center;
   background-repeat: no-repeat;
-
+  background-size:cover;
   h1,
   h2 {
     font-family: 'Colby';
@@ -33,6 +33,36 @@
       font-size: 25px;
       line-height: 130%;
       color: var(--egp-white);
+    }
+  }
+  .ctasBox{
+    > div{
+      padding:10px;
+      background-color:#fff;
+      border-radius:10px;
+      margin:10px 0;
+      display:inline-block;
+      a{
+        background-color: var(--egp-green);
+        color:#fff;
+        padding:10px;
+        border-radius:10px;
+      }
+      p{
+        margin:0 0 0 10px;
+        padding:0;
+        font-style: italic;
+      }
+    }
+  }
+  + div{
+    margin-top:-120px;
+    position: relative;
+    z-index:2;
+  }
+  ~ div{
+    img{
+      border:2px solid red;
     }
   }
 }

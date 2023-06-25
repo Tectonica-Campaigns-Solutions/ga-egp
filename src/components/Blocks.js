@@ -15,6 +15,7 @@ import SocialGrid from './Blocks/SocialGrid/SocialGrid';
 import VerticalCtaList from './Blocks/VerticalCtaList/VerticalCtaList';
 import ListSessions from './Blocks/ListSessions/ListSessions';
 import HubspotStepsForm from './Blocks/HubspotStepsForm/HubspotStepsForm';
+import BlockDonation from './Blocks/BlockDonation/BlockDonation';
 
 export default function Blocks({ blocks }) {
   return (
@@ -53,6 +54,8 @@ export default function Blocks({ blocks }) {
             return <ListSessions block={block} key={block.id} />;
           case 'DatoCmsBlockHubspotFormStep':
             return <HubspotStepsForm key={block.id} block={block} />;
+          case 'DatoCmsBlockDonation':
+            return <BlockDonation key={block.id} block={block}/>;
           default:
             return '';
         }
