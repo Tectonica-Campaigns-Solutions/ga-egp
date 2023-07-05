@@ -20,16 +20,16 @@ function CardPerson({ person, animated = false, hasLink = false }) {
 
       <div>
         <div className="position">head of unit</div>
-          <h3>{person.name}</h3>
+        <h3>{person.name}</h3>
 
-          <div className="job">{person.jobPosition}</div>
-          {/* <SocialLinkList links={person.socialLinks} /> */}
+        <div className="job">{person.jobPosition}</div>
+        {/* <SocialLinkList links={person.socialLinks} /> */}
 
-          {
-            hasLink && <FinalLink to={url} className="link-read-more">
-              Read more
-            </FinalLink>
-          }
+        {hasLink && (
+          <FinalLink to={url} className="link-read-more">
+            Read more
+          </FinalLink>
+        )}
 
         {/* {person.phone && <TextIcon icon={iconPhone} text={<a href={getPhoneLink(person.phone)}>{person.phone}</a>} />}
         {person.email && <TextIcon icon={iconEmail} text={<a href={getEmailLink(person.email)}>{person.email}</a>} />} */}

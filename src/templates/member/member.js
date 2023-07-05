@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { graphql } from 'gatsby';
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import Layout from '../../components/Layout/Layout';
-import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import BackButton from '../../components/Global/BackButton/BackButton';
 import SocialLinkList from '../../components/Global/SocialLink/SocialLinkList';
 import Tag from '../../components/Global/Tag/Tag';
@@ -26,7 +25,6 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
     console.log('Ordenar parties por ', orderBy);
 
     const ordered = parties.sort((current, previous) => {
-
       const currentTitle = current.node.title.toUpperCase();
       const previousTitle = previous.node.title.toUpperCase();
 
@@ -93,10 +91,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
               const item = el.node;
               return (
                 <div className="row mb-5 pb-0 pb-md-5" key={item.id}>
-                  <div className="col-lg-3">
-                   { item.logo && <img src={item.logo} />}
-                    
-                  </div>
+                  <div className="col-lg-3">{item.logo && <img src={item.logo} />}</div>
 
                   <div className="col-lg-8 offset-lg-1">
                     <div className="party-main-header">
@@ -179,15 +174,15 @@ export const MemberQuery = graphql`
       #   }
       # }
     }
-    members: allMemberParty(filter: {iso_code: {eq: $isoCode}}) {
-        edges{
-          node{
-            id
-            title
-            logo
-          }
+    members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
+      edges {
+        node {
+          id
+          title
+          logo
         }
       }
+    }
   }
 `;
 

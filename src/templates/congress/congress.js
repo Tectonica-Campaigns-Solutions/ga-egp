@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
@@ -19,7 +19,13 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
 
   const sidebarLinks = () => {
     const items = pages;
-    return <>{items && <SidebarNav menu={items} location={location} landing={{title:label !== '' ? label : 'Start', slug}}/>}</>;
+    return (
+      <>
+        {items && (
+          <SidebarNav menu={items} location={location} landing={{ title: label !== '' ? label : 'Start', slug }} />
+        )}
+      </>
+    );
   };
 
   useEffect(() => {
