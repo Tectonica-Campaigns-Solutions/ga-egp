@@ -321,26 +321,32 @@ export const DatoCMS = graphql`
     title
     highlighted
     useContainer
-    people {
-      ... on DatoCmsPerson {
-        id
-        slug
-        name
-        image {
-          gatsbyImageData(width: 350, height: 350)
-          url
-          alt
+    people{
+      ... on DatoCmsItemGroup{
+        customBio
+        person{
+          ... on DatoCmsPerson {
+            id
+            slug
+            name
+            image {
+              gatsbyImageData(width: 350, height: 350)
+              url
+              alt
+            }
+            socialLinks {
+              url
+              socialNetwork
+            }
+            phone
+            email
+            model {
+              apiKey
+            }
+            jobPosition
+            description
+          }
         }
-        socialLinks {
-          url
-          socialNetwork
-        }
-        phone
-        email
-        model {
-          apiKey
-        }
-        jobPosition
       }
     }
   }

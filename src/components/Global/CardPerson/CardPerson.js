@@ -10,7 +10,7 @@ import iconEmail from '../../Icons/icon_email.svg';
 
 import './index.scss';
 
-function CardPerson({ person, animated = false }) {
+function CardPerson({ person, animated = false, hasLink = false }) {
   const FinalLink = animated ? AnimateLink : Link;
   const url = pathToModel(person.model.apiKey, person.slug);
 
@@ -20,16 +20,19 @@ function CardPerson({ person, animated = false }) {
 
       <div>
         <div className="position">head of unit</div>
-
-        <FinalLink to={url}>
           <h3>{person.name}</h3>
-        </FinalLink>
 
-        <div className="job">{person.jobPosition}</div>
-        <SocialLinkList links={person.socialLinks} />
+          <div className="job">{person.jobPosition}</div>
+          {/* <SocialLinkList links={person.socialLinks} /> */}
 
-        {person.phone && <TextIcon icon={iconPhone} text={<a href={getPhoneLink(person.phone)}>{person.phone}</a>} />}
-        {person.email && <TextIcon icon={iconEmail} text={<a href={getEmailLink(person.email)}>{person.email}</a>} />}
+          {
+            hasLink && <FinalLink to={url} className="link-read-more">
+              Read more
+            </FinalLink>
+          }
+
+        {/* {person.phone && <TextIcon icon={iconPhone} text={<a href={getPhoneLink(person.phone)}>{person.phone}</a>} />}
+        {person.email && <TextIcon icon={iconEmail} text={<a href={getEmailLink(person.email)}>{person.email}</a>} />} */}
       </div>
     </div>
   );
