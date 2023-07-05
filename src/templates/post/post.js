@@ -13,7 +13,7 @@ import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
 import './index.scss';
 
 const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
-  const { seo, title, date, image, authors = [], textContent, tags = [] } = page;
+  const { seo, title, date, image, authors = [], textContent, tags = [], oldNid } = page;
 
   return (
     <Layout>
@@ -50,7 +50,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
               )}
 
               {textContent && (
-                <div className="post-text-content">
+                <div className={`post-text-content ${oldNid ? 'importer-post' : ''}`}>
                   <StructuredContentDefault content={textContent} />
                 </div>
               )}
@@ -100,6 +100,7 @@ export const PostQuery = graphql`
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
+      oldNid
       textContent {
         value
         blocks {

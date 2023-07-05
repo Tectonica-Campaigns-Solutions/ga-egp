@@ -2104,7 +2104,7 @@
     "@sentry/utils" "7.55.2"
     tslib "^1.9.3"
 
-"@sentry/gatsby@^7.55.2":
+"@sentry/gatsby@7.55.2":
   version "7.55.2"
   resolved "https://registry.yarnpkg.com/@sentry/gatsby/-/gatsby-7.55.2.tgz#275255f33a6a9a7c35401d9a54e8c8eaafc16d01"
   integrity sha512-rwNeWLZMc1UfNbRZ9efNs9jGUdorrwulVCTHuSExmra/4WzJ/TM67qOP9myK73GTOLAasD5YoFnANWelKy72RA==
