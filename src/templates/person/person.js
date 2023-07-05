@@ -16,11 +16,11 @@ function person({ pageContext, location, data: { person, favicon, siteTitle } })
   return (
     <Layout>
       <SeoDatoCms seo={person.seo} favicon={favicon} siteTitle={siteTitle} />
-
       <HeroPage title={person.title} context={pageContext} location={location} />
+
       <div className="person-detail">
         <div className="btn-back">
-          <BackButton location={location} animated />
+          <BackButton location={location} animated defaultBack />
         </div>
 
         <div className="container">
