@@ -13,6 +13,9 @@ const Home = ({ data: { page, favicon, siteTitle } }) => {
 
         <HeroHome
           title={page.title}
+          secondPartTitle={page.secondPartTitle}
+          firstPartTitle={page.firstPartTitle}
+          colorWords={page.colorWords}
           image={page.backgroundImage.gatsbyImageData}
           imageMobile={page.imageMobile.gatsbyImageData}
           description={page.description}
@@ -44,6 +47,13 @@ export const HomeQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
       title
+      firstPartTitle
+      secondPartTitle
+      colorWords{
+        ... on DatoCmsColorWord{
+          word
+        }
+      }
       description
       textWhite
       backgroundImage {
