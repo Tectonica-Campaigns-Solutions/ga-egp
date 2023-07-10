@@ -1,14 +1,21 @@
-import React from 'react'
+import React from 'react';
+import './index.scss';
 
 function FieldRadio({ field }) {
   return (
-    <div>
-      <label htmlFor="">{ field.label }</label>
-      {
-        field.options.map( item => <div><label>{item.label}</label><input type="radio" /></div>)
-      }
+    <div className="hubspot-radio-field">
+      <label htmlFor="">{field.label}</label>
+
+      <div className="options">
+        {field.options.map((item) => (
+          <div className="option-item">
+            <input type="radio" />
+            <label>{item.label}</label>
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
 
-export default FieldRadio
+export default FieldRadio;

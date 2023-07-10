@@ -47,7 +47,7 @@ export const DatoCMS = graphql`
         formId
         region
         portalId
-        redirectTo{
+        redirectTo {
           ... on DatoCmsPage {
             slug
             model {
@@ -293,8 +293,8 @@ export const DatoCMS = graphql`
     __typename
     id
     title
-    cta{
-      ... on DatoCmsGlobalLink{
+    cta {
+      ... on DatoCmsGlobalLink {
         label
         url
       }
@@ -303,14 +303,15 @@ export const DatoCMS = graphql`
   fragment BlockFormSteps on DatoCmsBlockHubspotFormStep {
     __typename
     id
-    steps{
-      ... on DatoCmsFormStep{
+    steps {
+      ... on DatoCmsFormStep {
+        title
+        stepPreTitle
         description
-        formFields{
-          ... on DatoCmsFormField{
+        formFields {
+          ... on DatoCmsFormField {
             idHubspotField
           }
-          
         }
       }
     }
@@ -321,10 +322,10 @@ export const DatoCMS = graphql`
     title
     highlighted
     useContainer
-    people{
-      ... on DatoCmsItemGroup{
+    people {
+      ... on DatoCmsItemGroup {
         customBio
-        person{
+        person {
           ... on DatoCmsPerson {
             id
             slug
@@ -763,49 +764,49 @@ export const DatoCMS = graphql`
     title
     hideInInnerNavigation
     content {
-        ... on DatoCmsPage {
-          slug
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsListPodcast {
-          slug
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsListResolution {
-          slug
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsListPolicyPaper {
-          slug
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsListNews {
-          slug
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsListEvent {
-          slug
-          model {
-            apiKey
-          }
-        }
-        ... on DatoCmsListPosition {
-          slug
-          model {
-            apiKey
-          }
+      ... on DatoCmsPage {
+        slug
+        model {
+          apiKey
         }
       }
+      ... on DatoCmsListPodcast {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListResolution {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListPolicyPaper {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListNews {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListEvent {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsListPosition {
+        slug
+        model {
+          apiKey
+        }
+      }
+    }
     treeParent {
       title
       content {
