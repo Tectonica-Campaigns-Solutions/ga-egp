@@ -12,7 +12,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
         crossOrigin="anonymous"
         key="colby"
       />
-      <link rel="preload" as="image" href="https://www.datocms-assets.com/87481/1672133611-madhu-shesharam-kqzzcvyewvk-unsplash.jpg?auto=format&w=2677" />
+      <link rel="preload" as="image" href="https://www.datocms-assets.com/87481/1674746081-45436302494_20c278316b_o-2.png?auto=format&w=2400" />
     </>
   ])
 }
