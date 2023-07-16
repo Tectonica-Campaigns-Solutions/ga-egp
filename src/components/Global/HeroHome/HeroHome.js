@@ -7,20 +7,20 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite, fir
 
   useEffect(() => {
     setInterval(function () {
-      const show = document.querySelector('span[data-show]')
-      const next = show.nextElementSibling || document.querySelector('span.animation:first-child')
-      const up = document.querySelector('span.animation[data-up]')
-      console.log(up)
-      if (up) {
-        up.removeAttribute('data-up')
-      }
-      
-      show.removeAttribute('data-show')
-      show.setAttribute('data-up', '')
-      
-      next.setAttribute('data-show', '')
-    }, 4000)
+        const show = document.querySelector('span[data-show]')
+        const next = show.nextElementSibling || document.querySelector('span.animation:first-child')
+        const up = document.querySelector('span.animation[data-up]')
+        if (up) {
+          up.removeAttribute('data-up')
+        }
+        
+        show.removeAttribute('data-show')
+        show.setAttribute('data-up', '')
+        
+        next.setAttribute('data-show', '')
+      }, 4000)
   }, [])
+
   const css = `@media (max-width: 750px) {
     .hero-home {
         background-image: url("${imageMobile.images.fallback.src}")
@@ -61,7 +61,7 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite, fir
           </div>
 
           <div className="row">
-            <div className="col-xxl-8 col-12">
+            <div className="col-xxl-8 col-12 box-form">
               {form && (
                 <HubspotForm id={form.formId} formId={form.formId} region={form.region} portalId={form.portalId} />
               )}
