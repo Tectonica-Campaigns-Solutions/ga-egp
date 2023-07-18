@@ -1,0 +1,52 @@
+.block-donation {
+  padding: 82px 0 124px 0;
+  background: var(--egp-pink, #FF70BD);
+  position: relative;
+
+  h2 {
+    color: var(--egp-white, #FFF);
+    text-align: center;
+    font-family: "Colby";
+    font-size: 49px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    max-width: 677px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+    z-index: 10;
+  }
+
+  .cta-list {
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+
+    .cta-item {
+      a {
+        padding: 16px 15px 15px 15px;
+        background: var(--egp-green, #57B45F);
+        border: 4px solid var(--egp-white, #FFF);
+        border-radius: 10px;
+        color: var(--egp-white, #FFF);
+        text-align: center;
+        font-family: "Jaldi";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 18.4px;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .flowers {
+    z-index: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+  }
+}

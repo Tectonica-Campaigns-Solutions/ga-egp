@@ -55,7 +55,7 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsBlockHubspotFormStep':
             return <HubspotStepsForm key={block.id} block={block} />;
           case 'DatoCmsBlockDonation':
-            return <BlockDonation key={block.id} block={block}/>;
+            return <BlockDonation key={block.id} block={block} />;
           default:
             return '';
         }

@@ -294,6 +294,10 @@ export const DatoCMS = graphql`
     __typename
     id
     title
+    backgroundImage {
+      url
+      alt
+    }
     cta {
       ... on DatoCmsGlobalLink {
         label
