@@ -3,34 +3,46 @@ import HubspotForm from '../../Blocks/HubspotForm/HubspotForm';
 
 import './index.scss';
 
-function HeroHome({ title, image, imageMobile, description, form, textWhite, firstPartTitle, secondPartTitle, colorWords }) {
-
+function HeroHome({
+  title,
+  image,
+  imageMobile,
+  description,
+  form,
+  textWhite,
+  firstPartTitle,
+  secondPartTitle,
+  colorWords,
+}) {
   useEffect(() => {
     setInterval(function () {
-        const show = document.querySelector('span[data-show]')
-        const next = show.nextElementSibling || document.querySelector('span.animation:first-child')
-        const up = document.querySelector('span.animation[data-up]')
-        if (up) {
-          up.removeAttribute('data-up')
-        }
-        
-        show.removeAttribute('data-show')
-        show.setAttribute('data-up', '')
-        
-        next.setAttribute('data-show', '')
-      }, 4000)
-  }, [])
+      const show = document.querySelector('span[data-show]');
+      const next = show.nextElementSibling || document.querySelector('span.animation:first-child');
+      const up = document.querySelector('span.animation[data-up]');
+      if (up) {
+        up.removeAttribute('data-up');
+      }
 
-  const css = `@media (max-width: 750px) {
-    .hero-home {
-        background-image: url("${imageMobile.images.fallback.src}")
+      show.removeAttribute('data-show');
+      show.setAttribute('data-up', '');
+
+      next.setAttribute('data-show', '');
+    }, 4000);
+  }, []);
+
+  const css = `
+    @media (max-width: 750px) {
+      .hero-home {
+        background-image: url("${imageMobile.images.fallback.src}");
+      }
     }
-    }
+    
     @media (min-width: 750px) {
-        .hero-home {
-            background-image: url("${image.images.fallback.src}");
-        }
-  }`;
+      .hero-home {
+          background-image: url("${image.images.fallback.src}");
+      }
+    }
+  `;
 
   return (
     <>
@@ -42,20 +54,25 @@ function HeroHome({ title, image, imageMobile, description, form, textWhite, fir
             <div className="col-lg-6">
               {/* <div className="title" dangerouslySetInnerHTML={{ __html: title }} /> */}
               <div className="title">
-                <span dangerouslySetInnerHTML={{ __html: firstPartTitle }} /> 
-                <span style={{'display': 'inline-block'}}>for </span>
+                <span dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
+                <span style={{ display: 'inline-block' }}>for </span>
                 <span className="mask">
-                  
-                  <span className="animation" data-show style={{ 'paddingLeft': '10px'}}>test</span>
-                  {
-                    colorWords.map((item, index) => {
-                      return (<span className="animation" style={{ 'paddingLeft': '10px'}} dangerouslySetInnerHTML={{ __html: item.word }}/>)
-                    }) 
-                  }
+                  <span className="animation" data-show style={{ paddingLeft: '10px' }}>
+                    test
+                  </span>
+                  {colorWords.map((item, index) => {
+                    return (
+                      <span
+                        className="animation"
+                        style={{ paddingLeft: '10px' }}
+                        dangerouslySetInnerHTML={{ __html: item.word }}
+                      />
+                    );
+                  })}
                 </span>
-                <span style={{ 'display': 'block'}} dangerouslySetInnerHTML={{ __html: secondPartTitle }} />
+                <span style={{ display: 'block' }} dangerouslySetInnerHTML={{ __html: secondPartTitle }} />
               </div>
-              
+
               {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
             </div>
           </div>

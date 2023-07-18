@@ -49,8 +49,8 @@ export const HomeQuery = graphql`
       title
       firstPartTitle
       secondPartTitle
-      colorWords{
-        ... on DatoCmsColorWord{
+      colorWords {
+        ... on DatoCmsColorWord {
           word
         }
       }
