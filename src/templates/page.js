@@ -37,6 +37,7 @@ const Page = ({
           location={location}
           breadcrumb={breadcrumb ? breadcrumb : null}
           bgColor={page.backgroundColor}
+          overlap={page.allowOverlap}
         />
       )}
 
@@ -88,10 +89,11 @@ export const PageQuery = graphql`
         url
       }
       noIndex
+      allowOverlap
       ctasblock {
         ... on DatoCmsCtaExternal {
-          url{
-            ... on DatoCmsGlobalLink{
+          url {
+            ... on DatoCmsGlobalLink {
               label
               url
             }

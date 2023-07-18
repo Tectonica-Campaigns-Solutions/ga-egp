@@ -9,3 +9,16 @@
 
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+
+// Global
+.withOverlap {
+  +div {
+    position: relative;
+    z-index: 2;
+    padding-top: 0;
+
+    .image-wrapper {
+      margin-top: -50px;
+    }
+  }
+}

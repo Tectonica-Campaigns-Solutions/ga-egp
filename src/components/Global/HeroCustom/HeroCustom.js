@@ -1,6 +1,7 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import Link from '../Link';
+
 import * as styles from './herocustom.module.scss';
 
 function HeroCustom({
@@ -15,9 +16,13 @@ function HeroCustom({
   parentTitle = null,
   breadcrumb = null,
   bgColor = null,
+  overlap = false,
 }) {
   return (
-    <div className={`${styles.heroCustom} section-${bgColor}`} style={{ backgroundImage: `url(${imageHeader?.url})` }}>
+    <div
+      className={`${styles.heroCustom} section-${bgColor} ${overlap ? 'withOverlap' : ''}`}
+      style={{ backgroundImage: `url(${imageHeader?.url})` }}
+    >
       <div>
         {breadcrumb && (
           <div className="container">
@@ -39,11 +44,10 @@ function HeroCustom({
                 <div className={`col-lg-5 ${styles.ctasBox}`}>
                   {ctas.map((item) => (
                     <div className="d-flex align-items-center">
-                       <Link to={item.url?.url}>{item.url?.label}</Link>
-                       {
-                        item.description && <div dangerouslySetInnerHTML={{__html: item.description}} />
-                       }
-                       
+                      <Link to={item.url?.url}>{item.url?.label}</Link>
+                      {item.description && (
+                        <div className={styles.ctaText} dangerouslySetInnerHTML={{ __html: item.description }} />
+                      )}
                     </div>
                   ))}
                 </div>
