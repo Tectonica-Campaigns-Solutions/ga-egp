@@ -46,21 +46,23 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   const resultData = await result.json();
 
   //create node for build time of member parties from hubspot
-  resultData.results.map((item) => {
-    createNode({
-      title: item.properties.name,
-      logo: item.properties.image,
-      iso_code: item.properties.iso_code,
-      // required fields
-      id: item.id,
-      parent: null,
-      children: [],
-      internal: {
-        type: `MemberParty`,
-        contentDigest: createContentDigest(item),
-      },
+  if (resultData.results) {
+    resultData.results.map((item) => {
+      createNode({
+        title: item.properties.name,
+        logo: item.properties.image,
+        iso_code: item.properties.iso_code,
+        // required fields
+        id: item.id,
+        parent: null,
+        children: [],
+        internal: {
+          type: `MemberParty`,
+          contentDigest: createContentDigest(item),
+        },
+      });
     });
-  });
+  }
 };
 
 exports.createPages = ({ graphql, actions }) => {
