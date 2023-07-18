@@ -170,4 +170,67 @@
       color: #36845b;
     }
   }
+
+
+  .hubspot-container.default {
+    position: relative;
+    z-index: 10;
+
+    form {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      &>div {
+        height: 50px;
+      }
+
+      .input {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+        input {
+          height: 100%;
+          width: 100%;
+          padding: 4px 20px 14px 10px;
+        }
+      }
+
+      .actions {
+        height: 100%;
+
+        input {
+          padding: 16px 15px 15px 15px;
+          height: 100%;
+        }
+      }
+
+      .hs-submit {
+        display: block;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+
+        .hs-button {
+          height: 100%;
+          display: block !important;
+          text-align: center;
+          padding: 16px 15px 15px;
+          background: var(--egp-green, #57B45F);
+          border-radius: 10px;
+
+          font-family: 'Jaldi';
+          color: var(--egp-white, #FFF);
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 800;
+          line-height: 18.4px;
+          text-transform: uppercase;
+        }
+      }
+
+
+    }
+  }
 }
