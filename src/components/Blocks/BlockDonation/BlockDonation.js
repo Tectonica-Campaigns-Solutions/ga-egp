@@ -7,17 +7,19 @@ function BlockDonation({ block }) {
   return (
     <div className="block-donation">
       <div className="container">
-        <h2>{block.title}</h2>
+        <div className="main-content">
+          <h2>{block.title}</h2>
 
-        {block.cta && (
-          <div className="cta-list">
-            {block.cta.map((item) => (
-              <div className="cta-item">
-                <Link to={item.url}>{item.label}</Link>
-              </div>
-            ))}
-          </div>
-        )}
+          {block.cta && (
+            <div className="cta-list">
+              {block.cta.map((item) => (
+                <div className="cta-item">
+                  <Link to={item.url}>{item.label}</Link>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         {block.backgroundImage?.url && (
           <img

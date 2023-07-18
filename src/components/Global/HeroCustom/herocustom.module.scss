@@ -44,6 +44,7 @@
       border-radius: 10px;
       margin: 10px 0;
       display: inline-block;
+      border: 2px solid var(--egp-white, #FFF);
 
       a {
         background-color: var(--egp-green);
@@ -58,7 +59,19 @@
         padding: 0;
       }
 
+      &:hover {
+        border: 2px solid var(--egp-white, #FFF);
+        background: var(--egp-pink, #FF70BD);
 
+        a {
+          background: var(--egp-white, #FFF);
+          color: var(--egp-pink, #FF70BD);
+        }
+
+        .ctaText {
+          color: var(--egp-white, #FFF);
+        }
+      }
     }
   }
 
