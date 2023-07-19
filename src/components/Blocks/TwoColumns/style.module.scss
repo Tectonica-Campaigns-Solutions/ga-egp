@@ -1,6 +1,6 @@
 .twoColumns {
-  padding-top: 52px;
-  padding-bottom: 130px;
+  padding-top: 60px;
+  padding-bottom: 50px;
   background-color: rgba(87, 180, 95, 0.05);
 
   h3 {
@@ -14,4 +14,7 @@
   }
 
   .color-light-green {}
+  &.white{
+    background-color:#fff;
+  }
 }

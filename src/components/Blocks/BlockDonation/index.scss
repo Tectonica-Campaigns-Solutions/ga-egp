@@ -23,8 +23,10 @@
     align-items: center;
     justify-content: center;
     gap: 48px;
+    flex-wrap:wrap;
 
     .cta-item {
+      margin-bottom:25px;
       a {
         padding: 16px 15px 15px 15px;
         background: var(--egp-green, #57B45F);
@@ -52,5 +54,16 @@
     right: 0;
     top: 0;
     height: 100%;
+  }
+}
+
+@media screen and (max-width:992px){
+  .block-donation {
+    h2{
+      font-size:25px;
+    }
+    .cta-list {
+      justify-content: start;
+    }
   }
 }

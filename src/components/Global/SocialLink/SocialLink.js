@@ -5,6 +5,7 @@ import iconTwitter from '../../Icons/icon_twitter.svg';
 import iconFacebook from '../../Icons/icon_facebook.svg';
 import iconFlickr from '../../Icons/icon_flickr.svg';
 import iconIg from '../../Icons/icon_ig.svg';
+import iconTikTok from '../../Icons/icon_tiktok.svg'
 
 import './index.scss';
 
@@ -14,6 +15,7 @@ const SocialMap = {
   facebook: iconFacebook,
   instagram: iconIg,
   flickr: iconFlickr,
+  tiktok: iconTikTok,
 };
 
 const SocialLink = ({ name, url, title = '', iconWhite = false }) => {

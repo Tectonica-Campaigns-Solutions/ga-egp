@@ -194,6 +194,7 @@ export const PositionQuery = graphql`
           id
           title
           hideInInnerNavigation
+          position
           content {
             ... on DatoCmsPage {
               slug
@@ -232,10 +233,12 @@ export const PositionQuery = graphql`
         treeParent {
           treeChildren {
             id
+            position
           }
         }
         treeChildren {
           id
+          position
           ... on DatoCmsMenu {
             id
             title

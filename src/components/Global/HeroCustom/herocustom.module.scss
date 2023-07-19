@@ -85,3 +85,24 @@
     line-height: 150%;
   }
 }
+
+.noDescription{
+ display:inline-block!important;
+ float:right!important;
+ clear:both;
+ a{
+  margin-right:0!important;
+  
+ }
+}
+
+@media screen and (max-width:768px){
+  .heroCustom {
+    h1{
+      font-size:25px;
+    }
+  }
+  .noDescription{
+    float:left!important;
+  }
+}

@@ -7,7 +7,7 @@ const TwoColumns = ({ block }) => {
   const { backgroundColor, leftColumnTitle = '', leftContent = [], rightColumnTitle = '', rightContent = [] } = block;
 
   return (
-    <section className={`${styles.twoColumns} color-${backgroundColor}`}>
+    <section className={`${styles.twoColumns} ${styles[backgroundColor]}`}>
       <div className="container">
         <div className="row">
           <div className="col-lg-6">

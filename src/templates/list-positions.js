@@ -203,6 +203,7 @@ export const ListPositionsQuery = graphql`
     sideNav: datoCmsMenu(id: { eq: $menuPos }) {
       treeChildren {
         id
+        position
         hideInInnerNavigation
         ... on DatoCmsMenu {
           id
