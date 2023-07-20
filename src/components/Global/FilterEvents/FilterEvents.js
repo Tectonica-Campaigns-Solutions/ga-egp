@@ -215,7 +215,22 @@ function FilterEvents({ events, tags }) {
             items={orderedEvents}
             renderCustomTitle={(item) => {
               const eventsOnMonth = item?.events?.length || 0;
-              return `${item.month} (${eventsOnMonth})`;
+
+              const uniqueColorsSet = new Set();
+              item?.events?.forEach((item) => {
+                if (item.node.tags && item.node.tags.color) {
+                  uniqueColorsSet.add(item.node.tags.color);
+                }
+              });
+              const uniqueColorsArray = Array.from(uniqueColorsSet);
+
+              const uniqueTags = uniqueColorsArray.map((color) => <span className={`ball-tag ${color}`} />);
+
+              return (
+                <span className="item-name">
+                  {item.month} ({eventsOnMonth}) {uniqueTags}
+                </span>
+              );
             }}
             renderChild={(item) => {
               const events = item.events;

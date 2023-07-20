@@ -85,6 +85,32 @@
   .mobile-form {
     display: none;
   }
+
+  .item-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .ball-tag {
+      display: block;
+      width: 15px;
+      height: 15px;
+      background-color: black;
+      border-radius: 50%;
+
+      &.yellow {
+        background-color: #FFEC8F;
+      }
+
+      &.blue {
+        background-color: #CBE4EE;
+      }
+
+      &.grey {
+        background-color: #DDF0DF;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 767px) {
