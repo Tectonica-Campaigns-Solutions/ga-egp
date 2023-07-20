@@ -49,6 +49,27 @@
   }
 }
 
+.withBgPink {
+  ul {
+
+    li {
+      color: var(--egp-white) !important;
+
+      a {
+        color: var(--egp-white) !important;
+      }
+
+      span {
+        margin-right: 5px;
+      }
+
+      &:last-child {
+        color: rgba(255, 255, 255, 0.50) !important;
+      }
+    }
+  }
+}
+
 .active {
   color: var(--egp-dark);
 }

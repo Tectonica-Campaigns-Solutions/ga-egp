@@ -26,7 +26,7 @@ function HeroCustom({
       <div>
         {breadcrumb && (
           <div className="container">
-            <Breadcrumb items={breadcrumb} textWhite />
+            <Breadcrumb items={breadcrumb} textWhite bgPink={bgColor === 'pink'} />
           </div>
         )}
 
