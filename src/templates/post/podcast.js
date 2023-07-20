@@ -1,36 +1,44 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
-import HeroPage from '../../components/Global/HeroPage/HeroPage';
-import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
 import SeoDatoCms from '../../components/SeoDatoCms';
+import HeroPodcast from '../../components/Global/HeroPodcast/HeroPodcast';
+import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
+import EmbedAudio from '../../components/Blocks/EmbedAudio/EmbedAudio';
 
 import './index.scss';
 
 const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
-
   return (
-    <Layout>
+    <Layout navbarWhite>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <HeroPage
+      <HeroPodcast
         title={page.title}
-        context={pageContext}
-        location={location}
         date={page.date}
         breadcrumb={breadcrumb}
         breadcrumbDetail={page.title}
-        isDetailView
+        image={page.image}
       />
 
       <div className="container">
-        <div className="post-detail">
+        <div className="post-detail podcast">
           <div className="row justify-content-center">
             <div className="col-lg-9">
-              {page.image && <ImageWrapper image={page.image} />}
+              {page.audioUrl && <EmbedAudio file={page.audioUrl[0].file} />}
+
+              {isArray(page.authors) && (
+                <div className="authors-list row gy-4">
+                  {page.authors.map((author) => (
+                    <div className="col-lg-6" key={author.id}>
+                      <AuthorCard author={author} />
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {page.textContent && <StructuredContentDefault content={page.textContent} />}
 
@@ -103,6 +111,22 @@ export const PodcastQuery = graphql`
           title
           id
           slug
+        }
+      }
+      audioUrl {
+        id
+        file {
+          url
+        }
+      }
+      authors {
+        id
+        name
+        slug
+        description
+        jobPosition
+        image {
+          gatsbyImageData(width: 84, height: 84)
         }
       }
     }

@@ -14,7 +14,7 @@ const Breadcrumb = ({ items = null, textWhite = false, breadcrumbDetail = null }
 
   const getTitlesRecursive = (item, slugs = []) => {
     if (item.title) {
-      slugs.push({ title: item.title, content: {slug: item.content?.slug, model: item.content?.model} });
+      slugs.push({ title: item.title, content: { slug: item.content?.slug, model: item.content?.model } });
     }
 
     if (item.treeParent) {
@@ -42,16 +42,20 @@ const Breadcrumb = ({ items = null, textWhite = false, breadcrumbDetail = null }
       <ul>
         {finalItems.map((item, index) => (
           <li key={index}>
-            { item.content?.slug || item.to === '/' ? <Link
-                  to={item.content ? pathToModel(item.content.model, item.content.slug) : item ? item.to : null}
-                  className={`${finalItems.length - 1 === index ? styles.active : ''}`}
-                >
-                  {renderSeparator(index)}
-                  {item.title}
-                </Link>
-                : 
-                <span>{renderSeparator(index)}{ item.title }</span>
-            }     
+            {item.content?.slug || item.to === '/' ? (
+              <Link
+                to={item.content ? pathToModel(item.content.model, item.content.slug) : item ? item.to : null}
+                className={`${finalItems.length - 1 === index ? styles.active : ''}`}
+              >
+                {renderSeparator(index)}
+                {item.title}
+              </Link>
+            ) : (
+              <span>
+                {renderSeparator(index)}
+                {item.title}
+              </span>
+            )}
           </li>
         ))}
       </ul>

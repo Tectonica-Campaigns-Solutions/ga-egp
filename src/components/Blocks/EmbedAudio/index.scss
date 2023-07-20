@@ -1,20 +1,59 @@
 .embed-audio {
   padding: 20px 0;
 
+  .rhap_container {
+    padding: 17px 24px 13px 24px;
+    border-radius: 10px;
+    background: #FFEC8F;
+    box-shadow: none;
+  }
+
   .rhap_time {
-    font-family: 'Roboto';
+    color: var(--egp-darker-green, #184B31);
+    font-family: "Roboto";
+    font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 150%;
-    color: var(--egp-dark);
+    line-height: 130%;
+  }
+
+  .rhap_progress-filled {
+    background-color: var(--egp-darker-green, #184B31);
+  }
+
+  .rhap_progress-indicator {
+    background: var(--egp-darker-green, #184B31);
   }
 
   .rhap_progress-bar-show-download {
-    background-color: red;
+    background-color: white;
   }
 
   .rhap_download-progress {
-    background-color: green;
+    background: var(--egp-green, #57B45F);
+  }
+
+  .rhap_main-controls {
+    svg path {
+      fill: var(--egp-darker-green, #184B31);
+    }
+  }
+
+  .rhap_repeat-button svg path {
+    fill: var(--egp-darker-green, #184B31);
+  }
+
+  .rhap_volume-container {
+    button svg path {
+      fill: var(--egp-darker-green, #184B31);
+    }
+  }
+
+  .rhap_volume-bar {
+    background-color: white;
+  }
+
+  .rhap_volume-indicator {
+    background-color: #36845B;
   }
 }

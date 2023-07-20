@@ -13,7 +13,7 @@ function HeroPage({
   currentId = null,
   breadcrumb = null,
   children = null,
-  breadcrumbDetail = null
+  breadcrumbDetail = null,
 }) {
   return (
     <div className={styles.heroPage}>

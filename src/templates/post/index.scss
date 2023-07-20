@@ -87,4 +87,13 @@
     display: flex;
     gap: 10px;
   }
+
+  &.podcast {
+    .authors-list {
+      .author-card {
+        height: 100%;
+        background: #FCF7E1;
+      }
+    }
+  }
 }
