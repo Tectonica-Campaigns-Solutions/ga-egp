@@ -79,7 +79,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       contacts.push({name: item.properties[0].value})
     }
     //create node for build time of member parties from hubspot
-   console.log(contacts)
 
     createNode({
       title: resultObject.properties.name.value,
