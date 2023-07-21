@@ -1,11 +1,13 @@
 .card-update {
+  background: #f2f8f3;
+  height: 100%;
+  border-radius: 15px;
+
   .information {
     min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 15px 15px 0px 0px;
-    background: #f2f8f3;
     padding: 20px 28px;
 
     .title {
@@ -23,6 +25,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 1rem;
 
       span {
         font-family: "Roboto";
@@ -51,9 +54,9 @@
   }
 
   &.podcast {
-    .information {
-      background-color: #d3ffd7;
+    background-color: #d3ffd7;
 
+    .information {
       .podcast-tag {
         display: flex;
         flex-direction: row;
