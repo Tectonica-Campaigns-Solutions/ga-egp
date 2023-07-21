@@ -1,6 +1,12 @@
 const path = require(`path`);
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
+const IsoCode = (val) => {
+  if(val === 'Germany'){
+    return 'DE'
+  }
+}
+ 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
   reporter.info(`Your Gatsby site has been built!`);
@@ -19,50 +25,79 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
-  const bodyRequest = {
-    filterGroups: [
-      {
-        filters: [
-          {
-            propertyName: 'egp',
-            operator: 'EQ',
-            value: 'true',
-          },
-        ],
-      },
-    ],
-    properties: ['image', 'iso_code', 'name'],
-  };
-  // get data from GitHub API at build time
-  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies/search`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-    },
-    body: JSON.stringify(bodyRequest),
-  });
-  const resultData = await result.json();
+  // const bodyRequest = {
+  //   filterGroups: [
+  //     {
+  //       filters: [
+  //         {
+  //           propertyName: 'egp',
+  //           operator: 'EQ',
+  //           value: 'true',
+  //         },
+  //       ],
+  //     },
+  //   ],
+  //   properties: ['image', 'iso_code', 'name'],
+  // };
+  // // get data from GitHub API at build time
+  // const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies`, {
+  //   method: 'POST',
+  //   headers: {
+  //     Accept: 'application/json',
+  //     'Content-Type': 'application/json',
+  //     Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+  //   },
+  //   body: JSON.stringify(bodyRequest),
+  // });
+  // const resultData = await result.json();
+  const companies = ['8110536923']
 
-  //create node for build time of member parties from hubspot
-  if (resultData.results) {
-    resultData.results.map((item) => {
-      createNode({
-        title: item.properties.name,
-        logo: item.properties.image,
-        iso_code: item.properties.iso_code,
-        // required fields
-        id: item.id,
-        parent: null,
-        children: [],
-        internal: {
-          type: `MemberParty`,
-          contentDigest: createContentDigest(item),
-        },
-      });
+  for(const company of companies){
+    const result = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}`, {
+      headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+      },
+    })
+    const resultObject = await result.json();
+
+    // contacts
+
+    const contacts = []
+    const getContacts = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}/contacts`,{
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+      },
+    })
+
+    const resultsContacts = await getContacts.json()
+
+    for(const item of resultsContacts.contacts){
+      contacts.push({name: item.properties[0].value})
+    }
+    //create node for build time of member parties from hubspot
+   console.log(contacts)
+
+    createNode({
+      title: resultObject.properties.name.value,
+      logo: 'https://www.datocms-assets.com/87481/1687415818-tilt.svg',
+      iso_code: 'DE',
+      contacts: contacts,
+      // required fields
+      id: String(resultObject.companyId),
+      parent: null,
+      children: [],
+      internal: {
+        type: `MemberParty`,
+        contentDigest: createContentDigest(resultObject),
+      },
     });
+      
   }
+  
 };
 
 exports.createPages = ({ graphql, actions }) => {

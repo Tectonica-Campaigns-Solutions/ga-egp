@@ -103,7 +103,11 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
                       <div className="row">
                         <div className="col-lg-4">
                           <h4>Party Leaders:</h4>
-                          <div className="party-leaders-text" dangerouslySetInnerHTML={{ __html: item.partyLeaders }} />
+                          {
+                            item.contacts.map(item => {
+                              return (<p>{item.name}</p>)
+                            })
+                          }
                         </div>
 
                         <div className="col-lg-5">
@@ -180,6 +184,9 @@ export const MemberQuery = graphql`
           id
           title
           logo
+          contacts{
+            name
+          }
         }
       }
     }
