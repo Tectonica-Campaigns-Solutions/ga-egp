@@ -79,8 +79,10 @@
   }
 
   .image-wrapper {
+    margin: 0 !important;
+
     &>div {
-      border-radius: 0 0 15px 15px;
+      border-radius: 0 0 15px 15px !important;
       height: 310px;
     }
   }

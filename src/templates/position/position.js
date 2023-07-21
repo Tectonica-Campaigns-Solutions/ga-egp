@@ -7,6 +7,7 @@ import InnerNavigation from '../../components/Global/InnerNavigation/InnerNaviga
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
+import LatestUpdatesByTag from '../../components/Blocks/LatestUpdates/LatestUpdatesByTag';
 
 import './index.scss';
 
@@ -45,6 +46,16 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
               <StructuredContentDefault content={position.text} />
             </div>
           )}
+
+          {position.relatedTagNew && (
+            <LatestUpdatesByTag
+              title="Related News"
+              tagId={position.relatedTagNew.id}
+              link={{
+                label: 'See all Updates',
+              }}
+            />
+          )}
         </InnerLayout>
       </div>
     </Layout>
@@ -77,6 +88,11 @@ export const PositionQuery = graphql`
       }
       text {
         value
+      }
+      relatedTagNew {
+        ... on DatoCmsTagNews {
+          id
+        }
       }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
