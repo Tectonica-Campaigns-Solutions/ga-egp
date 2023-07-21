@@ -6,11 +6,8 @@ import plusIcon from '../../Icons/plus.svg';
 
 import './index.scss';
 
-const InnerNavigation = ({ location, innerMenu }) => {
-  console.log(innerMenu);
-
+const InnerNavigation = ({ location, linkParent = null, innerMenu }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const navLinks = innerMenu?.treeChildren || [];
 
   // Filter links by 'hide' field and sort by order
@@ -20,8 +17,6 @@ const InnerNavigation = ({ location, innerMenu }) => {
       return a.position - b.position;
     });
 
-  console.log(navLinksOrdered);
-
   return (
     <div className="inner-navigation" data-datocms-noindex>
       <div className="container">
@@ -30,8 +25,10 @@ const InnerNavigation = ({ location, innerMenu }) => {
             const link = pathToModel(item.content?.model?.apiKey, item.content?.slug);
             const active = isActiveTrail(location?.pathname, link);
 
+            const parentActive = item.title === linkParent?.title;
+
             return (
-              <div className={`item ${active ? 'active' : ''}`} key={item.id}>
+              <div className={`item ${active || parentActive ? 'active' : ''}`} key={item.id}>
                 <Link className="link-item" to={link}>
                   {item.title}
                 </Link>
