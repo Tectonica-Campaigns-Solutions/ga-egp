@@ -7,7 +7,8 @@ import plusIcon from '../../Icons/plus.svg';
 import './index.scss';
 
 const InnerNavigation = ({ location, innerMenu }) => {
-  console.log(innerMenu)
+  console.log(innerMenu);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navLinks = innerMenu?.treeChildren || [];
@@ -18,7 +19,9 @@ const InnerNavigation = ({ location, innerMenu }) => {
     .sort(function (a, b) {
       return a.position - b.position;
     });
-  console.log(navLinksOrdered)
+
+  console.log(navLinksOrdered);
+
   return (
     <div className="inner-navigation" data-datocms-noindex>
       <div className="container">

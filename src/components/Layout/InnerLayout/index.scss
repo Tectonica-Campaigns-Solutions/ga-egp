@@ -3,9 +3,17 @@
   background: linear-gradient(90deg, #eaf2ee 15%, rgba(255, 255, 255, 1) 15%);
 
   .first {
+    position: relative;
     background-color: #eaf2ee;
     border-right: 1px solid rgba(54, 132, 91, .2);
     padding-right: 40px;
+
+    .collapse-btn {
+      position: absolute;
+      top: 40px;
+      right: -40px;
+      cursor: pointer;
+    }
 
     h3 {
       font-family: 'Jaldi';
@@ -15,6 +23,32 @@
       line-height: 110%;
       color: #333333;
       margin-bottom: 39px;
+    }
+  }
+
+  &.hide {
+    background: #fff;
+
+    .first {
+      padding: 0;
+      margin: 0;
+      background-color: white;
+      border: none;
+      position: absolute;
+
+      .collapse-btn {
+        top: 40px;
+        left: -15px;
+      }
+
+      .main-content {
+        display: none;
+      }
+    }
+
+    .second {
+      padding-left: initial;
+      padding-top: 140px;
     }
   }
 

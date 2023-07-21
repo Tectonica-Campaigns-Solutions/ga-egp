@@ -1,6 +1,6 @@
 import React from 'react';
-import { isActiveTrail, pathToModel } from '../../../utils';
 import Link from '../Link';
+import { isActiveTrail, pathToModel } from '../../../utils';
 
 import './index.scss';
 
