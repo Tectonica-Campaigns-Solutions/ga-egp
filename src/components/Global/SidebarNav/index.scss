@@ -13,17 +13,9 @@
 
     &.active a {
       color: var(--egp-dark-green);
-
-      &::before {
-        content: '';
-        background-image: url('../../Icons/right_arrow.svg');
-        background-repeat: no-repeat;
-        width: 17px;
-        height: 28px;
-        display: inline-flex;
-        align-items: center;
-        margin-right: 10px;
-      }
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '../Link';
 import { isActiveTrail, pathToModel } from '../../../utils';
+import activeIcon from '../../Icons/right_arrow.svg';
 
 import './index.scss';
 
@@ -28,7 +29,10 @@ function SidebarNav({ menu, location, landing }) {
 
         return (
           <div className={`sidebar-item ${isActivePath ? 'active' : ''}`} key={item.id}>
-            <Link to={path}>{item.title}</Link>
+            <Link to={path}>
+              {isActivePath ? <img src={activeIcon} alt={'Active icon'} /> : null}
+              {item.title}
+            </Link>
           </div>
         );
       })}
