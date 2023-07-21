@@ -18,17 +18,14 @@
       a {
         margin-right: 5px;
         color: var(--egp-green) !important;
-
-        // &.active {
-        //   color: var(--egp-dark);
-        // }
       }
 
       span {
         margin-right: 5px;
       }
 
-      &:last-child {
+      &:last-child,
+      &:last-child a {
         color: var(--egp-dark) !important;
       }
     }
@@ -38,7 +35,9 @@
 .textWhite {
   ul {
     li {
-      &:last-child {
+
+      &:last-child,
+      &:last-child a {
         color: var(--egp-white, #FFF) !important;
       }
     }
@@ -63,7 +62,8 @@
         margin-right: 5px;
       }
 
-      &:last-child {
+      &:last-child,
+      &:last-child a {
         color: rgba(255, 255, 255, 0.50) !important;
       }
     }

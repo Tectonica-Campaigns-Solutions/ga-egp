@@ -17,6 +17,8 @@ function HeroHome({
   useEffect(() => {
     setInterval(function () {
       const show = document.querySelector('span[data-show]');
+      if (!show) return;
+
       const next = show.nextElementSibling || document.querySelector('span.animation:first-child');
       const up = document.querySelector('span.animation[data-up]');
       if (up) {
