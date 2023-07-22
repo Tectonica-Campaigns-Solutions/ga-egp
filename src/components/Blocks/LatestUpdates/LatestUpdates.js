@@ -7,21 +7,21 @@ import { isArray } from '../../../utils';
 const LatestUpdates = ({ block }) => {
   const { title, link } = block;
 
-  const {
-    allDatoCmsPost: { nodes: latestsPosts },
-  } = useStaticQuery(graphql`
-    query latestPost {
-      allDatoCmsPost(limit: 3) {
-        nodes {
-          ...PostCard
+  const latestsPosts = useStaticQuery(graphql`
+    query LatestPosts {
+      allDatoCmsPost(limit: 3){
+        edges{
+          node{
+            ...PostCard
+          }
         }
-      }
+     }
     }
-  `);
+  `)
 
   return (
     <>
-      {isArray(latestsPosts) && (
+      {isArray(latestsPosts.edges) && (
         <Section title={title} link={link} extraClassNames="gy-5">
           {latestsPosts.map((post) => (
             <div className="col-lg-4 col-md-6" key={post.id}>
