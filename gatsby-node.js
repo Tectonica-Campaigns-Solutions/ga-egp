@@ -2,14 +2,14 @@ const path = require(`path`);
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 
 const IsoCode = (val) => {
-  if(val === 'Germany'){
-    return 'DE'
+  if (val === 'Germany') {
+    return 'DE';
   }
-  if(val == 'Spain'){
-    return 'ES'
+  if (val == 'Spain') {
+    return 'ES';
   }
-}
- 
+};
+
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
   reporter.info(`Your Gatsby site has been built!`);
@@ -53,20 +53,20 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   //   body: JSON.stringify(bodyRequest),
   // });
   // const resultData = await result.json();
-  const companies = ['8110536923', '8110864614']
-  const contacts = []
+  const companies = ['8110536923', '8110864614'];
+  const contacts = [];
 
-  for(const company of companies){
+  for (const company of companies) {
     const result = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}`, {
       headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + process.env.HUBSPOT_API,
       },
-    })
+    });
     const resultObject = await result.json();
-    const companyProps = resultObject.properties
-    
+    const companyProps = resultObject.properties;
+
     // contacts that are party leaders
 
     // const contacts = []
@@ -88,33 +88,32 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         Authorization: 'Bearer ' + process.env.HUBSPOT_API,
       },
       body: JSON.stringify({
-        "inputs": [{"id": resultObject.companyId}]
-      })
-    })
+        inputs: [{ id: resultObject.companyId }],
+      }),
+    });
 
-    const resultAssociations = await getAssociations.json()
+    const resultAssociations = await getAssociations.json();
 
     //const resultsContacts = await getContacts.json()
-    if(resultAssociations.results[0]){
-      const filterByPartyLeaders = resultAssociations.results[0].to.filter(item => item.associationTypes.map(el => el.typeId).includes(40))
+    if (resultAssociations.results[0]) {
+      const filterByPartyLeaders = resultAssociations.results[0].to.filter((item) =>
+        item.associationTypes.map((el) => el.typeId).includes(40)
+      );
 
-      for(const item of filterByPartyLeaders){
-          const contact = item.toObjectId
-          const getContact = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${contact}`,{
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-            },
-          })
-          const contactResult = await getContact.json();
-          //console.log(contactResult)
-          contacts.push({name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname }`})
+      for (const item of filterByPartyLeaders) {
+        const contact = item.toObjectId;
+        const getContact = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${contact}`, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+          },
+        });
+        const contactResult = await getContact.json();
+        //console.log(contactResult)
+        contacts.push({ name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname}` });
       }
-        
     }
-    
-    
 
     //create node for build time of member parties from hubspot
 
@@ -124,21 +123,21 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       iso_code: 'DE',
       social: [
         {
-         url: companyProps.facebook_company_page?.value,
-         socialNetwork: 'facebook'
-        }, 
+          url: companyProps.facebook_company_page?.value,
+          socialNetwork: 'facebook',
+        },
         {
           url: companyProps.twitterhandle?.value,
-          socialNetwork: 'twitter'
+          socialNetwork: 'twitter',
         },
         {
           url: companyProps.linkedin_company_page?.value,
-          socialNetwork: 'linkedin'
-        }
+          socialNetwork: 'linkedin',
+        },
       ],
       contact: {
         website: companyProps.website?.value,
-        email: companyProps.organization_email?.value
+        email: companyProps.organization_email?.value,
       },
       status: companyProps.membership_status?.value,
       contacts: contacts,
@@ -151,9 +150,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         contentDigest: createContentDigest(resultObject),
       },
     });
-      
   }
-  
 };
 
 exports.createPages = ({ graphql, actions }) => {
@@ -234,6 +231,9 @@ exports.createPages = ({ graphql, actions }) => {
                   slug
                   model {
                     apiKey
+                  }
+                  relatedTagNew {
+                    id
                   }
                 }
               }
@@ -525,6 +525,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: position.slug,
               id: position.id,
+              newTag: position.relatedTagNew ? position.relatedTagNew.id : null,
               menuPos: getMenuPosition(navTree, position.id),
               parentTitle: result.data.listPositions?.title ? result.data.listPositions?.title : null,
             },

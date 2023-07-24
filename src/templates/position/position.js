@@ -7,11 +7,15 @@ import InnerNavigation from '../../components/Global/InnerNavigation/InnerNaviga
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
-import LatestUpdatesByTag from '../../components/Blocks/LatestUpdates/LatestUpdatesByTag';
+import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
 
 import './index.scss';
 
-const Position = ({ pageContext, location, data: { position, breadcrumb, navLinks, sideNav, favicon, siteTitle } }) => {
+const Position = ({
+  pageContext,
+  location,
+  data: { position, relatedNews, breadcrumb, navLinks, sideNav, favicon, siteTitle },
+}) => {
   const { parentTitle } = pageContext;
 
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
@@ -19,6 +23,8 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
     ? sideNav?.treeParent.treeChildren
     : sideNav?.treeChildren;
+
+  const relatedNewsItems = relatedNews.edges;
 
   return (
     <Layout>
@@ -47,13 +53,21 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
             </div>
           )}
 
-          {position.relatedTagNew && (
-            <LatestUpdatesByTag
-              title="Related News"
-              tagId={position.relatedTagNew.id}
-              link={{
-                label: 'See all Updates',
+          {relatedNewsItems && relatedNewsItems.length > 0 && (
+            <LatestUpdates
+              block={{
+                title: 'Related News',
+                link: {
+                  label: 'See all updates',
+                  content: {
+                    slug: 'news',
+                    model: {
+                      apiKey: 'list_news',
+                    },
+                  },
+                },
               }}
+              items={relatedNewsItems}
             />
           )}
         </InnerLayout>
@@ -65,7 +79,7 @@ const Position = ({ pageContext, location, data: { position, breadcrumb, navLink
 export default Position;
 
 export const PositionQuery = graphql`
-  query PositionById($id: String, $menuPos: String) {
+  query PositionById($id: String, $menuPos: String, $newTag: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -89,13 +103,15 @@ export const PositionQuery = graphql`
       text {
         value
       }
-      relatedTagNew {
-        ... on DatoCmsTagNews {
-          id
-        }
-      }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
+      }
+    }
+    relatedNews: allDatoCmsPost(filter: { tags: { elemMatch: { id: { eq: $newTag } } } }, limit: 2) {
+      edges {
+        node {
+          ...PostCard
+        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
