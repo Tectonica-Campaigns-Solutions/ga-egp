@@ -23,6 +23,16 @@
     color: var(--ct-white);
   }
 
+  &.section-transparent {
+    h2 {
+      color: var(--egp-pink, #FF70BD);
+    }
+
+    p {
+      color: var(--egp-black, #333);
+    }
+  }
+
   ul,
   ol {
     list-style: disc;
@@ -170,7 +180,6 @@
       color: #36845b;
     }
   }
-
 
   .hubspot-container.default {
     position: relative;

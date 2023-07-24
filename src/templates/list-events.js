@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import FilterEvents from '../components/Global/FilterEvents/FilterEvents';
 import SeoDatoCms from '../components/SeoDatoCms';
+import TextHubspotForm from '../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 function ListEvents({
   pageContext,
@@ -18,6 +19,9 @@ function ListEvents({
 
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       <FilterEvents events={finalEventList} tags={tags} />
+
+      {/* Form block */}
+      {page.form && page.form[0] && <TextHubspotForm block={page.form[0]} />}
     </Layout>
   );
 }
@@ -37,6 +41,27 @@ export const ListEventsQuery = graphql`
     page: datoCmsListEvent {
       title
       slug
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
+        }
+      }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }

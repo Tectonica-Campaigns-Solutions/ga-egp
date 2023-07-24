@@ -12,6 +12,7 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 import Breadcrumb from '../../components/Global/Breadcrumb/Breadcrumb';
 import EventList from '../../components/Global/EventList/EventList';
 import Section from '../../components/Global/Section/Section';
+import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 import './index.scss';
 
@@ -62,6 +63,9 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
           <EventList events={relatedEvents.edges} />
         </Section>
       )}
+
+      {/* Form block */}
+      {event.form && event.form[0] && <TextHubspotForm block={event.form[0]} />}
     </Layout>
   );
 }
@@ -138,6 +142,27 @@ export const EventQuery = graphql`
           items {
             title
             text
+          }
+        }
+      }
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
           }
         }
       }

@@ -8,6 +8,7 @@ import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
+import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 import './index.scss';
 
@@ -53,6 +54,10 @@ const Position = ({
             </div>
           )}
 
+          {/* Form block */}
+          {position.form && position.form[0] && <TextHubspotForm block={position.form[0]} />}
+
+          {/* Related new section */}
           {relatedNewsItems && relatedNewsItems.length > 0 && (
             <LatestUpdates
               block={{
@@ -102,6 +107,27 @@ export const PositionQuery = graphql`
       }
       text {
         value
+      }
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
+        }
       }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

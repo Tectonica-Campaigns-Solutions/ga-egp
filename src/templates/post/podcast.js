@@ -8,10 +8,11 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 import HeroPodcast from '../../components/Global/HeroPodcast/HeroPodcast';
 import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
 import EmbedAudio from '../../components/Blocks/EmbedAudio/EmbedAudio';
+import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 import './index.scss';
 
-const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
+const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
   return (
     <Layout navbarWhite>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -43,12 +44,15 @@ const Podcast = ({ pageContext, location, data: { page, breadcrumb, favicon, sit
               {page.textContent && <StructuredContentDefault content={page.textContent} />}
 
               {isArray(page.tags) && (
-                <div className="new-tags">
+                <div className="new-tags mb-5">
                   {page.tags.map((tag) => (
                     <Tag key={tag.id} title={tag.title} />
                   ))}
                 </div>
               )}
+
+              {/* Form block */}
+              {page.form && page.form[0] && <TextHubspotForm block={page.form[0]} />}
             </div>
           </div>
         </div>
@@ -127,6 +131,27 @@ export const PodcastQuery = graphql`
         jobPosition
         image {
           gatsbyImageData(width: 84, height: 84)
+        }
+      }
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
         }
       }
     }

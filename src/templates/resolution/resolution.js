@@ -5,10 +5,17 @@ import StructuredContentDefault from '../../components/StructuredContentDefault 
 import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
+import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubsportForm';
+import Section from '../../components/Global/Section/Section';
+import CardPolicy from '../../components/Global/CardPolicy/CardPolicy';
 
 import './index.scss';
 
-const Resolution = ({ pageContext, location, data: { resolution, breadcrumb, favicon, siteTitle } }) => {
+const Resolution = ({
+  pageContext,
+  location,
+  data: { resolution, relatedResolutions, breadcrumb, favicon, siteTitle },
+}) => {
   return (
     <Layout>
       <SeoDatoCms seo={resolution.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -38,6 +45,25 @@ const Resolution = ({ pageContext, location, data: { resolution, breadcrumb, fav
           </DetailDocLayout>
         </div>
       </div>
+
+      {resolution.form && <TextHubspotForm block={resolution.form[0]} />}
+
+      {/* Resolutions related */}
+      {relatedResolutions && relatedResolutions.edges && (
+        <Section
+          title="more resolutions"
+          bgColor="section-green"
+          link={{
+            label: 'See all resolutions',
+          }}
+        >
+          {relatedResolutions.edges.map((resolution) => (
+            <div key={resolution.node.id} className="mb-5">
+              <CardPolicy item={resolution.node} />
+            </div>
+          ))}
+        </Section>
+      )}
     </Layout>
   );
 };
@@ -45,7 +71,7 @@ const Resolution = ({ pageContext, location, data: { resolution, breadcrumb, fav
 export default Resolution;
 
 export const ResolutionQuery = graphql`
-  query ResolutionById($id: String, $menuPos: String) {
+  query ResolutionById($id: String, $menuPos: String, $councilId: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -58,6 +84,13 @@ export const ResolutionQuery = graphql`
     }
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ...Breadcrumb
+    }
+    relatedResolutions: allDatoCmsResolution(limit: 3, filter: { council: { id: { eq: $councilId } } }) {
+      edges {
+        node {
+          ...CardResolution
+        }
+      }
     }
     resolution: datoCmsResolution(id: { eq: $id }) {
       id
@@ -83,6 +116,27 @@ export const ResolutionQuery = graphql`
       footnotes {
         anchorId
         text
+      }
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
+        }
       }
     }
   }

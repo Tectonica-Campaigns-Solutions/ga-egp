@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import FilterMembers from '../components/Global/FilterMembers/FilterMembers';
 import SeoDatoCms from '../components/SeoDatoCms';
+import TextHubspotForm from '../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 function ListMembers({ pageContext, location, data: { list, page, breadcrumb, favicon, siteTitle } }) {
   return (
@@ -12,6 +13,8 @@ function ListMembers({ pageContext, location, data: { list, page, breadcrumb, fa
 
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       <FilterMembers members={list.edges} introduction={page.introduction} />
+
+      {page.form && <TextHubspotForm block={page.form[0]} />}
     </Layout>
   );
 }
@@ -32,6 +35,27 @@ export const ListMembersQuery = graphql`
       title
       slug
       introduction
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
+        }
+      }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }

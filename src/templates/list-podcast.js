@@ -6,6 +6,7 @@ import { isArray } from '../utils';
 import ListPaginated from '../components/Global/Pagination/ListPaginated';
 import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import SeoDatoCms from '../components/SeoDatoCms';
+import TextHubspotForm from '../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 function ListPodcast({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle, navLinks } }) {
   const filteredContent = pageContext.items;
@@ -33,8 +34,11 @@ function ListPodcast({ pageContext, location, data: { page, breadcrumb, favicon,
                     <CardUpdate post={item.node} />
                   </div>
 
-                  {/* TODO: Add form cta block */}
-                  {shouldRenderMiddleCta && index === 5 && <div className="col-lg-12 mt-5 mb-5">Form CTA here...</div>}
+                  {shouldRenderMiddleCta && index === 5 && (
+                    <div className="col-lg-12 mt-5 mb-5">
+                      {page.formCta && page.formCta[0] && <TextHubspotForm block={page.formCta[0]} />}
+                    </div>
+                  )}
                 </React.Fragment>
               )}
             />
@@ -144,6 +148,27 @@ export const ListPodcastQuery = graphql`
     page: datoCmsListPodcast {
       title
       slug
+      formCta {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
+        }
+      }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }

@@ -244,6 +244,9 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   id
                   slug
+                  council {
+                    id
+                  }
                 }
               }
             }
@@ -584,6 +587,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: resolution.slug,
               id: resolution.id,
+              councilId: resolution.council ? resolution.council.id : null,
             },
           });
         });

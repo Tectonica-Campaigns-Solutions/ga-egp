@@ -9,6 +9,7 @@ import { isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
+import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubsportForm';
 
 import './index.scss';
 
@@ -62,6 +63,9 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
                   ))}
                 </div>
               )}
+
+              {/* Form block */}
+              {page.form && page.form[0] && <TextHubspotForm block={page.form[0]} />}
             </div>
           </div>
         </div>
@@ -129,6 +133,27 @@ export const PostQuery = graphql`
         jobPosition
         image {
           gatsbyImageData(width: 84, height: 84)
+        }
+      }
+      form {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            gatsbyImageData
+          }
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
         }
       }
     }

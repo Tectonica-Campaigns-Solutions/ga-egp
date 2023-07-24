@@ -7,9 +7,7 @@ function CardPolicy({ item }) {
 
   const isPolicyPaper = model ? model.apiKey === 'policy_paper' : false;
   const policyType = isPolicyPaper ? removeUnderscoreFromString(model?.apiKey) : model?.apiKey;
-
-  // TODO: Add correct slug or use path to model util
-  const url = isPolicyPaper ? null : pathToModel(model.apiKey, slug);
+  const url = isPolicyPaper ? null : pathToModel(model?.apiKey, slug);
 
   return (
     <InformationCard

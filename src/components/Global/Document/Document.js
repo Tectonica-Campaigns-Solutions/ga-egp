@@ -10,7 +10,7 @@ const Document = ({ doc }) => {
       <img src={documentIcon} alt="Document icon" />
 
       <Link to={doc.document.url} target="_blank" download>
-        <span>{doc.document.title}</span>
+        <span>{doc.document.title ?? 'Download'}</span>
       </Link>
     </div>
   );
