@@ -141,9 +141,12 @@ export const DatoCMS = graphql`
               photo{
                 url
                 alt
-                gatsbyImageData(width: 400, height: 350)
+                gatsbyImageData(width: 500, height: 500)
               }
-              speakerInfo
+              jobTitle
+              name
+              lastName
+              biography
               
             }
           }

@@ -46,13 +46,14 @@ const SessionDetail = ({ session }) => {
                   </div>
 
                   <div className="col">
-                    <h6 className={styles.speakerName}>{JSON.parse(speaker.speakerInfo).name} {JSON.parse(speaker.speakerInfo).last_name}</h6>
-                    <span className={styles.speakerPosition}>{JSON.parse(speaker.speakerInfo).position}</span>
-                    <div className={styles.speakerInformation}>
-                      {JSON.parse(speaker.speakerInfo).description}
-                    </div>
+                    <h6 className={styles.speakerName}>{speaker.name} {speaker.lastName}</h6>
+                    <span className={styles.speakerPosition}>{speaker.jobTitle}</span>
+                    <div className={styles.speakerInformation}
+                      dangerouslySetInnerHTML={{__html: speaker.biography }}
+                    />
+                      
 
-                    <Link className={styles.speakerLink}>Show more</Link>
+                    {/* <Link className={styles.speakerLink}>Show more</Link> */}
                   </div>
                 </div>
               ))}
