@@ -33,7 +33,11 @@ const CampaignCard = ({ campaign, fullHeight = false }) => {
           <h3>{title}</h3>
           <div dangerouslySetInnerHTML={{ __html: description }} />
 
-          {form ? <HubspotForm {...form} /> : null}
+          {form ? (
+            <div className="campaign-form">
+              <HubspotForm {...form} />
+            </div>
+          ) : null}
         </div>
       </div>
 

@@ -55,6 +55,7 @@ function HeroHome({
           <div className="row">
             <div className="col-lg-6">
               {/* <div className="title" dangerouslySetInnerHTML={{ __html: title }} /> */}
+
               <div className="title">
                 <span dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
                 <span style={{ display: 'inline-block' }}>for </span>

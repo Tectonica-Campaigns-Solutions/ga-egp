@@ -266,13 +266,17 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-
             events: allDatoCmsEvent {
               edges {
                 node {
                   title
                   id
                   slug
+                  tags {
+                    ... on DatoCmsTagEvent {
+                      id
+                    }
+                  }
                 }
               }
             }
@@ -540,6 +544,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: event.slug,
               id: event.id,
+              tagId: event.tags ? event.tags.id : null,
               menuPos: getMenuPosition(navTree, result.data.listEvents.id),
             },
           });

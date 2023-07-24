@@ -10,10 +10,12 @@ import Tag from '../../components/Global/Tag/Tag';
 import DetailDocLayout from '../../components/Layout/DetailDocLayout/DetailDocLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import Breadcrumb from '../../components/Global/Breadcrumb/Breadcrumb';
+import EventList from '../../components/Global/EventList/EventList';
+import Section from '../../components/Global/Section/Section';
 
 import './index.scss';
 
-function Event({ data: { event, breadcrumb, favicon, siteTitle, eventPage } }) {
+function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } }) {
   return (
     <Layout>
       <SeoDatoCms seo={event.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -43,12 +45,29 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, eventPage } }) {
           </DetailDocLayout>
         </div>
       </div>
+
+      {relatedEvents.edges && relatedEvents.edges.length > 0 && (
+        <Section
+          title="Related events"
+          link={{
+            label: 'See all events',
+            content: {
+              slug: 'events',
+              model: {
+                apiKey: 'list_events',
+              },
+            },
+          }}
+        >
+          <EventList events={relatedEvents.edges} />
+        </Section>
+      )}
     </Layout>
   );
 }
 
 export const EventQuery = graphql`
-  query EventById($id: String, $menuPos: String) {
+  query EventById($id: String, $menuPos: String, $tagId: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -61,6 +80,13 @@ export const EventQuery = graphql`
     }
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ...Breadcrumb
+    }
+    relatedEvents: allDatoCmsEvent(filter: { tags: { id: { eq: $tagId } } }, limit: 2) {
+      edges {
+        node {
+          ...EventCard
+        }
+      }
     }
     event: datoCmsEvent(id: { eq: $id }) {
       title
