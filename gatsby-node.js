@@ -5,6 +5,9 @@ const IsoCode = (val) => {
   if(val === 'Germany'){
     return 'DE'
   }
+  if(val == 'Spain'){
+    return 'ES'
+  }
 }
  
 // Log out information after a build is done
@@ -50,7 +53,8 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   //   body: JSON.stringify(bodyRequest),
   // });
   // const resultData = await result.json();
-  const companies = ['8110536923']
+  const companies = ['8110536923', '8110864614']
+  const contacts = []
 
   for(const company of companies){
     const result = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}`, {
@@ -61,29 +65,82 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       },
     })
     const resultObject = await result.json();
+    const companyProps = resultObject.properties
+    
+    // contacts that are party leaders
 
-    // contacts
+    // const contacts = []
+    // const getContacts = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}/contacts`,{
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //     Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+    //   },
+    // })
 
-    const contacts = []
-    const getContacts = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}/contacts`,{
+    // associations
+
+    const getAssociations = await fetch('https://api.hubapi.com/crm/v4/associations/Companies/Contacts/batch/read', {
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + process.env.HUBSPOT_API,
       },
+      body: JSON.stringify({
+        "inputs": [{"id": resultObject.companyId}]
+      })
     })
 
-    const resultsContacts = await getContacts.json()
+    const resultAssociations = await getAssociations.json()
 
-    for(const item of resultsContacts.contacts){
-      contacts.push({name: item.properties[0].value})
+    //const resultsContacts = await getContacts.json()
+    if(resultAssociations.results[0]){
+      const filterByPartyLeaders = resultAssociations.results[0].to.filter(item => item.associationTypes.map(el => el.typeId).includes(40))
+
+      for(const item of filterByPartyLeaders){
+          const contact = item.toObjectId
+          const getContact = await fetch(`https://api.hubapi.com/crm/v3/objects/contacts/${contact}`,{
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+            },
+          })
+          const contactResult = await getContact.json();
+          //console.log(contactResult)
+          contacts.push({name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname }`})
+      }
+        
     }
+    
+    
+
     //create node for build time of member parties from hubspot
 
     createNode({
-      title: resultObject.properties.name.value,
+      title: companyProps.name.value,
       logo: 'https://www.datocms-assets.com/87481/1687415818-tilt.svg',
       iso_code: 'DE',
+      social: [
+        {
+         url: companyProps.facebook_company_page?.value,
+         socialNetwork: 'facebook'
+        }, 
+        {
+          url: companyProps.twitterhandle?.value,
+          socialNetwork: 'twitter'
+        },
+        {
+          url: companyProps.linkedin_company_page?.value,
+          socialNetwork: 'linkedin'
+        }
+      ],
+      contact: {
+        website: companyProps.website?.value,
+        email: companyProps.organization_email?.value
+      },
+      status: companyProps.membership_status?.value,
       contacts: contacts,
       // required fields
       id: String(resultObject.companyId),

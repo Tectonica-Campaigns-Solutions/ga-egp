@@ -16,6 +16,7 @@ const Order = {
 };
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
+  console.log(members.edges)
   const parties = members.edges;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
@@ -96,30 +97,41 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
                   <div className="col-lg-8 offset-lg-1">
                     <div className="party-main-header">
                       <h3>{item.title}</h3>
-                      <Tag title="Candidate" bgColor="primary-dark-green" />
+                      {
+                        item.status && <Tag title={item.status} bgColor="primary-dark-green" />
+                      }
+                      
                     </div>
 
                     <div className="information">
                       <div className="row">
-                        <div className="col-lg-4">
-                          <h4>Party Leaders:</h4>
-                          {
-                            item.contacts.map(item => {
-                              return (<p>{item.name}</p>)
-                            })
-                          }
-                        </div>
-
-                        <div className="col-lg-5">
-                          <h4>Contact details</h4>
-                          <div
-                            className="contact-details-text"
-                            dangerouslySetInnerHTML={{ __html: item.contactDetails }}
-                          />
-                        </div>
+                        { 
+                          item.contacts && item.contacts.length > 0 && <div className="col-lg-4 party-leaders">
+                            <h4>Party Leaders:</h4>
+                            {
+                              item.contacts.map(item => {
+                                return (<p>{item.name}</p>)
+                              })
+                            }
+                          </div>
+                        }
+                        {
+                          (item.contact.website ||  item.contact.email) && <div className="col-lg-5">
+                            <h4>Contact details</h4>
+                            <div className="contact-details-text">
+                                {
+                                  item.contact?.website && <p><a href={`//${item.contact?.website}`}>{item.contact.website}</a></p>
+                                }
+                                {
+                                  item.contact?.email && <p><a href={`mailto:${item.contact?.email}`}>{item.contact.email}</a></p>
+                                }
+                            </div>
+                          </div>
+                        }
+                        
 
                         <div className="col links-right">
-                          <SocialLinkList links={item.socialsLinks} />
+                          <SocialLinkList links={item.social} />
                         </div>
                       </div>
                     </div>
@@ -160,23 +172,6 @@ export const MemberQuery = graphql`
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
-      # parties {
-      #   ... on DatoCmsParty {
-      #     id
-      #     title
-      #     contactDetails
-      #     partyLeaders
-      #     history
-      #     logo {
-      #       gatsbyImageData
-      #       url
-      #     }
-      #     socialsLinks {
-      #       url
-      #       socialNetwork
-      #     }
-      #   }
-      # }
     }
     members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
       edges {
@@ -187,6 +182,15 @@ export const MemberQuery = graphql`
           contacts{
             name
           }
+          social{
+            url
+            socialNetwork
+          }
+          contact{
+            website
+            email
+          }
+          status
         }
       }
     }
