@@ -107,7 +107,11 @@ export const PositionQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    relatedNews: allDatoCmsPost(filter: { tags: { elemMatch: { id: { eq: $newTag } } } }, limit: 2) {
+    relatedNews: allDatoCmsPost(
+      filter: { tags: { elemMatch: { id: { eq: $newTag } } } }
+      limit: 2
+      sort: { date: DESC }
+    ) {
       edges {
         node {
           ...PostCard

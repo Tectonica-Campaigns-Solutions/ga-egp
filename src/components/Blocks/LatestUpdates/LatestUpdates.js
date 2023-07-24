@@ -9,7 +9,7 @@ const LatestUpdates = ({ block, items = [] }) => {
 
   const latestsPosts = useStaticQuery(graphql`
     query LatestPosts {
-      allDatoCmsPost(limit: 3) {
+      allDatoCmsPost(limit: 3, sort: { date: DESC }) {
         edges {
           node {
             ...PostCard
