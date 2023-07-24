@@ -11,7 +11,9 @@ import locationIcon from '../../components/Icons/location.svg';
 import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
+  console.log(session)
   const { room, title, time, sessionType, speakers = [], date } = session;
+ 
 
   return (
     <div>
@@ -40,16 +42,15 @@ const SessionDetail = ({ session }) => {
               {speakers.map((speaker) => (
                 <div className={'row'} key={speaker.id}>
                   <div className={`col-4 ${styles.speakerImage}`}>
-                    <ImageWrapper image={speaker.image} />
+                    <ImageWrapper image={speaker.photo} />
                   </div>
 
                   <div className="col">
-                    <h6 className={styles.speakerName}>{speaker.name}</h6>
-                    <span className={styles.speakerPosition}>{speaker.jobPosition}</span>
-                    <div
-                      className={styles.speakerInformation}
-                      dangerouslySetInnerHTML={{ __html: speaker.description }}
-                    />
+                    <h6 className={styles.speakerName}>{JSON.parse(speaker.speakerInfo).name} {JSON.parse(speaker.speakerInfo).last_name}</h6>
+                    <span className={styles.speakerPosition}>{JSON.parse(speaker.speakerInfo).position}</span>
+                    <div className={styles.speakerInformation}>
+                      {JSON.parse(speaker.speakerInfo).description}
+                    </div>
 
                     <Link className={styles.speakerLink}>Show more</Link>
                   </div>

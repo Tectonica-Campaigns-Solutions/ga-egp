@@ -138,19 +138,13 @@ export const DatoCMS = graphql`
               }
             }
             speakers {
-              id
-              name
-              jobPosition
-              description
-              image {
-                gatsbyImageData
-              }
-              socialLinks {
-                id
+              photo{
                 url
-                socialNetwork
-                title
+                alt
+                gatsbyImageData(width: 400, height: 350)
               }
+              speakerInfo
+              
             }
           }
         }
