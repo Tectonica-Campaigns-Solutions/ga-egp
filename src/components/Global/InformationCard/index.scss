@@ -30,12 +30,18 @@
   }
 
   .description {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 130%;
-    color: var(--egp-gray);
+    * {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 130%;
+      color: var(--egp-gray);
+      padding: 0;
+      margin: 0;
+      margin-bottom: .3rem;
+    }
+
     margin-bottom: 1.406rem;
   }
 
