@@ -46,7 +46,7 @@ const Resolution = ({
         </div>
       </div>
 
-      {resolution.form && <TextHubspotForm block={resolution.form[0]} />}
+      {resolution.form && resolution.form[0] && <TextHubspotForm block={resolution.form[0]} />}
 
       {/* Resolutions related */}
       {relatedResolutions && relatedResolutions.edges && (

@@ -14,7 +14,7 @@ function ListMembers({ pageContext, location, data: { list, page, breadcrumb, fa
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       <FilterMembers members={list.edges} introduction={page.introduction} />
 
-      {page.form && <TextHubspotForm block={page.form[0]} />}
+      {page.form && page.form[0] && <TextHubspotForm block={page.form[0]} />}
     </Layout>
   );
 }
