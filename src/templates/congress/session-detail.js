@@ -11,7 +11,6 @@ import locationIcon from '../../components/Icons/location.svg';
 import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
-  console.log(session)
   const { room, title, time, sessionType, speakers = [], date } = session;
  
 
@@ -39,24 +38,28 @@ const SessionDetail = ({ session }) => {
 
           {isArray(speakers) && (
             <>
-              {speakers.map((speaker) => (
-                <div className={'row'} key={speaker.id}>
-                  <div className={`col-4 ${styles.speakerImage}`}>
-                    <ImageWrapper image={speaker.photo} />
-                  </div>
+              {speakers.map((speaker, i) => {
+                  const speakerInfo = JSON.parse(speaker.speakerInfo)
+                  return (
+                    <div className={'row'} key={i}>
+                      <div className={`col-4 ${styles.speakerImage}`}>
+                        <ImageWrapper image={speaker.photo} />
+                      </div>
 
-                  <div className="col">
-                    <h6 className={styles.speakerName}>{speaker.name} {speaker.lastName}</h6>
-                    <span className={styles.speakerPosition}>{speaker.jobTitle}</span>
-                    <div className={styles.speakerInformation}
-                      dangerouslySetInnerHTML={{__html: speaker.biography }}
-                    />
-                      
+                      <div className="col">
+                        <h6 className={styles.speakerName}>{speakerInfo.name} {speakerInfo.last_name}</h6>
+                        <span className={styles.speakerPosition}>{speakerInfo.position}</span>
+                        {/* <div className={styles.speakerInformation}
+                          dangerouslySetInnerHTML={{__html: speaker.biography }}
+                        /> */}
+                          
 
-                    {/* <Link className={styles.speakerLink}>Show more</Link> */}
-                  </div>
-                </div>
-              ))}
+                        {/* <Link className={styles.speakerLink}>Show more</Link> */}
+                      </div>
+                    </div>
+                  )
+                }
+                )}
             </>
           )}
         </div>

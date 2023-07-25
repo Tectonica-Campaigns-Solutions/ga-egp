@@ -138,15 +138,14 @@ export const DatoCMS = graphql`
               }
             }
             speakers {
-              photo{
-                url
-                alt
-                gatsbyImageData(width: 500, height: 500)
+              ... on DatoCmsSpeakerItem{
+                photo{
+                  url
+                  alt
+                  gatsbyImageData(width: 500, height: 500)
+                }
+              speakerInfo
               }
-              jobTitle
-              name
-              lastName
-              biography
               
             }
           }
