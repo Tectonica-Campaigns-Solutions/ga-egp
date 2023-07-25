@@ -78,8 +78,19 @@
     padding-top: 0;
   }
 
-  @media screen and (max-width: 992px) {
+  .image {
 
+    div,
+    img {
+      width: 100% !important;
+    }
+
+    img {
+      object-fit: contain !important;
+    }
+  }
+
+  @media screen and (max-width: 992px) {
     padding: 25px 0;
 
     h3 {
