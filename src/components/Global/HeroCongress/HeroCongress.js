@@ -9,22 +9,25 @@ import * as styles from './herocongress.module.scss';
 
 function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], mainPage = false, isCongress = false }) {
   return (
-    <div className={`${styles.heroCongress} ${!mainPage ? styles.secondaryPage : null} primary-${bgColor}`}>
-      {bgImage && (
+    <div
+      className={`${styles.heroCongress} ${!mainPage ? styles.secondaryPage : null} primary-${bgColor}`}
+      style={{ backgroundImage: `url(${bgImage.url})` }}
+    >
+      {/* {bgImage && (
         <div className={styles.heroBgImage}>
           <ImageWrapper image={bgImage} />
         </div>
-      )}
+      )} */}
 
       <div className="container">
         <div className="row">
           <div className={`${mainPage ? 'col-lg-5' : 'colg-lg-8'}`}>
-            { isCongress && 
+            {isCongress && (
               <Link className={styles.backBtn} to={'/events'}>
                 <img src={leftArrow} alt="Left arrow icon" />
                 All events
               </Link>
-            }
+            )}
             {mainPage ? <h1>{title}</h1> : <h2>{title}</h2>}
             {mainPage && introduction && <p>{introduction}</p>}
 
