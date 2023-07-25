@@ -41,6 +41,15 @@ function ListPolicyPapers({
     start_date: null,
     end_date: null,
   });
+  const [submitFilterOptions, setSubmitFilterOptions] = useState({
+    type: '',
+    council: '',
+    issueOrArea: [],
+    title: '',
+    date: 'all',
+    start_date: null,
+    end_date: null,
+  });
 
   useEffect(() => {
     // Save params on state
@@ -50,13 +59,14 @@ function ListPolicyPapers({
     for (const element of Object.keys(params)) {
       if (element === 'issueOrArea') {
         const items = params[element].split(',');
-        console.log({ items });
+        newFilters.issueOrArea = [...items];
       } else {
         newFilters = { ...newFilters, [element]: params[element] };
       }
     }
 
-    // console.log({ newFilters });
+    setFilterOptions(newFilters);
+    setSubmitFilterOptions(newFilters);
   }, [location.search]);
 
   const filteredContent = useCallback(() => {
@@ -64,8 +74,6 @@ function ListPolicyPapers({
 
     let finalList = [];
     const params = queryString.parse(location.search);
-
-    // console.log({ list });
 
     finalList = list.filter(
       (item) =>
@@ -90,7 +98,9 @@ function ListPolicyPapers({
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     let url = '?';
+    let prevAreas = new Set();
 
     Array.from(e.target.elements).forEach((item) => {
       if (item.type !== 'submit') {
@@ -105,11 +115,17 @@ function ListPolicyPapers({
         } else if ((item.name === 'start_date' || item.name === 'end_date') && !!item.value) {
           url += `${item.name}=${new Date(item.value).getTime()}&`;
         } else if (item.name === 'issueOrArea' && !!item.value && item.checked) {
-          const areas = filterOptions.issueOrArea.join();
-          url += `${item.name}=${areas}`;
+          prevAreas.add(item.value);
         }
       }
     });
+
+    // Areas or issues URL
+    if (prevAreas.size > 0) {
+      const arrayFromSet = Array.from(prevAreas);
+      const arrayMapped = arrayFromSet.join(',');
+      url += `issueOrArea=${arrayMapped}`;
+    }
 
     navigate(url);
   };
@@ -237,6 +253,37 @@ function ListPolicyPapers({
     </div>
   );
 
+  const getFilteredTags = () => {
+    const currentCouncil = submitFilterOptions.council;
+    const currentsIssues = submitFilterOptions.issueOrArea;
+
+    const councilTag = currentCouncil ? (
+      <span>adopted at {councilsCleaned.find((c) => c.idFilter == currentCouncil)?.title} council</span>
+    ) : (
+      <span>adopted at any council</span>
+    );
+
+    const issuesTag =
+      currentsIssues.length > 0 ? (
+        <>
+          on issue/area:{' '}
+          {currentsIssues.map((i, index) => (
+            <>
+              <span>{areasOptions.find((a) => a.value === i)?.label}</span>
+
+              {index !== currentsIssues.length - 1 ? <>, </> : null}
+            </>
+          ))}
+        </>
+      ) : null;
+
+    return (
+      <>
+        Filtered by {councilTag} {issuesTag ? ',' : null} {issuesTag}
+      </>
+    );
+  };
+
   return (
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -247,11 +294,9 @@ function ListPolicyPapers({
       <InnerLayout sideNav={sidebarContent()}>
         <div className={styles.filterTitle}>
           <h4>
-            Showing {filteredContent()?.length} {filterOptions.type.replace('_', ' ')}
+            Showing {filteredContent()?.length} {submitFilterOptions.type.replace('_', ' ')}
           </h4>
-          <p>
-            Filtered by <span>HARDCODED TAG</span> in <span>HARDCODED TAG</span>
-          </p>
+          <p>{getFilteredTags()}</p>
         </div>
 
         <div className="row g-5">

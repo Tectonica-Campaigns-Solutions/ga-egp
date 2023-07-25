@@ -3,7 +3,6 @@ import Link from '../Link';
 import leftArrow from '../../Icons/left-arrow-white.svg';
 import { isArray } from '../../../utils';
 import CtaList from '../Cta/CtaList';
-import ImageWrapper from '../Image/ImageWrapper';
 
 import * as styles from './herocongress.module.scss';
 
@@ -13,12 +12,6 @@ function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], m
       className={`${styles.heroCongress} ${!mainPage ? styles.secondaryPage : null} primary-${bgColor}`}
       style={{ backgroundImage: `url(${bgImage?.url})` }}
     >
-      {/* {bgImage && (
-        <div className={styles.heroBgImage}>
-          <ImageWrapper image={bgImage} />
-        </div>
-      )} */}
-
       <div className="container">
         <div className="row">
           <div className={`${mainPage ? 'col-lg-5' : 'colg-lg-8'}`}>

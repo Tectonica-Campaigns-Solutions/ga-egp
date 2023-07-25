@@ -6,7 +6,7 @@
   padding-top: 160px;
   overflow: hidden;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: right bottom;
 
   &.secondaryPage {
     padding-bottom: 50px;
@@ -63,5 +63,11 @@
 
   img {
     object-fit: contain !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .heroCongress {
+    background-image: none !important;
   }
 }
