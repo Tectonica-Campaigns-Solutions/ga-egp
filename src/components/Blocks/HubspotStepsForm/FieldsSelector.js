@@ -1,17 +1,16 @@
-import React from 'react'
+import React from 'react';
 import FieldText from './FieldText';
 import FieldRadio from './FieldRadio';
 
-function FieldsSelector({contactField}) {
-
+function FieldsSelector({ contactField }) {
   return (
     <>
-      {contactField.map((field) => {
+      {contactField.map((field, index) => {
         switch (field.fieldType) {
           case 'text':
-            return <FieldText field={field}/>;
+            return <FieldText key={`${field.fieldType}-${index}`} field={field} />;
           case 'radio':
-            return <FieldRadio field={field}/>;
+            return <FieldRadio key={`${field.fieldType}-${index}`} field={field} />;
           default:
             return '';
         }
@@ -20,4 +19,4 @@ function FieldsSelector({contactField}) {
   );
 }
 
-export default FieldsSelector
+export default FieldsSelector;

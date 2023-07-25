@@ -12,8 +12,8 @@ const DetailDocLayout = ({ children, documents, withOffset = false }) => {
         <p className="downloads-title">Related Downloads</p>
 
         <div className="downloads-container">
-          {documents.map((item) => (
-            <Document doc={item} />
+          {documents.map((item, index) => (
+            <Document key={`${item?.document?.title}-${index}`} doc={item} />
           ))}
         </div>
       </div>

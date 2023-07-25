@@ -16,7 +16,7 @@ const Order = {
 };
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
-  console.log(members.edges)
+  console.log(members.edges);
   const parties = members.edges;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
@@ -97,38 +97,36 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
                   <div className="col-lg-8 offset-lg-1">
                     <div className="party-main-header">
                       <h3>{item.title}</h3>
-                      {
-                        item.status && <Tag title={item.status} bgColor="primary-dark-green" />
-                      }
-                      
+                      {item.status && <Tag title={item.status} bgColor="primary-dark-green" />}
                     </div>
 
                     <div className="information">
                       <div className="row">
-                        { 
-                          item.contacts && item.contacts.length > 0 && <div className="col-lg-4 party-leaders">
+                        {item.contacts && item.contacts.length > 0 && (
+                          <div className="col-lg-4 party-leaders">
                             <h4>Party Leaders:</h4>
-                            {
-                              item.contacts.map(item => {
-                                return (<p>{item.name}</p>)
-                              })
-                            }
+                            {item.contacts.map((item, index) => {
+                              return <p key={`${item.name}-${index}`}>{item.name}</p>;
+                            })}
                           </div>
-                        }
-                        {
-                          (item.contact.website ||  item.contact.email) && <div className="col-lg-5">
+                        )}
+                        {(item.contact.website || item.contact.email) && (
+                          <div className="col-lg-5">
                             <h4>Contact details</h4>
                             <div className="contact-details-text">
-                                {
-                                  item.contact?.website && <p><a href={`//${item.contact?.website}`}>{item.contact.website}</a></p>
-                                }
-                                {
-                                  item.contact?.email && <p><a href={`mailto:${item.contact?.email}`}>{item.contact.email}</a></p>
-                                }
+                              {item.contact?.website && (
+                                <p>
+                                  <a href={`//${item.contact?.website}`}>{item.contact.website}</a>
+                                </p>
+                              )}
+                              {item.contact?.email && (
+                                <p>
+                                  <a href={`mailto:${item.contact?.email}`}>{item.contact.email}</a>
+                                </p>
+                              )}
                             </div>
                           </div>
-                        }
-                        
+                        )}
 
                         <div className="col links-right">
                           <SocialLinkList links={item.social} />
@@ -179,14 +177,14 @@ export const MemberQuery = graphql`
           id
           title
           logo
-          contacts{
+          contacts {
             name
           }
-          social{
+          social {
             url
             socialNetwork
           }
-          contact{
+          contact {
             website
             email
           }

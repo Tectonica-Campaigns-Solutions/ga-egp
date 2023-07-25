@@ -61,6 +61,7 @@ function HubspotStepsForm({ block }) {
           <div className="steps-count-items">
             {steps.map((step, index) => (
               <div
+                key={`${step.stepPreTitle}-${index}`}
                 className={`step-count ${index === stepActive ? 'active' : ''}`}
                 onClick={() => setStepActive(index)}
               >
@@ -79,16 +80,16 @@ function HubspotStepsForm({ block }) {
             if (index !== stepActive) return null;
 
             return (
-              <div className="row mt-5">
+              <div className="row mt-5" key={`${item.title}-${index}`}>
                 <div className="col-lg-4">
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                 </div>
 
                 <div className="col offset-lg-2">
-                  {item.formFields.map((el) => {
+                  {item.formFields.map((el, index) => {
                     const contactField = contactFields.filter((item) => item.name === el.idHubspotField);
-                    return <FieldsSelector contactField={contactField} />;
+                    return <FieldsSelector key={index} contactField={contactField} />;
                   })}
                 </div>
               </div>

@@ -7,8 +7,8 @@ function FieldRadio({ field }) {
       <label htmlFor="">{field.label}</label>
 
       <div className="options">
-        {field.options.map((item) => (
-          <div className="option-item">
+        {field.options.map((item, index) => (
+          <div className="option-item" key={`${item.label}-${index}`}>
             <input type="radio" />
             <label>{item.label}</label>
           </div>

@@ -70,8 +70,8 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
         {data && data.pageResults.length > 0 && (
           <div className="search-engine__results search-engine__results--active">
             <ul className="search-engine__results-list">
-              {data.pageResults.map((result) => (
-                <SearchItem item={result} />
+              {data.pageResults.map((result, index) => (
+                <SearchItem key={index} item={result} />
               ))}
             </ul>
           </div>

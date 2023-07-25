@@ -11,9 +11,10 @@ const SocialLinkList = ({ links, iconWhite = false }) => {
 
   return (
     <div className="social-list">
-      {links.map((link) => (
-        link.url && <SocialLink key={link.url} name={link.socialNetwork} url={link.url} iconWhite={iconWhite} />
-      ))}
+      {links.map(
+        (link) =>
+          link.url && <SocialLink key={link.url} name={link.socialNetwork} url={link.url} iconWhite={iconWhite} />
+      )}
     </div>
   );
 };

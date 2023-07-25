@@ -42,8 +42,11 @@ function HeroCustom({
 
               {ctas && (
                 <div className={`col-lg-5 ${styles.ctasBox} `}>
-                  {ctas.map((item) => (
-                    <div className={`d-flex align-items-center ${item.description ? '' : styles.noDescription}`}>
+                  {ctas.map((item, index) => (
+                    <div
+                      key={`${item.url?.label}-${index}`}
+                      className={`d-flex align-items-center ${item.description ? '' : styles.noDescription}`}
+                    >
                       <Link to={item.url?.url}>{item.url?.label}</Link>
                       {item.description && (
                         <div className={styles.ctaText} dangerouslySetInnerHTML={{ __html: item.description }} />

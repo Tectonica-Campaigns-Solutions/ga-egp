@@ -12,7 +12,6 @@ import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
   const { room, title, time, sessionType, speakers = [], date } = session;
- 
 
   return (
     <div>
@@ -39,27 +38,28 @@ const SessionDetail = ({ session }) => {
           {isArray(speakers) && (
             <>
               {speakers.map((speaker, i) => {
-                  const speakerInfo = JSON.parse(speaker.speakerInfo)
-                  return (
-                    <div className={'row'} key={i}>
-                      <div className={`col-4 ${styles.speakerImage}`}>
-                        <ImageWrapper image={speaker.photo} />
-                      </div>
+                const speakerInfo = JSON.parse(speaker.speakerInfo);
 
-                      <div className="col">
-                        <h6 className={styles.speakerName}>{speakerInfo.name} {speakerInfo.last_name}</h6>
-                        <span className={styles.speakerPosition}>{speakerInfo.position}</span>
-                        {/* <div className={styles.speakerInformation}
+                return (
+                  <div className={'row'} key={i}>
+                    <div className={`col-4 ${styles.speakerImage}`}>
+                      <ImageWrapper image={speaker.photo} />
+                    </div>
+
+                    <div className="col">
+                      <h6 className={styles.speakerName}>
+                        {speakerInfo.name} {speakerInfo.last_name}
+                      </h6>
+                      <span className={styles.speakerPosition}>{speakerInfo.position}</span>
+                      {/* <div className={styles.speakerInformation}
                           dangerouslySetInnerHTML={{__html: speaker.biography }}
                         /> */}
-                          
 
-                        {/* <Link className={styles.speakerLink}>Show more</Link> */}
-                      </div>
+                      {/* <Link className={styles.speakerLink}>Show more</Link> */}
                     </div>
-                  )
-                }
-                )}
+                  </div>
+                );
+              })}
             </>
           )}
         </div>

@@ -12,8 +12,8 @@ function BlockDonation({ block }) {
 
           {block.cta && (
             <div className="cta-list">
-              {block.cta.map((item) => (
-                <div className="cta-item">
+              {block.cta.map((item, index) => (
+                <div key={`${item.label}-${index}`} className="cta-item">
                   <Link to={item.url}>{item.label}</Link>
                 </div>
               ))}

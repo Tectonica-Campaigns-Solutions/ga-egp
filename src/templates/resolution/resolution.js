@@ -39,8 +39,12 @@ const Resolution = ({
 
             <hr />
 
-            {resolution.footnotes.map((item) => {
-              return <div id={item.anchorId}>{item.text}</div>;
+            {resolution.footnotes.map((item, index) => {
+              return (
+                <div id={item.anchorId} key={`${item.text}-${index}`}>
+                  {item.text}
+                </div>
+              );
             })}
           </DetailDocLayout>
         </div>

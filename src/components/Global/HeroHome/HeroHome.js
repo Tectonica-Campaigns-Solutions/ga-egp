@@ -66,6 +66,7 @@ function HeroHome({
                   {colorWords.map((item, index) => {
                     return (
                       <span
+                        key={`${item.word}-${index}`}
                         className="animation"
                         style={{ paddingLeft: '10px' }}
                         dangerouslySetInnerHTML={{ __html: item.word }}

@@ -10,12 +10,12 @@ const VerticalCtaList = ({ block }) => {
     <div>
       {isArray(item) && (
         <div className="row gap-4">
-          {item.map((link) => {
+          {item.map((link, index) => {
             // TODO
             const url = pathToModel(link.model, '');
 
             return (
-              <div>
+              <div key={`${link.title}-${index}`}>
                 <Cta label={link.title} isButton={link.isButton} key={link.label} />
               </div>
             );
