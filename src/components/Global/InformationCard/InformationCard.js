@@ -15,6 +15,20 @@ const InformationCard = ({
   documents = [],
   url = null,
 }) => {
+  React.useEffect(() => {
+    const paragraphs = document.querySelectorAll('#intro p');
+
+    // Remove empties paragraphs
+    paragraphs.forEach((paragraph) => {
+      if (paragraph.innerHTML.trim() === '') {
+        console.log(paragraph.innerHTML);
+        paragraph.style.display = 'none';
+      } else if (paragraph.innerHTML === '&nbsp;') {
+        paragraph.style.display = 'none';
+      }
+    });
+  }, []);
+
   return (
     <div className="information-card">
       <div className="header-information">
@@ -26,7 +40,7 @@ const InformationCard = ({
         <h6>{title}</h6>
       </Link>
 
-      <div className="description" dangerouslySetInnerHTML={{ __html: intro }} />
+      <div id="intro" className="description" dangerouslySetInnerHTML={{ __html: intro }} />
 
       {isArray(documents) && (
         <div className="docs">
