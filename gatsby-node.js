@@ -1,14 +1,7 @@
 const path = require(`path`);
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
+var countries = require("i18n-iso-countries");
 
-const IsoCode = (val) => {
-  if (val === 'Germany') {
-    return 'DE';
-  }
-  if (val == 'Spain') {
-    return 'ES';
-  }
-};
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -28,35 +21,41 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
-  // const bodyRequest = {
-  //   filterGroups: [
-  //     {
-  //       filters: [
-  //         {
-  //           propertyName: 'egp',
-  //           operator: 'EQ',
-  //           value: 'true',
-  //         },
-  //       ],
-  //     },
-  //   ],
-  //   properties: ['image', 'iso_code', 'name'],
-  // };
-  // // get data from GitHub API at build time
-  // const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies`, {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //     Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-  //   },
-  //   body: JSON.stringify(bodyRequest),
-  // });
-  // const resultData = await result.json();
+  const bodyRequest = {
+    filterGroups: [
+      {
+        filters: [
+          {
+            propertyName: "type",
+            operator: "EQ",
+            value: "MEMBER PARTY"
+          },
+          {
+            propertyName: "published_in_web",
+            operator: "EQ",
+            value: "Yes"
+          }
+        ],
+      },
+    ],
+    properties: ["country"],
+  };
+  // get data from GitHub API at build time
+  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + process.env.HUBSPOT_API,
+    },
+    body: JSON.stringify(bodyRequest),
+  });
+  const resultData = await result.json();
   const companies = ['8110536923', '8110864614'];
-  const contacts = [];
+  
 
   for (const company of companies) {
+    const contacts = [];
     const result = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}`, {
       headers: {
         Accept: 'application/json',
@@ -66,17 +65,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     });
     const resultObject = await result.json();
     const companyProps = resultObject.properties;
-
-    // contacts that are party leaders
-
-    // const contacts = []
-    // const getContacts = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}/contacts`,{
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //     Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-    //   },
-    // })
 
     // associations
 
@@ -115,12 +103,13 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       }
     }
 
+
     //create node for build time of member parties from hubspot
 
     createNode({
       title: companyProps.name.value,
       logo: 'https://www.datocms-assets.com/87481/1687415818-tilt.svg',
-      iso_code: 'DE',
+      iso_code: countries.getAlpha2Code(companyProps.country.value, "en"),
       social: [
         {
           url: companyProps.facebook_company_page?.value,
