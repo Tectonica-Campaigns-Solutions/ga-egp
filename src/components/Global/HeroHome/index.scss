@@ -144,11 +144,47 @@
 
     .form-columns-3 {
       display: flex;
-      align-items: center;
+      // align-items: center;
       gap: 10px;
+      margin-bottom: 10px;
 
       .hs-form-field {
         width: auto !important;
+
+        &>label {
+          display: none;
+        }
+
+        input.error {
+          border: 1px solid red;
+        }
+      }
+    }
+
+    .input {
+      .inputs-list {
+        margin: 0;
+        padding: 0;
+        margin-top: 10px;
+
+        .hs-form-booleancheckbox label {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+
+          color: var(--egp-white, #FFF);
+          font-family: "Roboto";
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 130%;
+
+          span {
+            margin: 0;
+            padding: 0;
+          }
+        }
       }
     }
 
@@ -170,6 +206,15 @@
 
     .hs-error-msgs {
       margin: 0;
+      padding: 0;
+
+      color: var(--egp-white, #FFF);
+      font-family: "Roboto";
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 130%;
+      padding-top: 5px;
     }
 
     @media screen and (max-width: 992px) {

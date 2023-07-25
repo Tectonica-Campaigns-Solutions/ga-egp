@@ -63,6 +63,7 @@ function HeroHome({
                   <span className="animation" data-show style={{ paddingLeft: '10px' }}>
                     test
                   </span>
+
                   {colorWords.map((item, index) => {
                     return (
                       <span

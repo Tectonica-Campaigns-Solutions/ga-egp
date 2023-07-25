@@ -46,78 +46,6 @@
     top: -120px;
   }
 
-  .form-content {
-    &.white-box {
-      padding: 50px 69px;
-      background-color: var(--ct-white);
-      border-radius: 5px;
-
-      h3 {
-        font-family: 'Laca';
-        font-style: normal;
-        font-weight: 600;
-        font-size: 39px;
-        line-height: 120%;
-        color: var(--egp-dark);
-        margin-bottom: 25px;
-      }
-
-      p {
-        font-family: 'Public Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 20px;
-        line-height: 150%;
-        color: var(--ct-dark-blue);
-        margin-bottom: 36px;
-      }
-
-      #hubspotForm {
-        padding: 0 68px;
-      }
-
-      @media screen and (max-width: 768px) {
-        padding: 30px;
-
-        #hubspotForm {
-          padding: 0;
-        }
-      }
-    }
-  }
-
-  &.small {
-    position: relative;
-    padding: 0;
-
-    .hubspot-form {
-      z-index: 10;
-    }
-
-    h3 {
-      z-index: 10;
-      font-family: 'Laca';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 31px;
-      line-height: 120%;
-      color: var(--ct-white);
-
-      @media screen and (max-width: 767px) {
-        padding-top: 1.5rem;
-      }
-    }
-  }
-
-  &.one_column {
-    padding: 140px 0 91px 0;
-
-    h2,
-    p {
-      color: var(--ct-dark-blue);
-    }
-  }
-
   // Hubspot form styles
   fieldset {
     display: flex;
@@ -190,6 +118,23 @@
       align-items: center;
       gap: 20px;
 
+      fieldset {
+        max-width: 100%;
+      }
+
+      .form-columns-3 {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      .form-columns-1 .legal-consent-container {
+        background-color: red;
+        flex-grow: 1;
+        width: 100px !important;
+        display: block;
+      }
+
       &>div {
         height: 50px;
       }
@@ -202,7 +147,8 @@
         input {
           height: 100%;
           width: 100%;
-          padding: 4px 20px 14px 10px;
+          // padding: 4px 20px 14px 10px;
+          padding: 17px 20px 17px 10px;
         }
       }
 
@@ -238,8 +184,6 @@
           text-transform: uppercase;
         }
       }
-
-
     }
   }
 }
