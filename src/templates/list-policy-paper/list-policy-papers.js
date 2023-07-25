@@ -19,6 +19,7 @@ import {
   filterPolicyPapersByLastSixMonths,
   filterPolicyPapersByLastYear,
 } from '../../utils';
+import ListPaginated from '../../components/Global/Pagination/ListPaginated';
 
 import * as styles from './styles.module.scss';
 
@@ -300,9 +301,10 @@ function ListPolicyPapers({
         </div>
 
         <div className="row g-5">
-          {filteredContent()?.map((item) => (
-            <CardPolicy key={item.node.id} item={item.node} />
-          ))}
+          <ListPaginated
+            list={filteredContent()}
+            renderItem={(item) => <CardPolicy key={item.node.id} item={item.node} />}
+          />
         </div>
       </InnerLayout>
     </Layout>
