@@ -11,7 +11,7 @@ function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], m
   return (
     <div
       className={`${styles.heroCongress} ${!mainPage ? styles.secondaryPage : null} primary-${bgColor}`}
-      style={{ backgroundImage: `url(${bgImage.url})` }}
+      style={{ backgroundImage: `url(${bgImage?.url})` }}
     >
       {/* {bgImage && (
         <div className={styles.heroBgImage}>

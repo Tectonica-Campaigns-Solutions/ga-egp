@@ -9,8 +9,7 @@ import 'swiper/css/navigation';
 
 import './index.scss';
 
-const DateSlider = ({ years, activeYear }) => {
-
+const DateSlider = ({ years, activeYear, setActiveYear }) => {
   const initialSlide = years.findIndex((y) => y === activeYear);
 
   return (
@@ -23,9 +22,17 @@ const DateSlider = ({ years, activeYear }) => {
         slidesPerView={3}
         initialSlide={initialSlide}
         modules={[Navigation]}
-        centeredSlides = {true}
+        centeredSlides={true}
         // TODO change active year on slidechange
-        // onSlideChange={() => }
+        // onSlideChange={(swiper) => {
+        //   const iterateNext = swiper.previousIndex < swiper.activeIndex;
+        //   setActiveYear((prev) => {
+        //     if (!iterateNext) {
+        //       return String(Number(prev) - 1);
+        //     }
+        //     return String(Number(prev) + 1);
+        //   });
+        // }}
         navigation={{
           prevEl: '.swiper-button-prev',
           nextEl: '.swiper-button-next',
@@ -35,7 +42,7 @@ const DateSlider = ({ years, activeYear }) => {
           <SwiperSlide key={year}>
             <div>
               <input type="radio" id={year} name="selected_year" value={year} />
-              <label className={`${activeYear === year ? 'active' : ''}`}  htmlFor={year}>
+              <label className={`${activeYear === year ? 'active' : ''}`} htmlFor={year}>
                 {year}
               </label>
             </div>

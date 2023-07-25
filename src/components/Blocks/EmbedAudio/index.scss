@@ -1,6 +1,13 @@
 .embed-audio {
   padding: 20px 0;
 
+  .fixed-action {
+    cursor: pointer;
+    position: fixed;
+    top: 200px;
+    left: 0;
+  }
+
   .rhap_container {
     padding: 17px 24px 13px 24px;
     border-radius: 10px;

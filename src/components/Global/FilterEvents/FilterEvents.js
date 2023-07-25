@@ -140,7 +140,7 @@ function FilterEvents({ events, tags }) {
 
             <div className="col-lg-3">
               <div className="filter-action-title">Select Year</div>
-              <DateSlider years={yearsFilter} activeYear={activeYear} />
+              <DateSlider years={yearsFilter} activeYear={activeYear} setActiveYear={setActiveYear} />
             </div>
           </div>
         ) : (
@@ -194,6 +194,7 @@ function FilterEvents({ events, tags }) {
                 Select Year
                 <img src={mobileToggleFilter.year ? openIcon : closeIcon} alt="open/close icon" />
               </div>
+
               {mobileToggleFilter.year && <DateSlider years={yearsFilter} activeYear={activeYear} />}
             </div>
           </div>
