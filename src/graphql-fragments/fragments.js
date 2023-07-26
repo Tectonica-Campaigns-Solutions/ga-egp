@@ -325,7 +325,6 @@ export const DatoCMS = graphql`
     useContainer
     people {
       ... on DatoCmsItemGroup {
-        customBio
         person {
           ... on DatoCmsPerson {
             id

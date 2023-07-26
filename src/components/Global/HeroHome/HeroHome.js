@@ -83,7 +83,7 @@ function HeroHome({
           </div>
 
           <div className="row">
-            <div className="col-xxl-8 col-12 box-form">
+            <div className="col-xxl-12 col-12 box-form">
               {form && (
                 <HubspotForm id={form.formId} formId={form.formId} region={form.region} portalId={form.portalId} />
               )}
