@@ -37,15 +37,19 @@ const Resolution = ({
             {resolution.intro && <div dangerouslySetInnerHTML={{ __html: resolution.intro }} />}
             {resolution.text?.value && <StructuredContentDefault content={resolution.text} />}
 
-            <hr />
+            {resolution.footnotes && resolution.footnotes.length > 0 && (
+              <>
+                <hr />
 
-            {resolution.footnotes.map((item, index) => {
-              return (
-                <div id={item.anchorId} key={`${item.text}-${index}`}>
-                  {item.text}
-                </div>
-              );
-            })}
+                {resolution.footnotes.map((item, index) => {
+                  return (
+                    <div id={item.anchorId} key={`${item.text}-${index}`}>
+                      {item.text}
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </DetailDocLayout>
         </div>
       </div>

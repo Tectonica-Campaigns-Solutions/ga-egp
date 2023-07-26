@@ -11,6 +11,10 @@
       line-height: 150%;
       color: var(--egp-dark);
     }
+
+    &.empty-docs {
+      border: none;
+    }
   }
 
   .second-content {
