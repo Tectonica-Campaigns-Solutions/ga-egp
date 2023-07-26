@@ -46,6 +46,7 @@ export const ListMembersQuery = graphql`
             url
             gatsbyImageData
           }
+          smallTitle
           hubspot {
             ... on DatoCmsHubspot {
               id

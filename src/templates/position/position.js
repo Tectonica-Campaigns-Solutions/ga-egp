@@ -119,6 +119,7 @@ export const PositionQuery = graphql`
             url
             gatsbyImageData
           }
+          smallTitle
           hubspot {
             ... on DatoCmsHubspot {
               id

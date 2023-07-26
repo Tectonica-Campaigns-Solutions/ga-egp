@@ -38,7 +38,7 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, f
                   {/* TODO: Add form cta block */}
                   {shouldRenderMiddleCta && index === 5 && (
                     <div className="col-lg-12 mt-5 mb-5">
-                      {page.formCta && page.formCta[0] && <TextHubspotForm block={page.formCta[0]} />}
+                      {page.formCta && page.formCta[0] && <TextHubspotForm centerContent block={page.formCta[0]} />}
                     </div>
                   )}
                 </React.Fragment>
@@ -77,6 +77,7 @@ export const ListNewsQuery = graphql`
             url
             gatsbyImageData
           }
+          smallTitle
           hubspot {
             ... on DatoCmsHubspot {
               id

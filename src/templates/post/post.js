@@ -146,6 +146,7 @@ export const PostQuery = graphql`
             url
             gatsbyImageData
           }
+          smallTitle
           hubspot {
             ... on DatoCmsHubspot {
               id

@@ -43,6 +43,7 @@ export const DatoCMS = graphql`
       url
       alt
     }
+    smallTitle
     hubspot {
       ... on DatoCmsHubspot {
         formId
@@ -138,15 +139,14 @@ export const DatoCMS = graphql`
               }
             }
             speakers {
-              ... on DatoCmsSpeakerItem{
-                photo{
+              ... on DatoCmsSpeakerItem {
+                photo {
                   url
                   alt
                   gatsbyImageData(width: 500, height: 500)
                 }
-              speakerInfo
+                speakerInfo
               }
-              
             }
           }
         }

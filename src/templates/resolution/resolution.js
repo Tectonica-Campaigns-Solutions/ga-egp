@@ -136,6 +136,7 @@ export const ResolutionQuery = graphql`
             url
             gatsbyImageData
           }
+          smallTitle
           hubspot {
             ... on DatoCmsHubspot {
               id
