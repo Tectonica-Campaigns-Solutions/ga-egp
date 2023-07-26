@@ -1,7 +1,6 @@
 const path = require(`path`);
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
-var countries = require("i18n-iso-countries");
-
+var countries = require('i18n-iso-countries');
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -20,7 +19,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 
 const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
-
 // node source from Hubspot
 
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
@@ -29,19 +27,19 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       {
         filters: [
           {
-            propertyName: "type",
-            operator: "EQ",
-            value: "MEMBER PARTY"
+            propertyName: 'type',
+            operator: 'EQ',
+            value: 'MEMBER PARTY',
           },
           {
-            propertyName: "published_in_web",
-            operator: "EQ",
-            value: "Yes"
-          }
+            propertyName: 'published_in_web',
+            operator: 'EQ',
+            value: 'Yes',
+          },
         ],
       },
     ],
-    properties: ["country"],
+    properties: ['country'],
   };
   // get data from GitHub API at build time
   const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies`, {
@@ -55,7 +53,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   });
   const resultData = await result.json();
   const companies = ['8110536923', '8110864614'];
-  
 
   for (const company of companies) {
     const contacts = [];
@@ -106,13 +103,12 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       }
     }
 
-
     //create node for build time of member parties from hubspot
 
     createNode({
       title: companyProps.name.value,
       logo: 'https://www.datocms-assets.com/87481/1687415818-tilt.svg',
-      iso_code: countries.getAlpha2Code(companyProps.country.value, "en"),
+      iso_code: countries.getAlpha2Code(companyProps.country.value, 'en'),
       social: [
         {
           url: companyProps.facebook_company_page?.value,
@@ -144,7 +140,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     });
   }
 };
-
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
@@ -499,6 +494,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              // TODO
               menuPos: 'DatoCmsMenu-117741848',
             },
           });
@@ -512,6 +508,7 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              // TODO
               menuPos: 'DatoCmsMenu-132907294',
             },
           });
@@ -581,6 +578,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: resolution.slug,
               id: resolution.id,
               councilId: resolution.council ? resolution.council.id : null,
+              menuPos: getMenuPosition(navTree, resolution.id),
             },
           });
         });

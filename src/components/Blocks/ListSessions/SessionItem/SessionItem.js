@@ -4,7 +4,7 @@ import timeIcon from '../../../Icons/time.svg';
 import * as styles from './index.module.scss';
 
 const SessionItem = ({ item, handleSession }) => {
-  console.log(item)
+  // console.log(item);
   const { id, title, time, sessionType } = item;
 
   return (

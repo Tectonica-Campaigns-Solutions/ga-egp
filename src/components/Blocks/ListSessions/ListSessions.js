@@ -5,7 +5,7 @@ import Accordion from '../../Global/Accordion/Accordion';
 import SessionItem from './SessionItem/SessionItem';
 
 function ListSessions(block) {
-  console.log(block)
+  // console.log(block);
   const items = block.block.sessionItems;
 
   const data = useStaticQuery(graphql`

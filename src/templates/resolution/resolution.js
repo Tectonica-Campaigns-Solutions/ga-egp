@@ -16,6 +16,8 @@ const Resolution = ({
   location,
   data: { resolution, relatedResolutions, breadcrumb, favicon, siteTitle },
 }) => {
+  console.log({ breadcrumb });
+
   return (
     <Layout>
       <SeoDatoCms seo={resolution.seo} favicon={favicon} siteTitle={siteTitle} />

@@ -19,13 +19,22 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
     pages: congressMenu = [],
     isCongress,
     slug,
-    label
+    label,
   } = congressParent;
- 
-  
+
   const sidebarLinks = () => {
     const items = congressMenu;
-    return <>{items && <SidebarNav menu={items} location={location} landing={{title:congressParent.label != '' ? congressParent.label : 'Start', slug}} />}</>;
+    return (
+      <>
+        {items && (
+          <SidebarNav
+            menu={items}
+            location={location}
+            landing={{ title: congressParent.label != '' ? congressParent.label : 'Start', slug }}
+          />
+        )}
+      </>
+    );
   };
 
   return (
