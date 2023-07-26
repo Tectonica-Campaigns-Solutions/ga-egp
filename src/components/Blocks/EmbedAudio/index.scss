@@ -6,6 +6,8 @@
     position: fixed;
     top: 200px;
     left: 0;
+    width: 70px;
+    height: 100px;
   }
 
   .rhap_container {
@@ -62,5 +64,13 @@
 
   .rhap_volume-indicator {
     background-color: #36845B;
+  }
+}
+
+@media screen and (max-width:992px) {
+  .embed-audio {
+    .fixed-action {
+      display: none;
+    }
   }
 }

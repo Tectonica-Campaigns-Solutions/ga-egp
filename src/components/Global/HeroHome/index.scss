@@ -151,7 +151,6 @@
       width: 100%;
     }
 
-
     .input {
       .inputs-list {
         margin: 0;
@@ -251,6 +250,18 @@
 
     .text-content {
       font-size: 20px;
+    }
+
+    .input {
+      .inputs-list {
+        .hs-form-booleancheckbox label {
+          input {
+            float: none;
+            width: auto;
+            margin: 0;
+          }
+        }
+      }
     }
   }
 }
