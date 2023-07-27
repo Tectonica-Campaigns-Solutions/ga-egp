@@ -35,3 +35,24 @@
     }
   }
 }
+
+.betweenDatesField {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+
+  input {
+    width: 140px;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  gap: 23px;
+  align-items: center;
+
+  button {
+    flex: 1;
+  }
+}

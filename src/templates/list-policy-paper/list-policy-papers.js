@@ -221,7 +221,7 @@ function ListPolicyPapers({
 
           {filterOptions.date === 'between_dates' && (
             <div className="mt-5">
-              <div className="d-flex align-items-center flex-wrap gap-2">
+              <div className={`${styles.betweenDatesField}`}>
                 <Input
                   type="date"
                   name="start_date"
@@ -246,7 +246,7 @@ function ListPolicyPapers({
           <Input areaTitle="Title" name="title" value={filterOptions.title} onChange={handleOnChangeInputs} isWhite />
         </div>
 
-        <div className="d-flex gap-4">
+        <div className={`${styles.btnContainer}`}>
           <ActionButton label="Apply" type="submit" value="apply" />
           <ActionButton label="Clear" onClick={handleOnClearFilters} customVariant="light2" />
         </div>
@@ -295,7 +295,8 @@ function ListPolicyPapers({
       <InnerLayout sideNav={sidebarContent()}>
         <div className={styles.filterTitle}>
           <h4>
-            Showing {filteredContent()?.length} {submitFilterOptions.type.replace('_', ' ')}
+            Showing {filteredContent()?.length}{' '}
+            {submitFilterOptions.type.replace('_', ' ') || 'resolutions and policy papers'}
           </h4>
           <p>{getFilteredTags()}</p>
         </div>
