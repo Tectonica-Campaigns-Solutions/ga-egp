@@ -26,7 +26,7 @@ const Header = ({ location, navbarWhite = false, navbarYellowHover = false }) =>
         navData={mainMenu}
         navbarWhite={navbarWhite}
         navbarYellowHover={navbarYellowHover}
-        path={location?.pathname}
+        location={location}
         setSearchEngineVisible={setSearchEngineVisible}
       />
     </header>

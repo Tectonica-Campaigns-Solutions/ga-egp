@@ -48,6 +48,10 @@
     }
   }
 
+  .nav-item:has(.nav-active-item) a {
+    color: var(--egp-black, #333) !important;
+  }
+
   &.home-nav {
     background: transparent;
     position: absolute;

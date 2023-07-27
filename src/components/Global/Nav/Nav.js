@@ -47,12 +47,16 @@ const DropdownItem = ({ link, label, children }) => {
   );
 };
 
-export default function Nav({ navData, navbarWhite = false, navbarYellowHover = false, path, setSearchEngineVisible }) {
-  // data
+export default function Nav({
+  navData,
+  navbarWhite = false,
+  navbarYellowHover = false,
+  location,
+  setSearchEngineVisible,
+}) {
   const navLinks = navData.allDatoCmsMenu.nodes;
-  // Use States --------
+
   const [expanded, setExpanded] = useState(false);
-  // Sticky Nav handlers are here
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleScroll = () => {
@@ -77,7 +81,7 @@ export default function Nav({ navData, navbarWhite = false, navbarYellowHover = 
     setExpanded(!expanded);
   };
 
-  const isHome = !path || path === '/';
+  const isHome = !location?.pathname || location?.pathname === '/';
 
   return (
     <nav
