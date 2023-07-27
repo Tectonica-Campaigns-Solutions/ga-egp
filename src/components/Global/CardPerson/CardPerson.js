@@ -16,13 +16,14 @@ function CardPerson({ person, animated = false, hasLink = false }) {
 
   return (
     <div className="card-person">
-      <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink>
-
+      {/* <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink> */}
+      {person.image && <ImageWrapper image={person.image} />}
       <div>
-        <div className="position">head of unit</div>
+        {/* <div className="position">head of unit</div> */}
         <h3>{person.name}</h3>
 
         <div className="job">{person.jobPosition}</div>
+        <div className="job">{person.country}</div>
         {/* <SocialLinkList links={person.socialLinks} /> */}
 
         {hasLink && (

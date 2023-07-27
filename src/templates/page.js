@@ -132,6 +132,19 @@ export const PageQuery = graphql`
         ... on DatoCmsBlockDonation {
           ...BlockDonation
         }
+        ... on DatoCmsEmbedIframe{
+          id
+          __typename
+          embedCode
+        }
+        ... on DatoCmsEmbedVideo{
+          id
+          __typename
+          video{
+            url
+            providerUid
+          }
+        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {

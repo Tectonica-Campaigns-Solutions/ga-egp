@@ -345,6 +345,7 @@ export const DatoCMS = graphql`
               apiKey
             }
             jobPosition
+            country
             description
           }
         }

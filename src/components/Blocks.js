@@ -16,6 +16,8 @@ import VerticalCtaList from './Blocks/VerticalCtaList/VerticalCtaList';
 import ListSessions from './Blocks/ListSessions/ListSessions';
 import HubspotStepsForm from './Blocks/HubspotStepsForm/HubspotStepsForm';
 import BlockDonation from './Blocks/BlockDonation/BlockDonation';
+import EmbedVideo from './Blocks/EmbedVideo/EmbedVideo';
+import EmbedIframe from './Blocks/EmbedIframe/EmbedIframe';
 
 export default function Blocks({ blocks }) {
   return (
@@ -56,6 +58,10 @@ export default function Blocks({ blocks }) {
             return <HubspotStepsForm key={block.id} block={block} />;
           case 'DatoCmsBlockDonation':
             return <BlockDonation key={block.id} block={block} />;
+          case 'DatoCmsEmbedVideo':
+            return <EmbedVideo key={block.id} block={block}/>;
+          case 'DatoCmsEmbedIframe':
+            return <EmbedIframe key={block.id} block={block}/>;
           default:
             return '';
         }
