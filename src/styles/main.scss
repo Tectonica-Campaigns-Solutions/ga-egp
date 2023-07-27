@@ -23,11 +23,12 @@
   }
 }
 
-@media screen and (max-width:992px){
+@media screen and (max-width:992px) {
   .withOverlap {
     +div {
       position: static;
-      padding-top:30px;
+      padding-top: 30px;
+
       .image-wrapper {
         margin-top: 0px;
       }
