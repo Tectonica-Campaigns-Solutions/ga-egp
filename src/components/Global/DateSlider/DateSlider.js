@@ -22,7 +22,7 @@ const DateSlider = ({ years, activeYear, setActiveYear }) => {
         slidesPerView={3}
         initialSlide={initialSlide}
         modules={[Navigation]}
-        centeredSlides={true}
+        // centeredSlides={true}
         // TODO change active year on slidechange
         // onSlideChange={(swiper) => {
         //   const iterateNext = swiper.previousIndex < swiper.activeIndex;

@@ -225,7 +225,7 @@ function FilterEvents({ events, tags }) {
               });
               const uniqueColorsArray = Array.from(uniqueColorsSet);
 
-              const uniqueTags = uniqueColorsArray.map((color) => <span className={`ball-tag ${color}`} />);
+              const uniqueTags = uniqueColorsArray.map((color) => <span key={color} className={`ball-tag ${color}`} />);
 
               return (
                 <span className="item-name">

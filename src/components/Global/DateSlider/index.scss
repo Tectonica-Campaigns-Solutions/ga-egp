@@ -22,11 +22,14 @@
       font-style: normal;
       font-weight: 700;
       font-size: 31px;
-      line-height: 130%;
+      line-height: 100%;
       color: var(--egp-dark-green);
-      // margin-right: 10px;
-      padding-right: 20px;
     }
+  }
+
+  .swiper-slide {
+    width: max-content !important;
+    margin: 0 1rem;
   }
 
   .swiper-button-prev,
