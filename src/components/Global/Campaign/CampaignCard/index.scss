@@ -150,6 +150,10 @@
         border: 2px solid #FFF;
       }
 
+      .hs-input.invalid.error {
+        border: 2px solid red;
+      }
+
       // New
       .input {
         background: none;
@@ -196,6 +200,11 @@
 
       .hs-form-field {
         height: 100%;
+        width: 32%;
+      }
+
+      .hs-dependent-field .hs-form-field {
+        width: 100%;
       }
 
       .hs-error-msgs {
@@ -209,23 +218,14 @@
           font-style: italic;
           font-size: 15px;
           color: #FFF;
+
         }
       }
 
       .hs_error_rollup {
         color: red;
+        order: 12;
         width: 100%;
-        position: absolute;
-        bottom: -30px;
-        left: 0;
-
-        ul {
-          padding-left: 0;
-        }
-
-        * {
-          display: block !important;
-        }
       }
     }
   }

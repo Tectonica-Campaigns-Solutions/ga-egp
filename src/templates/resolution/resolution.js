@@ -65,6 +65,12 @@ const Resolution = ({
           bgColor="section-green"
           link={{
             label: 'See all resolutions',
+            content: {
+              slug: 'green-policies',
+              model: {
+                apiKey: 'list-policies',
+              },
+            },
           }}
         >
           {relatedResolutions.edges.map((resolution) => (
