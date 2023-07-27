@@ -55,6 +55,16 @@
     }
   }
 
+  &.light2 {
+    color: var(--egp-green);
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 10px;
+
+    &:hover {
+      background-color: var(--egp-green);
+    }
+  }
+
   &.white {
     background: var(--egp-white);
     color: var(--egp-green);

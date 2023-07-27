@@ -248,7 +248,7 @@ function ListPolicyPapers({
 
         <div className="d-flex gap-4">
           <ActionButton label="Apply" type="submit" value="apply" />
-          <ActionButton label="Clear" onClick={handleOnClearFilters} customVariant="light" />
+          <ActionButton label="Clear" onClick={handleOnClearFilters} customVariant="light2" />
         </div>
       </form>
     </div>
