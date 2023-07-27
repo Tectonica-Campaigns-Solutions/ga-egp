@@ -53,12 +53,12 @@ function HeroHome({
       <div className={`hero-home ${textWhite ? 'text-white' : ''}`}>
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-xxl-6 col-12">
               {/* <div className="title" dangerouslySetInnerHTML={{ __html: title }} /> */}
 
               <div className="title">
                 <span dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
-                <span style={{ display: 'inline-block' }}>for </span>
+                <span className="letter-title">for </span>
                 <span className="mask">
                   <span className="animation" data-show style={{ paddingLeft: '10px' }}>
                     test
