@@ -3,7 +3,7 @@ import { isArray } from '../../../utils';
 import SocialLink from '../../Global/SocialLink/SocialLink';
 
 const SocialGrid = ({ block }) => {
-  const { title, items = [] } = block;
+  const { title, items = [], smallIcons = false } = block;
 
   return (
     <section className="mt-5">
@@ -14,7 +14,7 @@ const SocialGrid = ({ block }) => {
         {isArray(items) &&
           items.map((link) => (
             <div className="col-lg-5" key={link.id}>
-              <SocialLink url={link.url} name={link.socialNetwork} title={link.title} />
+              <SocialLink url={link.url} name={link.socialNetwork} title={link.title} smallIcons={smallIcons} />
             </div>
           ))}
       </div>

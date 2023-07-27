@@ -59,9 +59,9 @@ export default function Blocks({ blocks }) {
           case 'DatoCmsBlockDonation':
             return <BlockDonation key={block.id} block={block} />;
           case 'DatoCmsEmbedVideo':
-            return <EmbedVideo key={block.id} block={block}/>;
+            return <EmbedVideo key={block.id} block={block} />;
           case 'DatoCmsEmbedIframe':
-            return <EmbedIframe key={block.id} block={block}/>;
+            return <EmbedIframe key={block.id} block={block} />;
           default:
             return '';
         }

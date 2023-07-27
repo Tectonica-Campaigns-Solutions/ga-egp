@@ -942,6 +942,7 @@ export const DatoCMS = graphql`
         __typename
         id
         title
+        smallIcons
         items {
           ... on DatoCmsSocialLink {
             id
@@ -970,6 +971,7 @@ export const DatoCMS = graphql`
         __typename
         id
         title
+        smallIcons
         items {
           ... on DatoCmsSocialLink {
             id

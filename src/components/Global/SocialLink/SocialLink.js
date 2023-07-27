@@ -5,7 +5,7 @@ import iconTwitter from '../../Icons/icon_twitter.svg';
 import iconFacebook from '../../Icons/icon_facebook.svg';
 import iconFlickr from '../../Icons/icon_flickr.svg';
 import iconIg from '../../Icons/icon_ig.svg';
-import iconTikTok from '../../Icons/icon_tiktok.svg'
+import iconTikTok from '../../Icons/icon_tiktok.svg';
 
 import './index.scss';
 
@@ -18,12 +18,12 @@ const SocialMap = {
   tiktok: iconTikTok,
 };
 
-const SocialLink = ({ name, url, title = '', iconWhite = false }) => {
+const SocialLink = ({ name, url, title = '', iconWhite = false, smallIcons = false }) => {
   const socialImg = SocialMap[name];
 
   return (
     <Link to={url}>
-      <img height={40} src={socialImg} alt={name} className={`${iconWhite ? 'white' : ''}`} />
+      <img height={smallIcons ? 25 : 40} src={socialImg} alt={name} className={`${iconWhite ? 'white' : ''}`} />
       {title && <span className="title">{title}</span>}
     </Link>
   );
