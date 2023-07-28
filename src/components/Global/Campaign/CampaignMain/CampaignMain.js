@@ -16,7 +16,7 @@ const CampaignMain = ({ campaign }) => {
       )}
 
       {title && <h2>{title}</h2>}
-      {description && <div dangerouslySetInnerHTML={{ __html: description }} />}
+      {description && <div className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: description }} />}
 
       {/* Cta */}
       {ctas && <CtaList ctas={ctas} />}

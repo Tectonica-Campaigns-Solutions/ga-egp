@@ -13,7 +13,9 @@ function Logos({ block }) {
     <div className={styles.logosblock}>
       <div className="container">
         {title && <h2>{title}</h2>}
-        {intro && <div className={styles.intro} dangerouslySetInnerHTML={{ __html: intro }} />}
+        {intro && (
+          <div className={`${styles.intro} link-and-list-styles`} dangerouslySetInnerHTML={{ __html: intro }} />
+        )}
 
         {isArray(logos) && (
           <div className={`row ${styles.logoslist} justify-content-center g-5`}>

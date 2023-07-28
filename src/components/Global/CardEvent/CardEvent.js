@@ -34,7 +34,7 @@ const CardEvent = ({ day, hour, image, title, description, url, color, tag, type
             <h2>{title}</h2>
           </Link>
 
-          <div className="description" dangerouslySetInnerHTML={{ __html: description }} />
+          <div className="description link-and-list-styles" dangerouslySetInnerHTML={{ __html: description }} />
         </div>
 
         <div className="card-action">

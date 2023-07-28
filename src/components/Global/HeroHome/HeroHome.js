@@ -54,10 +54,10 @@ function HeroHome({
         <div className="container">
           <div className="row">
             <div className="col-xxl-6 col-12">
-              {/* <div className="title" dangerouslySetInnerHTML={{ __html: title }} /> */}
+              {/* <div className="title link-and-list-styles" dangerouslySetInnerHTML={{ __html: title }} /> */}
 
               <div className="title">
-                <span dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
+                <span className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
                 <span className="letter-title">for </span>
                 <span className="mask">
                   <span className="animation" data-show style={{ paddingLeft: '10px' }}>
@@ -68,17 +68,23 @@ function HeroHome({
                     return (
                       <span
                         key={`${item.word}-${index}`}
-                        className="animation"
+                        className="animation link-and-list-styles"
                         style={{ paddingLeft: '10px' }}
                         dangerouslySetInnerHTML={{ __html: item.word }}
                       />
                     );
                   })}
                 </span>
-                <span style={{ display: 'block' }} dangerouslySetInnerHTML={{ __html: secondPartTitle }} />
+                <span
+                  className="link-and-list-styles"
+                  style={{ display: 'block' }}
+                  dangerouslySetInnerHTML={{ __html: secondPartTitle }}
+                />
               </div>
 
-              {description && <div className="text-content" dangerouslySetInnerHTML={{ __html: description }} />}
+              {description && (
+                <div className="text-content link-and-list-styles" dangerouslySetInnerHTML={{ __html: description }} />
+              )}
             </div>
           </div>
 

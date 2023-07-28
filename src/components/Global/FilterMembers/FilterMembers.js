@@ -26,7 +26,7 @@ function FilterMembers({ members, introduction }) {
       <div className="container">
         <div className="row">
           <div className="col-lg-5">
-            <div className="intro" dangerouslySetInnerHTML={{ __html: introduction }} />
+            <div className="intro link-and-list-styles" dangerouslySetInnerHTML={{ __html: introduction }} />
 
             {isArray(members) && (
               <ul>

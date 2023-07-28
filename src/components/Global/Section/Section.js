@@ -18,7 +18,9 @@ const Section = ({ title, introduction = null, link = null, bgColor, extraClassN
           )}
         </div>
 
-        {introduction && <div className="introduction" dangerouslySetInnerHTML={{ __html: introduction }} />}
+        {introduction && (
+          <div className="introduction link-and-list-styles" dangerouslySetInnerHTML={{ __html: introduction }} />
+        )}
 
         <div className={`main-content row ${extraClassNames}`}>{children}</div>
       </div>

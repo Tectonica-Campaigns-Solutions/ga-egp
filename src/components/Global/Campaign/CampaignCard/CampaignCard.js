@@ -31,7 +31,7 @@ const CampaignCard = ({ campaign, fullHeight = false }) => {
 
         <div className={`${bannerImage ? 'col-7' : 'col-12'}`}>
           <h3>{title}</h3>
-          <div dangerouslySetInnerHTML={{ __html: description }} />
+          <div className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: description }} />
 
           {form ? (
             <div className="campaign-form">

@@ -36,8 +36,15 @@ const Resolution = ({
           <DetailDocLayout documents={resolution.documents} withOffset>
             <h1>{resolution.title}</h1>
 
-            {resolution.intro && <div dangerouslySetInnerHTML={{ __html: resolution.intro }} />}
-            {resolution.text?.value && <StructuredContentDefault content={resolution.text} />}
+            {resolution.intro && (
+              <div className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: resolution.intro }} />
+            )}
+
+            {resolution.text?.value && (
+              <div className="link-and-list-styles">
+                <StructuredContentDefault content={resolution.text} />
+              </div>
+            )}
 
             {resolution.footnotes && resolution.footnotes.length > 0 && (
               <>

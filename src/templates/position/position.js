@@ -46,10 +46,12 @@ const Position = ({
           <h1>{position.title}</h1>
 
           {position.imageHeader && <ImageWrapper image={position.imageHeader} />}
-          {position.intro && <div className="intro" dangerouslySetInnerHTML={{ __html: position.intro }} />}
+          {position.intro && (
+            <div className="intro link-and-list-styles" dangerouslySetInnerHTML={{ __html: position.intro }} />
+          )}
 
           {position.text && (
-            <div className="content">
+            <div className="content link-and-list-styles">
               <StructuredContentDefault content={position.text} />
             </div>
           )}

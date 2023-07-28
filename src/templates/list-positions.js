@@ -49,7 +49,10 @@ function ListPositions({
             <div className="row">
               {introduction && (
                 <div className="col-lg-8">
-                  <div className={styles.listPositionText} dangerouslySetInnerHTML={{ __html: introduction }} />
+                  <div
+                    className={`${styles.listPositionText} link-and-list-styles`}
+                    dangerouslySetInnerHTML={{ __html: introduction }}
+                  />
                 </div>
               )}
 

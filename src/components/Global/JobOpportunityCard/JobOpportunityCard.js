@@ -13,7 +13,10 @@ const JobOpportunityCard = ({ job, btnLabel = 'see more and apply' }) => {
       <JobLocation isRemote={isRemote} location={location} />
 
       <h3>{title}</h3>
-      <div className={styles.jobDescription} dangerouslySetInnerHTML={{ __html: description }} />
+      <div
+        className={`${styles.jobDescription} link-and-list-styles`}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
 
       <Button label={btnLabel} url={pathToModel(model.apiKey, slug)} />
     </div>

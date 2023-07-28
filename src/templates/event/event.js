@@ -42,7 +42,11 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
           </div>
 
           <DetailDocLayout documents={event.documents}>
-            {event.textContent && <StructuredContentDefault content={event.textContent} />}
+            {event.textContent && (
+              <div className="link-and-list-styles">
+                <StructuredContentDefault content={event.textContent} />
+              </div>
+            )}
           </DetailDocLayout>
         </div>
       </div>

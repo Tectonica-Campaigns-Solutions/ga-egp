@@ -29,10 +29,15 @@ const JonOpportunity = ({ pageContext, location, data: { job, favicon, siteTitle
           <div className="row justify-content-center">
             <div className="col-lg-9">
               {/* Short description */}
-              {description && <p className={styles.description} dangerouslySetInnerHTML={{ __html: description }} />}
+              {description && (
+                <p
+                  className={`${styles.description} link-and-list-styles`}
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
+              )}
 
               {/* Main content */}
-              {content && <p dangerouslySetInnerHTML={{ __html: content }} />}
+              {content && <p className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: content }} />}
               <p />
             </div>
           </div>

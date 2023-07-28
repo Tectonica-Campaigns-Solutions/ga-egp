@@ -51,7 +51,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
               )}
 
               {textContent && (
-                <div className={`post-text-content ${oldNid ? 'importer-post' : ''}`}>
+                <div className={`post-text-content link-and-list-styles ${oldNid ? 'importer-post' : ''}`}>
                   <StructuredContentDefault content={textContent} />
                 </div>
               )}

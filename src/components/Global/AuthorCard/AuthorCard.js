@@ -13,7 +13,9 @@ const AuthorCard = ({ author }) => {
       <div>
         {name && <h4>{name}</h4>}
 
-        {jobPosition && <div className="description" dangerouslySetInnerHTML={{ __html: jobPosition }} />}
+        {jobPosition && (
+          <div className="description link-and-list-styles" dangerouslySetInnerHTML={{ __html: jobPosition }} />
+        )}
       </div>
     </div>
   );

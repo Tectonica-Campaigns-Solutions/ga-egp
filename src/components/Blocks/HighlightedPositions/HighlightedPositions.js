@@ -26,7 +26,7 @@ function HighlightedPositions({ id, block }) {
           <div className="col-xxl-4 col-text">
             <h3>{pretitle}</h3>
             <h2>{title}</h2>
-            <div className="description" dangerouslySetInnerHTML={{ __html: description }} />
+            <div className="description link-and-list-styles" dangerouslySetInnerHTML={{ __html: description }} />
 
             {link && (
               <div className="info-btn">

@@ -6,7 +6,9 @@ function TextSimple({ block }) {
 
   return (
     <div className={`${useContainer ? 'container my-5' : ''}`}>
-      {text && <div className={styles.simpleText} dangerouslySetInnerHTML={{ __html: text }} />}
+      {text && (
+        <div className={`${styles.simpleText} link-and-list-styles`} dangerouslySetInnerHTML={{ __html: text }} />
+      )}
     </div>
   );
 }

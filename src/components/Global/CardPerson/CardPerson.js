@@ -18,6 +18,7 @@ function CardPerson({ person, animated = false, hasLink = false }) {
     <div className="card-person">
       {/* <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink> */}
       {person.image && <ImageWrapper image={person.image} />}
+
       <div>
         {/* <div className="position">head of unit</div> */}
         <h3>{person.name}</h3>

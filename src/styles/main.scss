@@ -35,3 +35,15 @@
     }
   }
 }
+
+.link-and-list-styles {
+  a {
+    color: var(--egp-green) !important;
+  }
+
+  ul,
+  ol,
+  li {
+    list-style: initial;
+  }
+}

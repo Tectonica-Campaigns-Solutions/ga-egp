@@ -37,7 +37,10 @@ function person({ pageContext, location, data: { person, favicon, siteTitle } })
               )}
 
               {person.description && (
-                <div className="description" dangerouslySetInnerHTML={{ __html: person.description }} />
+                <div
+                  className="description link-and-list-styles"
+                  dangerouslySetInnerHTML={{ __html: person.description }}
+                />
               )}
             </div>
           </div>

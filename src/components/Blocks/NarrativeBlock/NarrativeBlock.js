@@ -16,7 +16,12 @@ export default function NarrativeBlock({ block }) {
             <h3>{pretitle}</h3>
             <h2>{title}</h2>
 
-            {textContent && <div className={styles.textcontent} dangerouslySetInnerHTML={{ __html: textContent }} />}
+            {textContent && (
+              <div
+                className={`${styles.textcontent} link-and-list-styles`}
+                dangerouslySetInnerHTML={{ __html: textContent }}
+              />
+            )}
 
             {isArray(ctas) && (
               <div>

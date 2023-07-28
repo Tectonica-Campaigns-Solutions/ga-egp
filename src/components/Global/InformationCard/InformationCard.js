@@ -40,7 +40,7 @@ const InformationCard = ({
         <h6>{title}</h6>
       </Link>
 
-      <div id="intro" className="description" dangerouslySetInnerHTML={{ __html: intro }} />
+      <div id="intro" className="description link-and-list-styles" dangerouslySetInnerHTML={{ __html: intro }} />
 
       {isArray(documents) && (
         <div className="docs">

@@ -37,7 +37,11 @@ function HeroCustom({
                 {date && <div className="date">{date}</div>}
                 {parentTitle && <h2>{parentTitle}</h2>}
                 {!parentTitle && <h1 className={`${isDetailView ? 'sm' : ''}`}>{title}</h1>}
-                <div className={styles.description} dangerouslySetInnerHTML={{ __html: description }} />
+
+                <div
+                  className={`${styles.description} link-and-list-styles`}
+                  dangerouslySetInnerHTML={{ __html: description }}
+                />
               </div>
 
               {ctas && (
@@ -49,7 +53,10 @@ function HeroCustom({
                     >
                       <Link to={item.url?.url}>{item.url?.label}</Link>
                       {item.description && (
-                        <div className={styles.ctaText} dangerouslySetInnerHTML={{ __html: item.description }} />
+                        <div
+                          className={`${styles.ctaText} link-and-list-styles`}
+                          dangerouslySetInnerHTML={{ __html: item.description }}
+                        />
                       )}
                     </div>
                   ))}

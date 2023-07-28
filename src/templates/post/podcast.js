@@ -41,7 +41,11 @@ const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
                 </div>
               )}
 
-              {page.textContent && <StructuredContentDefault content={page.textContent} />}
+              {page.textContent && (
+                <div className="link-and-list-styles">
+                  <StructuredContentDefault content={page.textContent} />
+                </div>
+              )}
 
               {isArray(page.tags) && (
                 <div className="new-tags mb-5">

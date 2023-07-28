@@ -83,7 +83,7 @@ function HubspotStepsForm({ block }) {
               <div className="row mt-5" key={`${item.title}-${index}`}>
                 <div className="col-lg-4">
                   <h3>{item.title}</h3>
-                  <p>{item.description}</p>
+                  <p className="link-and-list-styles">{item.description}</p>
                 </div>
 
                 <div className="col offset-lg-2">
