@@ -36,3 +36,9 @@
     color: var(--egp-dark);
   }
 }
+
+@media screen and (max-width:768px){
+  .position-detail .content p {
+    font-size:13px;
+  }
+}

@@ -39,7 +39,7 @@ const Breadcrumb = ({ items = null, textWhite = false, bgPink = false, breadcrum
 
   return (
     <div
-      className={`${styles.egpBreadcrumb} ${textWhite ? styles.textWhite : null} ${bgPink ? styles.withBgPink : null}`}
+      className={`${styles.egpBreadcrumb} ${textWhite ? styles.textWhite : null} ${bgPink ? styles.withBgPink : null} d-none d-lg-block`}
       data-datocms-noindex
     >
       <ul>

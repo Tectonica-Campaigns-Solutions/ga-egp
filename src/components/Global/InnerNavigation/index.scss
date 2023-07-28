@@ -55,13 +55,13 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-
+        &.active {
+          border: none;
+        }
         .link-item {
           font-size: 18px;
 
-          &.active {
-            border: none;
-          }
+          
         }
       }
 

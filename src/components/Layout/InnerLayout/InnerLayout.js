@@ -12,10 +12,10 @@ const InnerLayout = ({ sideNav, location, children }) => {
   };
 
   return (
-    <div className={`inner-layout ${toggleSidebar ? 'hide' : ''}`}>
+    <div className={`inner-layout ${toggleSidebar ? 'hide' : ''} `}>
       <div className="container">
         <div className="row">
-          <div className={`${toggleSidebar ? 'col-1' : 'col-lg-3'} first`}>
+          <div className={`${toggleSidebar ? 'col-1' : 'col-lg-3'} first d-none d-lg-block`}>
             <img className="collapse-btn" src={collapseIcon} onClick={handleOnToggleSidebar} />
 
             <div className="main-content">
