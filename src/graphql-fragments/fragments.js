@@ -12,6 +12,54 @@ export const DatoCMS = graphql`
           ... on DatoCmsPage {
             ...PageLink
           }
+          ... on DatoCmsListMember {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPosition {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListResolution {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPolicyPaper {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListEvent {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsCongress {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPodcast {
+            slug
+            model {
+              apiKey
+            }
+          }
         }
       }
     }
