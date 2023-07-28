@@ -3,9 +3,10 @@
   min-height: 90px;
   width: 100%;
   z-index: 999;
-  background: var(--egp-white);
+  background-color: transparent;
   padding: 0 30px;
   padding-top: 0 !important;
+  position: absolute !important;
 
   .navbar-brand {
     padding: 0;
@@ -93,7 +94,7 @@
 
   &.sticky-nav {
     // transition: 0.2s ease-in-out;
-    position: fixed;
+    position: fixed !important;
     top: 0;
     height: 65px;
     background: var(--egp-white) !important;
@@ -263,8 +264,6 @@
   .navbar {
     min-height: auto;
     padding: 5px 0;
-    background-color: var(--egp-white) !important;
-
 
     a.navbar-brand img {
       padding-left: 15px;
@@ -286,16 +285,31 @@
       transition: 0.15s all ease-in-out;
     }
 
+    &.home-nav {
+
+      .navbar-toggler-icon,
+      .navbar-toggler-icon:before,
+      .navbar-toggler-icon:after {
+        background-color: var(--egp-white) !important;
+      }
+
+      .navbar-toggler-icon.open-toggle {
+        background-color: var(--egp-dark) !important;
+
+        &::before,
+        &::after {
+          background-color: var(--egp-dark) !important;
+        }
+      }
+    }
+
     &.expanded {
-      background-color: var(--psa-navy);
+      background-color: var(--egp-white) !important;
       padding-bottom: 1rem;
 
       #navNav ul li.nav-item {
         margin-right: 0;
         margin-bottom: 1rem;
-        // a.nav-link {
-        //     color: var(--psa-navy);
-        // }
       }
     }
   }

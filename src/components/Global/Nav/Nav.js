@@ -81,7 +81,7 @@ export default function Nav({
     setExpanded(!expanded);
   };
 
-  const isHome = !location?.pathname || location?.pathname === '/';
+  const isHome = location ? location?.pathname === '/' : false;
 
   return (
     <nav
