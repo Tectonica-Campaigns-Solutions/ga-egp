@@ -2,7 +2,7 @@ import React from 'react';
 import Section from '../../Global/Section/Section';
 import { useStaticQuery } from 'gatsby';
 import { graphql } from 'gatsby';
-import { isArray } from '../../../utils';
+import { getCtaUrl, isArray } from '../../../utils';
 import EventList from '../../Global/EventList/EventList';
 import Button from '../../Global/Button/Button';
 
@@ -29,7 +29,7 @@ const UpcomingEvents = ({ id, block }) => {
       {isArray(highlightEvents) && <EventList events={highlightEvents} />}
 
       <div className={styles.mobileInfoBtn}>
-        <Button label={'See all EVENTS  →'} />
+        <Button url={getCtaUrl(globalLink)} label={globalLink.label} isPrimary={false} customVariant="light" />
       </div>
     </Section>
   );

@@ -2,7 +2,10 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import CardUpdate from '../../Global/CardUpdate/CardUpdate';
 import Section from '../../Global/Section/Section';
-import { isArray } from '../../../utils';
+import { getCtaUrl, isArray } from '../../../utils';
+import Button from '../../Global/Button/Button';
+
+import * as styles from './styles.module.scss';
 
 const LatestUpdates = ({ block, items = [] }) => {
   const { title, link } = block;
@@ -25,7 +28,7 @@ const LatestUpdates = ({ block, items = [] }) => {
   return (
     <>
       {isArray(finalItems) && (
-        <Section title={title} link={link} extraClassNames="gy-5">
+        <Section title={title} link={link} extraClassNames="gy-4 gy-xl-0">
           {finalItems.map((post) => (
             <div
               className={`${customItems ? 'col-xl-6 col-lg-12 col-sm-12' : 'col-xl-4 col-lg-6 col-md-6 col-sm-12'}`}
@@ -34,6 +37,10 @@ const LatestUpdates = ({ block, items = [] }) => {
               <CardUpdate post={post.node} />
             </div>
           ))}
+
+          <div className={styles.mobileInfoBtn}>
+            <Button url={getCtaUrl(link)} label={link.label} isPrimary={false} customVariant="light" />
+          </div>
         </Section>
       )}
     </>
