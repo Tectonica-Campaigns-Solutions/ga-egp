@@ -292,7 +292,7 @@ function ListPolicyPapers({
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
       {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
 
-      <InnerLayout sideNav={sidebarContent()}>
+      <InnerLayout allowCollapse sideNav={sidebarContent()}>
         <div className={styles.filterTitle}>
           <h4>
             Showing {filteredContent()?.length}{' '}

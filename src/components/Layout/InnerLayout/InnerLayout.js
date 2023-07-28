@@ -4,7 +4,7 @@ import collapseIcon from '../../Icons/Collapse Button.svg';
 
 import './index.scss';
 
-const InnerLayout = ({ sideNav, location, children }) => {
+const InnerLayout = ({ sideNav, location, allowCollapse = false, children }) => {
   const [toggleSidebar, setToggleSidebar] = React.useState(false);
 
   const handleOnToggleSidebar = () => {
@@ -16,7 +16,7 @@ const InnerLayout = ({ sideNav, location, children }) => {
       <div className="container">
         <div className="row">
           <div className={`${toggleSidebar ? 'col-1' : 'col-lg-3'} first d-none d-lg-block`}>
-            <img className="collapse-btn" src={collapseIcon} onClick={handleOnToggleSidebar} />
+            {allowCollapse && <img className="collapse-btn" src={collapseIcon} onClick={handleOnToggleSidebar} />}
 
             <div className="main-content">
               {sideNav && sideNav?.length > 0 ? <SidebarNav menu={sideNav} location={location} /> : sideNav}
