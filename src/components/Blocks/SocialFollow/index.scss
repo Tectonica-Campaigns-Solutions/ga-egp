@@ -27,11 +27,36 @@
         padding-right: 25px;
         border-right: 1px solid rgba(255, 112, 188, 0.2);
       }
-      &:hover{
-       img{
-        transition:all .3s;
-        filter: grayscale(100%) sepia(100%) hue-rotate(90deg);
-       }
+
+      &:hover {
+        img {
+          transition: all .3s;
+          filter: grayscale(100%) sepia(100%) hue-rotate(90deg);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:992px) {
+  .social-follow {
+    padding: 40px 0;
+
+    h2 {
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 110%;
+    }
+
+    .links {
+      gap: 10px;
+
+      a {
+        img {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }

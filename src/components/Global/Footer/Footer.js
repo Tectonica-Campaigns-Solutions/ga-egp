@@ -111,7 +111,7 @@ function Footer() {
           </div>
 
           {/* Hubspot form */}
-          <div className="col-lg-3 offset-lg-1">
+          <div className="col-lg-3 offset-lg-1 form-footer">
             {formFooter && formFooter.hubspot && <TextHubspotForm block={formFooter} />}
           </div>
         </div>

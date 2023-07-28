@@ -83,6 +83,10 @@
       @media screen and (max-width: 1270px) {
         padding-top: 150px;
       }
+
+      @media screen and (max-width: 992px) {
+        padding-top: 55px;
+      }
     }
   }
 
@@ -282,11 +286,52 @@
     margin-bottom: 3rem;
 
     .title {
-      font-size: 35px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 100%;
+      margin-bottom: 20px;
     }
 
     .text-content {
-      font-size: 20px;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 130%;
+      margin-bottom: 20px;
+    }
+
+    form {
+      gap: 10px;
+
+      input[type="submit"] {
+        padding: 15px 15px 14px 15px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 18.4px;
+        text-transform: uppercase;
+      }
+
+      .input {
+        .inputs-list {
+          margin-top: 0px;
+
+          .hs-form-booleancheckbox label {
+            gap: 5px;
+            margin: 0;
+          }
+        }
+      }
+
+      .hs-error-msgs {
+        margin-top: 0;
+      }
+
+      input {
+        width: 100%;
+        margin-bottom: 0px;
+      }
     }
 
     .input {
