@@ -27,7 +27,10 @@ const LatestUpdates = ({ block, items = [] }) => {
       {isArray(finalItems) && (
         <Section title={title} link={link} extraClassNames="gy-5">
           {finalItems.map((post) => (
-            <div className={`${customItems ? 'col-md-6' : 'col-lg-4 col-md-6'}`} key={post.node.id}>
+            <div
+              className={`${customItems ? 'col-xl-6 col-lg-12 col-sm-12' : 'col-xl-4 col-lg-6 col-md-6 col-sm-12'}`}
+              key={post.node.id}
+            >
               <CardUpdate post={post.node} />
             </div>
           ))}
