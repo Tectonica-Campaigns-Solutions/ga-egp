@@ -29,7 +29,7 @@ const UpcomingEvents = ({ id, block }) => {
       {isArray(highlightEvents) && <EventList events={highlightEvents} />}
 
       <div className={styles.mobileInfoBtn}>
-        <Button url={getCtaUrl(globalLink)} label={globalLink.label} isPrimary={false} customVariant="light" />
+        <Button url={getCtaUrl(globalLink)} label={globalLink?.label} isPrimary={false} customVariant="light" />
       </div>
     </Section>
   );
