@@ -48,7 +48,7 @@ function HighlightedPositions({ id, block }) {
           )}
 
           <div className="mobile-info-btn">
-            <Button label={'All positions'} />
+            <Button url={getCtaUrl(link)} label={link?.label} isPrimary={false} customVariant="light" />
           </div>
         </div>
       </div>
