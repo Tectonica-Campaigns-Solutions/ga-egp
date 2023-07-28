@@ -74,6 +74,26 @@
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .highlighted-positions {
+    .slick-list {
+      padding: 0 !important;
+    }
+
+    .slick-slide {
+      padding-right: 16px;
+
+      &>div {
+        padding: 0 !important;
+
+        >div div {
+          padding-right: 50px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width:992px) {
   .highlighted-positions {
     padding: 38px 0;

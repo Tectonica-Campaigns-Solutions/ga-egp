@@ -10,11 +10,25 @@ function HighlightedPositions({ id, block }) {
   const { pretitle, title, description, positions, link } = block;
 
   const responsiveSettings = [
+    { breakpoint: 1250, settings: { slidesToShow: 3 } },
     {
-      breakpoint: 992,
+      breakpoint: 1000,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+        centerMode: true,
+      },
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+        centerMode: true,
       },
     },
   ];
