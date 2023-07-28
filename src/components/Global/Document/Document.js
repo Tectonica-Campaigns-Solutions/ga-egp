@@ -6,13 +6,13 @@ import './index.scss';
 
 const Document = ({ doc }) => {
   return (
-    <div className="doc-item">
-      <img src={documentIcon} alt="Document icon" />
+    <Link to={doc.document.url} target="_blank" download style={{ display: 'block' }}>
+      <div className="doc-item">
+        <img src={documentIcon} alt="Document icon" />
 
-      <Link to={doc.document.url} target="_blank" download>
         <span>{doc.language ?? 'Download'}</span>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
