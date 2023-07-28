@@ -87,109 +87,6 @@
     position: relative;
     z-index: 10;
 
-    // form {
-    //   position: relative;
-    //   display: flex;
-    //   gap: 10px;
-    //   flex-wrap: wrap;
-
-    //   ul,
-    //   li {
-    //     list-style: none !important;
-    //   }
-
-    //   label {
-    //     display: none;
-    //   }
-
-    //   input[type="submit"] {
-    //     padding: 13px 20px;
-    //     background-color: var(--egp-green);
-    //     color: #fff;
-    //     text-transform: uppercase;
-    //     font-weight: bold;
-    //     border: 2px solid #fff;
-    //     transition: all .3s;
-    //     font-size: 20px;
-
-    //     &:hover {
-    //       background-color: var(--egp-darker-green);
-    //     }
-    //   }
-
-    //   .legal-consent-container {
-    //     order: 10;
-    //     width: 100%;
-    //   }
-
-    //   .input {
-    //     .inputs-list {
-    //       margin: 0;
-    //       padding: 0;
-    //       margin-top: 10px;
-
-    //       .hs-form-booleancheckbox label {
-    //         display: flex;
-    //         align-items: center;
-    //         gap: 10px;
-    //         margin-bottom: 20px;
-
-    //         color: var(--egp-white, #FFF);
-    //         font-family: "Roboto";
-    //         font-size: 13px;
-    //         font-style: normal;
-    //         font-weight: 400;
-    //         line-height: 130%;
-
-    //         span {
-    //           margin: 0;
-    //           padding: 0;
-    //         }
-    //       }
-    //     }
-    //   }
-
-    //   .hs-input.invalid.error {
-    //     border: 2px solid red;
-    //   }
-
-    //   .hs_error_rollup {
-    //     order: 12;
-    //     width: 100%;
-    //   }
-
-    //   .hs-error-msgs {
-    //     list-style: none;
-    //     margin: 0;
-    //     padding: 0;
-    //     margin-top: 5px;
-
-    //     label {
-    //       display: block;
-    //       font-style: italic;
-    //       color: var(--egp-white, #FFF);
-    //       font-family: "Roboto";
-    //       font-size: 13px;
-    //       font-weight: 400;
-    //       line-height: 130%;
-    //       padding-top: 5px;
-    //     }
-    //   }
-
-    //   @media screen and (max-width: 992px) {
-    //     flex-direction: column;
-
-    //     .hs-form-field {
-    //       width: 100% !important;
-    //     }
-
-    //     input {
-    //       width: 100%;
-    //       margin-bottom: 20px;
-    //     }
-    //   }
-    // }
-
     form {
       display: flex;
       gap: 20px;
@@ -213,7 +110,8 @@
         height: 100%;
         display: block !important;
         text-align: center;
-        padding: 16px 15px 15px;
+        // padding: 16px 15px 15px;
+        padding: 20px;
         background: var(--egp-green, #57B45F);
         border-radius: 10px;
 
