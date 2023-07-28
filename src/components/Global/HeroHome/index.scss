@@ -272,11 +272,13 @@
 
 @media screen and (max-width:992px) {
   .hero-home .mask {
-    height: 35px;
+    height: 32px;
+    padding-left: 0 !important;
   }
 
   .hero-home .mask span {
-    top: 40px;
+    top: 32px;
+    padding-left: 0 !important;
   }
 
   .hero-home {
