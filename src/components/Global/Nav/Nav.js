@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Link from '../Link';
 import logo from '../../Icons/logo.svg';
 import searchIcon from '../../Icons/icons-search.svg';
-import userIcon from '../../Icons/icons-user.svg';
 import { getCtaUrl } from '../../../utils';
 
 import './index.scss';
@@ -76,12 +75,23 @@ export default function Nav({
     }
   }, []);
 
-  // Event Handlers -----
   const handleNavClick = () => {
     setExpanded(!expanded);
   };
 
   const isHome = location ? location?.pathname === '/' : false;
+
+  const groupedLinks = navLinks.reduce(
+    (result, item) => {
+      if (item.icon && item.icon.url) {
+        result.withIcon.push(item);
+      } else {
+        result.withoutIcon.push(item);
+      }
+      return result;
+    },
+    { withIcon: [], withoutIcon: [] }
+  );
 
   return (
     <nav
@@ -108,7 +118,7 @@ export default function Nav({
 
       <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
         <ul className={`navbar-nav mr-auto ${navbarWhite ? 'nav-white' : ''}`}>
-          {navLinks?.map((link) =>
+          {groupedLinks?.withoutIcon?.map((link) =>
             link.treeChildren.length === 0 ? (
               <LinkItem key={link.id} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />
             ) : (
@@ -127,9 +137,11 @@ export default function Nav({
               <img src={searchIcon} alt="Search icon" />
             </Link>
 
-            <Link to="">
-              <img src={userIcon} alt="" />
-            </Link>
+            {groupedLinks?.withIcon?.map((link) => (
+              <Link key={link.id} to={getCtaUrl(link?.content.slug)}>
+                <img src={link.icon.url} alt="Link icon" />
+              </Link>
+            ))}
           </div>
         </ul>
       </div>

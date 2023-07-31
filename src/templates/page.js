@@ -20,6 +20,7 @@ const Page = ({
     : sideNav?.treeChildren;
 
   const shouldUseNavbarWhite = page.customHeader && page.backgroundColor === 'pink';
+  const showBreadcrumb = page.hideBreadcrumb ? null : breadcrumb ? breadcrumb : null;
 
   return (
     <Layout navbarWhite={shouldUseNavbarWhite}>
@@ -27,22 +28,26 @@ const Page = ({
         {page.noIndex && <meta name="robots" content="noindex" />}
       </SeoDatoCms>
 
-      {page.customHeader && (
-        <HeroCustom
-          ctas={page.ctasblock}
-          imageHeader={page.backgroundImage}
-          description={page.description}
-          title={page.title}
-          context={pageContext}
-          location={location}
-          breadcrumb={breadcrumb ? breadcrumb : null}
-          bgColor={page.backgroundColor}
-          overlap={page.allowOverlap}
-        />
-      )}
+      {!page.hideHeader && (
+        <>
+          {page.customHeader && (
+            <HeroCustom
+              ctas={page.ctasblock}
+              imageHeader={page.backgroundImage}
+              description={page.description}
+              title={page.title}
+              context={pageContext}
+              location={location}
+              breadcrumb={showBreadcrumb}
+              bgColor={page.backgroundColor}
+              overlap={page.allowOverlap}
+            />
+          )}
 
-      {!page.customHeader && (
-        <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
+          {!page.customHeader && (
+            <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={showBreadcrumb} />
+          )}
+        </>
       )}
 
       {!page.hideInnerNavigation && secondaryMenu?.treeChildren && (
@@ -83,6 +88,8 @@ export const PageQuery = graphql`
       description
       hideSidebarNavigation
       hideInnerNavigation
+      hideBreadcrumb
+      hideHeader
       backgroundImage {
         gatsbyImageData
         alt
@@ -132,15 +139,18 @@ export const PageQuery = graphql`
         ... on DatoCmsBlockDonation {
           ...BlockDonation
         }
-        ... on DatoCmsEmbedIframe{
+        ... on DatoCmsPreviewCta {
+          ...BlockPreviewCta
+        }
+        ... on DatoCmsEmbedIframe {
           id
           __typename
           embedCode
         }
-        ... on DatoCmsEmbedVideo{
+        ... on DatoCmsEmbedVideo {
           id
           __typename
-          video{
+          video {
             url
             providerUid
           }
