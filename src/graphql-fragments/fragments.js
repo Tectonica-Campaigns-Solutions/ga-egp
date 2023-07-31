@@ -443,6 +443,9 @@ export const DatoCMS = graphql`
     id
     title
     hideInInnerNavigation
+    icon {
+      url
+    }
     content {
       ... on DatoCmsPage {
         slug
@@ -807,6 +810,25 @@ export const DatoCMS = graphql`
     slug
     model {
       apiKey
+    }
+  }
+  fragment BlockPreviewCta on DatoCmsPreviewCta {
+    __typename
+    id
+    title
+    description
+    backgroundColor
+    backgroundImage {
+      url
+    }
+    ctas {
+      ... on DatoCmsCtaExternal {
+        id
+        url {
+          url
+        }
+        description
+      }
     }
   }
   fragment Breadcrumb on DatoCmsMenu {

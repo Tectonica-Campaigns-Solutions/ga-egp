@@ -1,5 +1,4 @@
 .hero-home {
-
   .letter-title {
     display: inline-block;
   }
@@ -272,13 +271,12 @@
 
 @media screen and (max-width:992px) {
   .hero-home .mask {
-    height: 32px;
-    padding-left: 0 !important;
+    height: 21px;
   }
 
   .hero-home .mask span {
-    top: 32px;
-    padding-left: 0 !important;
+    top: 24px;
+    padding-left: .3rem !important;
   }
 
   .hero-home {
@@ -288,7 +286,7 @@
     margin-bottom: 3rem;
 
     .title {
-      font-size: 32px;
+      font-size: 24px;
       font-style: normal;
       font-weight: 700;
       line-height: 100%;
@@ -355,7 +353,7 @@
     height: fit-content;
 
     .title {
-      font-size: 45px;
+      font-size: 60px;
     }
 
     .text-content {

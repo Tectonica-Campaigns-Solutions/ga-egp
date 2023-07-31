@@ -1,0 +1,117 @@
+.preview-cta-block {
+  min-height: 700px;
+  padding: 190px 0;
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: contain;
+
+  h1 {
+    color: var(--egp-darker-green, #184B31);
+    font-family: "Colby";
+    font-size: 49px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    margin-bottom: 39px;
+  }
+
+  p {
+    color: var(--egp-black, #333);
+    font-family: "Roboto";
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  .ctas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    a {
+      padding: 8px 25px;
+      width: 100%;
+      border-radius: 8px;
+      border: 3px solid var(--egp-dark-green, #36845B);
+      background: var(--x-light-green, #DDF1E0);
+
+      * {
+        color: var(--egp-dark-green, #36845B);
+        font-family: "Roboto";
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  &.section-light-pink {
+    h1 {
+      color: var(--egp-pink, #FF70BD);
+      font-family: "Colby";
+      font-size: 69px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 100%;
+    }
+
+    p {
+      color: var(--egp-black, #333);
+      font-family: "Roboto";
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 130%;
+    }
+  }
+
+  a {
+    color: var(--egp-green);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .preview-cta-block {
+    padding: 100px 0;
+    background-image: none;
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .ctas {
+      gap: 10px;
+
+      a {
+        padding: 4px 20px;
+
+        * {
+          font-size: 18px;
+        }
+      }
+    }
+
+    &.section-light-pink {
+      h1 {
+        font-size: 25px;
+        margin-bottom: 16px;
+      }
+
+      p {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
