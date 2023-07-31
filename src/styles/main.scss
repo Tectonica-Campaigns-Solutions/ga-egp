@@ -23,6 +23,36 @@
   }
 }
 
+.slider-position-list {
+  .slick-slide {
+    padding-right: 1.938rem;
+
+    @media screen and (max-width: 991px) {
+      padding: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .slider-position-list {
+    .slick-list {
+      padding: 0 !important;
+    }
+
+    .slick-slide {
+      padding-right: 16px;
+
+      &>div {
+        padding: 0 !important;
+
+        >div div {
+          padding-right: 50px;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width:992px) {
   .withOverlap {
     +div {

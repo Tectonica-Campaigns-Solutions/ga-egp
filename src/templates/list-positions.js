@@ -20,18 +20,25 @@ function ListPositions({
   const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
 
   const responsiveSettings = [
+    { breakpoint: 1250, settings: { slidesToShow: 3 } },
     {
-      breakpoint: 992,
+      breakpoint: 1000,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+        centerMode: true,
       },
     },
     {
-      breakpoint: 1200,
+      breakpoint: 767,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 1,
+        infinite: true,
+        arrows: false,
+        centerMode: true,
       },
     },
   ];
@@ -66,7 +73,7 @@ function ListPositions({
                 })}
               </div>
 
-              <div className={`col-12 row ${styles.mobileItems}`}>
+              <div className={`col-12 row slider-position-list ${styles.mobileItems}`}>
                 <EGPSlider responsive={responsiveSettings}>
                   {items.map((item) => {
                     return (
