@@ -379,7 +379,7 @@ export const DatoCMS = graphql`
             slug
             name
             image {
-              gatsbyImageData(width: 350, height: 350)
+              gatsbyImageData(width: 450, height: 450)
               url
               alt
             }
