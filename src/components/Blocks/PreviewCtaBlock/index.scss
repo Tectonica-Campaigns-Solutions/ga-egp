@@ -74,3 +74,44 @@
     color: var(--egp-green);
   }
 }
+
+@media screen and (max-width: 992px) {
+  .preview-cta-block {
+    padding: 100px 0;
+    background-image: none;
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .ctas {
+      gap: 10px;
+
+      a {
+        padding: 4px 20px;
+
+        * {
+          font-size: 18px;
+        }
+      }
+    }
+
+    &.section-light-pink {
+      h1 {
+        font-size: 25px;
+        margin-bottom: 16px;
+      }
+
+      p {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
