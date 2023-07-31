@@ -26,7 +26,7 @@ const Resolution = ({
         title={resolution.title}
         context={pageContext}
         location={location}
-        date={resolution.date}
+        // date={resolution.date}
         isDetailView
         breadcrumb={breadcrumb}
       />
