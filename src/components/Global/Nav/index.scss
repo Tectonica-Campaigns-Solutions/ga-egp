@@ -303,6 +303,15 @@
       }
     }
 
+    &.home-nav.sticky-nav {
+
+      .navbar-toggler-icon,
+      .navbar-toggler-icon:before,
+      .navbar-toggler-icon:after {
+        background-color: var(--egp-dark) !important;
+      }
+    }
+
     &.expanded {
       background-color: var(--egp-white) !important;
       padding-bottom: 1rem;
