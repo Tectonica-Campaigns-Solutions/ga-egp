@@ -5,7 +5,7 @@ import HeroPage from '../../components/Global/HeroPage/HeroPage';
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
 import AuthorCard from '../../components/Global/AuthorCard/AuthorCard';
-import { isArray } from '../../utils';
+import { basePathTag, isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import LatestUpdates from '../../components/Blocks/LatestUpdates/LatestUpdates';
@@ -14,7 +14,18 @@ import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubspor
 import './index.scss';
 
 const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
-  const { seo, title, date, image, authors = [], textContent, tags = [], oldNid } = page;
+  const {
+    seo,
+    title,
+    date,
+    image,
+    authors = [],
+    textContent,
+    tags = [],
+    oldNid,
+    model: { apiKey },
+  } = page;
+  const basePath = basePathTag(apiKey);
 
   return (
     <Layout>
@@ -59,7 +70,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
               {isArray(tags) && (
                 <div className="new-tags">
                   {tags.map((tag) => (
-                    <Tag key={tag.id} title={tag.title} />
+                    <Tag key={tag.id} basePath={basePath} slug={tag.slug} title={tag.title} />
                   ))}
                 </div>
               )}
@@ -100,6 +111,9 @@ export const PostQuery = graphql`
         alt
         title
       }
+      model {
+        apiKey
+      }
       date(formatString: "D MMM Y")
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
@@ -120,9 +134,9 @@ export const PostQuery = graphql`
       }
       tags {
         ... on DatoCmsTagNews {
-          title
           id
           slug
+          title
         }
       }
       authors {

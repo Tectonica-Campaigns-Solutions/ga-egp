@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import StructuredContentDefault from '../../components/StructuredContentDefault ';
-import { isArray } from '../../utils';
+import { basePathTag, isArray } from '../../utils';
 import Tag from '../../components/Global/Tag/Tag';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import HeroPodcast from '../../components/Global/HeroPodcast/HeroPodcast';
@@ -13,6 +13,8 @@ import TextHubspotForm from '../../components/Blocks/TextHubspotForm/TextHubspor
 import './index.scss';
 
 const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
+  const basePath = basePathTag(page.model.apiKey);
+
   return (
     <Layout navbarWhite>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -50,7 +52,7 @@ const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
               {isArray(page.tags) && (
                 <div className="new-tags mb-5">
                   {page.tags.map((tag) => (
-                    <Tag key={tag.id} title={tag.title} />
+                    <Tag key={tag.id} basePath={basePath} slug={tag.slug} title={tag.title} />
                   ))}
                 </div>
               )}
@@ -88,6 +90,9 @@ export const PodcastQuery = graphql`
         gatsbyImageData(width: 985, height: 656)
         alt
         title
+      }
+      model {
+        apiKey
       }
       date(formatString: "D MMM Y")
       seo: seoMetaTags {
