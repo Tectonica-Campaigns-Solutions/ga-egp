@@ -2,6 +2,11 @@
   background: #f2f8f3;
   height: 100%;
   border-radius: 15px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    background: #F1FFF2;
+  }
 
   .information {
     min-height: 300px;
@@ -76,14 +81,28 @@
         color: #D3FFD7;
       }
     }
+
+    &:hover {
+      background: #BAF0BF;
+    }
   }
 
   .image-wrapper {
+    overflow: hidden;
     margin: 0 !important;
 
     &>div {
       border-radius: 0 0 15px 15px !important;
       height: 310px;
+    }
+
+    img {
+      width: 100%;
+
+      &:hover {
+        transition: all 0.3s ease-in-out;
+        transform: scale(1.15);
+      }
     }
   }
 }

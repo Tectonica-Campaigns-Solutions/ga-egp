@@ -20,7 +20,6 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
 // node source from Hubspot
-
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
   const bodyRequest = {
     filterGroups: [
