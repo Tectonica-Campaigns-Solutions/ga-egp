@@ -7,7 +7,6 @@ import plusIcon from '../../Icons/plus.svg';
 import './index.scss';
 
 const InnerNavigation = ({ location, linkParent = null, innerMenu, allMenu }) => {
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navLinks = innerMenu?.treeChildren || [];
 
@@ -27,24 +26,37 @@ const InnerNavigation = ({ location, linkParent = null, innerMenu, allMenu }) =>
             const active = isActiveTrail(location?.pathname, link);
 
             const parentActive = item.title === linkParent?.title;
-            const children = allMenu?.nodes.filter(el => el.id == item.id )[0]
-            const itemsChildrenMobile = children ? children.treeChildren.map(item => <div>{item.title}</div>) : []
-     
-            return (
-              <div className={`item ${active || parentActive ? 'active' : ''}`} key={item.id}>
-                <Link className="link-item" to={link}>
-                  {item.title}
-                </Link>
-                {
-                  itemsChildrenMobile && itemsChildrenMobile.length > 0 && <ul className="d-block d-lg-none">
-                    { itemsChildrenMobile }
-                  </ul>
-                }
 
-                {index === 0 && (
-                  <span className="mobile-icon" onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
-                    <img src={plusIcon} alt="Mobile toggle icon" />
-                  </span>
+            // Children items
+            const children = allMenu?.nodes.filter((el) => el.id == item.id)[0];
+            const itemsChildrenMobile = children
+              ? children.treeChildren.map((item) => {
+                  const link = pathToModel(item.content?.model?.apiKey, item.content?.slug);
+
+                  return (
+                    <Link className="link-item" to={link}>
+                      {item.title}
+                    </Link>
+                  );
+                })
+              : [];
+
+            return (
+              <div className="item-container" key={item.id}>
+                <div className={`item ${active || parentActive ? 'active' : ''}`}>
+                  <Link className="link-item" to={link}>
+                    {item.title}
+                  </Link>
+
+                  {index === 0 && (
+                    <span className="mobile-icon" onClick={() => setIsMobileMenuOpen((prev) => !prev)}>
+                      <img src={plusIcon} alt="Mobile toggle icon" />
+                    </span>
+                  )}
+                </div>
+
+                {itemsChildrenMobile && itemsChildrenMobile.length > 0 && (
+                  <ul className="mobile-sub-items">{itemsChildrenMobile}</ul>
                 )}
               </div>
             );

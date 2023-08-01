@@ -1,9 +1,9 @@
 .egp-map {
-  // path {
-  //   cursor: pointer;
-  // }
+  .active {
+    cursor: pointer;
 
-  path:hover {
-    fill: var(--egp-pink);
+    &:hover {
+      fill: var(--egp-pink);
+    }
   }
 }

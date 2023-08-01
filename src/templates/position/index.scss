@@ -37,8 +37,21 @@
   }
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:768px) {
+  .position-detail {
+    h1 {
+      color: var(--egp-darker-green, #184B31);
+      font-size: 1.9375rem;
+      margin-bottom: 16px;
+    }
+
+    .intro {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+  }
+
   .position-detail .content p {
-    font-size:13px;
+    font-size: 13px;
   }
 }
