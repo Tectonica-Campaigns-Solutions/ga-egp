@@ -49,7 +49,8 @@ function HeroCustom({
                   {
                     ctas.map((item, index) => {
 
-                      if(item.__typename == 'DatoCmsCtaDonation') return (<a href={`/.netlify/functions/checkout?priceid=${item.priceId}`}>{item.amount}</a>)
+                      if(item.__typename == 'DatoCmsCtaDonation') return (<div key={`${item.url?.label}-${index}`}
+                      className={`d-flex align-items-center`}><a href={`/.netlify/functions/checkout?priceid=${item.priceId}`}>{item.amount}</a></div>)
                     }
                 
                     )
