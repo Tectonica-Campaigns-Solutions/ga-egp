@@ -1,10 +1,12 @@
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const countries = require('./countries.json')
 
 exports.handler = async (event) => {
   const {priceid } = event.queryStringParameters
-  
+
   const session = await stripe.checkout.sessions.create({
+
     mode: 'subscription',
     payment_method_types: ['card'],
     success_url: `${process.env.URL}/success.html`,
@@ -24,16 +26,7 @@ exports.handler = async (event) => {
         },
         type: 'dropdown',
         dropdown: {
-          options: [
-            {
-              label: 'Spain',
-              value: 'ES',
-            },
-            {
-              label: 'France',
-              value: 'FR',
-            },
-          ],
+          options: countries,
         },
       },
     ],
