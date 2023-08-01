@@ -21,6 +21,8 @@ function FilterMembers({ members, introduction }) {
     navigate(currentUrl + countryId);
   };
 
+  const isoCodes = Array.from(new Set(members.map((m) => m.node.slug)));
+
   return (
     <div className="filter-members mb-5">
       <div className="container">
@@ -44,7 +46,7 @@ function FilterMembers({ members, introduction }) {
       </div>
 
       <div className="col-map">
-        <EGPMap handleOnClickCountry={handleOnClickCountry} />
+        <EGPMap handleOnClickCountry={handleOnClickCountry} isoCodes={isoCodes} />
       </div>
     </div>
   );
