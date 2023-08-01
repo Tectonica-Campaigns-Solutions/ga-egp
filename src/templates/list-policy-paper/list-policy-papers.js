@@ -161,14 +161,20 @@ function ListPolicyPapers({
     );
   });
 
+  // mobile dropdown
+  const dropDownFilters = () => {
+    const filter = document.querySelector('.filters-resolutions')
+    filter.classList.toggle('d-none');
+  }
+
   const areasOptions = areas.edges?.map((i) => ({ label: i.node.title, value: i.node.id }));
 
   const sidebarContent = () => (
     <div>
-      <h3>Filter</h3>
+      <h3 onClick={dropDownFilters}>Filter</h3>
 
-      <form onSubmit={submitHandler}>
-        <div className="mb-5">
+      <form className={`d-lg-block filters-resolutions d-none ${styles.filtersResolutions}`} onSubmit={submitHandler}>
+        <div className="mb-3 mb-lg-5">
           <RadioInput
             name="type"
             value={filterOptions.type}
@@ -180,7 +186,7 @@ function ListPolicyPapers({
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-3 mb-lg-5">
           <SelectInput
             name="council"
             label="Council Adopted"
@@ -195,7 +201,7 @@ function ListPolicyPapers({
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-3 mb-lg-5">
           <CheckboxInput
             name="issueOrArea"
             sectionTitle="Issue or Area"
@@ -205,7 +211,7 @@ function ListPolicyPapers({
           />
         </div>
 
-        <div className="mb-5">
+        <div className="mb-3 mb-lg-5">
           <SelectInput
             name="date"
             label="Post date"

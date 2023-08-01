@@ -19,7 +19,7 @@ function GroupPerson({ block }) {
               const hasLink = (person.description && person.description !== '');
         
               return (
-                <div key={person.id} className={`${isHighlighted ? 'col-lg-8' : 'col-lg-4'}`}>
+                <div key={person.id} className={`${isHighlighted ? 'col-lg-8' : 'col-lg-4 col-md-6'}`}>
                   <CardPerson person={person} key={person.id} hasLink={hasLink} animated />
                 </div>
               );
