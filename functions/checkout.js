@@ -2,17 +2,16 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event) => {
-
-  console.log(event)
-
+  const {priceid } = event.queryStringParameters
+  
   const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
+    mode: 'subscription',
     payment_method_types: ['card'],
     success_url: `${process.env.URL}/success.html`,
     cancel_url: process.env.URL,
     line_items: [
       {
-        price: 'price_1NaFWgDNqIs82qAr9rQX7cou',
+        price: priceid,
         quantity: 1,
       },
     ],
@@ -21,9 +20,21 @@ exports.handler = async (event) => {
         key: 'nationality',
         label: {
           type: 'custom',
-          custom: 'Personalized engraving',
+          custom: 'Nationality',
         },
-        type: 'text',
+        type: 'dropdown',
+        dropdown: {
+          options: [
+            {
+              label: 'Spain',
+              value: 'ES',
+            },
+            {
+              label: 'France',
+              value: 'FR',
+            },
+          ],
+        },
       },
     ],
   });
