@@ -51,7 +51,12 @@ const Page = ({
       )}
 
       {!page.hideInnerNavigation && secondaryMenu?.treeChildren && (
-        <InnerNavigation location={location} linkParent={navLinks.treeParent} innerMenu={secondaryMenu} allMenu={allMenu} />
+        <InnerNavigation
+          location={location}
+          linkParent={navLinks.treeParent}
+          innerMenu={secondaryMenu}
+          allMenu={allMenu}
+        />
       )}
 
       {!page.hideSidebarNavigation && siblingMenu && siblingMenu.length > 0 ? (
@@ -255,58 +260,9 @@ export const PageQuery = graphql`
         }
       }
     }
-    allMenu: allDatoCmsMenu{
-      nodes{
-        id
-        treeChildren{
-          id
-          ... on DatoCmsMenu {
-            id
-            title
-            hideInInnerNavigation
-            position
-            content {
-              ... on DatoCmsPage {
-                slug
-                model {
-                  apiKey
-                }
-              }
-              ... on DatoCmsListNews {
-                slug
-                model {
-                  apiKey
-                }
-              }
-              ... on DatoCmsListPodcast {
-                slug
-                model {
-                  apiKey
-                }
-              }
-              ... on DatoCmsListPosition {
-                slug
-                model {
-                  apiKey
-                }
-              }
-              ... on DatoCmsListPolicyPaper {
-                slug
-                model {
-                  apiKey
-                }
-              }
-              ... on DatoCmsPosition {
-                slug
-                model {
-                  apiKey
-                }
-              }
-            }
-          
-        }
-        }
-    
+    allMenu: allDatoCmsMenu {
+      nodes {
+        ...AllMenu
       }
     }
     sideNav: datoCmsMenu(id: { eq: $menuPos }) {

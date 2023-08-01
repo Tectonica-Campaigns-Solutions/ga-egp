@@ -81,6 +81,56 @@ export const DatoCMS = graphql`
       ...BlockCta
     }
   }
+  fragment AllMenu on DatoCmsMenu {
+    id
+    treeChildren {
+      id
+      ... on DatoCmsMenu {
+        id
+        title
+        hideInInnerNavigation
+        position
+        content {
+          ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPodcast {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPosition {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPolicyPaper {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsPosition {
+            slug
+            model {
+              apiKey
+            }
+          }
+        }
+      }
+    }
+  }
   fragment BlockTextHubspot on DatoCmsTextHubspotForm {
     __typename
     id
