@@ -6,7 +6,8 @@ import plusIcon from '../../Icons/plus.svg';
 
 import './index.scss';
 
-const InnerNavigation = ({ location, linkParent = null, innerMenu }) => {
+const InnerNavigation = ({ location, linkParent = null, innerMenu, allMenu }) => {
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navLinks = innerMenu?.treeChildren || [];
 
@@ -26,12 +27,19 @@ const InnerNavigation = ({ location, linkParent = null, innerMenu }) => {
             const active = isActiveTrail(location?.pathname, link);
 
             const parentActive = item.title === linkParent?.title;
-
+            const children = allMenu.nodes.filter(el => el.id == item.id )[0]
+            const itemsChildrenMobile = children.treeChildren.map(item => <div>{item.title}</div>)
+     
             return (
               <div className={`item ${active || parentActive ? 'active' : ''}`} key={item.id}>
                 <Link className="link-item" to={link}>
                   {item.title}
                 </Link>
+                {
+                  itemsChildrenMobile && itemsChildrenMobile.length > 0 && <ul className="d-block d-lg-none">
+                    { itemsChildrenMobile }
+                  </ul>
+                }
 
                 {index === 0 && (
                   <span className="mobile-icon" onClick={() => setIsMobileMenuOpen((prev) => !prev)}>

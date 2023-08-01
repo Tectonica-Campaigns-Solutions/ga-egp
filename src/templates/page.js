@@ -11,7 +11,7 @@ import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 const Page = ({
   pageContext,
   location,
-  data: { page, navLinks, breadcrumb, sideNav = null, favicon, siteTitle = null },
+  data: { page, navLinks, breadcrumb, sideNav = null, favicon, siteTitle = null, allMenu },
 }) => {
   const secondaryMenu = navLinks?.treeParent?.treeParent ? navLinks?.treeParent.treeParent : navLinks?.treeParent;
 
@@ -51,7 +51,7 @@ const Page = ({
       )}
 
       {!page.hideInnerNavigation && secondaryMenu?.treeChildren && (
-        <InnerNavigation location={location} linkParent={navLinks.treeParent} innerMenu={secondaryMenu} />
+        <InnerNavigation location={location} linkParent={navLinks.treeParent} innerMenu={secondaryMenu} allMenu={allMenu} />
       )}
 
       {!page.hideSidebarNavigation && siblingMenu && siblingMenu.length > 0 ? (
@@ -255,7 +255,63 @@ export const PageQuery = graphql`
         }
       }
     }
+    allMenu: allDatoCmsMenu{
+      nodes{
+        id
+        treeChildren{
+          id
+          ... on DatoCmsMenu {
+            id
+            title
+            hideInInnerNavigation
+            position
+            content {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPodcast {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPolicyPaper {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsPosition {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          
+        }
+        }
+    
+      }
+    }
     sideNav: datoCmsMenu(id: { eq: $menuPos }) {
+      id
+      title
       treeChildren {
         id
         ... on DatoCmsMenu {
