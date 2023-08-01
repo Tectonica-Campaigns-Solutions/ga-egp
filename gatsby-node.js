@@ -322,7 +322,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            allPodcasts: allDatoCmsPodcast(limit: 1000) {
+            allPodcasts: allDatoCmsPodcast(limit: 1000, sort: {date: DESC}) {
               edges {
                 node {
                   title
