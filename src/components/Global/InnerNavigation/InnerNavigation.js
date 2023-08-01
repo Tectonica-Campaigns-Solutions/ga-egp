@@ -27,8 +27,8 @@ const InnerNavigation = ({ location, linkParent = null, innerMenu, allMenu }) =>
             const active = isActiveTrail(location?.pathname, link);
 
             const parentActive = item.title === linkParent?.title;
-            const children = allMenu.nodes.filter(el => el.id == item.id )[0]
-            const itemsChildrenMobile = children.treeChildren.map(item => <div>{item.title}</div>)
+            const children = allMenu?.nodes.filter(el => el.id == item.id )[0]
+            const itemsChildrenMobile = children ? children.treeChildren.map(item => <div>{item.title}</div>) : []
      
             return (
               <div className={`item ${active || parentActive ? 'active' : ''}`} key={item.id}>

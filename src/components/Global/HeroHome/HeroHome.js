@@ -60,19 +60,20 @@ function HeroHome({
                 <span className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
                 <span className="letter-title">for </span>
                 <span className="mask">
-                  <span className="animation" data-show style={{ paddingLeft: '10px' }}>
-                    test
-                  </span>
-
+  
                   {colorWords.map((item, index) => {
-                    return (
+                    return index == 0  ? (
+                      <span className="animation" data-show style={{ paddingLeft: '10px' }} dangerouslySetInnerHTML={{ __html: item.word }} />
+                    ): 
+                    (
                       <span
                         key={`${item.word}-${index}`}
                         className="animation link-and-list-styles"
                         style={{ paddingLeft: '10px' }}
                         dangerouslySetInnerHTML={{ __html: item.word }}
                       />
-                    );
+                    )
+                    
                   })}
                 </span>
                 <span
