@@ -15,7 +15,7 @@ import './index.scss';
 const Position = ({
   pageContext,
   location,
-  data: { position, relatedNews, breadcrumb, navLinks, sideNav, favicon, siteTitle },
+  data: { position, allMenu, relatedNews, breadcrumb, navLinks, sideNav, favicon, siteTitle },
 }) => {
   const { parentTitle } = pageContext;
 
@@ -40,7 +40,9 @@ const Position = ({
       />
 
       <div className="position-detail">
-        {secondaryMenu?.treeChildren && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+        {secondaryMenu?.treeChildren && (
+          <InnerNavigation location={location} innerMenu={secondaryMenu} allMenu={allMenu} />
+        )}
 
         <InnerLayout sideNav={siblingMenu} location={location}>
           <h1>{position.title}</h1>
@@ -95,6 +97,11 @@ export const PositionQuery = graphql`
     siteTitle: datoCmsSite {
       globalSeo {
         siteName
+      }
+    }
+    allMenu: allDatoCmsMenu {
+      nodes {
+        ...AllMenu
       }
     }
     position: datoCmsPosition(id: { eq: $id }) {

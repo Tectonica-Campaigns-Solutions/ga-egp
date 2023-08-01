@@ -12,7 +12,7 @@ import * as styles from './listposition.module.scss';
 function ListPositions({
   pageContext,
   location,
-  data: { list, page, navLinks, breadcrumb, sideNav, favicon, siteTitle },
+  data: { list, page, navLinks, allMenu, breadcrumb, sideNav, favicon, siteTitle },
 }) {
   const { seo, title, introduction } = page;
   const items = list.edges ?? [];
@@ -48,7 +48,7 @@ function ListPositions({
       <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />
 
       <HeroPage title={title} breadcrumb={breadcrumb} context={pageContext} location={location} />
-      {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+      {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} allMenu={allMenu} />}
 
       <div className={`container ${styles.listPositionContainer}`}>
         <div className="row">
@@ -119,6 +119,11 @@ export const ListPositionsQuery = graphql`
         node {
           ...CardPosition
         }
+      }
+    }
+    allMenu: allDatoCmsMenu {
+      nodes {
+        ...AllMenu
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
