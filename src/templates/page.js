@@ -104,6 +104,7 @@ export const PageQuery = graphql`
       allowOverlap
       ctasblock {
         ... on DatoCmsCtaExternal {
+          __typename
           url {
             ... on DatoCmsGlobalLink {
               label
@@ -111,6 +112,12 @@ export const PageQuery = graphql`
             }
           }
           description
+        }
+        ... on DatoCmsCtaDonation{
+          __typename
+          priceId
+          donationType
+          amount
         }
       }
       seo: seoMetaTags {

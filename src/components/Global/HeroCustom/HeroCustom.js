@@ -46,7 +46,16 @@ function HeroCustom({
 
               {ctas && (
                 <div className={`col-lg-5 ${styles.ctasBox} `}>
-                  {ctas.map((item, index) => (
+                  {
+                    ctas.map((item, index) => {
+
+                      if(item.__typename == 'DatoCmsCtaDonation') return (<div key={`${item.url?.label}-${index}`}
+                      className={`d-flex align-items-center`}><a href={`/.netlify/functions/checkout?priceid=${item.priceId}`}>{item.amount}</a></div>)
+                    }
+                
+                    )
+                  }
+                  {/* {ctas.map((item, index) => (
                     <div
                       key={`${item.url?.label}-${index}`}
                       className={`d-flex align-items-center ${item.description ? '' : styles.noDescription}`}
@@ -59,7 +68,7 @@ function HeroCustom({
                         />
                       )}
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               )}
             </div>
