@@ -271,11 +271,11 @@
 
 @media screen and (max-width:992px) {
   .hero-home .mask {
-    height: 21px;
+    height: 33px;
   }
 
   .hero-home .mask span {
-    top: 24px;
+    top: 36px;
     padding-left: .3rem !important;
   }
 
@@ -286,7 +286,7 @@
     margin-bottom: 3rem;
 
     .title {
-      font-size: 24px;
+      font-size: 34px;
       font-style: normal;
       font-weight: 700;
       line-height: 100%;
@@ -351,13 +351,28 @@
 @media screen and (max-width: 1270px) and (min-width: 992px) {
   .hero-home {
     height: fit-content;
-
+    
     .title {
       font-size: 60px;
     }
 
     .text-content {
       font-size: 22px;
+    }
+  }
+}
+
+@media screen and (max-width:520px){
+  .hero-home{
+    .title{
+      font-size:28px;
+    }
+    .mask{
+      width:250px;
+      height:28px;
+      span{
+        top:30px;
+      }
     }
   }
 }
