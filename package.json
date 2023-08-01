@@ -49,6 +49,7 @@
     "webpack-filter-warnings-plugin": "1.2.1"
   },
   "devDependencies": {
+    "npm": "^9.8.1",
     "prettier": "^2.8.1"
   }
 }
