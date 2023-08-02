@@ -9,8 +9,8 @@ exports.handler = async (event) => {
 
     mode: 'subscription',
     payment_method_types: ['card'],
-    success_url: `${process.env.URL}/success.html`,
-    cancel_url: process.env.URL,
+    success_url: `${process.env.BASE_URL}/donation-thank-you`,
+    cancel_url: process.env.BASE_URL,
     line_items: [
       {
         price: priceid,
