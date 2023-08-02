@@ -26,22 +26,21 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       {
         filters: [
           {
-            propertyName: 'type',
-            operator: 'EQ',
-            value: 'MEMBER PARTY',
+            propertyName: "type",
+            operator: "EQ",
+            value: "MEMBER PARTY",
           },
           {
-            propertyName: 'published_in_web',
-            operator: 'EQ',
-            value: 'Yes',
+            propertyName: "published_in_web",
+            operator: "EQ",
+            value: "Yes",
           },
         ],
       },
     ],
-    properties: ['country'],
   };
   // get data from GitHub API at build time
-  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies`, {
+  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies/search`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -50,9 +49,13 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     },
     body: JSON.stringify(bodyRequest),
   });
-  const resultData = await result.json();
-  const companies = ['8110536923', '8110864614'];
 
+  const resultData = await result.json();
+  const companies = resultData.results.map(item => item.id)
+
+  console.log(companies)
+
+  //loop companies and get all relational data and create pages
   for (const company of companies) {
     const contacts = [];
     const result = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}`, {
@@ -64,6 +67,8 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     });
     const resultObject = await result.json();
     const companyProps = resultObject.properties;
+
+    console.log(companyProps.image)
 
     // associations
 
@@ -106,25 +111,25 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
     createNode({
       title: companyProps.name.value,
-      logo: 'https://www.datocms-assets.com/87481/1687415818-tilt.svg',
+      logo: companyProps.image ? companyProps.image.value : '',
       iso_code: countries.getAlpha2Code(companyProps.country.value, 'en'),
       social: [
         {
-          url: companyProps.facebook_company_page?.value,
+          url: companyProps?.facebook_company_page?.value,
           socialNetwork: 'facebook',
         },
         {
-          url: companyProps.twitterhandle?.value,
+          url: companyProps?.twitterhandle?.value,
           socialNetwork: 'twitter',
         },
         {
-          url: companyProps.linkedin_company_page?.value,
+          url: companyProps?.linkedin_company_page?.value,
           socialNetwork: 'linkedin',
         },
       ],
       contact: {
-        website: companyProps.website?.value,
-        email: companyProps.organization_email?.value,
+        website: companyProps?.website?.value,
+        email: companyProps?.organization_email ? companyProps.organization_email.value : '',
       },
       status: companyProps.membership_status?.value,
       contacts: contacts,
