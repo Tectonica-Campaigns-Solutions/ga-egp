@@ -26,7 +26,7 @@ const ListJobOpportunities = () => {
   `);
 
   if (!isArray(jobs)) {
-    return null;
+    return (<div className="container my-5"><h3>There are no positions at the moment.</h3></div>);
   }
 
   return (
