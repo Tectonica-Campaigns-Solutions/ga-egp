@@ -27,7 +27,7 @@ function FilterMembers({ members, introduction }) {
     <div className="filter-members mb-5">
       <div className="container">
         <div className="row">
-          <div className="col-lg-5">
+          <div className="col-5">
             <div className="intro link-and-list-styles" dangerouslySetInnerHTML={{ __html: introduction }} />
 
             {isArray(members) && (
@@ -42,11 +42,10 @@ function FilterMembers({ members, introduction }) {
               </ul>
             )}
           </div>
+          <div className="col-xl-6 col-7 col-map mobile-map">
+            <EGPMap handleOnClickCountry={handleOnClickCountry} isoCodes={isoCodes} />
+          </div>
         </div>
-      </div>
-
-      <div className="col-map">
-        <EGPMap handleOnClickCountry={handleOnClickCountry} isoCodes={isoCodes} />
       </div>
     </div>
   );
