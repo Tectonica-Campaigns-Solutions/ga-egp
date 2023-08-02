@@ -53,8 +53,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   const resultData = await result.json();
   const companies = resultData.results.map(item => item.id)
 
-  console.log(companies)
-
   //loop companies and get all relational data and create pages
   for (const company of companies) {
     const contacts = [];
@@ -67,8 +65,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     });
     const resultObject = await result.json();
     const companyProps = resultObject.properties;
-
-    console.log(companyProps.image)
 
     // associations
 

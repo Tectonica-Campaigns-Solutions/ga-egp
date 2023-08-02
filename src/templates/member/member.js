@@ -97,7 +97,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
                   <div className="col-lg-8 offset-lg-1">
                     <div className="party-main-header">
                       <h3>{item.title}</h3>
-                      {item.status && <Tag title={item.status} bgColor="primary-dark-green" />}
+                      {item.status && <Tag title={item.status} bgColor={`color-${item.status.toLowerCase().replace(' ', '')}`} />}
                     </div>
 
                     <div className="information">
