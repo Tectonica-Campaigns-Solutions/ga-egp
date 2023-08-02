@@ -20,6 +20,8 @@ import {
   filterPolicyPapersByLastYear,
 } from '../../utils';
 import ListPaginated from '../../components/Global/Pagination/ListPaginated';
+import openIcon from '../../components/Icons/event_open.svg';
+import closeIcon from '../../components/Icons/event-close.svg';
 
 import * as styles from './styles.module.scss';
 
@@ -51,6 +53,7 @@ function ListPolicyPapers({
     start_date: null,
     end_date: null,
   });
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
 
   useEffect(() => {
     // Save params on state
@@ -163,17 +166,22 @@ function ListPolicyPapers({
 
   // mobile dropdown
   const dropDownFilters = () => {
-    const filter = document.querySelector('.filters-resolutions');
-    filter.classList.toggle('d-none');
+    setShowMobileFilter((prev) => !prev);
   };
 
   const areasOptions = areas.edges?.map((i) => ({ label: i.node.title, value: i.node.id }));
 
   const sidebarContent = () => (
-    <div>
-      <h3 onClick={dropDownFilters}>Filter</h3>
+    <div className={`${styles.sidebarColumn}`}>
+      <h3 onClick={dropDownFilters}>
+        Filter
+        <img alt="Toggle Filters" src={showMobileFilter ? closeIcon : openIcon} />
+      </h3>
 
-      <form className={`d-lg-block filters-resolutions d-none ${styles.filtersResolutions}`} onSubmit={submitHandler}>
+      <form
+        className={`${showMobileFilter ? '' : 'd-none'} d-lg-block filters-resolutions  ${styles.filtersResolutions}`}
+        onSubmit={submitHandler}
+      >
         <div className="mb-3 mb-lg-5">
           <RadioInput
             name="type"
@@ -307,7 +315,7 @@ function ListPolicyPapers({
           <p>{getFilteredTags()}</p>
         </div>
 
-        <div className="row g-5">
+        <div className="row gy-3 gy-lg-5">
           <ListPaginated
             list={filteredContent()}
             renderItem={(item) => <CardPolicy key={item.node.id} item={item.node} />}

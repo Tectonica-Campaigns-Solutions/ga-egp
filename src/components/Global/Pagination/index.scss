@@ -1,83 +1,94 @@
 .pagination-container {
-	padding: 0;
-	padding-top: 100px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 18px;
+  padding: 0;
+  padding-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 
-	.pagination-item {
-		display: flex;
-		flex-direction: row;
-		align-items: flex-start;
-		padding: 10px 14px;
-		gap: 10px;
-		background: var(--egp-white);
-		border: 1px solid var(--egp-light-gray);
-		border-radius: 4px;
-		font-family: 'Roboto';
-		font-style: normal;
-		font-weight: 500;
-		font-size: 20px;
-		line-height: 20px;
-		color: var(--egp-dark);
-		cursor: pointer;
+  .pagination-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 14px;
+    gap: 10px;
+    background: var(--egp-white);
+    border: 1px solid var(--egp-light-gray);
+    border-radius: 4px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: var(--egp-dark);
+    cursor: pointer;
 
-		&.dots:hover {
-			background-color: transparent;
-			cursor: default;
-		}
+    &.dots:hover {
+      background-color: transparent;
+      cursor: default;
+    }
 
-		&:hover {
-			background-color: rgba(0, 0, 0, 0.04);
-			cursor: pointer;
-		}
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+      cursor: pointer;
+    }
 
-		&.active {
-			color: var(--egp-dark-green);
-			border: 1px solid var(--egp-dark-green);
-		}
+    &.active {
+      color: var(--egp-dark-green);
+      border: 1px solid var(--egp-dark-green);
+    }
 
-		.arrow {
-			&::before {
-				content: '';
-				position: relative;
-				display: inline-block;
-				width: 0.4em;
-				height: 0.4em;
-				border-right: 0.12em solid rgba(0, 0, 0, 0.87);
-				border-top: 0.12em solid rgba(0, 0, 0, 0.87);
-			}
+    .arrow {
+      &::before {
+        content: '';
+        position: relative;
+        display: inline-block;
+        width: 0.4em;
+        height: 0.4em;
+        border-right: 0.12em solid rgba(0, 0, 0, 0.87);
+        border-top: 0.12em solid rgba(0, 0, 0, 0.87);
+      }
 
-			&.left {
-				transform: rotate(-135deg) translate(-50%);
+      &.left {
+        transform: rotate(-135deg) translate(-50%);
 
-				&::before {
-					left: 3px;
-				}
-			}
+        &::before {
+          left: 3px;
+        }
+      }
 
-			&.right {
-				transform: rotate(45deg);
+      &.right {
+        transform: rotate(45deg);
 
-				&::before {
-					bottom: 5px;
-				}
-			}
-		}
+        &::before {
+          bottom: 5px;
+        }
+      }
+    }
 
-		&.disabled {
-			pointer-events: none;
+    &.disabled {
+      pointer-events: none;
 
-			.arrow::before {
-				border-right: 0.12em solid rgba(0, 0, 0, 0.43);
-				border-top: 0.12em solid rgba(0, 0, 0, 0.43);
-			}
+      .arrow::before {
+        border-right: 0.12em solid rgba(0, 0, 0, 0.43);
+        border-top: 0.12em solid rgba(0, 0, 0, 0.43);
+      }
 
-			&:hover {
-				background-color: transparent;
-				cursor: default;
-			}
-		}
-	}
+      &:hover {
+        background-color: transparent;
+        cursor: default;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .pagination-container {
+    padding-top: 30px;
+
+    .pagination-item {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
 }
