@@ -30,12 +30,11 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
             <div className="col-lg-7">
               <div className="event-tags">
                 {
-                  event.eventType && <>
-                    <EventType type={event.eventType} />
-                    <Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />
-                  </>
+                  event.eventType && <EventType type={event.eventType} />
                 }
-                
+                {
+                  event.tags && event.tags.length > 0 &&<Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />
+                }
               </div>
 
               <DateTime date={event.date} time={event.time} />
