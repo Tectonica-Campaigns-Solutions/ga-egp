@@ -57,15 +57,18 @@
   }
 }
 
-@media screen and (max-width:992px){
-  .filtersResolutions{
+@media screen and (max-width:992px) {
+  .filtersResolutions {
     max-height: 350px;
     overflow: scroll;
-    input, select{
-      border:1px solid #000!important;
+
+    input,
+    select {
+      border: 1px solid #000 !important;
     }
-    h3{
-      cursor:pointer;
+
+    h3 {
+      cursor: pointer;
     }
   }
 }

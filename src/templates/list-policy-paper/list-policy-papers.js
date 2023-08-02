@@ -163,9 +163,9 @@ function ListPolicyPapers({
 
   // mobile dropdown
   const dropDownFilters = () => {
-    const filter = document.querySelector('.filters-resolutions')
+    const filter = document.querySelector('.filters-resolutions');
     filter.classList.toggle('d-none');
-  }
+  };
 
   const areasOptions = areas.edges?.map((i) => ({ label: i.node.title, value: i.node.id }));
 
