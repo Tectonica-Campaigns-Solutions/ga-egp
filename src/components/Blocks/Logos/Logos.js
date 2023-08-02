@@ -18,7 +18,7 @@ function Logos({ block }) {
         )}
 
         {isArray(logos) && (
-          <div className={`row ${styles.logoslist} justify-content-center g-5`}>
+          <div className={`row block-logos-slider ${styles.logoslist} justify-content-center g-5`}>
             <EGPSlider
               autoplay
               renderActions={false}
