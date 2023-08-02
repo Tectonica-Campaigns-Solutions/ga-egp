@@ -87,6 +87,7 @@
       &.open {
         .mobile-sub-items {
           display: flex;
+          gap: 6px;
           margin-top: 0.5rem;
         }
       }
