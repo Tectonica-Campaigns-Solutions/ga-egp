@@ -21,7 +21,7 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
     <Layout>
       <SeoDatoCms seo={event.seo} favicon={favicon} siteTitle={siteTitle} />
 
-      <div className={`event-page section-${event.tags.color}`}>
+      <div className={`event-page section-${event.tags ? event.tags.color : ''}`}>
         <div className="container">
           {breadcrumb && <Breadcrumb items={breadcrumb} breadcrumbDetail={event.title} />}
 
@@ -33,7 +33,7 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
                   event.eventType && <EventType type={event.eventType} />
                 }
                 {
-                  event.tags && event.tags.length > 0 &&<Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />
+                  event.tags && <Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />
                 }
               </div>
 
