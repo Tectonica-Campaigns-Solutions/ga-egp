@@ -148,16 +148,6 @@ exports.createPages = ({ graphql, actions }) => {
     return menuId?.id;
   };
 
-  // slices api
-  createSlice({
-    id: `header`,
-    component: require.resolve(`./src/components/Header.js`),
-  });
-  createSlice({
-    id: `footer`,
-    component: require.resolve(`./src/components/Global/Footer/Footer.js`),
-  });
-
   return new Promise((resolve, reject) => {
     const templates = {
       page: path.resolve('./src/templates/page.js'),
@@ -322,7 +312,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            allPodcasts: allDatoCmsPodcast(limit: 1000, sort: {date: DESC}) {
+            allPodcasts: allDatoCmsPodcast(limit: 1000, sort: { date: DESC }) {
               edges {
                 node {
                   title
