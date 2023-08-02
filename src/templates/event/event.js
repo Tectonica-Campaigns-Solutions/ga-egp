@@ -29,18 +29,12 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
             <div className="col-lg-5">{event.image && <ImageWrapper image={event.image} />}</div>
             <div className="col-lg-7">
               <div className="event-tags">
-                {
-                  event.eventType && <EventType type={event.eventType} />
-                }
-                {
-                  event.tags && <Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />
-                }
+                {event.eventType && <EventType type={event.eventType} />}
+                {event.tags && <Tag title={event.tags.title} bgColor={`secondary-${event.tags.color}`} />}
               </div>
 
-              <DateTime date={event.date} time={event.time} />
-
+              <DateTime manualDate={event.manualDate} date={event.date} time={event.time} />
               <h1>{event.title}</h1>
-
               {event.registerLink && <Button label={event.registerLink.label} url={event.registerLink.url} />}
             </div>
           </div>
@@ -108,6 +102,7 @@ export const EventQuery = graphql`
         url
       }
       time
+      manualDate
       date(formatString: "D MMM")
       registerLink {
         ... on DatoCmsGlobalLink {

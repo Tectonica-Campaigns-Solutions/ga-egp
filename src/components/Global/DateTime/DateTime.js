@@ -1,12 +1,16 @@
 import React from 'react';
 import './index.scss';
 
-const DateTime = ({ date, time }) => {
+const DateTime = ({ manualDate, date, time }) => {
   return (
     <div className="date">
-      <span>
-        {date} | {time}
-      </span>
+      {manualDate ? (
+        <span>{manualDate}</span>
+      ) : (
+        <span>
+          {date} | {time}
+        </span>
+      )}
     </div>
   );
 };

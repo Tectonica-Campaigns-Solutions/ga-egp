@@ -52,4 +52,20 @@
       display: inline-flex;
     }
   }
+
+  &.section-green {
+    background-color: rgba(87, 180, 95, 0.05999999865889549);
+  }
+
+  &.section-blue {
+    background-color: rgba(203, 228, 238, 0.20000000298023224);
+  }
+
+  &.section-yellow {
+    background-color: rgba(255, 220, 46, 0.05999999865889549);
+  }
+
+  &.section-grey {
+    background-color: rgba(204, 204, 208, 0.10000000149011612);
+  }
 }

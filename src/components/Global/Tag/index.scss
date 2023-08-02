@@ -10,13 +10,18 @@
   text-transform: uppercase;
   color: var(--egp-darker-green);
 
-  &:hover {
-    // color: var(--egp-white);
-  }
-
   &.primary-darker-green,
   &.primary-dark-green {
     color: var(--egp-white);
+  }
+
+  &.secondary-green {
+    background-color: #DDF0DF;
+  }
+
+  &.secondary-grey {
+    color: var(--egp-darker-green, #184B31);
+    background: var(--egp-light-gray, #CCCCD0);
   }
 }
 
