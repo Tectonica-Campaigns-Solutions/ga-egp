@@ -57,3 +57,28 @@
     color: var(--egp-darker-green);
   }
 }
+
+@media screen and (max-width: 992px) {
+  .information-card {
+    margin-bottom: 1rem;
+
+    h6 {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .header-information {
+      gap: 10px;
+      margin-bottom: .5rem;
+    }
+
+    .pre-title {
+      font-size: 16px;
+    }
+
+    .description {
+      font-size: 16px;
+      margin: 0;
+    }
+  }
+}

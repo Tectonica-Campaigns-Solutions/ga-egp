@@ -39,13 +39,34 @@
   }
 }
 
+@media screen and (max-width: 992px) {
+  .accordion {
+    .item {
+      margin-bottom: 2rem;
+
+      .ac-title {
+        padding-bottom: .5rem;
+
+        h3,
+        h3 span {
+          font-size: 20px;
+          line-height: 110%;
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 767px) {
   .accordion {
     padding-top: 0;
 
     .item {
       .ac-title {
-        h3 {
+
+        h3,
+        h3 span {
           font-size: 20px;
           line-height: 110%;
           margin: 0;

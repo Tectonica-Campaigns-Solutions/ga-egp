@@ -117,3 +117,20 @@
   color: #000000;
   margin-bottom: 16px;
 }
+
+@media screen and (max-width:992px) {
+  .input {
+    input {
+      padding: 10px;
+    }
+
+    label {
+      padding: 0;
+      font-size: 14px;
+    }
+  }
+
+  .areaTitle {
+    font-size: 14px;
+  }
+}

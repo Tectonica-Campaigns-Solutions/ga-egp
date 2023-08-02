@@ -14,11 +14,11 @@ const Campaigns = ({ block }) => {
         </div>
       )}
 
-      <div className={`${highlight ? 'col-lg-6' : 'col'}`}>
+      <div className={`${highlight ? 'col-lg-6' : 'col'} mt-0`}>
         {highlight ? (
           <>{otherCampaigns && otherCampaigns.map((item) => <CampaignCard campaign={item} key={item.id} />)}</>
         ) : (
-          <div className="row gy-4">
+          <div className="row gy-3 gy-lg-4">
             {otherCampaigns &&
               otherCampaigns.map((campaign) => (
                 <div className="col-lg-6" key={campaign.id}>

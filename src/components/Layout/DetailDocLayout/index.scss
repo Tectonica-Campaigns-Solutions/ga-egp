@@ -37,3 +37,18 @@
     }
   }
 }
+
+@media screen and (max-width:992px) {
+  .detail-doc-layout {
+    .content {
+      border: none;
+      padding: 0;
+    }
+
+    .second-content {
+      border-top: 1px solid hsla(148, 42%, 36%, 0.1);
+      padding: 0;
+      padding-top: 1rem;
+    }
+  }
+}

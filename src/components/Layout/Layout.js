@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Slice } from 'gatsby';
 import PropTypes from 'prop-types';
 import TopMessage from '../Global/TopMessage/TopMessage';
+import Header from '../Header';
+import Footer from '../Global/Footer/Footer';
 
 import '../../styles/main.scss';
 
@@ -9,9 +10,9 @@ const Layout = ({ navbarWhite = false, navbarYellowHover = false, location, chil
   return (
     <>
       <TopMessage />
-      <Slice alias="header" location={location} navbarWhite={navbarWhite} navbarYellowHover={navbarYellowHover} />
+      <Header location={location} navbarWhite={navbarWhite} navbarYellowHover={navbarYellowHover} />
       <main>{children}</main>
-      <Slice alias="footer" />
+      <Footer />
     </>
   );
 };

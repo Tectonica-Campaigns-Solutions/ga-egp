@@ -41,7 +41,7 @@ const CampaignCard = ({ campaign, fullHeight = false }) => {
         </div>
       </div>
 
-      {isArray(ctas) && <CtaList ctas={ctas} />}
+      <div className="ctas">{isArray(ctas) && <CtaList ctas={ctas} />}</div>
     </div>
   );
 };
