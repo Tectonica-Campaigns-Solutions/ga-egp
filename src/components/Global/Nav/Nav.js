@@ -116,7 +116,7 @@ export default function Nav({
         <span className={`${expanded ? 'open-toggle ' : ''} navbar-toggler-icon`} />
       </button>
 
-      <div className={` ${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
+      <div className={`${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
         <ul className={`navbar-nav mr-auto ${navbarWhite ? 'nav-white' : ''}`}>
           {groupedLinks?.withoutIcon?.map((link) =>
             link.treeChildren.length === 0 ? (
