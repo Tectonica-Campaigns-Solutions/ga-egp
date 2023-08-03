@@ -20,9 +20,15 @@ const SocialMap = {
 
 const SocialLink = ({ name, url, title = '', iconWhite = false, smallIcons = false }) => {
   const socialImg = SocialMap[name];
+  let finalUrl
+  if(name == 'twitter'){
+    finalUrl = `https://twitter.com/${url}`
+  }else{
+    finalUrl = url
+  }
 
   return (
-    <Link to={url}>
+    <Link to={finalUrl}>
       <img height={smallIcons ? 25 : 40} src={socialImg} alt={name} className={`${iconWhite ? 'white' : ''}`} />
       {title && <span className="title">{title}</span>}
     </Link>

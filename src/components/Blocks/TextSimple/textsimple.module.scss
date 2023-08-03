@@ -15,3 +15,12 @@
     list-style: initial;
   }
 }
+
+@media screen and (max-width:767px){
+  .simpleText {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 130%;
+  }
+  
+}

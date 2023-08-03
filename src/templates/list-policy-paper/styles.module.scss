@@ -71,6 +71,9 @@
 }
 
 @media screen and (max-width:992px) {
+  button{
+    border:1px solid #57b45f!important;
+  }
   .filtersResolutions {
     max-height: 350px;
     overflow-y: scroll;
@@ -87,6 +90,7 @@
     h3 {
       cursor: pointer;
     }
+   
   }
 
   .filterTitle {

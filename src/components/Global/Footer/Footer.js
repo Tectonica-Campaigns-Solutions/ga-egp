@@ -80,7 +80,7 @@ function Footer() {
       <div className="container">
         {/* First row */}
         <div className="row">
-          <div className="col-lg-8">
+          <div className="col-xxl-8 col-xl-7">
             {/* Partners section */}
             <div className="row">
               <div className="col partners">
@@ -111,7 +111,7 @@ function Footer() {
           </div>
 
           {/* Hubspot form */}
-          <div className="col-lg-3 offset-lg-1 form-footer">
+          <div className="col-xxl-3 col-xl-4 offset-xxl-1 form-footer">
             {formFooter && formFooter.hubspot && <TextHubspotForm block={formFooter} />}
           </div>
         </div>

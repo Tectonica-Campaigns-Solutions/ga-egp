@@ -5,4 +5,11 @@
   font-size: 20px;
   line-height: 150%;
   color: var(--egp-darker-green);
+  border:0;
+}
+
+@media screen and (max-width:767px){
+  .egpDropdown {
+    font-size:13px;
+  }
 }

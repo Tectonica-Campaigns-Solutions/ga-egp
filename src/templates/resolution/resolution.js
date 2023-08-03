@@ -32,7 +32,7 @@ const Resolution = ({
       />
 
       <div className="resolution-detail">
-        <div className="container mt-5 pt-5">
+        <div className="container mt-lg-5 pt-lg-5">
           <DetailDocLayout documents={resolution.documents} withOffset>
             <h1>{resolution.title}</h1>
 

@@ -87,7 +87,7 @@ export const EventQuery = graphql`
     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
       ...Breadcrumb
     }
-    relatedEvents: allDatoCmsEvent(filter: { tags: { id: { eq: $tagId } } }, limit: 2) {
+    relatedEvents: allDatoCmsEvent(filter: { id: {ne: $id}, tags: { id: { eq: $tagId } } }, limit: 2) {
       edges {
         node {
           ...EventCard

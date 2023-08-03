@@ -182,23 +182,30 @@
         }
 
         .close-btn-container {
-          display: none;
+          a{
+            .back-btn{
+              background-color:transparent;
+              height:45px;
+              width:45px;
+              img{
+                max-width:30px;
+              }
+            }
+          }
         }
       }
     }
 
     .content-member {
       padding: 25px 0;
-
-      .image-wrapper {
-        width: 174px;
-        height: 116px;
-        margin-bottom: 20px;
-
-        img {
-          object-fit: contain;
+      .col-image{
+        img{
+          box-shadow: 0 0 10px #ccc;
+          padding:10px;
+          max-width:70%;
         }
       }
+
 
       .party-main-header {
         gap: 10px;
@@ -228,7 +235,7 @@
       }
 
       .contact-details-text p {
-        margin-bottom: 0;
+        margin-bottom: 10px;
       }
 
       .links-right {

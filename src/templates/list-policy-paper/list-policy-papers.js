@@ -20,15 +20,15 @@ import {
   filterPolicyPapersByLastYear,
 } from '../../utils';
 import ListPaginated from '../../components/Global/Pagination/ListPaginated';
-import openIcon from '../../components/Icons/event_open.svg';
-import closeIcon from '../../components/Icons/event-close.svg';
+import openIcon from '../../components/Icons/event-close.svg';
+import closeIcon from '../../components/Icons/event_open.svg';
 
 import * as styles from './styles.module.scss';
 
 function ListPolicyPapers({
   pageContext,
   location,
-  data: { listPapers, listResolutions, areas, page, navLinks, breadcrumb, favicon, siteTitle },
+  data: { listPapers, listResolutions, areas, page, navLinks, breadcrumb, favicon, siteTitle, allMenu },
 }) {
   const papers = listPapers.edges;
   const list = papers.concat(listResolutions.edges);
@@ -304,7 +304,7 @@ function ListPolicyPapers({
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
       <HeroPage title={page.title} context={pageContext} location={location} breadcrumb={breadcrumb} />
-      {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} />}
+      {secondaryMenu && <InnerNavigation location={location} innerMenu={secondaryMenu} allMenu={allMenu} />}
 
       <InnerLayout allowCollapse sideNav={sidebarContent()}>
         <div className={styles.filterTitle}>
@@ -469,6 +469,11 @@ export const ListPositionsQuery = graphql`
             }
           }
         }
+      }
+    }
+    allMenu: allDatoCmsMenu {
+      nodes {
+        ...AllMenu
       }
     }
     listResolutions: allDatoCmsResolution {
