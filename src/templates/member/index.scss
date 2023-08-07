@@ -134,22 +134,27 @@
       }
     }
   }
-  .party-leaders{
-    p{
-      font-size:20px;
-      margin-bottom:0.5rem;
+
+  .party-leaders {
+    p {
+      font-size: 20px;
+      margin-bottom: 0.5rem;
     }
   }
-  .color-fullmember{
-    background-color:#FF70BD;
-    color:white;
+
+  .color-fullmember {
+    background-color: #FF70BD;
+    color: white;
   }
-  .color-applicant{
-    background-color:#36845b;
-    color:white
+
+  .color-applicant {
+    background-color: #36845b;
+    color: white
   }
-  .color-associatedmember{
-    background-color:#4D4845;
+
+  .color-associatemember {
+    background-color: #4D4845;
+    color: white
   }
 }
 
@@ -182,13 +187,14 @@
         }
 
         .close-btn-container {
-          a{
-            .back-btn{
-              background-color:transparent;
-              height:45px;
-              width:45px;
-              img{
-                max-width:30px;
+          a {
+            .back-btn {
+              background-color: transparent;
+              height: 45px;
+              width: 45px;
+
+              img {
+                max-width: 30px;
               }
             }
           }
@@ -198,11 +204,12 @@
 
     .content-member {
       padding: 25px 0;
-      .col-image{
-        img{
+
+      .col-image {
+        img {
           box-shadow: 0 0 10px #ccc;
-          padding:10px;
-          max-width:70%;
+          padding: 10px;
+          max-width: 70%;
         }
       }
 
