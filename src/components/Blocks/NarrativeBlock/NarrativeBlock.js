@@ -10,7 +10,7 @@ export default function NarrativeBlock({ block }) {
 
   return (
     <div className={`${styles.componentnarrativeblock} narrative ${backgroundColor}`}>
-      <div className="container pb-5">
+      <div className="container pb-lg-5">
         <div className={`row align-items-center ${imageAlignment === 'left' ? 'flex-row-reverse' : ''}`}>
           <div className="col-lg-6">
             <h3>{pretitle}</h3>
