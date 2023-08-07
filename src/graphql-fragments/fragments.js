@@ -804,6 +804,7 @@ export const DatoCMS = graphql`
     id
     slug
     title
+    fullDate: date
     date: date(formatString: "D MMM")
     filterDate: date(formatString: "MMMM")
     year: date(formatString: "Y")
