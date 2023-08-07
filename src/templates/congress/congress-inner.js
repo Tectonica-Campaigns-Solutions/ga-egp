@@ -88,6 +88,7 @@ export const CongressInnerQuery = graphql`
       isCongress
       backgroundImageForInnerPages {
         url
+        alt
         gatsbyImageData
       }
       ctas {

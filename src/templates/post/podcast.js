@@ -140,6 +140,7 @@ export const PodcastQuery = graphql`
         jobPosition
         image {
           gatsbyImageData(width: 84, height: 84)
+          alt
         }
       }
       form {
@@ -151,6 +152,7 @@ export const PodcastQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

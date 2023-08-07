@@ -126,6 +126,7 @@ export const PositionQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

@@ -75,6 +75,7 @@ export const ListNewsQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

@@ -125,10 +125,12 @@ export const CongressQuery = graphql`
       backgroundColor
       backgroundImage {
         url
+        alt
         gatsbyImageData
       }
       backgroundImageForInnerPages {
         url
+        alt
         gatsbyImageData
       }
       ctas {

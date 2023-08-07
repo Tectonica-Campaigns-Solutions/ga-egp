@@ -149,6 +149,7 @@ export const ResolutionQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

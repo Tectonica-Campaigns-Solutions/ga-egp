@@ -157,6 +157,7 @@ export const ListPodcastQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

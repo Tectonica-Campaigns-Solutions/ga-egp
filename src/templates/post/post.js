@@ -146,6 +146,7 @@ export const PostQuery = graphql`
         description
         jobPosition
         image {
+          alt
           gatsbyImageData(width: 84, height: 84)
         }
       }
@@ -158,6 +159,7 @@ export const PostQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

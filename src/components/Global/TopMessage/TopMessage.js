@@ -1,10 +1,10 @@
-import React, { useLayoutEffect } from "react";
-import { useState } from "react";
-import { useStaticQuery, graphql } from "gatsby";
-import GlobalImage from "../Image/GlobalImage";
-import closeButton from "../../Icons/close.svg";
+import React, { useLayoutEffect } from 'react';
+import { useState } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+import GlobalImage from '../Image/GlobalImage';
+import closeButton from '../../Icons/close.svg';
 
-import "./index.scss";
+import './index.scss';
 
 const TopMessage = () => {
   const data = useStaticQuery(graphql`
@@ -15,28 +15,24 @@ const TopMessage = () => {
         icon {
           gatsbyImageData
           url
+          alt
         }
       }
     }
   `);
 
-  const [toggleTopMessage, setToggleTopMessage] = useState(
-    data.datoCmsTopMessage.statusTopMessage || false
-  );
-  const [showTopMessageAccordingSession, setShowTopMessageAccordingSession] =
-    useState(true);
+  const [toggleTopMessage, setToggleTopMessage] = useState(data.datoCmsTopMessage.statusTopMessage || false);
+  const [showTopMessageAccordingSession, setShowTopMessageAccordingSession] = useState(true);
 
   useLayoutEffect(() => {
-    if (sessionStorage.getItem("show_top_message")) {
-      setShowTopMessageAccordingSession(
-        sessionStorage.getItem("show_top_message") == "true"
-      );
+    if (sessionStorage.getItem('show_top_message')) {
+      setShowTopMessageAccordingSession(sessionStorage.getItem('show_top_message') == 'true');
     }
   }, []);
 
   const handleToggleTopMessage = () => {
     setToggleTopMessage((toggleMessage) => {
-      sessionStorage.setItem("show_top_message", !toggleMessage);
+      sessionStorage.setItem('show_top_message', !toggleMessage);
       return !toggleMessage;
     });
   };

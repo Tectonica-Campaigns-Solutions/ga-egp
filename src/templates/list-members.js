@@ -44,6 +44,7 @@ export const ListMembersQuery = graphql`
           backgroundColor
           backgroundImage {
             url
+            alt
             gatsbyImageData
           }
           smallTitle

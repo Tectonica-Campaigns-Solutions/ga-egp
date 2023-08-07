@@ -73,6 +73,7 @@ export const PersonQuery = graphql`
       }
       description
       image {
+        alt
         gatsbyImageData
       }
       seo: seoMetaTags {

@@ -51,6 +51,7 @@ export const ListEventsQuery = graphql`
           backgroundImage {
             url
             gatsbyImageData
+            alt
           }
           smallTitle
           hubspot {

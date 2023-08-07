@@ -113,7 +113,7 @@ export const PageQuery = graphql`
           }
           description
         }
-        ... on DatoCmsCtaDonation{
+        ... on DatoCmsCtaDonation {
           __typename
           priceId
           donationType
