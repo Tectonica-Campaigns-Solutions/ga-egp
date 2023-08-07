@@ -25,7 +25,7 @@ const UpcomingEvents = ({ id, block }) => {
   const fulldate = new Date()
   const today = fulldate.toISOString().split('T')[0]
   const timestamp = (new Date(today)).getTime()
-  console.log(timestamp)
+
   const nextEventsFuture = nextEvents.allDatoCmsEvent.edges.filter(item => {
     return (new Date(item.node.fullDate)).getTime() > timestamp}
   ).slice(0,3)

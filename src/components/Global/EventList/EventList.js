@@ -4,7 +4,6 @@ import EventDivider from '../CardEvent/EventDivider';
 import { pathToModel } from '../../../utils';
 
 const EventList = ({ events }) => {
-  console.log(events)
   const eventsLength = events.length || 0;
 
   return (
