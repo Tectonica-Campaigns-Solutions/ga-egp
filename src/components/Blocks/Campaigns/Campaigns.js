@@ -9,7 +9,7 @@ const Campaigns = ({ block }) => {
   return (
     <Section title={title} introduction={introduction} link={link} bgColor={backgroundColor} extraClassNames="g-4">
       {highlight && (
-        <div className="col-lg-6">
+        <div className="col-lg-6 mt-0 mb-3 mb-lg-0">
           <CampaignMain campaign={highlight} />
         </div>
       )}
