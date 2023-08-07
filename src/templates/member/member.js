@@ -16,14 +16,12 @@ const Order = {
 };
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
-  console.log(members.edges);
   const parties = members.edges;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
 
   const partiesOrdered = useCallback(() => {
-    //
-    console.log('Ordenar parties por ', orderBy);
+    // console.log('Ordenar parties por ', orderBy);
 
     const ordered = parties.sort((current, previous) => {
       const currentTitle = current.node.title.toUpperCase();
@@ -76,7 +74,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
         </div>
 
         <div className="container">
-          <div className="mt-5">
+          {/* <div className="mt-5">
             {partiesOrdered().length > 1 && (
               <Dropdown
                 activeValue={orderBy}
@@ -85,7 +83,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
                 })}
               />
             )}
-          </div>
+          </div> */}
 
           <div className="content-member">
             {partiesOrdered()?.map((el) => {
@@ -97,7 +95,9 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
                   <div className="col-lg-8 offset-lg-1 mt-4 mt-lg-0">
                     <div className="party-main-header">
                       <h3>{item.title}</h3>
-                      {item.status && <Tag title={item.status} bgColor={`color-${item.status.toLowerCase().replace(' ', '')}`} />}
+                      {item.status && (
+                        <Tag title={item.status} bgColor={`color-${item.status.toLowerCase().replace(' ', '')}`} />
+                      )}
                     </div>
 
                     <div className="information">
