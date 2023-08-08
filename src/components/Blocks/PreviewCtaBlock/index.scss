@@ -32,6 +32,11 @@
 
     .input-cta {
       width: 100%;
+      padding: 8px 25px;
+      width: 100%;
+      border-radius: 8px;
+      border: 3px solid var(--egp-dark-green, #36845B);
+      background: var(--x-light-green, #DDF1E0);
 
       * {
         color: var(--egp-dark-green, #36845B);
@@ -43,21 +48,45 @@
         padding: 0;
       }
 
+      &:has(input[type=radio]:checked) {
+        background: var(--egp-green, #57B45F);
+        color: #fff;
+
+        * {
+          color: #fff;
+        }
+
+        .extra-information {
+          display: block;
+        }
+      }
+
+      .extra-information {
+        display: none;
+        margin-left: 2.5rem;
+
+        * {
+          color: var(--egp-white, #FFF);
+          font-family: "Roboto";
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 150%
+        }
+      }
+
       label {
         cursor: pointer;
         width: 100%;
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 8px 25px;
-        width: 100%;
-        border-radius: 8px;
-        border: 3px solid var(--egp-dark-green, #36845B);
-        background: var(--x-light-green, #DDF1E0);
 
-        * {
-          font-size: 25px;
-        }
+        font-family: "Roboto";
+        font-size: 25px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 130%;
       }
 
       input {
@@ -75,17 +104,11 @@
           width: 20px;
           margin-right: 10px;
           color: transparent;
+          margin-top: .5rem;
         }
       }
 
       input[type=radio]:checked+label {
-        background: var(--egp-green, #57B45F);
-        color: #fff;
-
-        * {
-          color: #fff;
-        }
-
         &::before {
           content: '_';
           display: inline-block;
@@ -151,11 +174,17 @@
     .ctas {
       gap: 10px;
 
-      .input-cta label {
+      .input-cta {
         padding: 4px 20px;
 
-        * {
-          font-size: 18px;
+        .extra-information {
+          * {
+            font-size: 16px;
+          }
+        }
+
+        label {
+          font-size: 16px;
         }
       }
     }

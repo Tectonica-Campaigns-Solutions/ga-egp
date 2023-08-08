@@ -878,6 +878,7 @@ export const DatoCMS = graphql`
         url {
           url
         }
+        title
         description
       }
     }

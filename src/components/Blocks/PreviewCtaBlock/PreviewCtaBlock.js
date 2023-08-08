@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { isArray } from '../../../utils';
 import ActionButton from '../../Global/Button/ActionButton';
+import { navigate } from 'gatsby';
 
 import './index.scss';
-import { navigate } from 'gatsby';
-import RadioInput from '../../Global/Form/RadioInput';
 
 const PreviewCtaBlock = ({ block }) => {
   const [selectedCta, setSelectedCta] = useState(null);
@@ -41,7 +40,9 @@ const PreviewCtaBlock = ({ block }) => {
                         value={cta.url?.url}
                         onChange={(event) => setSelectedCta(event.target.value)}
                       />
-                      <label for={cta.id} dangerouslySetInnerHTML={{ __html: cta.description }} />
+
+                      <label for={cta.id} dangerouslySetInnerHTML={{ __html: cta.title }} />
+                      <div className="extra-information" dangerouslySetInnerHTML={{ __html: cta.description }} />
                     </div>
                   ))}
                 </div>
