@@ -56,6 +56,7 @@ function FilterMembers({ members, introduction }) {
           </div>
         </div>
 
+        {/* Mobile map */}
         <div className="row mobile-container">
           {isArray(members) && (
             <div className="col-12">
