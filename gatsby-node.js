@@ -26,14 +26,14 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       {
         filters: [
           {
-            propertyName: "type",
-            operator: "EQ",
-            value: "MEMBER PARTY",
+            propertyName: 'type',
+            operator: 'EQ',
+            value: 'MEMBER PARTY',
           },
           {
-            propertyName: "published_in_web",
-            operator: "EQ",
-            value: "Yes",
+            propertyName: 'published_in_web',
+            operator: 'EQ',
+            value: 'Yes',
           },
         ],
       },
@@ -51,7 +51,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   });
 
   const resultData = await result.json();
-  const companies = resultData.results.map(item => item.id)
+  const companies = resultData.results.map((item) => item.id);
 
   //loop companies and get all relational data and create pages
   for (const company of companies) {
@@ -379,7 +379,6 @@ exports.createPages = ({ graphql, actions }) => {
               slug
             }
             home: datoCmsHome {
-              title
               id
             }
             jobs: allDatoCmsJobOpportunity {
