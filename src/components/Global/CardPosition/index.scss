@@ -8,6 +8,7 @@
   background-size: contain;
   background-position: center bottom;
   position: relative;
+  overflow: hidden;
 
   .text-content {
     position: absolute;
@@ -81,11 +82,11 @@
     }
   }
 
-    @media screen and (max-width: 400px) {
-      .image-position {
-        height: 60%;
-      }
+  @media screen and (max-width: 400px) {
+    .image-position {
+      height: 60%;
     }
+  }
 
   @media screen and (max-width: 991px) and (min-width: 768px) {
     background-position: 100%;
