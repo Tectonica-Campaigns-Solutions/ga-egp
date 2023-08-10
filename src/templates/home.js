@@ -12,9 +12,8 @@ const Home = ({ location, data: { page, favicon, siteTitle } }) => {
         <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
         <HeroHome
-          title={page.title}
-          secondPartTitle={page.secondPartTitle}
           firstPartTitle={page.firstPartTitle}
+          secondPartTitle={page.secondPartTitle}
           colorWords={page.colorWords}
           image={page.backgroundImage.gatsbyImageData}
           imageMobile={page.imageMobile.gatsbyImageData}
@@ -46,7 +45,6 @@ export const HomeQuery = graphql`
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
-      title
       firstPartTitle
       secondPartTitle
       colorWords {

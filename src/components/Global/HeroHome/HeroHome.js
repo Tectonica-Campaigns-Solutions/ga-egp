@@ -3,17 +3,7 @@ import HubspotForm from '../../Blocks/HubspotForm/HubspotForm';
 
 import './index.scss';
 
-function HeroHome({
-  title,
-  image,
-  imageMobile,
-  description,
-  form,
-  textWhite,
-  firstPartTitle,
-  secondPartTitle,
-  colorWords,
-}) {
+function HeroHome({ image, imageMobile, description, form, textWhite, firstPartTitle, secondPartTitle, colorWords }) {
   useEffect(() => {
     setInterval(function () {
       const show = document.querySelector('span[data-show]');
@@ -60,20 +50,22 @@ function HeroHome({
                 <span className="link-and-list-styles" dangerouslySetInnerHTML={{ __html: firstPartTitle }} />
                 <span className="letter-title">for </span>
                 <span className="mask">
-  
                   {colorWords.map((item, index) => {
-                    return index == 0  ? (
-                      <span className="animation" data-show style={{ paddingLeft: '10px' }} dangerouslySetInnerHTML={{ __html: item.word }} />
-                    ): 
-                    (
+                    return index == 0 ? (
+                      <span
+                        className="animation"
+                        data-show
+                        style={{ paddingLeft: '10px' }}
+                        dangerouslySetInnerHTML={{ __html: item.word }}
+                      />
+                    ) : (
                       <span
                         key={`${item.word}-${index}`}
                         className="animation link-and-list-styles"
                         style={{ paddingLeft: '10px' }}
                         dangerouslySetInnerHTML={{ __html: item.word }}
                       />
-                    )
-                    
+                    );
                   })}
                 </span>
                 <span
