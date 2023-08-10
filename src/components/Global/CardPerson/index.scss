@@ -1,72 +1,75 @@
 .card-person {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
 
-	h3 {
-		font-family: 'Jaldi';
-		font-style: normal;
-		font-weight: 800;
-		font-size: 31px;
-		line-height: 110%;
-		color: var(--egp-green);
-		margin-bottom: 18px;
-    padding-top:10px;
-	}
+  h3 {
+    font-family: 'Jaldi';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 31px;
+    line-height: 110%;
+    color: var(--egp-green);
+    margin-bottom: 18px;
+    padding-top: 10px;
+  }
 
-	.position {
-		font-family: 'Roboto';
-		font-style: normal;
-		font-weight: 700;
-		font-size: 16px;
-		line-height: 130%;
-		letter-spacing: 0.03em;
-		text-transform: uppercase;
-		color: var(--egp-white);
-		background: var(--egp-green);
-		border-radius: 5px;
-		display: inline-flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		padding: 4px 10px;
-		margin: 20px 0;
-	}
+  .position {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--egp-white);
+    background: var(--egp-green);
+    border-radius: 5px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 10px;
+    margin: 20px 0;
+  }
 
-	.image-wrapper {
-		&>div {
-			width: 100%;
-		}
+  .image-wrapper {
+    &>div {
+      width: 100%;
+    }
 
-		&::after {
-			content: '';
-			display: block;
-			width: 100%;
-			height: 15px;
-			border-radius: 0px 0px 15px 15px;
-			background-color: var(--egp-green);
-		}
-	}
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 15px;
+      border-radius: 0px 0px 15px 15px;
+      background-color: var(--egp-green);
+    }
+  }
 
-	.job {
-		font-family: 'Roboto';
-		font-style: normal;
-		font-weight: 500;
-		font-size: 16px;
-		line-height: 130%;
-		letter-spacing: 0.03em;
-		text-transform: uppercase;
-		color: var(--egp-gray);
-		margin-bottom: 18px;
-	}
+  .job {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--egp-gray);
+    margin-bottom: 18px;
+  }
 }
 
-@media screen and (max-width:767px){
+@media screen and (max-width:767px) {
   .card-person {
-    h3{
-      font-size:20px;
+    h3 {
+      font-size: 20px;
     }
-    .job{
-      font-size:14px;
+
+    .job {
+      font-size: 14px;
     }
   }
 }
