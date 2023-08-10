@@ -7,6 +7,8 @@ const EGPMap = ({ handleOnClickCountry, isoCodes = [] }) => {
     return Boolean(maybeCountry);
   };
 
+  // TODO: Verificar que cada path tenga un ID con un useEffect, y si lo tiene agrego la clase de 'active'
+
   return (
     <svg
       width="980"

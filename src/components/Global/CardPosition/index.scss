@@ -64,6 +64,29 @@
     }
   }
 
+  @media screen and (max-width: 767px) {
+    padding: 0 !important;
+
+    .text-content {
+      padding: 10px !important;
+    }
+
+    .image-position {
+      padding: 10px !important;
+
+      img {
+        object-fit: unset !important;
+        width: auto;
+      }
+    }
+  }
+
+    @media screen and (max-width: 400px) {
+      .image-position {
+        height: 60%;
+      }
+    }
+
   @media screen and (max-width: 991px) and (min-width: 768px) {
     background-position: 100%;
   }
