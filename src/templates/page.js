@@ -124,9 +124,6 @@ export const PageQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
       blocks {
-        ... on DatoCmsBlockHubspotFormStep {
-          ...BlockFormSteps
-        }
         ... on DatoCmsTextHubspotForm {
           ...BlockTextHubspot
         }
