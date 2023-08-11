@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import DonationLink from './DonationLink';
 
 import './index.scss';
 
@@ -12,11 +13,17 @@ function BlockDonation({ block }) {
 
           {block.cta && (
             <div className="cta-list">
-              {block.cta.map((item, index) => (
-                <div key={`${item.label}-${index}`} className="cta-item">
-                  <Link to={item.url}>{item.label}</Link>
-                </div>
-              ))}
+              {block.cta.map((item, index) => {
+                if (item.__typename == 'DatoCmsCtaDonation') {
+                  return <DonationLink item={item} key={`${item.url?.label}-${index}`} />;
+                }
+
+                return (
+                  <div key={`${item.label}-${index}`} className="cta-item">
+                    <Link to={item.url}>{item.label}</Link>
+                  </div>
+                );
+              })}
             </div>
           )}
         </div>

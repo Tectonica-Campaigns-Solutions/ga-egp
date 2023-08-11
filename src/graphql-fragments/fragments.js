@@ -393,9 +393,12 @@ export const DatoCMS = graphql`
       alt
     }
     cta {
-      ... on DatoCmsGlobalLink {
-        label
-        url
+      ... on DatoCmsCtaDonation {
+        __typename
+        id
+        priceId
+        donationType
+        amount
       }
     }
   }
