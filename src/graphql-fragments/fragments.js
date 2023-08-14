@@ -506,6 +506,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsListJobOp {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsCongress {
         slug
         model {
@@ -562,6 +568,12 @@ export const DatoCMS = graphql`
         hideInInnerNavigation
         content {
           ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListJobOp {
             slug
             model {
               apiKey

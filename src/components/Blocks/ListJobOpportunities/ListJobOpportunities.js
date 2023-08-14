@@ -1,30 +1,9 @@
-import { useStaticQuery } from 'gatsby';
-import { graphql } from 'gatsby';
 import React from 'react';
 import { isArray } from '../../../utils';
 import JobOpportunityCard from '../../Global/JobOpportunityCard/JobOpportunityCard';
 
-const ListJobOpportunities = () => {
-  const {
-    allDatoCmsJobOpportunity: { nodes: jobs },
-  } = useStaticQuery(graphql`
-    query {
-      allDatoCmsJobOpportunity {
-        nodes {
-          id
-          title
-          location
-          description
-          isRemote
-          slug
-          model {
-            apiKey
-          }
-        }
-      }
-    }
-  `);
-
+const ListJobOpportunities = ({values}) => {
+  const jobs = values.nodes
   if (!isArray(jobs)) {
     return (
       <div className="container my-5">

@@ -162,6 +162,7 @@ exports.createPages = ({ graphql, actions }) => {
       listNews: path.resolve('./src/templates/list-news.js'),
       listEvents: path.resolve('./src/templates/list-events.js'),
       listPodcast: path.resolve('./src/templates/list-podcast.js'),
+      listJobs: path.resolve('./src/templates/list-jobs.js'),
       position: path.resolve('./src/templates/position/position.js'),
       resolution: path.resolve('./src/templates/resolution/resolution.js'),
       member: path.resolve('./src/templates/member/member.js'),
@@ -286,6 +287,11 @@ exports.createPages = ({ graphql, actions }) => {
               id
               slug
             }
+            listJobs: datoCmsListJobOp {
+              title
+              id
+              slug
+            }
             allCongress: allDatoCmsCongress {
               edges {
                 node {
@@ -395,6 +401,9 @@ exports.createPages = ({ graphql, actions }) => {
                 id
                 content {
                   ... on DatoCmsPage {
+                    id
+                  }
+                  ... on DatoCmsListJobOp {
                     id
                   }
                   ... on DatoCmsListNews {
@@ -660,6 +669,19 @@ exports.createPages = ({ graphql, actions }) => {
               slug: result.data.listEvents.slug,
               id: result.data.listEvents.id,
               menuPos: getMenuPosition(navTree, result.data.listEvents.id),
+            },
+          });
+        }
+
+        //list jobs
+        if (result.data.listJobs) {
+          createPage({
+            path: result.data.listJobs.slug,
+            component: templates.listJobs,
+            context: {
+              slug: result.data.listJobs.slug,
+              id: result.data.listJobs.id,
+              menuPos: getMenuPosition(navTree, result.data.listJobs.id),
             },
           });
         }

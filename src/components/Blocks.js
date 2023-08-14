@@ -9,7 +9,6 @@ import SocialFollow from './Blocks/SocialFollow/SocialFollow';
 import LatestUpdates from './Blocks/LatestUpdates/LatestUpdates';
 import GroupPerson from './Blocks/GroupPerson/GroupPerson';
 import TextSimple from './Blocks/TextSimple/TextSimple';
-import ListJobOpportunities from './Blocks/ListJobOpportunities/ListJobOpportunities';
 import TwoColumns from './Blocks/TwoColumns/TwoColumns';
 import SocialGrid from './Blocks/SocialGrid/SocialGrid';
 import VerticalCtaList from './Blocks/VerticalCtaList/VerticalCtaList';
@@ -45,8 +44,6 @@ export default function Blocks({ blocks }) {
             return <GroupPerson block={block} key={block.id} />;
           case 'DatoCmsTextSimple':
             return <TextSimple block={block} key={block.id} />;
-          case 'DatoCmsListJobOpportunity':
-            return <ListJobOpportunities block={block} key={block.id} />;
           case 'DatoCmsTwoColumn':
             return <TwoColumns block={block} key={block.id} />;
           case 'DatoCmsSocialGrid':

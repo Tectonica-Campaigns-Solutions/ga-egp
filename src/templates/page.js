@@ -139,9 +139,6 @@ export const PageQuery = graphql`
         ... on DatoCmsNarrativeBlock {
           ...BlockNarrativeBlock
         }
-        ... on DatoCmsListJobOpportunity {
-          __typename
-        }
         ... on DatoCmsTwoColumn {
           ...BlockTwoColumns
         }
