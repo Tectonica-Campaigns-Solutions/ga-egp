@@ -176,6 +176,12 @@ export const PageQuery = graphql`
             hideInInnerNavigation
             position
             content {
+              ... on DatoCmsListJobOp {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsPage {
                 slug
                 model {
@@ -225,6 +231,12 @@ export const PageQuery = graphql`
               hideInInnerNavigation
               position
               content {
+                ... on DatoCmsListJobOp {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
                 ... on DatoCmsPage {
                   slug
                   model {
@@ -277,6 +289,12 @@ export const PageQuery = graphql`
           hideInInnerNavigation
           position
           content {
+            ... on DatoCmsListJobOp {
+              slug
+              model {
+                apiKey
+              }
+            }
             ... on DatoCmsPage {
               slug
               model {
@@ -318,6 +336,12 @@ export const PageQuery = graphql`
             hideInInnerNavigation
             position
             content {
+              ... on DatoCmsListJobOp {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsPage {
                 slug
                 model {

@@ -7,12 +7,16 @@ import ListJobOpportunities from '../components/Blocks/ListJobOpportunities/List
 import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
 import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
 
-function ListJobs({ pageContext, location, data: { page, breadcrumb, navLinks, favicon, siteTitle, jobs, allMenu, sideNav = null } }) {
-
+function ListJobs({
+  pageContext,
+  location,
+  data: { page, breadcrumb, navLinks, favicon, siteTitle, jobs, allMenu, sideNav = null },
+}) {
   const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
   const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
-  ? sideNav?.treeParent.treeChildren
-  : sideNav?.treeChildren;
+    ? sideNav?.treeParent.treeChildren
+    : sideNav?.treeChildren;
+
   return (
     <Layout>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -24,7 +28,6 @@ function ListJobs({ pageContext, location, data: { page, breadcrumb, navLinks, f
         breadcrumb={breadcrumb}
       />
 
-     
       {!page.hideInnerNavigation && secondaryMenu?.treeChildren && (
         <InnerNavigation
           location={location}
@@ -160,6 +163,12 @@ export const ListJobsQuery = graphql`
                   }
                 }
                 ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListJobOp {
                   slug
                   model {
                     apiKey
