@@ -423,7 +423,6 @@ export const DatoCMS = graphql`
     id
     title
     highlighted
-    useContainer
     people {
       ... on DatoCmsItemGroup {
         person {
