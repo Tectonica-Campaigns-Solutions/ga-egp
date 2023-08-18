@@ -38,38 +38,37 @@
   }
 
   .ctasBox {
-    >div {
-      padding: 10px;
-      background-color: #fff;
-      border-radius: 10px;
-      margin: 10px 0;
-      display: inline-block;
-      border: 2px solid var(--egp-white, #FFF);
+    width: 100%;
+    padding: 20px 31px;
+    background-color: #fff;
+    border-radius: 10px;
 
-      a {
-        background-color: var(--egp-green);
-        color: #fff;
-        padding: 10px;
-        border-radius: 10px;
-        margin-right: 10px;
-      }
+    h5 {
+      color: var(--egp-pink, #FF70BD);
+      font-family: "Colby";
+      font-size: 31px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 110%;
+      margin-bottom: 30px;
+    }
 
-      p {
-        margin: 0 0 0 10px;
-        padding: 0;
-      }
+    h6 {
+      cursor: pointer;
+      color: var(--egp-dark-green, #36845B);
+      font-family: "Colby";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 110%;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 15px;
 
-      &:hover {
-        border: 2px solid var(--egp-white, #FFF);
-        background: var(--egp-pink, #FF70BD);
-
-        a {
-          background: var(--egp-white, #FFF);
-          color: var(--egp-pink, #FF70BD);
-        }
-
-        .ctaText {
-          color: var(--egp-white, #FFF);
+      &.hOpen {
+        img {
+          transform: rotate(-180deg);
         }
       }
     }
@@ -83,6 +82,59 @@
     font-style: italic;
     font-weight: 400;
     line-height: 150%;
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    input[type=radio]:checked+label {
+      background: none;
+      color: inherit;
+    }
+  }
+
+  .ctaGrid {
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    & div {
+      width: 100%;
+      flex-basis: calc(25% - 20px);
+
+      a {
+        width: 100%;
+      }
+    }
+  }
+
+  .extraCtas {
+    position: relative;
+    overflow: hidden;
+    height: 53px;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: block;
+      height: 80%;
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 26.04%);
+    }
+
+    &.open {
+      height: auto;
+      overflow: auto;
+
+      &::after {
+        display: none;
+      }
+    }
   }
 }
 
@@ -102,10 +154,33 @@
     min-height: auto;
     padding: 0;
     padding-top: 100px;
+    padding-bottom: 50px;
 
     h1,
     h2 {
       font-size: 50px;
+    }
+
+    .ctasBox {
+      padding: 15px;
+
+      h5 {
+        font-size: 25px;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-size: 18px;
+      }
+    }
+
+    .ctaGrid {
+      margin-bottom: 30px;
+      gap: 10px;
+
+      & div {
+        flex-basis: calc(25% - 10px);
+      }
     }
   }
 }
@@ -114,10 +189,32 @@
   .heroCustom {
     padding: 0;
     padding-top: 100px;
+    padding-bottom: 20px;
 
     h1,
     h2 {
       font-size: 25px;
+    }
+
+    .ctasBox {
+      padding: 15px;
+
+      h5 {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      h6 {
+        font-size: 16px;
+      }
+    }
+
+    .ctaGrid {
+      flex-wrap: wrap;
+
+      & div {
+        flex-basis: calc(33% - 10px);
+      }
     }
   }
 

@@ -33,6 +33,7 @@ const Page = ({
           {page.customHeader && (
             <HeroCustom
               ctas={page.ctasblock}
+              extraCtas={page.extraCtas}
               imageHeader={page.backgroundImage}
               description={page.description}
               title={page.title}
@@ -103,6 +104,24 @@ export const PageQuery = graphql`
       noIndex
       allowOverlap
       ctasblock {
+        ... on DatoCmsCtaExternal {
+          __typename
+          url {
+            ... on DatoCmsGlobalLink {
+              label
+              url
+            }
+          }
+          description
+        }
+        ... on DatoCmsCtaDonation {
+          __typename
+          priceId
+          donationType
+          amount
+        }
+      }
+      extraCtas {
         ... on DatoCmsCtaExternal {
           __typename
           url {
