@@ -31,12 +31,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
       type="font/woff2"
       crossOrigin="anonymous"
       key="colby"
-    />,
-    <link
-      rel="preload"
-      as="image"
-      key="home-main-img"
-      href="https://www.datocms-assets.com/87481/1674746081-45436302494_20c278316b_o-2.png?auto=format&w=2400"
-    />,
+    />
   ]);
 };
