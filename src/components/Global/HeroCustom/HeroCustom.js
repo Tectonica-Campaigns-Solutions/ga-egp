@@ -50,7 +50,7 @@ function HeroCustom({
                 )}
               </div>
 
-              {ctas && (
+              {ctas && ctas.length > 0 && (
                 <div className={`col-lg-5 offset-lg-1`}>
                   <div className={`${styles.ctasBox}`}>
                     <h5>How much will you give?</h5>
