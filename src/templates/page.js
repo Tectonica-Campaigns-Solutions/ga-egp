@@ -180,6 +180,24 @@ export const PageQuery = graphql`
             providerUid
           }
         }
+        ... on DatoCmsFormWithStep{
+          id
+          __typename
+          ... on DatoCmsFormWithStep{
+            steps{
+              ... on DatoCmsFormStep{
+                title
+                stepPreTitle
+                description
+                formFields{
+                  ... on DatoCmsHubspotField{
+                    hubspotId
+                  }
+                }
+              }
+            }
+          }     
+        }
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
@@ -237,6 +255,7 @@ export const PageQuery = graphql`
                   apiKey
                 }
               }
+            
             }
           }
         }

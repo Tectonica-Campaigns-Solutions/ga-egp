@@ -52,7 +52,7 @@ export default function Blocks({ blocks }) {
             return <VerticalCtaList block={block} key={block.id} />;
           case 'DatoCmsListSession':
             return <ListSessions block={block} key={block.id} />;
-          case 'DatoCmsBlockHubspotFormStep':
+          case 'DatoCmsFormWithStep':
             return <HubspotStepsForm key={block.id} block={block} />;
           case 'DatoCmsBlockDonation':
             return <BlockDonation key={block.id} block={block} />;

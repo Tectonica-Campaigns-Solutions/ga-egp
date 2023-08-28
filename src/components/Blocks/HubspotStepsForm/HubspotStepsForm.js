@@ -83,13 +83,18 @@ function HubspotStepsForm({ block }) {
               <div className="row mt-5" key={`${item.title}-${index}`}>
                 <div className="col-lg-4">
                   <h3>{item.title}</h3>
-                  <p className="link-and-list-styles">{item.description}</p>
+                  <div className="link-and-list-styles" dangerouslySetInnerHTML={{__html: item.description}} />
                 </div>
 
                 <div className="col offset-lg-2">
                   {item.formFields.map((el, index) => {
-                    const contactField = contactFields.filter((item) => item.name === el.idHubspotField);
-                    return <FieldsSelector key={index} contactField={contactField} />;
+                  
+                    // const contactField = contactFields.filter((item) => item.name === el.idHubspotField);
+                    // return <FieldsSelector key={index} contactField={contactField} />;
+                    return <>
+                      <label>hola</label>
+                      <input type="text" name={el.hubspotId} />
+                    </>
                   })}
                 </div>
               </div>

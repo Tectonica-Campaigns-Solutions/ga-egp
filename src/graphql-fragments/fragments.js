@@ -402,22 +402,6 @@ export const DatoCMS = graphql`
       }
     }
   }
-  fragment BlockFormSteps on DatoCmsBlockHubspotFormStep {
-    __typename
-    id
-    steps {
-      ... on DatoCmsFormStep {
-        title
-        stepPreTitle
-        description
-        formFields {
-          ... on DatoCmsFormField {
-            idHubspotField
-          }
-        }
-      }
-    }
-  }
   fragment BlockGroupPerson on DatoCmsGroupPerson {
     __typename
     id
