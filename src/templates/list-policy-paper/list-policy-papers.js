@@ -83,7 +83,7 @@ function ListPolicyPapers({
       (item) =>
         (params.type ? item.node.model.apiKey === params.type : true) &&
         (params.title ? item.node.title.includes(params.title) : true) &&
-        (params.council ? item.node.council?.idFilter == params.council : true) &&
+        (params.council ? item.node.council?.idFilter === params.council : true) &&
         (params.issueOrArea ? item.node.areas?.find((a) => params.issueOrArea.includes(a.id)) : true)
     );
 

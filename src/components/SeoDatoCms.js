@@ -1,7 +1,10 @@
 import React from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 
-const SeoDatoCMS = ({ seo, favicon = null, children = null, DsBgImage = null, MbBgImage = null }) => {
+const SeoDatoCMS = ({ seo, favicon = null, children = null, DsBgImage = null, MbBgImage = null, homepage = null }) => {
+  if(homepage){
+    seo.tags[0].content = seo.tags[0].content.replace('| European Greens', '') 
+  }
   return (
     <HelmetDatoCms seo={seo} favicon={favicon?.faviconMetaTags}>
       {children}
