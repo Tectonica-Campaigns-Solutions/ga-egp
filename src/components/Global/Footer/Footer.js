@@ -149,7 +149,7 @@ function Footer() {
             <div className="col-lg-3 offset-lg-1 social-links">
               {socialLinks.links.map((socialLink) => (
                 <Link key={socialLink.label} to={socialLink.mainLink}>
-                  <img src={socialLink.icon.url} alt={socialLink.label} />
+                  <img src={socialLink.icon?.url} alt={socialLink.label} />
                 </Link>
               ))}
             </div>

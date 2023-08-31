@@ -10,7 +10,7 @@ const Header = ({ location, navbarWhite = false, navbarYellowHover = false }) =>
 
   const mainMenu = useStaticQuery(graphql`
     query {
-      allDatoCmsMenu(filter: { root: { eq: true } }) {
+      allDatoCmsMenu(filter: { root: { eq: true } }, sort: { position: ASC }) {
         nodes {
           ...MainNavigation
         }

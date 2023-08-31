@@ -1,8 +1,8 @@
 import Link from '../../Global/Link';
-import React from "react";
-import { isArray } from "../../../utils";
+import React from 'react';
+import { isArray } from '../../../utils';
 
-import "./index.scss";
+import './index.scss';
 
 const SocialFollow = ({ block }) => {
   const { title, links } = block;
@@ -15,7 +15,7 @@ const SocialFollow = ({ block }) => {
           <div className="links">
             {links.map((link, index) => (
               <Link to={link.mainLink?.url} key={index}>
-                <img src={link.icon.url} alt={link.label} />
+                <img src={link.icon?.url} alt={link.label} />
               </Link>
             ))}
           </div>
