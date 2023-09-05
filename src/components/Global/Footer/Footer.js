@@ -148,7 +148,7 @@ function Footer() {
           {isArray(socialLinks.links) && (
             <div className="col-lg-3 offset-lg-1 social-links">
               {socialLinks.links.map((socialLink) => (
-                <Link key={socialLink.label} to={socialLink.mainLink}>
+                <Link key={socialLink.label} to={socialLink.mainLink} target="_blank">
                   <img src={socialLink.icon?.url} alt={socialLink.label} />
                 </Link>
               ))}

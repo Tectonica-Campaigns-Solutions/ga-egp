@@ -14,7 +14,7 @@ const SocialFollow = ({ block }) => {
         {isArray(links) && (
           <div className="links">
             {links.map((link, index) => (
-              <Link to={link.mainLink?.url} key={index}>
+              <Link to={link.mainLink?.url} key={index} target="_blank">
                 <img src={link.icon?.url} alt={link.label} />
               </Link>
             ))}
