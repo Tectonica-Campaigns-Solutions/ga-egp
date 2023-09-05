@@ -549,6 +549,7 @@ export const DatoCMS = graphql`
         id
         title
         hideInInnerNavigation
+        position
         content {
           ... on DatoCmsPage {
             slug

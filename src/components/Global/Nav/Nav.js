@@ -34,13 +34,15 @@ const DropdownItem = ({ link, label, children }) => {
       </Link>
 
       <ul className={`dropdown-menu ${dropdownOpen ? 'open' : null}`}>
-        {children?.map((link) => (
-          <li className="dropdown-item" key={link.id}>
-            <Link className="dropdown-link" to={getCtaUrl(link)}>
-              {link?.title}
-            </Link>
-          </li>
-        ))}
+        {children
+          ?.sort((a, b) => a.position - b.position)
+          .map((link) => (
+            <li className="dropdown-item" key={link.id}>
+              <Link className="dropdown-link" to={getCtaUrl(link)}>
+                {link?.title}
+              </Link>
+            </li>
+          ))}
       </ul>
     </li>
   );
