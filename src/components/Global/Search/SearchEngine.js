@@ -86,7 +86,6 @@ export default function SearchEngine({ searchEngineVisible, setSearchEngineVisib
 }
 
 const SearchItem = ({ item }) => {
-  console.log(item);
   return (
     <li className="search-engine__results-item">
       <Link to={item.url}>

@@ -21,7 +21,6 @@ const InformationCard = ({
     // Remove empties paragraphs
     paragraphs.forEach((paragraph) => {
       if (paragraph.innerHTML.trim() === '') {
-        console.log(paragraph.innerHTML);
         paragraph.style.display = 'none';
       } else if (paragraph.innerHTML === '&nbsp;') {
         paragraph.style.display = 'none';

@@ -38,9 +38,11 @@ const LatestUpdates = ({ block, items = [] }) => {
             </div>
           ))}
 
-          <div className={styles.mobileInfoBtn}>
-            <Button url={getCtaUrl(link)} label={link?.label} isPrimary={false} customVariant="light" />
-          </div>
+          {link && (
+            <div className={styles.mobileInfoBtn}>
+              <Button url={getCtaUrl(link)} label={link?.label} isPrimary={false} customVariant="light" />
+            </div>
+          )}
         </Section>
       )}
     </>

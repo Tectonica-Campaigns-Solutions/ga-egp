@@ -49,7 +49,7 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
           }
         }
 
-        console.log({ existSession });
+        // console.log({ existSession });
         setShowPlenary(existSession);
       }
     }

@@ -81,7 +81,20 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
           </div>
         </div>
 
-        <LatestUpdates block={{ title: 'Related News' }} />
+        <LatestUpdates
+          block={{
+            title: 'Related News',
+            link: {
+              label: 'See all updates',
+              content: {
+                slug: 'news',
+                model: {
+                  apiKey: 'list_news',
+                },
+              },
+            },
+          }}
+        />
       </div>
     </Layout>
   );
