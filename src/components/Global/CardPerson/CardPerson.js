@@ -17,7 +17,8 @@ function CardPerson({ person, animated = false, hasLink = false }) {
   return (
     <div className="card-person">
       {/* <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink> */}
-      {person.image && <ImageWrapper image={person.image} />}
+      { person.hasDetailPage && <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink>}
+      { !person.hasDetailPage && person.image && <ImageWrapper image={person.image} />}
 
       <div>
         {/* <div className="position">head of unit</div> */}
@@ -27,7 +28,7 @@ function CardPerson({ person, animated = false, hasLink = false }) {
         <div className="job">{person.country}</div>
         {/* <SocialLinkList links={person.socialLinks} /> */}
 
-        {hasLink && (
+        {person.hasDetailPage && (
           <FinalLink to={url} className="link-read-more">
             Read more
           </FinalLink>

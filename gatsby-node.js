@@ -239,7 +239,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            persons: allDatoCmsPerson {
+            persons: allDatoCmsPerson(filter: {hasDetailPage: {eq: true}}) {
               edges {
                 node {
                   name

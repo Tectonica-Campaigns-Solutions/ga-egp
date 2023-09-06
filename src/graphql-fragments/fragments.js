@@ -412,6 +412,7 @@ export const DatoCMS = graphql`
         person {
           ... on DatoCmsPerson {
             id
+            hasDetailPage
             slug
             name
             image {
