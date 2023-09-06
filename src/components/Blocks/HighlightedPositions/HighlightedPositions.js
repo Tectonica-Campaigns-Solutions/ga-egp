@@ -10,7 +10,7 @@ function HighlightedPositions({ id, block }) {
   const { pretitle, title, description, positions, link } = block;
 
   const responsiveSettings = [
-    { breakpoint: 1250, settings: { slidesToShow: 3 } },
+    { breakpoint: 1250, settings: { slidesToShow: 2 } },
     {
       breakpoint: 1000,
       settings: {
@@ -62,7 +62,7 @@ function HighlightedPositions({ id, block }) {
           )}
 
           <div className="mobile-info-btn">
-            <Button url={getCtaUrl(link)} label={link?.label} isPrimary={false} customVariant="light" />
+            <Button url={getCtaUrl(link)} label={link?.label} isPrimary={true} />
           </div>
         </div>
       </div>

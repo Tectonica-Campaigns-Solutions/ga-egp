@@ -117,6 +117,14 @@ export const PodcastQuery = graphql`
               url
             }
           }
+          ... on DatoCmsImage {
+            __typename
+            id: originalId
+            image {
+              gatsbyImageData
+              alt
+            }
+          }
         }
       }
       tags {
