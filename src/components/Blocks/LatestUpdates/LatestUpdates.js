@@ -40,7 +40,7 @@ const LatestUpdates = ({ block, items = [] }) => {
 
           {link && (
             <div className={styles.mobileInfoBtn}>
-              <Button url={getCtaUrl(link)} label={link?.label} isPrimary={false} customVariant="light" />
+              <Button url={getCtaUrl(link)} label={link?.label} isPrimary={true} />
             </div>
           )}
         </Section>
