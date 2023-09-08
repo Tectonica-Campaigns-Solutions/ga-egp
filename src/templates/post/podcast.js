@@ -14,7 +14,6 @@ import './index.scss';
 
 const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
   const basePath = basePathTag(page.model.apiKey);
-
   return (
     <Layout navbarWhite>
       <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -32,7 +31,7 @@ const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
           <div className="row justify-content-center">
             <div className="col-lg-9">
               {page.audioUrl && <EmbedAudio file={page.audioUrl[0].file} />}
-
+              {page.audioUrl[0].iframeContent && <div className="mb-5" dangerouslySetInnerHTML={{__html: page.audioUrl[0].iframeContent}}/>}
               {isArray(page.authors) && (
                 <div className="authors-list row gy-4">
                   {page.authors.map((author) => (
@@ -109,14 +108,7 @@ export const PodcastQuery = graphql`
               text
             }
           }
-          ... on DatoCmsEmbedAudio {
-            __typename
-            id: originalId
-            iframeContent
-            file {
-              url
-            }
-          }
+          
           ... on DatoCmsImage {
             __typename
             id: originalId
@@ -124,6 +116,11 @@ export const PodcastQuery = graphql`
               gatsbyImageData
               alt
             }
+          }
+          ... on DatoCmsEmbedIframe {
+            __typename
+            id: originalId
+            embedCode
           }
         }
       }
@@ -136,6 +133,7 @@ export const PodcastQuery = graphql`
       }
       audioUrl {
         id
+        iframeContent
         file {
           url
         }
