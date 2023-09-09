@@ -7,7 +7,7 @@ import Button from '../../Global/Button/Button';
 
 import * as styles from './styles.module.scss';
 
-const LatestUpdates = ({ block, items = [] }) => {
+const LatestUpdates = ({ block, items = []}) => {
   const { title, link } = block;
 
   const latestsPosts = useStaticQuery(graphql`

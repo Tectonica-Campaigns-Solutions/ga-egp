@@ -3,6 +3,7 @@ import { StructuredText } from 'react-datocms';
 import Accordion from './Global/Accordion/Accordion';
 import EmbedAudio from './Blocks/EmbedAudio/EmbedAudio';
 import ImageWrapper from './Global/Image/ImageWrapper';
+import EmbedVideo from './Blocks/EmbedVideo/EmbedVideo';
 
 const StructuredContentDefault = ({ content }) => {
   return (
@@ -18,6 +19,8 @@ const StructuredContentDefault = ({ content }) => {
             return <div><ImageWrapper image={record.image}/></div>;
           case 'DatoCmsEmbedIframe':
             return <div className="mt-3 mb-3" dangerouslySetInnerHTML={{__html: record.embedCode}} />;
+          case 'DatoCmsEmbedVideo':
+            return <EmbedVideo key={record.id} block={record} />;;
           default:
             return <></>;
         }

@@ -50,9 +50,14 @@
     }
   }
 
-  ul,
-  ol {
-    list-style: initial;
+  ul, ol{
+    padding-top:10px;
+  }
+  ol{
+    list-style-type:decimal!important;
+    li{
+      list-style-type:decimal!important;
+    }
   }
 
   blockquote {

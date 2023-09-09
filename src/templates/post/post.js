@@ -15,6 +15,7 @@ import './index.scss';
 
 const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTitle } }) => {
   const {
+    id,
     seo,
     title,
     date,
@@ -26,6 +27,8 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
     model: { apiKey },
   } = page;
   const basePath = basePathTag(apiKey);
+
+  console.log(typeof id)
 
   return (
     <Layout>
@@ -141,6 +144,28 @@ export const PostQuery = graphql`
             items {
               title
               text
+            }
+          }
+          ... on DatoCmsEmbedVideo {
+            id: originalId
+            __typename
+            video {
+              url
+              providerUid
+            }
+          }
+          ... on DatoCmsEmbedIframe {
+            __typename
+            id: originalId
+            embedCode
+          }
+          ... on DatoCmsImage {
+            __typename
+            id: originalId
+            image {
+              gatsbyImageData
+              alt
+              title
             }
           }
         }

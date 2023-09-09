@@ -3,7 +3,7 @@ import './index.scss';
 
 function EmbedVideo({ block }) {
   return (
-    <div className="container embed-video">
+    <div className="container embed-video mb-4">
       <iframe
         src={`//www.youtube.com/embed/${block.video.providerUid}?rel=0`}
         frameborder="0"
