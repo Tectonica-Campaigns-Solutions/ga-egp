@@ -1121,10 +1121,28 @@
     "@datocms/cma-client" "^1.3.4"
     "@datocms/rest-client-utils" "^1.3.3"
 
+"@datocms/cma-client-node@^1.3.1":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@datocms/cma-client-node/-/cma-client-node-1.3.5.tgz#efc918b9fa47437c6a08daf58708b7bad6bfff88"
+  integrity sha512-2PJeAq5/mBlpk3hM2iRQ9tRIXvfdwbONDBls8QiB7miMkxODErRPvtYk7FBG0b9i89AWLjUGGyLGaVN5FHPUeQ==
+  dependencies:
+    "@datocms/cma-client" "^1.3.5"
+    "@datocms/rest-client-utils" "^1.3.3"
+    got "^11.8.5"
+    mime-types "^2.1.35"
+    tmp-promise "^3.0.3"
+
 "@datocms/cma-client@^1.3.4":
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/@datocms/cma-client/-/cma-client-1.3.4.tgz#68c14580a71dd89aeb52b5c52f6275cd4b78866c"
   integrity sha512-KwlarvjBPzlt9yq6z+L0IBhHn9QwI2qfqsAPchtvkEWi/JmBILQcN84hfA52Vxn2rEgZAi18mv/ARUTPpCMT2A==
+  dependencies:
+    "@datocms/rest-client-utils" "^1.3.3"
+
+"@datocms/cma-client@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@datocms/cma-client/-/cma-client-1.3.5.tgz#84f3802183583c25d9d9c3099b987a9fbed3e3ab"
+  integrity sha512-odw6ZaiiMycAEurXXstXcZgkitWJtGjyt0ieoMLM0vyIQwlFf1l412iQieB2Eylus2sE2M2HT97lRn11uePIsw==
   dependencies:
     "@datocms/rest-client-utils" "^1.3.3"
 
@@ -2411,6 +2429,20 @@
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
+
+"@stackbit/cms-datocms@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@stackbit/cms-datocms/-/cms-datocms-0.1.18.tgz#437b4ef1f3ba0511a1f1683ed9ef4776df4152a7"
+  integrity sha512-rH1tGjQNF5xTuzs15Z+IAegEUkyrHDMWVE03rX5zmDNZfvL1NOpQ08H8LPNSFsja3x0gnrg+gdrAPDiqZaUk4w==
+  dependencies:
+    "@datocms/cma-client-node" "^1.3.1"
+    "@stackbit/types" "0.10.1"
+    lodash "^4.17.21"
+
+"@stackbit/types@0.10.1", "@stackbit/types@^0.10.1":
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/@stackbit/types/-/types-0.10.1.tgz#d1d9e3363b4fae6340a26cf1e1a23defc532a5b1"
+  integrity sha512-4H5TUPudPPnN3Sj/thZ2+fwDTRIgw+PJbsWXM3lBPWFM4tzPS0XED77Fo39O5wmuxjVdOJhzFR3pooPalsTqNA==
 
 "@swc/helpers@^0.4.12":
   version "0.4.14"
@@ -8795,7 +8827,7 @@ mime-db@1.52.0, "mime-db@>= 1.43.0 < 2":
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.52.0.tgz#bbabcdc02859f4987301c856e3387ce5ec43bf70"
   integrity sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==
 
-mime-types@^2.1.12, mime-types@^2.1.25, mime-types@^2.1.27, mime-types@^2.1.30, mime-types@~2.1.19, mime-types@~2.1.24, mime-types@~2.1.34:
+mime-types@^2.1.12, mime-types@^2.1.25, mime-types@^2.1.27, mime-types@^2.1.30, mime-types@^2.1.35, mime-types@~2.1.19, mime-types@~2.1.24, mime-types@~2.1.34:
   version "2.1.35"
   resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.35.tgz#381a871b62a734450660ae3deee44813f70d959a"
   integrity sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==
@@ -12077,6 +12109,13 @@ title-case@^3.0.3:
   dependencies:
     tslib "^2.0.3"
 
+tmp-promise@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/tmp-promise/-/tmp-promise-3.0.3.tgz#60a1a1cc98c988674fcbfd23b6e3367bdeac4ce7"
+  integrity sha512-RwM7MoPojPxsOBYnyd2hy0bxtIlVrihNs9pj5SUvY8Zz1sQcQG2tG1hSr8PDxfgEB8RNKDhqbIlroIarSNDNsQ==
+  dependencies:
+    tmp "^0.2.0"
+
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -12084,7 +12123,7 @@ tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
-tmp@^0.2.1:
+tmp@^0.2.0, tmp@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.2.1.tgz#8457fc3037dcf4719c251367a1af6500ee1ccf14"
   integrity sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==
