@@ -12,15 +12,35 @@ function Footer() {
     menuFooter,
     menuLegal,
     partnersFooter,
-    information,
-    copyright,
-    email,
-    phone,
-    address,
-    socialLinks,
-    formFooter,
+    footer
   } = useStaticQuery(graphql`
     query footer {
+      footer: datoCmsFooterSetting{
+        address
+        support
+        title
+        footerForm {
+          ... on DatoCmsHubspot {
+            formId
+            region
+            portalId
+          }
+        }
+        supportLogo{
+          url
+          gatsbyImageData
+          alt
+        }
+        socialLinks{
+          label
+          mainLink {
+            url
+          }
+          icon {
+            url
+          }
+        }
+      }
       menuFooter: datoCmsNavigation(codeId: { eq: "menu_footer" }) {
         ...Navigation
       }
@@ -31,50 +51,10 @@ function Footer() {
         title
         ...Navigation
       }
-      information: datoCmsGlobalSetting(codeId: { eq: "information_gs" }) {
-        value
-        image {
-          url
-        }
-      }
-      copyright: datoCmsGlobalSetting(codeId: { eq: "copyright_gs" }) {
-        value
-      }
-      email: datoCmsGlobalSetting(codeId: { eq: "email_gs" }) {
-        value
-      }
-      phone: datoCmsGlobalSetting(codeId: { eq: "phone_gs" }) {
-        value
-      }
-      address: datoCmsGlobalSetting(codeId: { eq: "address_gs" }) {
-        value
-      }
-      formFooter: datoCmsFormFooter {
-        title
-        id
-        hubspot {
-          ... on DatoCmsHubspot {
-            formId
-            region
-            portalId
-          }
-        }
-      }
-      socialLinks: datoCmsSocialFollow {
-        title
-        links {
-          label
-          mainLink {
-            url
-          }
-          icon {
-            url
-          }
-        }
-      }
     }
   `);
-
+  const formBlock = { hubspot:footer.footerForm, title: footer.title, id: '100'} 
+  console.log(menuLegal)
   return (
     <footer className="footer" data-datocms-noindex>
       <div className="container">
@@ -112,7 +92,7 @@ function Footer() {
 
           {/* Hubspot form */}
           <div className="col-xxl-3 col-xl-4 offset-xxl-1 form-footer">
-            {formFooter && formFooter.hubspot && <TextHubspotForm block={formFooter} />}
+            {formBlock && <TextHubspotForm block={formBlock} />}
           </div>
         </div>
 
@@ -123,31 +103,28 @@ function Footer() {
             <div className="row align-items-end">
               <div className="col-lg-6 copyright">
                 <div className="content">
-                  <p>{copyright.value}</p>
-                  <p>{address.value}</p>
-                  <p>{phone.value}</p>
-                  <p>{email.value}</p>
+                  <div dangerouslySetInnerHTML={{__html: footer.address}} />
                 </div>
               </div>
 
               {/* Support section */}
               <div className="col-lg-5 support">
                 <div className="content">
-                  {information.image.url && (
+                  {footer.supportLogo && (
                     <div className="image">
-                      <img src={information.image.url} alt="Logo" />
+                      <img src={footer.supportLogo.url} alt="Logo" />
                     </div>
                   )}
-                  <p>{information.value}</p>
+                  <p>{footer.support}</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Social links here */}
-          {isArray(socialLinks.links) && (
+          {isArray(footer.socialLinks) && (
             <div className="col-lg-3 offset-lg-1 social-links">
-              {socialLinks.links.map((socialLink) => (
+              {footer.socialLinks.map((socialLink) => (
                 <Link key={socialLink.label} to={socialLink.mainLink} target="_blank">
                   <img src={socialLink.icon?.url} alt={socialLink.label} />
                 </Link>
