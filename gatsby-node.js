@@ -141,13 +141,13 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   }
 };
 
+const getMenuPosition = (menus, key) => {
+  const menuId = menus.find((item) => item?.content?.id === key);
+  return menuId?.id ? menuId.id : '';
+};
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage, createSlice } = actions;
-
-  const getMenuPosition = (menus, key) => {
-    const menuId = menus.find((item) => item?.content?.id === key);
-    return menuId?.id;
-  };
 
   return new Promise((resolve, reject) => {
     const templates = {
