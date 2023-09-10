@@ -53,13 +53,15 @@ function Event({ data: { event, breadcrumb, favicon, siteTitle, relatedEvents } 
         <Section
           title="Related events"
           link={{
-            label: 'See all events',
-            content: {
-              slug: 'events',
-              model: {
-                apiKey: 'list_events',
+            link: {
+              label: 'See all events',
+              content: {
+                slug: 'events',
+                model: {
+                  apiKey: 'list_events',
+                },
               },
-            },
+            }
           }}
         >
           <EventList events={relatedEvents.edges} />

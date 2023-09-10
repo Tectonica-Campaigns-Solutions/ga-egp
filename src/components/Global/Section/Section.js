@@ -13,7 +13,9 @@ const Section = ({ title, introduction = null, link = null, bgColor, extraClassN
 
           {link && (
             <div className="section-cta">
-              <Button url={getCtaUrl(link)} label={link.label} isPrimary={false} customVariant="light" />
+              
+              {/* <Button url={getCtaUrl(link.content)} label={link?.label ? link.label : link.content.label } customVariant="light" /> */}
+              <Button url={getCtaUrl(link.link)} label={link.link?.label ? link.link.label : link.link.content.label } customVariant="light" />
             </div>
           )}
         </div>

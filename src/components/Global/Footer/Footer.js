@@ -54,7 +54,6 @@ function Footer() {
     }
   `);
   const formBlock = { hubspot:footer.footerForm, title: footer.title, id: '100'} 
-  console.log(menuLegal)
   return (
     <footer className="footer" data-datocms-noindex>
       <div className="container">

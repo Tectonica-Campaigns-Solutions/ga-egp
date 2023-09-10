@@ -32,16 +32,18 @@ const UpcomingEvents = ({ id, block }) => {
   
 
   const highlightEvents = block?.highlightedEvents && block.highlightedEvents.length > 0 ? block.highlightedEvents : nextEventsFuture;
-  const globalLink = block?.link ? block.link : null;
+  const linkAll = block.linkToAll ? block.linkToAll[0] : null;
 
   return (
-    <Section key={id} title="Upcoming Events" link={globalLink} bgColor="section-green">
+    <Section key={id} title="Upcoming Events" link={linkAll} bgColor="section-green">
       <EventList events={highlightEvents} />
 
-      <div className={styles.mobileInfoBtn}>
-        <Button url={getCtaUrl(globalLink)} label={globalLink?.label} isPrimary={false} customVariant="light" />
-      </div>
+      {  linkAll && <div className={styles.mobileInfoBtn}>
+          <Button url={getCtaUrl(linkAll.link)} label={linkAll.link?.label ? linkAll.link.label : linkAll.link.content.label } isPrimary={true} />
+        </div>
+      }
     </Section>
+   
   );
 };
 

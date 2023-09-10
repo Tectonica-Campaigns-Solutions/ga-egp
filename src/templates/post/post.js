@@ -28,8 +28,6 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
   } = page;
   const basePath = basePathTag(apiKey);
 
-  console.log(typeof id)
-
   return (
     <Layout>
       <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />

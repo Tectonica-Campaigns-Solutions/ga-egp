@@ -178,21 +178,23 @@ export const DatoCMS = graphql`
     __typename
     id
     title
-    link {
-      url
-      ... on DatoCmsGlobalLink {
+    linkToAll{
+      link{
         label
-        content {
-          ... on DatoCmsListEvent {
-            slug
-            model {
-              apiKey
+        ...on DatoCmsGlobalLink{
+          label
+          content{
+            ... on DatoCmsPage{
+              slug
+              model{
+                apiKey
+              }
             }
-          }
-          ... on DatoCmsPage {
-            slug
-            model {
-              apiKey
+            ... on DatoCmsListEvent {
+              slug
+              model {
+                apiKey
+              }
             }
           }
         }
@@ -257,10 +259,20 @@ export const DatoCMS = graphql`
     title
     introduction
     backgroundColor
-    link {
-      url
-      ... on DatoCmsGlobalLink {
+    linkToAll{
+      link{
         label
+        ...on DatoCmsGlobalLink{
+          label
+          content{
+            ... on DatoCmsPage{
+              slug
+              model{
+                apiKey
+              }
+            }
+          }
+        }
       }
     }
     highlight {
@@ -691,64 +703,70 @@ export const DatoCMS = graphql`
           }
         }
       }
-      links {
-        id
-        url
-        label
-        content {
-          ... on DatoCmsPage {
-            ...PageLink
-          }
-          ... on DatoCmsCongress {
-            slug
-            model {
-              apiKey
+      childrenLinks{
+        ... on DatoCmsLink{
+          label
+          link{
+            ...on DatoCmsGlobalLink{
+              url
+              label
+              content{
+                ... on DatoCmsPage{
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition{
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPodcast {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListMember {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListEvent {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPosition {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPolicyPaper {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListMember {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+              }
             }
-          }
-          ... on DatoCmsListPodcast {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListMember {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListEvent {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListNews {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListPosition {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListPolicyPaper {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsListMember {
-            slug
-            model {
-              apiKey
-            }
-          }
-          ... on DatoCmsPage {
-            ...PageLink
           }
         }
       }
@@ -777,18 +795,23 @@ export const DatoCMS = graphql`
     __typename
     title
     id
-    link {
-      ... on DatoCmsGlobalLink {
+    linkToAll{
+      link{
         label
-        url
-        content {
-          ... on DatoCmsPage {
-            ...PageLink
-          }
-          ... on DatoCmsListNews {
-            slug
-            model {
-              apiKey
+        ...on DatoCmsGlobalLink{
+          label
+          content{
+            ... on DatoCmsPage{
+              slug
+              model{
+                apiKey
+              }
+            }
+            ... on DatoCmsListNews{
+              slug
+              model{
+                apiKey
+              }
             }
           }
         }
