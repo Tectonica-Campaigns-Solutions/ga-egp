@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
@@ -26,34 +26,6 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
     pages,
     seo,
   } = congress;
-
-  useEffect(() => {
-    setShowPlenary(null);
-    const params = new URLSearchParams(window.location.search);
-
-    if (params.has('item')) {
-      const maybeListSessionBlock = congress.blocks.find((b) => b.__typename === 'DatoCmsListSession');
-
-      if (maybeListSessionBlock) {
-        let existSession = null;
-
-        const sessionItems = maybeListSessionBlock.sessionItems;
-        const paramId = params.get('item').replace('DatoCmsSession-', '');
-
-        for (const item of sessionItems) {
-          const sessionItem = item.session.find((s) => s.id.replace('DatoCmsSession-', '') === paramId);
-
-          if (sessionItem) {
-            existSession = sessionItem;
-            break;
-          }
-        }
-
-        // console.log({ existSession });
-        setShowPlenary(existSession);
-      }
-    }
-  });
 
   const sidebarLinks = () => {
     const items = pages;
@@ -96,9 +68,7 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
             )}
           </div>
 
-          {isArray(congress.blocks) && !showPlenary && <Blocks blocks={congress.blocks} />}
-
-          {showPlenary && <SessionDetail session={showPlenary} />}
+          {isArray(congress.blocks) && <Blocks blocks={congress.blocks} />}
         </InnerLayout>
       </div>
     </Layout>

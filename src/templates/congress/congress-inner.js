@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import Blocks from '../../components/Blocks';
@@ -9,8 +9,11 @@ import SeoDatoCms from '../../components/SeoDatoCms';
 import { isArray } from '../../utils';
 
 import * as styles from './congress-inner.module.scss';
+import SessionDetail from './session-detail';
 
 function CongressInner({ location, data: { congressInner, congressParent, favicon, siteTitle } }) {
+  const [showPlenary, setShowPlenary] = useState(null);
+
   const {
     title,
     backgroundColor,
@@ -21,6 +24,30 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
     slug,
     label,
   } = congressParent;
+
+  useEffect(() => {
+    setShowPlenary(null);
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.has('item')) {
+      const maybeListSessionBlock = congressInner.blocks.find((b) => b.__typename === 'DatoCmsListSession');
+      if (maybeListSessionBlock) {
+        let existSession = null;
+        const sessionItems = maybeListSessionBlock.sessionItems;
+        const paramId = params.get('item').replace('DatoCmsSession-', '');
+
+        for (const item of sessionItems) {
+          const sessionItem = item.session.find((s) => s.id.replace('DatoCmsSession-', '') === paramId);
+          if (sessionItem) {
+            existSession = sessionItem;
+            break;
+          }
+        }
+
+        setShowPlenary(existSession);
+      }
+    }
+  });
 
   const sidebarLinks = () => {
     const items = congressMenu;
@@ -51,7 +78,9 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
 
       <InnerLayout sideNav={sidebarLinks()} landing={{ title: label, slug }}>
         <h1 className={styles.mainTitle}>{congressInner.title}</h1>
-        {isArray(congressInner.blocks) && <Blocks blocks={congressInner.blocks} />}
+        {isArray(congressInner.blocks) && !showPlenary && <Blocks blocks={congressInner.blocks} />}
+
+        {showPlenary && <SessionDetail session={showPlenary} />}
       </InnerLayout>
     </Layout>
   );

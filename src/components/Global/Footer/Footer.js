@@ -8,14 +8,9 @@ import TextHubspotForm from '../../Blocks/TextHubspotForm/TextHubsportForm';
 import './index.scss';
 
 function Footer() {
-  const {
-    menuFooter,
-    menuLegal,
-    partnersFooter,
-    footer
-  } = useStaticQuery(graphql`
+  const { menuFooter, menuLegal, partnersFooter, footer } = useStaticQuery(graphql`
     query footer {
-      footer: datoCmsFooterSetting{
+      footer: datoCmsFooterSetting {
         address
         support
         title
@@ -26,12 +21,12 @@ function Footer() {
             portalId
           }
         }
-        supportLogo{
+        supportLogo {
           url
           gatsbyImageData
           alt
         }
-        socialLinks{
+        socialLinks {
           label
           mainLink {
             url
@@ -53,7 +48,9 @@ function Footer() {
       }
     }
   `);
-  const formBlock = { hubspot:footer.footerForm, title: footer.title, id: '100'} 
+
+  const formBlock = { hubspot: footer.footerForm, title: footer.title, id: '100' };
+
   return (
     <footer className="footer" data-datocms-noindex>
       <div className="container">
@@ -68,7 +65,7 @@ function Footer() {
                 {isArray(partnersFooter.navigationItems) && (
                   <div className="partners-list">
                     {partnersFooter.navigationItems.map((partner) => (
-                      <Link key={partner.id} to={getCtaUrl(partner.mainLink)}>
+                      <Link key={partner.id} to={partner.mainLink?.url ?? ''} target="_blank">
                         <img src={partner.icon.url} alt={partner.label} loading="lazy" />
                       </Link>
                     ))}
@@ -102,7 +99,7 @@ function Footer() {
             <div className="row align-items-end">
               <div className="col-lg-6 copyright">
                 <div className="content">
-                  <div dangerouslySetInnerHTML={{__html: footer.address}} />
+                  <div dangerouslySetInnerHTML={{ __html: footer.address }} />
                 </div>
               </div>
 
@@ -124,7 +121,7 @@ function Footer() {
           {isArray(footer.socialLinks) && (
             <div className="col-lg-3 offset-lg-1 social-links">
               {footer.socialLinks.map((socialLink) => (
-                <Link key={socialLink.label} to={socialLink.mainLink} target="_blank">
+                <Link key={socialLink.label} to={socialLink.mainLink?.url ?? ''} target="_blank">
                   <img src={socialLink.icon?.url} alt={socialLink.label} />
                 </Link>
               ))}
@@ -138,7 +135,11 @@ function Footer() {
             <div className="col-lg">
               <div className="bottom-links">
                 {menuLegal.navigationItems.map((navItem) => (
-                  <Link key={navItem.label} to={getCtaUrl(navItem.mainLink)}>
+                  <Link
+                    key={navItem.label}
+                    to={getCtaUrl(navItem.mainLink) ?? navItem.mainLink?.url ?? ''}
+                    target={navItem.mainLink?.url ? '_blank' : ''}
+                  >
                     {navItem.label}
                   </Link>
                 ))}

@@ -39,6 +39,7 @@ const SessionDetail = ({ session }) => {
             <>
               {speakers.map((speaker, i) => {
                 const speakerInfo = JSON.parse(speaker.speakerInfo);
+                // console.log({ speaker, speakerInfo });
 
                 return (
                   <div className={'row'} key={i}>
@@ -50,10 +51,15 @@ const SessionDetail = ({ session }) => {
                       <h6 className={styles.speakerName}>
                         {speakerInfo.name} {speakerInfo.last_name}
                       </h6>
-                      <span className={styles.speakerPosition}>{speakerInfo.position}</span>
-                      {/* <div className={styles.speakerInformation}
-                          dangerouslySetInnerHTML={{__html: speaker.biography }}
-                        /> */}
+
+                      {speakerInfo.job_title && <span className={styles.speakerPosition}>{speakerInfo.job_title}</span>}
+
+                      {speakerInfo.bio && (
+                        <div
+                          className={styles.speakerInformation}
+                          dangerouslySetInnerHTML={{ __html: speakerInfo.bio }}
+                        />
+                      )}
 
                       {/* <Link className={styles.speakerLink}>Show more</Link> */}
                     </div>

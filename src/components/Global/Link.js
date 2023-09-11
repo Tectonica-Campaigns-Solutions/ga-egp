@@ -16,7 +16,7 @@ const Link = ({ to, children, ...rest }) => {
   }
 
   return (
-    <a href={to?.url} {...rest}>
+    <a href={to?.url ?? to} {...rest}>
       {children}
     </a>
   );
