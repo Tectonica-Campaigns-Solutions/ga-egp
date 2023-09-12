@@ -4,7 +4,7 @@ import './index.scss';
 const DonationLink = ({ item }) => {
   return (
     <div className={`donation-link d-flex align-items-center`}>
-      <a className="cta-item" href={`/.netlify/functions/checkout?priceid=${item.priceId}`}>
+      <a className="cta-item" href={`/.netlify/functions/checkout?priceid=${item.priceId}&mode=${item.donationType}`}>
         {item.amount}
       </a>
     </div>

@@ -3,11 +3,11 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const countries = require('./countries.json')
 
 exports.handler = async (event) => {
-  const {priceid } = event.queryStringParameters
+  const {priceid, mode } = event.queryStringParameters
 
   const session = await stripe.checkout.sessions.create({
 
-    mode: 'subscription',
+    mode: mode,
     payment_method_types: ['card'],
     success_url: `${process.env.BASE_URL}/donation-thank-you`,
     cancel_url: process.env.BASE_URL,
