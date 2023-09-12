@@ -16,7 +16,7 @@ const StructuredContentDefault = ({ content }) => {
           case 'DatoCmsEmbedAudio':
             return <EmbedAudio file={record.file} iframeContent={record.iframeContent} />;
           case 'DatoCmsImage':
-            return <div><ImageWrapper image={record.image}/></div>;
+            return <div className="mb-4"><ImageWrapper image={record.image}/></div>;
           case 'DatoCmsEmbedIframe':
             return <div className="mt-3 mb-3" dangerouslySetInnerHTML={{__html: record.embedCode}} />;
           case 'DatoCmsEmbedVideo':
