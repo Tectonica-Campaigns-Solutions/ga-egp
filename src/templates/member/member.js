@@ -145,7 +145,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
 }
 
 export const MemberQuery = graphql`
-  query MemberById($id: String, $menuPos: String, $isoCode: String) {
+  query MemberById($id: String, $menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -171,27 +171,27 @@ export const MemberQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
-      edges {
-        node {
-          id
-          title
-          logo
-          contacts {
-            name
-          }
-          social {
-            url
-            socialNetwork
-          }
-          contact {
-            website
-            email
-          }
-          status
-        }
-      }
-    }
+    # members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
+    #   edges {
+    #     node {
+    #       id
+    #       title
+    #       logo
+    #       contacts {
+    #         name
+    #       }
+    #       social {
+    #         url
+    #         socialNetwork
+    #       }
+    #       contact {
+    #         website
+    #         email
+    #       }
+    #       status
+    #     }
+    #   }
+    # }
   }
 `;
 

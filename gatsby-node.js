@@ -105,39 +105,39 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
     //create node for build time of member parties from hubspot
 
-    createNode({
-      title: companyProps.name.value,
-      logo: companyProps.image ? companyProps.image.value : '',
-      iso_code: countries.getAlpha2Code(companyProps.country.value, 'en'),
-      social: [
-        {
-          url: companyProps?.facebook_company_page?.value,
-          socialNetwork: 'facebook',
-        },
-        {
-          url: companyProps?.twitterhandle?.value,
-          socialNetwork: 'twitter',
-        },
-        {
-          url: companyProps?.linkedin_company_page?.value,
-          socialNetwork: 'linkedin',
-        },
-      ],
-      contact: {
-        website: companyProps?.website?.value,
-        email: companyProps?.organization_email ? companyProps.organization_email.value : '',
-      },
-      status: companyProps.membership_status?.value,
-      contacts: contacts,
-      // required fields
-      id: String(resultObject.companyId),
-      parent: null,
-      children: [],
-      internal: {
-        type: `MemberParty`,
-        contentDigest: createContentDigest(resultObject),
-      },
-    });
+    // createNode({
+    //   title: companyProps.name.value,
+    //   logo: companyProps.image ? companyProps.image.value : '',
+    //   iso_code: countries.getAlpha2Code(companyProps.country.value, 'en'),
+    //   social: [
+    //     {
+    //       url: companyProps?.facebook_company_page?.value,
+    //       socialNetwork: 'facebook',
+    //     },
+    //     {
+    //       url: companyProps?.twitterhandle?.value,
+    //       socialNetwork: 'twitter',
+    //     },
+    //     {
+    //       url: companyProps?.linkedin_company_page?.value,
+    //       socialNetwork: 'linkedin',
+    //     },
+    //   ],
+    //   contact: {
+    //     website: companyProps?.website?.value,
+    //     email: companyProps?.organization_email ? companyProps.organization_email.value : '',
+    //   },
+    //   status: companyProps.membership_status?.value,
+    //   contacts: contacts,
+    //   // required fields
+    //   id: String(resultObject.companyId),
+    //   parent: null,
+    //   children: [],
+    //   internal: {
+    //     type: `MemberParty`,
+    //     contentDigest: createContentDigest(resultObject),
+    //   },
+    // });
   }
 };
 
