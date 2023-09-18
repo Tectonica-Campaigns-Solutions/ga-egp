@@ -66,7 +66,7 @@ function ListPositions({
               <div className={`col-12 row ${styles.desktopItems}`}>
                 {items.map((item) => {
                   return (
-                    <div className="col-xxl-4 col-xl-6 col-lg-6 col-md-12 mb-5" key={item.node.id}>
+                    <div className="col-xxl-4 col-xl-6 col-lg-6 col-md-6 mb-5" key={item.node.id}>
                       <CardPosition position={item.node} showButtons={false} small />
                     </div>
                   );
