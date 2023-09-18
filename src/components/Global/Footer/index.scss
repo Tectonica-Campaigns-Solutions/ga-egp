@@ -71,12 +71,14 @@
   .copyright,
   .support {
     .content {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 1rem;
-      line-height: 130%;
-      color: var(--egp-white);
+      * {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 130%;
+        color: var(--egp-white);
+      }
 
       .image {
         margin-bottom: 0.625rem;
