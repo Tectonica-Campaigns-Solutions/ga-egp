@@ -84,3 +84,9 @@
     }
   }
 }
+
+@media screen and (min-width:2000px){
+  .inner-layout{
+    background: linear-gradient(90deg, #eaf2ee 25%, rgba(255, 255, 255, 1) 25%);
+  }
+}
