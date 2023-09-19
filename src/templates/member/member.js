@@ -16,7 +16,7 @@ const Order = {
 };
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
-  const parties = [];
+  const parties = members.edges;
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
 
@@ -102,14 +102,14 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
 
                     <div className="information">
                       <div className="row">
-                        {item.contacts && item.contacts.length > 0 && (
+                        {/* {item.contacts && item.contacts.length > 0 && (
                           <div className="col-lg-4 party-leaders">
                             <h4>Party Leaders:</h4>
                             {item.contacts.map((item, index) => {
                               return <p key={`${item.name}-${index}`}>{item.name}</p>;
                             })}
                           </div>
-                        )}
+                        )} */}
                         {(item.contact.website || item.contact.email) && (
                           <div className="col-lg-5">
                             <h4>Contact details</h4>
@@ -145,7 +145,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
 }
 
 export const MemberQuery = graphql`
-  query MemberById($id: String, $menuPos: String) {
+  query MemberById($id: String, $menuPos: String, $isoCode: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -171,27 +171,27 @@ export const MemberQuery = graphql`
         ...GatsbyDatoCmsSeoMetaTags
       }
     }
-    # members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
-    #   edges {
-    #     node {
-    #       id
-    #       title
-    #       logo
-    #       contacts {
-    #         name
-    #       }
-    #       social {
-    #         url
-    #         socialNetwork
-    #       }
-    #       contact {
-    #         website
-    #         email
-    #       }
-    #       status
-    #     }
-    #   }
-    # }
+    members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
+      edges {
+        node {
+          id
+          title
+          logo
+          # contacts {
+          #   name
+          # }
+          social {
+            url
+            socialNetwork
+          }
+          contact {
+            website
+            email
+          }
+          status
+        }
+      }
+    }
   }
 `;
 

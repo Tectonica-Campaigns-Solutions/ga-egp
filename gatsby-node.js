@@ -21,42 +21,23 @@ const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fet
 
 // node source from Hubspot
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
-  const bodyRequest = {
-    filterGroups: [
-      {
-        filters: [
-          {
-            propertyName: 'type',
-            operator: 'EQ',
-            value: 'MEMBER PARTY',
-          },
-          {
-            propertyName: 'published_in_web',
-            operator: 'EQ',
-            value: 'Yes',
-          },
-        ],
-      },
-    ],
-  };
   // get data from GitHub API at build time
-  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/companies/search`, {
-    method: 'POST',
+  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/2-117824001`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-    },
-    body: JSON.stringify(bodyRequest),
+    }
   });
 
   const resultData = await result.json();
   const companies = resultData.results.map((item) => item.id);
+  console.log(companies)
 
   //loop companies and get all relational data and create pages
   for (const company of companies) {
     const contacts = [];
-    const result = await fetch(`https://api.hubapi.com/companies/v2/companies/${company}`, {
+    const result = await fetch(`https://api.hubapi.com/crm/v3/objects/2-117824001/${company}?properties=member_party_name,country,facebook,twitter,member_party_main_email,website,egp_membership_status,logo`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -64,11 +45,10 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       },
     });
     const resultObject = await result.json();
-    const companyProps = resultObject.properties;
-
+    
     // associations
 
-    const getAssociations = await fetch('https://api.hubapi.com/crm/v4/associations/Companies/Contacts/batch/read', {
+    const getAssociations = await fetch('https://api.hubapi.com/crm/v4/associations/2-117824001/Contacts/batch/read', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -76,17 +56,21 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         Authorization: 'Bearer ' + process.env.HUBSPOT_API,
       },
       body: JSON.stringify({
-        inputs: [{ id: resultObject.companyId }],
+        inputs: [{ id: resultObject.id }],
       }),
     });
 
     const resultAssociations = await getAssociations.json();
+  
 
     //const resultsContacts = await getContacts.json()
     if (resultAssociations.results[0]) {
+      console.log(resultAssociations.results[0].to.associationTypes)
       const filterByPartyLeaders = resultAssociations.results[0].to.filter((item) =>
         item.associationTypes.map((el) => el.typeId).includes(40)
       );
+
+      console.log(filterByPartyLeaders)
 
       for (const item of filterByPartyLeaders) {
         const contact = item.toObjectId;
@@ -100,44 +84,45 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         const contactResult = await getContact.json();
         //console.log(contactResult)
         contacts.push({ name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname}` });
+        console.log('contacts', contacts)
       }
     }
 
     //create node for build time of member parties from hubspot
 
-    // createNode({
-    //   title: companyProps.name.value,
-    //   logo: companyProps.image ? companyProps.image.value : '',
-    //   iso_code: countries.getAlpha2Code(companyProps.country.value, 'en'),
-    //   social: [
-    //     {
-    //       url: companyProps?.facebook_company_page?.value,
-    //       socialNetwork: 'facebook',
-    //     },
-    //     {
-    //       url: companyProps?.twitterhandle?.value,
-    //       socialNetwork: 'twitter',
-    //     },
-    //     {
-    //       url: companyProps?.linkedin_company_page?.value,
-    //       socialNetwork: 'linkedin',
-    //     },
-    //   ],
-    //   contact: {
-    //     website: companyProps?.website?.value,
-    //     email: companyProps?.organization_email ? companyProps.organization_email.value : '',
-    //   },
-    //   status: companyProps.membership_status?.value,
-    //   contacts: contacts,
-    //   // required fields
-    //   id: String(resultObject.companyId),
-    //   parent: null,
-    //   children: [],
-    //   internal: {
-    //     type: `MemberParty`,
-    //     contentDigest: createContentDigest(resultObject),
-    //   },
-    // });
+    createNode({
+      title: resultObject.properties.member_party_name,
+      logo: resultObject.properties?.logo ? resultObject.properties.logo : '',
+      iso_code: countries.getAlpha2Code(resultObject.properties.country, 'en'),
+      social: [
+        {
+          url: resultObject.properties?.facebook,
+          socialNetwork: 'facebook',
+        },
+        {
+          url: resultObject.properties?.twitter,
+          socialNetwork: 'twitter',
+        },
+        // {
+        //   url: companyProps?.linkedin_company_page?.value,
+        //   socialNetwork: 'linkedin',
+        // },
+      ],
+      contact: {
+        website: resultObject.properties?.website ? resultObject.properties.website : '',
+        email: resultObject.properties?.member_party_main_email ? resultObject.properties?.member_party_main_email : '',
+      },
+      status: resultObject.properties?.egp_membership_status ? resultObject.properties.egp_membership_status : '',
+      contacts: contacts,
+      // required fields
+      id: String(resultObject.id),
+      parent: null,
+      children: [],
+      internal: {
+        type: `MemberParty`,
+        contentDigest: createContentDigest(resultObject),
+      },
+    });
   }
 };
 
