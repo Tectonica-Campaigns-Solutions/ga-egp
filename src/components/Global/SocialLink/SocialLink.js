@@ -20,12 +20,12 @@ const SocialMap = {
 
 const SocialLink = ({ name, url, title = '', iconWhite = false, smallIcons = false }) => {
   const socialImg = SocialMap[name];
-  let finalUrl
-  if(name == 'twitter'){
-    finalUrl = `https://twitter.com/${url}`
-  }else{
-    finalUrl = url
-  }
+  let finalUrl = url
+  // if(name == 'twitter'){
+  //   finalUrl = `https://twitter.com/${url}`
+  // }else{
+  //   finalUrl = url
+  // }
 
   return (
     <Link to={finalUrl}>
