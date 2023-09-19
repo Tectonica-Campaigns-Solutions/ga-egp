@@ -576,7 +576,7 @@ exports.createPages = ({ graphql, actions }) => {
               slug: resolution.slug,
               id: resolution.id,
               councilId: resolution.council ? resolution.council.id : null,
-              menuPos: getMenuPosition(navTree, resolution.id),
+              menuPos: 'DatoCmsMenu-128045800',
             },
           });
         });
