@@ -38,7 +38,7 @@ const InformationCard = ({
         <div className="pre-title">{preTitle}</div>
       </div>
 
-      <Link to={url} className={`${url ? 'active' : 'disable'}`} state={{ prevPage: location.href }}>
+      <Link to={url} className={`${url ? 'active' : 'disable'}`} state={{ prevPage: location.href.includes('/?') ? location.href : false }}>
         <h6>{title}</h6>
       </Link>
 

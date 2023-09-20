@@ -32,7 +32,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
   const resultData = await result.json();
   const companies = resultData.results.map((item) => item.id);
-  console.log(companies)
 
   //loop companies and get all relational data and create pages
   for (const company of companies) {
@@ -65,7 +64,6 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     
     //const resultsContacts = await getContacts.json()
     if (resultAssociations.results[0]) {
-      console.log(resultAssociations.results[0])
       // const filterByPartyLeaders = resultAssociations.results[0].to.filter((item) =>
       //   item.associationTypes.map((el) => el.typeId).includes(40)
       // );
