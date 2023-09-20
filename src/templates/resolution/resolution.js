@@ -16,12 +16,13 @@ const Resolution = ({
   location,
   data: { resolution, relatedResolutions, breadcrumb, favicon, siteTitle },
 }) => {
+ 
   return (
     <Layout>
       <SeoDatoCms seo={resolution.seo} favicon={favicon} siteTitle={siteTitle} />
 
       <HeroPage
-        backButton={true}
+        backButton={location.state?.prevPage ? location.state.prevPage : false}
         title={resolution.title}
         context={pageContext}
         location={location}

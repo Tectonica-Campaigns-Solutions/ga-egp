@@ -3,6 +3,7 @@ import { isArray } from '../../../utils';
 import Document from '../Document/Document';
 import Link from '../Link';
 import Tag from '../Tag/Tag';
+import { useLocation } from '@reach/router';
 
 import './index.scss';
 
@@ -15,6 +16,8 @@ const InformationCard = ({
   documents = [],
   url = null,
 }) => {
+  const location = useLocation();
+
   React.useEffect(() => {
     const paragraphs = document.querySelectorAll('#intro p');
 
@@ -35,7 +38,7 @@ const InformationCard = ({
         <div className="pre-title">{preTitle}</div>
       </div>
 
-      <Link to={url} className={`${url ? 'active' : 'disable'}`}>
+      <Link to={url} className={`${url ? 'active' : 'disable'}`} state={{ prevPage: location.href }}>
         <h6>{title}</h6>
       </Link>
 

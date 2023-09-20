@@ -28,9 +28,9 @@ function HeroPage({
           </div>
         )}
 
-        {/* {
-          backButton && <div className="mb-3" onClick={() => {console.log(document.referrer)}}>Back to search</div>
-        } */}
+        {
+          backButton && <a className="mb-3 d-block" href={backButton}>Back to search</a>
+        }
 
         <div>
           {date && <div className={styles.heroDate}>{date}</div>}

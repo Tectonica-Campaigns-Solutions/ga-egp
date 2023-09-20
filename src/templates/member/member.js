@@ -17,6 +17,7 @@ const Order = {
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
   const parties = members.edges;
+  console.log(parties)
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
 
@@ -102,14 +103,14 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
 
                     <div className="information">
                       <div className="row">
-                        {/* {item.contacts && item.contacts.length > 0 && (
+                        {item.contacts && item.contacts.length > 0 && (
                           <div className="col-lg-4 party-leaders">
                             <h4>Party Leaders:</h4>
                             {item.contacts.map((item, index) => {
                               return <p key={`${item.name}-${index}`}>{item.name}</p>;
                             })}
                           </div>
-                        )} */}
+                        )}
                         {(item.contact.website || item.contact.email) && (
                           <div className="col-lg-5">
                             <h4>Contact details</h4>
@@ -177,9 +178,9 @@ export const MemberQuery = graphql`
           id
           title
           logo
-          # contacts {
-          #   name
-          # }
+          contacts {
+            name
+          }
           social {
             url
             socialNetwork

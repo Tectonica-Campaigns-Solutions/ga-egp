@@ -37,7 +37,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   //loop companies and get all relational data and create pages
   for (const company of companies) {
     const contacts = [];
-    const result = await fetch(`https://api.hubapi.com/crm/v3/objects/2-117824001/${company}?properties=member_party_name,country,facebook,twitter,member_party_main_email,website,egp_membership_status,logo`, {
+    const result = await fetch(`https://api.hubapi.com/crm/v3/objects/2-117824001/${company}?properties=member_party_name,country,facebook,twitter,member_party_main_email,website,egp_membership_status,logo,linkedin`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -62,15 +62,15 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
     const resultAssociations = await getAssociations.json();
   
-
+    
     //const resultsContacts = await getContacts.json()
     if (resultAssociations.results[0]) {
-      console.log(resultAssociations.results[0].to.associationTypes)
-      const filterByPartyLeaders = resultAssociations.results[0].to.filter((item) =>
-        item.associationTypes.map((el) => el.typeId).includes(40)
-      );
+      console.log(resultAssociations.results[0])
+      // const filterByPartyLeaders = resultAssociations.results[0].to.filter((item) =>
+      //   item.associationTypes.map((el) => el.typeId).includes(40)
+      // );
 
-      console.log(filterByPartyLeaders)
+      const filterByPartyLeaders = resultAssociations.results[0].to
 
       for (const item of filterByPartyLeaders) {
         const contact = item.toObjectId;
@@ -82,9 +82,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
           },
         });
         const contactResult = await getContact.json();
-        //console.log(contactResult)
-        contacts.push({ name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname}` });
-        console.log('contacts', contacts)
+        contacts.push({ name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname ? contactResult.properties.lastname : ''}` });
       }
     }
 
@@ -103,10 +101,10 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
           url: resultObject.properties?.twitter,
           socialNetwork: 'twitter',
         },
-        // {
-        //   url: companyProps?.linkedin_company_page?.value,
-        //   socialNetwork: 'linkedin',
-        // },
+        {
+          url: resultObject.properties?.linkedin,
+          socialNetwork: 'linkedin',
+        },
       ],
       contact: {
         website: resultObject.properties?.website ? resultObject.properties.website : '',
