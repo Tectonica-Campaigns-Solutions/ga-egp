@@ -17,7 +17,6 @@ const Order = {
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
   const parties = members.edges;
-  console.log(parties)
 
   const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
 

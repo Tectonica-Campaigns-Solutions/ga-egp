@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import { navigate } from 'gatsby';
 import * as styles from './heropage.module.scss';
+import Link from '../Link';
 
 function HeroPage({
   title,
@@ -16,9 +16,6 @@ function HeroPage({
   breadcrumbDetail = null,
   backButton = false
 }) {
-  useEffect(() => {
-    console.log(document)
-  }, [])
   return (
     <div className={styles.heroPage}>
       <div className="container">
@@ -29,7 +26,7 @@ function HeroPage({
         )}
 
         {
-          backButton && <a className="mb-3 d-block" href={backButton}>Back to search</a>
+          backButton && <Link className="mb-3 d-block" href={backButton}>Back to search</Link>
         }
 
         <div>
