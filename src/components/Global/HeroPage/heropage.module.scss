@@ -72,10 +72,40 @@
   max-width: 1200px;
 }
 
+.backBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--EGP-DarkGreen, #36845B);
+  font-family: "Jaldi";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 110%;
+  margin-bottom: 35px;
+
+  &:hover {
+    color: var(--EGP-DarkGreen, #36845B); 
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .heroPage {
+    padding-top: 100px;
+    padding-bottom: 10px;
+    margin-bottom: 3rem;
+  }
+
+  .backBtn {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .heroPage {
     padding-top:100px;
     padding-bottom:10px;
+    margin-bottom: 0rem;
     h1,
     h2 {
       font-weight: 700;
@@ -88,3 +118,4 @@
 
   }
 }
+

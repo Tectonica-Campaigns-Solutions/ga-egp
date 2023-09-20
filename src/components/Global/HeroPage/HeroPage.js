@@ -1,7 +1,9 @@
 import React from 'react';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
-import * as styles from './heropage.module.scss';
 import Link from '../Link';
+import backBtn from '../../Icons/backbtn.svg';
+
+import * as styles from './heropage.module.scss';
 
 function HeroPage({
   title,
@@ -25,9 +27,12 @@ function HeroPage({
           </div>
         )}
 
-        {
-          backButton && <Link className="mb-3 d-block" href={backButton}>Back to search</Link>
-        }
+        {backButton && (
+          <Link className={`${styles.backBtn}`} href={backButton}>
+            <img src={backBtn} alt="Back button icon" />
+            Back to search
+          </Link>
+        )}
 
         <div>
           {date && <div className={styles.heroDate}>{date}</div>}
