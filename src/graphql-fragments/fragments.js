@@ -282,7 +282,7 @@ export const DatoCMS = graphql`
         image {
           url
           alt
-          gatsbyImageData(width: 400, height: 350)
+          gatsbyImageData(width: 750, height: 550)
         }
         ctas {
           ...BlockCta
