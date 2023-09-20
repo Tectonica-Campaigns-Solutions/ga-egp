@@ -97,7 +97,7 @@
   }
 
   .backBtn {
-    display: none;
+    font-size: 20px;
   }
 }
 
@@ -116,6 +116,15 @@
       font-size:25px;
     }
 
+  }
+
+  .backBtn {
+    font-size: 16px;
+    margin-bottom: 20px;
+
+    img {
+      height: 10px;
+    }
   }
 }
 
