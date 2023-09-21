@@ -229,6 +229,7 @@ export const DatoCMS = graphql`
             time
             title
             room
+            description
             sessionType {
               ... on DatoCmsSessionType {
                 id

@@ -11,11 +11,15 @@ import locationIcon from '../../components/Icons/location.svg';
 import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
-  const { room, title, time, sessionType, speakers = [], date } = session;
+  console.log(session)
+  const { room, title, time, sessionType, speakers = [], date, description } = session;
 
   return (
     <div>
       <h2 className={styles.title}>{title}</h2>
+      {
+        description && <div className="mb-5" dangerouslySetInnerHTML={{__html: description}} />
+      }
 
       {/* Basic information */}
       <div className="row mb-5">
