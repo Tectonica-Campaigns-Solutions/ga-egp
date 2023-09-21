@@ -9,7 +9,7 @@
   }
 
   .information {
-    min-height: 300px;
+    min-height: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -93,7 +93,7 @@
 
     &>div {
       border-radius: 0 0 15px 15px !important;
-      height: 310px;
+      height: 230px;
     }
 
     img {

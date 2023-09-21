@@ -863,7 +863,7 @@ export const DatoCMS = graphql`
     slug
     image {
       alt
-      gatsbyImageData
+      gatsbyImageData(width:600, height:300)
     }
     tags {
       ... on DatoCmsTagNews {
