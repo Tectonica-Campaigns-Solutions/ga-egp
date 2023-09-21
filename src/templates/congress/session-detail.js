@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
 import { isArray } from '../../utils';
 import DescriptionIcon from '../../components/Global/DescriptionIcon/DescriptionIcon';
 import ImageWrapper from '../../components/Global/Image/ImageWrapper';
@@ -11,15 +10,12 @@ import locationIcon from '../../components/Icons/location.svg';
 import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
-  console.log(session)
   const { room, title, time, sessionType, speakers = [], date, description } = session;
 
   return (
     <div>
       <h2 className={styles.title}>{title}</h2>
-      {
-        description && <div className="mb-5" dangerouslySetInnerHTML={{__html: description}} />
-      }
+      {description && <div className="mb-5" dangerouslySetInnerHTML={{ __html: description }} />}
 
       {/* Basic information */}
       <div className="row mb-5">

@@ -7,9 +7,9 @@ import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import { isArray } from '../../utils';
+import SessionDetail from './session-detail';
 
 import * as styles from './congress-inner.module.scss';
-import SessionDetail from './session-detail';
 
 function CongressInner({ location, data: { congressInner, congressParent, favicon, siteTitle } }) {
   const [showPlenary, setShowPlenary] = useState(null);

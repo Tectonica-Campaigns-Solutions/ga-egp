@@ -178,15 +178,15 @@ export const DatoCMS = graphql`
     __typename
     id
     title
-    linkToAll{
-      link{
+    linkToAll {
+      link {
         label
-        ...on DatoCmsGlobalLink{
+        ... on DatoCmsGlobalLink {
           label
-          content{
-            ... on DatoCmsPage{
+          content {
+            ... on DatoCmsPage {
               slug
-              model{
+              model {
                 apiKey
               }
             }
@@ -260,15 +260,15 @@ export const DatoCMS = graphql`
     title
     introduction
     backgroundColor
-    linkToAll{
-      link{
+    linkToAll {
+      link {
         label
-        ...on DatoCmsGlobalLink{
+        ... on DatoCmsGlobalLink {
           label
-          content{
-            ... on DatoCmsPage{
+          content {
+            ... on DatoCmsPage {
               slug
-              model{
+              model {
                 apiKey
               }
             }
@@ -704,21 +704,21 @@ export const DatoCMS = graphql`
           }
         }
       }
-      childrenLinks{
-        ... on DatoCmsLink{
+      childrenLinks {
+        ... on DatoCmsLink {
           label
-          link{
-            ...on DatoCmsGlobalLink{
+          link {
+            ... on DatoCmsGlobalLink {
               url
               label
-              content{
-                ... on DatoCmsPage{
+              content {
+                ... on DatoCmsPage {
                   slug
                   model {
                     apiKey
                   }
                 }
-                ... on DatoCmsListPosition{
+                ... on DatoCmsListPosition {
                   slug
                   model {
                     apiKey
@@ -796,21 +796,21 @@ export const DatoCMS = graphql`
     __typename
     title
     id
-    linkToAll{
-      link{
+    linkToAll {
+      link {
         label
-        ...on DatoCmsGlobalLink{
+        ... on DatoCmsGlobalLink {
           label
-          content{
-            ... on DatoCmsPage{
+          content {
+            ... on DatoCmsPage {
               slug
-              model{
+              model {
                 apiKey
               }
             }
-            ... on DatoCmsListNews{
+            ... on DatoCmsListNews {
               slug
-              model{
+              model {
                 apiKey
               }
             }
@@ -864,7 +864,7 @@ export const DatoCMS = graphql`
     slug
     image {
       alt
-      gatsbyImageData(width:600, height:300)
+      gatsbyImageData(width: 600, height: 300)
     }
     tags {
       ... on DatoCmsTagNews {
