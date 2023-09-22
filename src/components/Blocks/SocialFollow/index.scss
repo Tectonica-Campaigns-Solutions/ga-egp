@@ -51,13 +51,28 @@
     }
 
     .links {
-      gap: 10px;
-
       a {
+        padding-left: 10px;
+        padding-right: 10px;
+
         img {
           width: 30px;
           height: 30px;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .social-follow {
+
+    .links {
+      gap: 15px;
+
+      a {
+        padding: 0;
+        border-right: none !important;
       }
     }
   }
