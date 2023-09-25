@@ -37,15 +37,15 @@
   }
 
   .mask span:nth-child(1) {
-    background-image: linear-gradient(45deg, #0ecffe 50%, #07a6f1);
-  }
-
-  .mask span:nth-child(2) {
     background-image: linear-gradient(45deg, #18e198 50%, #0ec15d);
   }
 
+  .mask span:nth-child(2) {
+    background-image: linear-gradient(45deg, #FFDC2E 50%, #FFDC2E);
+  }
+
   .mask span:nth-child(3) {
-    background-image: linear-gradient(45deg, #8a7cfb 50%, #633e9c);
+    background-image: linear-gradient(45deg, #18e198 50%, #0ec15d);
   }
 
   .mask span:nth-child(4) {
