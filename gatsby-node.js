@@ -21,32 +21,36 @@ const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fet
 
 // node source from Hubspot
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
-  // get data from GitHub API at build time
-  const result = await fetch(`https://api.hubapi.com/crm/v3/objects/2-117824001`, {
+  const result = await fetch('https://api.hubspot.com/crm/v3/objects/2-117824001/search', {
+    method: "POST",
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-    }
-  });
+    },
+    body: JSON.stringify({
+      "filterGroups":[
+        {
+          "filters":[
+            {
+              "propertyName": "published_in_the_site",
+              "operator": "EQ",
+              "value": "Yes"
+            }
+          ]
+        }
+      ],
+      "properties": ["member_party_name", "country", "id", "logo", "facebook", "linkedin", "twitter", "member_party_main_email", "egp_membership_status", "website"]
+    }),
+  })
 
   const resultData = await result.json();
-  const companies = resultData.results.map((item) => item.id);
-
+  
+ 
   //loop companies and get all relational data and create pages
-  for (const company of companies) {
-    const contacts = [];
-    const result = await fetch(`https://api.hubapi.com/crm/v3/objects/2-117824001/${company}?properties=member_party_name,country,facebook,twitter,member_party_main_email,website,egp_membership_status,logo,linkedin`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + process.env.HUBSPOT_API,
-      },
-    });
-    const resultObject = await result.json();
+  for (const company of resultData.results) {
     
-    // associations
-
+    const contacts = [];
     const getAssociations = await fetch('https://api.hubapi.com/crm/v4/associations/2-117824001/Contacts/batch/read', {
       method: 'POST',
       headers: {
@@ -55,7 +59,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         Authorization: 'Bearer ' + process.env.HUBSPOT_API,
       },
       body: JSON.stringify({
-        inputs: [{ id: resultObject.id }],
+        inputs: [{ id: company.id }],
       }),
     });
 
@@ -64,10 +68,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     
     //const resultsContacts = await getContacts.json()
     if (resultAssociations.results[0]) {
-      // const filterByPartyLeaders = resultAssociations.results[0].to.filter((item) =>
-      //   item.associationTypes.map((el) => el.typeId).includes(40)
-      // );
-
+    
       const filterByPartyLeaders = resultAssociations.results[0].to
 
       for (const item of filterByPartyLeaders) {
@@ -87,36 +88,36 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     //create node for build time of member parties from hubspot
 
     createNode({
-      title: resultObject.properties.member_party_name,
-      logo: resultObject.properties?.logo ? resultObject.properties.logo : '',
-      iso_code: countries.getAlpha2Code(resultObject.properties.country, 'en'),
+      title: company.properties.member_party_name,
+      logo: company.properties?.logo ? company.properties.logo : '',
+      iso_code: countries.getAlpha2Code(company.properties.country, 'en'),
       social: [
         {
-          url: resultObject.properties?.facebook,
+          url: company.properties?.facebook,
           socialNetwork: 'facebook',
         },
         {
-          url: resultObject.properties?.twitter,
+          url: company.properties?.twitter,
           socialNetwork: 'twitter',
         },
         {
-          url: resultObject.properties?.linkedin,
+          url: company.properties?.linkedin,
           socialNetwork: 'linkedin',
         },
       ],
       contact: {
-        website: resultObject.properties?.website ? resultObject.properties.website : '',
-        email: resultObject.properties?.member_party_main_email ? resultObject.properties?.member_party_main_email : '',
+        website: company.properties?.website ? company.properties.website : '',
+        email: company.properties?.member_party_main_email ? company.properties?.member_party_main_email : '',
       },
-      status: resultObject.properties?.egp_membership_status ? resultObject.properties.egp_membership_status : '',
+      status: company.properties?.egp_membership_status ? company.properties.egp_membership_status : '',
       contacts: contacts,
       // required fields
-      id: String(resultObject.id),
+      id: String(company.id),
       parent: null,
       children: [],
       internal: {
         type: `MemberParty`,
-        contentDigest: createContentDigest(resultObject),
+        contentDigest: createContentDigest(company),
       },
     });
   }
