@@ -36,6 +36,11 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
               "propertyName": "published_in_the_site",
               "operator": "EQ",
               "value": "Yes"
+            },
+            {
+              "propertyName": "egp_membership_status",
+              "operator": "IN",
+              "values": ["Full Member", "Associate Member", "Candidate Member"]
             }
           ]
         }
