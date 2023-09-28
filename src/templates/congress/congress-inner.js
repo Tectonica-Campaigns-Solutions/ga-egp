@@ -103,6 +103,11 @@ export const CongressInnerQuery = graphql`
       blocks {
         ...BlockTextSimple
         ...BlockListSessions
+        ... on DatoCmsEmbedIframe {
+          __typename
+          originalId
+          embedCode
+        }
       }
       seo: seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

@@ -13,6 +13,11 @@ const Layout = ({ navbarWhite = false, navbarYellowHover = false, location, chil
     trackingHubspot.id = 'hs-script-loader';
     trackingHubspot.src = 'https://js-eu1.hs-scripts.com/26289884.js';
     document.body.appendChild(trackingHubspot);
+
+    const titoCode = document.createElement('script')
+    titoCode.src = 'https://js.tito.io/v2/with/inline/without/widget-css'
+    document.body.appendChild(titoCode);
+
   })
   return (
     <>
