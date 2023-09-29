@@ -212,6 +212,7 @@ export const DatoCMS = graphql`
     id
     text
     useContainer
+    smallWidth
   }
 
   fragment BlockListSessions on DatoCmsListSession {

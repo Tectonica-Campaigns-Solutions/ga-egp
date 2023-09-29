@@ -10,10 +10,26 @@
     color: var(--egp-green) !important;
   }
 
+  img{
+    max-width:100%;
+  }
   ul,
   li {
     list-style: initial;
   }
+  h2{
+    font-size:40px;
+    padding:10px 0 20px 0;
+  }
+  h3{
+    font-size:30px;
+    padding:10px 0 20px 0;
+  }
+}
+
+.smallWidth{
+  max-width:850px!important;
+  margin:auto!important;
 }
 
 @media screen and (max-width:767px){
