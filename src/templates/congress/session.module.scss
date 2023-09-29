@@ -8,6 +8,35 @@
   margin-bottom: 40px;
 }
 
+.rowSpeaker{
+  border-bottom:1px solid rgba(131, 131, 134, 1);
+  &:last-child{
+    border:0;
+  }
+}
+
+.typeSession{
+  display:flex;
+  align-items: center;
+  font-size:20px;
+  p{
+    margin:0;
+    padding:0;
+  }
+  span{
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--egp-dark-gray);
+    border-radius: 100%;
+    display: inline-block;
+    margin-right:10px;
+  }
+}
+
+.decriptionSession{
+  font-size:20px;
+}
+
 .speakerImage {
   img {
     width: 100%;

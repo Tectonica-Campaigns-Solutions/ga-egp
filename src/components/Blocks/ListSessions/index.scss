@@ -1,0 +1,10 @@
+.list-sessions{
+  .accordion{
+    padding-top:30px;
+    .item.active .ac-content{
+      padding-top:0;
+      padding-left:13px;
+      padding-right:13px;
+    }
+  }
+}

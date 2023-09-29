@@ -1,8 +1,27 @@
 .session_item {
-  padding: 33px 0;
-
+  padding-top:15px;
+  padding-bottom:15px;
+  transition: all 0.3s;
+  *{
+    font-size:20px;
+  }
+  h3{
+    padding:0;
+    margin:0;
+  }
   &:not(:last-child) {
     border-bottom: 1px solid rgba(131, 131, 134, .2);
+  }
+  &:hover{
+    opacity:0.8;
+  }
+}
+
+.list-sessions{
+  .accordion .item.active .ac-content{
+    padding-top:0;
+    padding-left:13px;
+    padding-right:13px;
   }
 }
 
@@ -15,7 +34,6 @@
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
     line-height: 150%;
     color: var(-egp-dark);
   }
@@ -25,7 +43,6 @@
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
   line-height: 150%;
   color: var(-egp-dark);
   cursor: pointer;

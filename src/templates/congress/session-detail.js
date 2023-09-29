@@ -10,12 +10,22 @@ import locationIcon from '../../components/Icons/location.svg';
 import * as styles from './session.module.scss';
 
 const SessionDetail = ({ session }) => {
-  const { room, title, time, sessionType, speakers = [], date, description } = session;
-
+  const { room, title, time, sessionType, speakers = [], date, description, icon } = session;
   return (
     <div>
+      <div className={`${styles.rowIcons} d-flex align-items-center mb-4 gap-4`}>
+        {
+          icon && <div><img src={icon.url} width="30" height="30"/></div>
+        }
+        { 
+          sessionType && <div className={styles.typeSession}>
+            <span style={{ backgroundColor: sessionType.color.hex }} />
+            <p>{sessionType.title}</p>
+          </div>
+        }
+      </div>
       <h2 className={styles.title}>{title}</h2>
-      {description && <div className="mb-5" dangerouslySetInnerHTML={{ __html: description }} />}
+      {description && <div className={`mb-5 ${styles.decriptionSession}` }dangerouslySetInnerHTML={{ __html: description }} />}
 
       {/* Basic information */}
       <div className="row mb-5">
@@ -42,7 +52,7 @@ const SessionDetail = ({ session }) => {
                 // console.log({ speaker, speakerInfo });
 
                 return (
-                  <div className={'row'} key={i}>
+                  <div className={`row mb-4 pb-4 ${styles.rowSpeaker}`} key={i}>
                     <div className={`col-4 ${styles.speakerImage}`}>
                       <ImageWrapper image={speaker.photo} />
                     </div>

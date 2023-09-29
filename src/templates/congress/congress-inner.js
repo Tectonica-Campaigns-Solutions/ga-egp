@@ -38,6 +38,7 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
 
         for (const item of sessionItems) {
           const sessionItem = item.session.find((s) => s.id.replace('DatoCmsSession-', '') === paramId);
+          console.log(sessionItem)
           if (sessionItem) {
             existSession = sessionItem;
             break;

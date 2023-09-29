@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, navigate } from 'gatsby';
 import SessionType from './SessionType/SessionType';
 import Accordion from '../../Global/Accordion/Accordion';
 import SessionItem from './SessionItem/SessionItem';
+import './index.scss'
 
 function ListSessions(block) {
   // console.log(block);
@@ -30,7 +31,7 @@ function ListSessions(block) {
   };
 
   return (
-    <div>
+    <div className="list-sessions">
       <div className="row mb-5">
         {data.allDatoCmsSessionType.edges.map((item) => (
           <div className="col-4" key={item.id}>

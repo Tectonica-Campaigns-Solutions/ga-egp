@@ -230,6 +230,9 @@ export const DatoCMS = graphql`
             title
             room
             description
+            icon{
+              url
+            }
             sessionType {
               ... on DatoCmsSessionType {
                 id
@@ -244,7 +247,7 @@ export const DatoCMS = graphql`
                 photo {
                   url
                   alt
-                  gatsbyImageData(width: 500, height: 500)
+                  gatsbyImageData(width: 450, height: 450)
                 }
                 speakerInfo
               }
