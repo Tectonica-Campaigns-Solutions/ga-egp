@@ -56,6 +56,90 @@
   }
 }
 
+.tito-widget{
+  padding:20px;
+  background-color: #fff;
+  border:2px solid #E1E9E5;
+  border-radius:5px;
+  .tito-widget-form{
+    .tito-release{
+      padding-bottom:10px;
+      margin-bottom:10px;
+      border-bottom:1px solid #E1E9E5;
+      display:flex;
+      justify-content:space-between;
+      align-items: center;
+      .tito-release-description{
+        max-width:60%;
+        margin-right: auto;
+      }
+      label{
+        font-weight:500;
+        font-size:20px;
+      }
+      p{
+        padding:0;
+        margin:0;
+      }
+      .tito-price, .tito-price-details-donation{
+        font-size:20px;
+        font-weight: 500;
+        margin-right: 10px;;
+      }
+      .tito-times{
+        margin-right:10px;
+      }
+      .tito-price-details-donation input{
+        border-radius:5px;
+        border:1px solid #838386;
+        padding:5px;
+        background-color:#F8F9FB;
+        font-size:16px;
+      }
+      .tito-quantity-input{
+        border-radius:5px;
+        border:1px solid #838386;
+        padding:5px;
+        background-color:#F8F9FB;
+        margin:0 5px;
+        text-align: center;
+        font-size:16px;
+      }
+      .tito-release--increment-quantity{
+        svg path{
+          fill: #36845B
+        }
+      }
+      .tito-release--decrement-quantity{
+        svg path{
+          fill: #838386
+        }
+      }
+    }
+    .tito-form-actions{
+      display:flex;
+      justify-content: flex-end;
+      gap:20px;
+      padding-top:20px;
+      input[type=text]{
+        border-radius:5px;
+        border:1px solid #838386;
+        padding:10px;
+        background-color:#F8F9FB;
+      }
+      button{
+        background-color: #57B45F;
+        color:#fff;
+        border:0;
+        padding:10px 20px;
+        border-radius: 10px;
+        text-transform: uppercase;
+      
+      }
+    }
+  }
+}
+
 
 @media screen and (max-width: 767px) {
   .heroPage {
