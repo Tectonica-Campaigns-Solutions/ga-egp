@@ -116,6 +116,30 @@ export const PositionQuery = graphql`
       }
       text {
         value
+        blocks{
+          ... on DatoCmsEmbedVideo {
+            id: originalId
+            __typename
+            video {
+              url
+              providerUid
+            }
+          }
+          ... on DatoCmsEmbedIframe {
+            __typename
+            id: originalId
+            embedCode
+          }
+          ... on DatoCmsImage {
+            __typename
+            id: originalId
+            image {
+              gatsbyImageData
+              alt
+              title
+            }
+          }
+        }
       }
       form {
         ... on DatoCmsTextHubspotForm {

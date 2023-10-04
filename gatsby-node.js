@@ -55,7 +55,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
   //loop companies and get all relational data and create pages
   for (const company of resultData.results) {
     
-    const contacts = [];
+    const contacts = [{name: ''}];
     const getAssociations = await fetch('https://api.hubapi.com/crm/v4/associations/2-117824001/Contacts/batch/read', {
       method: 'POST',
       headers: {

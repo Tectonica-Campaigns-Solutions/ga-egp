@@ -2,3 +2,14 @@
   display: flex;
   gap: 30px;
 }
+
+@media screen and (max-width:768px){
+  .ctas{
+    width:100%;
+    flex-direction: column;
+    gap:10px;
+    a{
+      width:100%;
+    }
+  }
+}

@@ -68,6 +68,16 @@
 
 @media screen and (max-width: 992px) {
   .heroCongress {
+    padding-top:100px;
     background-image: none !important;
+    &.secondaryPage {
+      padding-bottom: 20px;
+    }
+    h2{
+      font-size:40px;
+    }
+    .backBtn{
+      margin-bottom:40px;
+    }
   }
 }
