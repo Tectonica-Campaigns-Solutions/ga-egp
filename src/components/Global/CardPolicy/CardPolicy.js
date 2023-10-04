@@ -16,7 +16,7 @@ function CardPolicy({ item }) {
           {isPolicyPaper ? (
             <>
               {/* TODO: Format date, add correct country */}
-              Adopted: <strong>Madrid, {date}</strong>
+              {/* Adopted: <strong>Madrid, {date}</strong> */}
             </>
           ) : (
             council && (
