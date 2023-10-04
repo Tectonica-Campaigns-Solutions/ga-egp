@@ -8,6 +8,7 @@ import InnerLayout from '../../components/Layout/InnerLayout/InnerLayout';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import { isArray } from '../../utils';
 import SessionDetail from './session-detail';
+import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
 
 import * as styles from './congress-inner.module.scss';
 
@@ -38,7 +39,6 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
 
         for (const item of sessionItems) {
           const sessionItem = item.session.find((s) => s.id.replace('DatoCmsSession-', '') === paramId);
-          console.log(sessionItem)
           if (sessionItem) {
             existSession = sessionItem;
             break;
@@ -65,6 +65,30 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
     );
   };
 
+  // Map pages collection to use InnerNavigation component
+  const mobileLinks = congressMenu.map((p, index) => ({
+    hideInInnerNavigation: false,
+    position: index,
+    title: p.title,
+    content: {
+      model: {
+        apiKey: p.model.apiKey,
+      },
+      slug: p.slug,
+    },
+  }));
+  mobileLinks.unshift({
+    hideInInnerNavigation: false,
+    position: -1,
+    title: 'Start',
+    content: {
+      model: {
+        apiKey: null,
+      },
+      slug: slug,
+    },
+  });
+
   return (
     <Layout navbarWhite>
       <SeoDatoCms seo={congressInner.seo} favicon={favicon} siteTitle={siteTitle} />
@@ -76,6 +100,10 @@ function CongressInner({ location, data: { congressInner, congressParent, favico
         ctas={ctas}
         isCongress={isCongress}
       />
+
+      <div className="d-block d-lg-none">
+        <InnerNavigation location={location} innerMenu={{ treeChildren: mobileLinks }} />
+      </div>
 
       <InnerLayout sideNav={sidebarLinks()} landing={{ title: label, slug }}>
         <h1 className={styles.mainTitle}>{congressInner.title}</h1>

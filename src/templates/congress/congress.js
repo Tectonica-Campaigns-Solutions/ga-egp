@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../../components/Layout/Layout';
 import HeroCongress from '../../components/Global/HeroCongress/HeroCongress';
@@ -7,13 +7,12 @@ import SidebarNav from '../../components/Global/SidebarNav/SidebarNav';
 import SeoDatoCms from '../../components/SeoDatoCms';
 import { isArray } from '../../utils';
 import Blocks from '../../components/Blocks';
-import SessionDetail from './session-detail';
 import CtaList from '../../components/Global/Cta/CtaList';
+import InnerNavigation from '../../components/Global/InnerNavigation/InnerNavigation';
 
 import * as styles from './congress.module.scss';
 
 function Congress({ location, data: { congress, favicon, siteTitle } }) {
-  const [showPlenary, setShowPlenary] = useState(null);
   const {
     slug,
     title,
@@ -40,6 +39,30 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
 
   const hasStartPage = congressIntroduction && congressIntroduction[0];
 
+  // Map pages collection to use InnerNavigation component
+  const mobileLinks = pages.map((p, index) => ({
+    hideInInnerNavigation: false,
+    position: index,
+    title: p.title,
+    content: {
+      model: {
+        apiKey: p.model.apiKey,
+      },
+      slug: p.slug,
+    },
+  }));
+  mobileLinks.unshift({
+    hideInInnerNavigation: false,
+    position: -1,
+    title: 'Start',
+    content: {
+      model: {
+        apiKey: null,
+      },
+      slug: slug,
+    },
+  });
+
   return (
     <Layout navbarWhite>
       <SeoDatoCms seo={seo} favicon={favicon} siteTitle={siteTitle} />
@@ -54,7 +77,11 @@ function Congress({ location, data: { congress, favicon, siteTitle } }) {
         isCongress={congress.isCongress}
       />
 
-      <div className={styles.congressDetail}>
+      <div className={`${styles.congressDetail}`}>
+        <div className="d-block d-lg-none">
+          <InnerNavigation location={location} innerMenu={{ treeChildren: mobileLinks }} />
+        </div>
+
         <InnerLayout sideNav={sidebarLinks()}>
           <div className={styles.topContent}>
             <span>Start</span>
