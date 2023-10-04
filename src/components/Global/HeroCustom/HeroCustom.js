@@ -19,7 +19,7 @@ function HeroCustom({
   bgColor = null,
   overlap = false,
 }) {
-  const [donationType, setDonationType] = useState('once');
+  const [donationType, setDonationType] = useState('payment');
   const [moreAmountsToggle, setMoreAmountsToggle] = useState(false);
 
   return (

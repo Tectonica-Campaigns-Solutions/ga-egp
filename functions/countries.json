@@ -13,5 +13,12 @@
   { "label": "Greece", "value": "GR" },
   { "label": "Hungary", "value": "HU" },
   { "label": "Ireland", "value": "IE" },
-  { "label": "Italy", "value": "IT" }
+  { "label": "Italy", "value": "IT" },
+  { "label": "Latvia", "value": "IT" },
+  { "label": "Lithuania", "value": "IT" },
+  { "label": "Luxembourg", "value": "IT" },
+  { "label": "Malta", "value": "IT" },
+  { "label": "Netherlands", "value": "IT" },
+  { "label": "Poland", "value": "IT" },
+  { "label": "Portugal", "value": "IT" }
 ]
