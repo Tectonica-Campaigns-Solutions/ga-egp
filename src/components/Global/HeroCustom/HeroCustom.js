@@ -19,7 +19,7 @@ function HeroCustom({
   bgColor = null,
   overlap = false,
 }) {
-  const [donationType, setDonationType] = useState(null);
+  const [donationType, setDonationType] = useState('once');
   const [moreAmountsToggle, setMoreAmountsToggle] = useState(false);
 
   return (
@@ -63,11 +63,11 @@ function HeroCustom({
                         options={[
                           {
                             label: 'Once',
-                            value: 'once',
+                            value: 'payment',
                           },
                           {
                             label: 'Monthly',
-                            value: 'monthly',
+                            value: 'subscription',
                           },
                         ]}
                       />
@@ -75,7 +75,7 @@ function HeroCustom({
 
                     <div className={`${styles.ctaGrid}`}>
                       {ctas.map((item, index) => {
-                        if (item.__typename == 'DatoCmsCtaDonation') {
+                        if (item.__typename == 'DatoCmsCtaDonation' && donationType == item.donationType) {
                           return <DonationLink item={item} key={`${item.url?.label}-${index}`} />;
                         }
                       })}
