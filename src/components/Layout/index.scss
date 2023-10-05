@@ -4,8 +4,8 @@
     top: auto;
     left:0px!important;
     width:100%!important;
-    transform: none!important;
-    -webkit-transform:none!important;
+    transform: translate(0)!important;
+    -webkit-transform:translate3d(0,0,0)!important;;
     background-color:#DDF1E0!important;
     box-shadow:none!important;
     border-radius:0!important;
