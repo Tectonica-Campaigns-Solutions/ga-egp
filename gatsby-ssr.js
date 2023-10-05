@@ -22,15 +22,18 @@ import React from 'react';
 //   replaceHeadComponents([...headComponents, ...imagePreloads]);
 // };
 
-export const onRenderBody = ({ setHeadComponents }) => {
+export const onRenderBody = ({ setHeadComponents, setPostBodyComponents }) => {
   setHeadComponents([
-    <link
-      rel="preload"
-      href="/fonts/Colby/Colby-StBlk.woff2"
-      as="font"
-      type="font/woff2"
-      crossOrigin="anonymous"
-      key="colby"
-    />
+      <link
+        rel="preload"
+        href="/fonts/Colby/Colby-StBlk.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+        key="colby"
+      />
   ]);
+  setPostBodyComponents([
+    <link rel="stylesheet" href="/cookies.css" />
+  ])
 };
