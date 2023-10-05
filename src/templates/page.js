@@ -180,6 +180,10 @@ export const PageQuery = graphql`
             providerUid
           }
         }
+        ... on DatoCmsHandbookForm{
+          id
+          __typename
+        }
         ... on DatoCmsFormWithStep{
           id
           __typename

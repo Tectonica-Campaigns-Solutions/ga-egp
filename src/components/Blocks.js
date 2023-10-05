@@ -18,6 +18,7 @@ import BlockDonation from './Blocks/BlockDonation/BlockDonation';
 import EmbedVideo from './Blocks/EmbedVideo/EmbedVideo';
 import EmbedIframe from './Blocks/EmbedIframe/EmbedIframe';
 import PreviewCtaBlock from './Blocks/PreviewCtaBlock/PreviewCtaBlock';
+import CampaignHanbook from './Blocks/CampaignHandbook/CampaignHanbook';
 
 export default function Blocks({ blocks }) {
   return (
@@ -62,6 +63,8 @@ export default function Blocks({ blocks }) {
             return <EmbedIframe key={block.id} block={block} />;
           case 'DatoCmsPreviewCta':
             return <PreviewCtaBlock key={block.id} block={block} />;
+          case 'DatoCmsHandbookForm':
+            return <CampaignHanbook key={block.id} />;
           default:
             return '';
         }
