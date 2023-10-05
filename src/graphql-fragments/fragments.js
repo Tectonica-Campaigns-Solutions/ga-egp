@@ -909,7 +909,7 @@ export const DatoCMS = graphql`
         title
         description
         image{
-          gatsbyImageData(width:400, layout: FIXED)
+          gatsbyImageData(width:400)
           url
         }
       }

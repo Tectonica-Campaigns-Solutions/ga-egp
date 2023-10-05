@@ -6,7 +6,7 @@ import ImageWrapper from '../../Global/Image/ImageWrapper';
 import './index.scss';
 
 const PreviewCtaBlock = ({ block }) => {
-  const [open, setOpen] = useState(1)
+  const [open, setOpen] = useState(null)
   const { title, description, backgroundImage, backgroundColor, ctas = [] } = block;
 
   const handleClicksAcord = (e) => {
@@ -34,7 +34,7 @@ const PreviewCtaBlock = ({ block }) => {
           </div>
         </div>
       </div>
-      <div className="container acordions-login pt-2 pt-lg-5 pb-5">
+      <div className="container acordions-login pt-3 pt-lg-5 pb-5">
         <div className="row justify-content-center">
 
           {isArray(ctas) && (
