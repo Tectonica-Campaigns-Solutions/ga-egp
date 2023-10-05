@@ -95,7 +95,7 @@ function HeroCustom({
                           className={`${styles.ctaGrid} ${styles.extraCtas} ${moreAmountsToggle ? styles.open : ''}`}
                         >
                           {extraCtas.map((item, index) => {
-                            if (item.__typename == 'DatoCmsCtaDonation') {
+                            if (item.__typename == 'DatoCmsCtaDonation' && donationType == item.donationType) {
                               return <DonationLink item={item} key={`${item.url?.label}-${index}`} />;
                             }
                           })}
