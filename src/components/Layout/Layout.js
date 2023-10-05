@@ -5,6 +5,7 @@ import Header from '../Header';
 import Footer from '../Global/Footer/Footer';
 
 import '../../styles/main.scss';
+import './index.scss'
 
 const Layout = ({ navbarWhite = false, navbarYellowHover = false, location, children }) => {
 
