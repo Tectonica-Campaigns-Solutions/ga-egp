@@ -32,8 +32,17 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cook
 
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-decline-button{
   border-radius:1em;
+  text-transform: uppercase!important;
 }
 
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-cookie-settings-button{
   background-color:#57B45F;
+  min-width: 11em!important;
+    height: 3.3em!important;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-decline-button{
+  background-color:#333!important;
+  color:#fff!important;
+  
 }
