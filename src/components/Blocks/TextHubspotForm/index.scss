@@ -32,6 +32,10 @@
     color: var(--ct-white);
   }
 
+  .hubspot-container {
+    min-height: 156px;
+  }
+
   &.section-transparent {
     h2 {
       color: var(--egp-pink, #FF70BD);
@@ -40,6 +44,7 @@
     p {
       color: var(--egp-black, #333);
     }
+
 
     .hubspot-container.default {
       form {

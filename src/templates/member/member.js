@@ -67,7 +67,7 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
               </div>
 
               <div className="close-btn-container">
-                <BackButton location={location} />
+                <BackButton location={location} defaultBack />
               </div>
             </div>
           </div>

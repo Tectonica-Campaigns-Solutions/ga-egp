@@ -1,6 +1,7 @@
 .filter-members {
-  padding: 62px 0 243px 0;
+  padding: 62px 0 350px 0;
   position: relative;
+  overflow: hidden;
 
   .intro {
     font-family: 'Roboto';
@@ -34,8 +35,8 @@
   .col-map {
     @media screen and (min-width: 992px) {
       position: absolute;
-      top: 0;
-      left: 41.5%;
+      top: -20%;
+      left: 33%;
       overflow: hidden;
 
       // &:after {

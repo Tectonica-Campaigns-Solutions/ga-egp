@@ -1,5 +1,5 @@
-import React from "react";
-import "./index.scss";
+import React from 'react';
+import './index.scss';
 
 const EGPMap = ({ handleOnClickCountry, isoCodes = [] }) => {
   const isInIsoCodesList = (countryCode) => {
@@ -20,8 +20,8 @@ const EGPMap = ({ handleOnClickCountry, isoCodes = [] }) => {
         x="0px"
         y="0px"
         viewBox="0 0 720 540"
-        width="1200"
-        height="800"
+        width="1400"
+        height="1200"
         className="egp-map"
         onClick={handleOnClickCountry}
       >
