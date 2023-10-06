@@ -35,20 +35,20 @@
     @media screen and (min-width: 992px) {
       position: absolute;
       top: 0;
-      left: 38%;
+      left: 41.5%;
       overflow: hidden;
 
-      &:after {
-        content: "";
-        position: absolute;
-        width: 280px;
-        transform: rotate(-5deg);
-        top: -25px;
-        right: -25px;
-        z-index: 10;
-        height: 800px;
-        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
-      }
+      // &:after {
+      //   content: "";
+      //   position: absolute;
+      //   width: 280px;
+      //   transform: rotate(-5deg);
+      //   top: -25px;
+      //   right: -25px;
+      //   z-index: 10;
+      //   height: 800px;
+      //   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 70%);
+      // }
     }
 
     @media screen and (max-width: 992px) {
