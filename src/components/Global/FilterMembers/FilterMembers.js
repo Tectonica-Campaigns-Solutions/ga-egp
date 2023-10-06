@@ -7,10 +7,12 @@ import { isArray } from '../../../utils';
 import './index.scss';
 
 function FilterMembers({ members, introduction }) {
+  const isoCodes = Array.from(new Set(members.map((m) => m.node.slug)));
+
   const handleOnClickCountry = (e) => {
     const countryId = String(e.target?.parentElement.id).toLowerCase();
 
-    if (!countryId) {
+    if (!countryId || !isoCodes.find((iso) => iso === countryId)) {
       console.warn('No country found.');
       return;
     }
@@ -21,7 +23,7 @@ function FilterMembers({ members, introduction }) {
     navigate(currentUrl + countryId);
   };
 
-  const isoCodes = Array.from(new Set(members.map((m) => m.node.slug)));
+  
 
   const handleOnChangeSelect = (e) => {
     const countryId = e.target.value;
