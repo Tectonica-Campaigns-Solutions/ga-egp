@@ -32,9 +32,9 @@ function ListSessions(block) {
 
   return (
     <div className="list-sessions">
-      <div className="row mb-5">
+      <div className="row mb-2 mb-lg-5">
         {data.allDatoCmsSessionType.edges.map((item) => (
-          <div className="col-4" key={item.id}>
+          <div className="col-lg-4 mb-3 mb-lg-0" key={item.id}>
             <SessionType item={item} />
           </div>
         ))}

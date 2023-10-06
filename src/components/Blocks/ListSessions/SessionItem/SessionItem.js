@@ -10,7 +10,7 @@ const SessionItem = ({ item, handleSession }) => {
 
   return (
     <div className={`row align-items-center ${styles.session_item}`} style={{ backgroundColor: sessionType?.color?.hex }} onClick={() => handleSession(id)}>
-      <div className={`col-2 ${styles.time}`}>
+      <div className={`col-lg-2 ${styles.time}`}>
         <img src={timeIcon} alt="Time session" />
         <span>{time}</span>
       </div>

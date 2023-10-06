@@ -70,11 +70,15 @@
   .heroCongress {
     padding-top:100px;
     background-image: none !important;
+    padding-bottom:50px;
     &.secondaryPage {
       padding-bottom: 20px;
     }
-    h2{
+    h1{
       font-size:40px;
+    }
+    h2{
+      font-size:30px;
     }
     .backBtn{
       margin-bottom:40px;

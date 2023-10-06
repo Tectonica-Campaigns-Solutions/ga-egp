@@ -45,9 +45,10 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-c
   text-decoration: none!important;
   text-transform: uppercase;
   min-width: 11em!important;
-    height: 3.3em!important;
-    border-radius:1em!important;
-    font-family: 'Roboto'!important;
+  height: 3.3em!important;
+  border-radius:1em!important;
+  font-family: 'Roboto'!important;
+  font-weight: normal!important;
 }
 
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-decline-button{
