@@ -19,5 +19,21 @@
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p{
   font-size:20px!important;
   font-family: "Roboto"!important;
-  color:#000;
+  color:#000!important;
+}
+
+#hs-eu-header-container{
+  display:none!important;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cookie-confirmation-buttons-area{
+  justify-content: flex-start;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-decline-button{
+  border-radius:1em;
+}
+
+div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-cookie-settings-button{
+  background-color:#57B45F;
 }
