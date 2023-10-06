@@ -8,7 +8,7 @@ import './index.scss';
 
 function FilterMembers({ members, introduction }) {
   const handleOnClickCountry = (e) => {
-    const countryId = String(e.target?.id).toLowerCase();
+    const countryId = String(e.target?.parentElement.id).toLowerCase();
 
     if (!countryId) {
       console.warn('No country found.');

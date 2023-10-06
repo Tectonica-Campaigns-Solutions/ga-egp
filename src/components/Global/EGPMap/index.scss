@@ -2,8 +2,14 @@
   .active {
     cursor: pointer;
 
-    &:hover {
-      fill: var(--egp-pink);
+    polygon:hover,
+    path:hover {
+      fill: var(--egp-pink) !important;
     }
+  }
+
+  polygon,
+  path {
+    fill: #AAD2BD;
   }
 }
