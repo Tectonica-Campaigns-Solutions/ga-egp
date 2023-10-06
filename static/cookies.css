@@ -57,10 +57,17 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-d
   
 }
 
-@media screen and (max-width:751px){
+@media screen and (max-width:750px){
   div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p{
     font-size:14px!important;
     font-family: "Roboto"!important;
     color:#000!important;
+  }
+  div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-cookie-settings-button{
+    padding-bottom:0!important;
+    height:2.3em!important;
+  }
+  div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-decline-button{
+    height:2.3em!important;
   }
 }
