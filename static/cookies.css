@@ -15,7 +15,9 @@
   }
 }
 
-
+div#hs-eu-cookie-confirmation {
+  background-color:#DDF1E0!important;
+}
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p{
   font-size:20px!important;
   font-family: "Roboto"!important;
@@ -33,10 +35,14 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner div#hs-eu-cook
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-confirmation-button, div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-decline-button{
   border-radius:1em;
   text-transform: uppercase!important;
+  font-family: 'Roboto'!important;
 }
 
 div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-cookie-settings-button{
-  background-color:#57B45F;
+  background-color:#57B45F!important;
+  color:#fff!important;
+  text-decoration: none!important;
+  text-transform: uppercase;
   min-width: 11em!important;
     height: 3.3em!important;
 }
@@ -45,4 +51,12 @@ div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner button#hs-eu-d
   background-color:#333!important;
   color:#fff!important;
   
+}
+
+@media screen and (max-width:751px){
+  div#hs-eu-cookie-confirmation div#hs-eu-cookie-confirmation-inner p{
+    font-size:16px!important;
+    font-family: "Roboto"!important;
+    color:#000!important;
+  }
 }
