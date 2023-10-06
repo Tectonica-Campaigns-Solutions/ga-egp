@@ -29,13 +29,13 @@ const SessionDetail = ({ session }) => {
 
       {/* Basic information */}
       <div className="row mb-5">
-        <div className="col-4">
+        <div className="col-lg-4 mb-3 mb-lg-0">
           <DescriptionIcon title={'Day'} icon={dayIcon} text={date} />
         </div>
-        <div className="col-4">
+        <div className="col-lg-4 mb-3 mb-lg-0">
           <DescriptionIcon title={'Time'} icon={timeIcon} text={time} />
         </div>
-        <div className="col-4">
+        <div className="col-lg-4 mb-3 mb-lg-0">
           <DescriptionIcon title={'Room'} icon={locationIcon} text={room} />
         </div>
       </div>

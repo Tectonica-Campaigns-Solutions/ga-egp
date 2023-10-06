@@ -21,3 +21,19 @@
     display:inline-block;
   }
 }
+
+@media screen and (max-width:992px){
+  .session_type {
+    justify-content: flex-start;
+    align-items: center;
+    h4{
+      margin-bottom:0;
+      font-size:18px;
+    }
+    span{
+      width:35px;
+      height:35px;
+      margin-right:10px;
+    }
+  }
+}

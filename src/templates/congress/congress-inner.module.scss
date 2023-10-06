@@ -7,3 +7,9 @@
   color: var(----egp-darker-green);
   margin-bottom: 52px;
 }
+
+@media screen and (max-width:992px){
+  .mainTitle {
+    margin-bottom:10px;
+  }
+}

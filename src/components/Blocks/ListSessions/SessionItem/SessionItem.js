@@ -5,7 +5,6 @@ import * as styles from './index.module.scss';
 
 
 const SessionItem = ({ item, handleSession }) => {
-  console.log(item)
   const { id, title, time, sessionType, icon, room } = item;
 
   return (

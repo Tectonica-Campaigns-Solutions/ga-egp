@@ -47,3 +47,20 @@
   color: var(-egp-dark);
   cursor: pointer;
 }
+
+@media screen and (max-width:992px){
+  .session_item{
+    *{
+      font-size:18px;
+    }
+    h3{
+      font-weight: bold;
+    }
+    > div{
+      margin-bottom:10px;
+      &:first-child{
+        order:10;
+      }
+    }
+  }
+}
