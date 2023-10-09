@@ -147,6 +147,7 @@ export const DatoCMS = graphql`
         formId
         region
         portalId
+        hasMemberPartiesLogic
         redirectTo {
           ... on DatoCmsPage {
             slug

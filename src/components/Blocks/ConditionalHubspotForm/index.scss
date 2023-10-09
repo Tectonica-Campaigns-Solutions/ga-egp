@@ -1,8 +1,11 @@
 
-.campaing-handbook{
+.conditional-form{
   background-color: rgba(87, 180, 95, 0.05);
   .hs_error_rollup{
     display:none;
+  }
+  input[name="form_member_party"]{
+    display:none!important;
   }
   form > div{
     margin-bottom:15px;
@@ -40,6 +43,7 @@
     border-radius: 8px;
     padding: 17px 20px;
     box-shadow: none;
+    margin-bottom:15px;
     option{
       background-color: #F8F9FB;
     }

@@ -4,7 +4,8 @@ import { useStaticQuery } from 'gatsby';
 import { graphql } from 'gatsby';
 import './index.scss'
 
-const CampaignHanbook = () =>{
+const ConditionalHubspotForm = ({ block }) =>{
+  const { formId, region, portalId, redirectTo, hasMemberPartiesLogic } = block.hubspot;
 
   const selectOptions = useStaticQuery(graphql`
     query {
@@ -17,8 +18,8 @@ const CampaignHanbook = () =>{
       }
     }
   `);
-  return (
-    <div className="campaing-handbook pt-3 pb-3">
+  return hasMemberPartiesLogic ? <>
+  <div className={`conditional-form block-${block.id} pt-3 pb-3`}>
         <div className="container pt-3 pb-5">
 
           <div className="row justify-content-center pt-2 pt-lg-3">
@@ -28,25 +29,31 @@ const CampaignHanbook = () =>{
                   src="https://js.hsforms.net/forms/v2.js"
                   onLoad={() => {
                     window.hbspt.forms.create({
-                      region: "eu1",
-                      portalId: "26289884",
-                      formId: "546f2eaf-aa7c-4c0c-9e92-92d55732ab74",
-                      target: `#hubspotForm-100`,
+                      region: region,
+                      portalId: portalId,
+                      formId: formId,
+                      target: `#hubspotForm-${block.id}`,
                       onFormReady: () => {
                         let options = selectOptions.allMemberParty.edges.map(item => item.node.title)
                         options.unshift('I am not a member party')
-                        const parent = document.querySelector('input[name="form_member_party"]').parentElement
+                        const form = document.querySelector(`.block-${block.id} form`);
+                        console.log(form.querySelector('input[name="form_member_party"]').parentElement)
+                        const parent = form.querySelector('input[name="form_member_party"]').parentElement
                         const select = document.createElement("select");
-                        const memberPartyField = document.querySelector('input[name="form_member_party"]')
+                        const memberPartyField = form.querySelector('input[name="form_member_party"]')
+                        const electedOficial = form.querySelector('select[name="form_assoc_type"')
                         memberPartyField.value = 'I am not a member party'
                         select.addEventListener('change', function(e){
                           if(e.target.value != 'I am not a member party'){
-                            document.querySelector('.hs-company').style.display = 'none'
-                            document.querySelector('.hs_form_assoc_type').style.display = 'block'
+                            form.querySelector('.hs-company').style.display = 'none'
+                            form.querySelector('.hs_form_assoc_type').style.display = 'block'
                             
                           }else{
-                            document.querySelector('.hs-company').style.display = 'block'
+                            form.querySelector('.hs-company').style.display = 'block'
                             document.querySelector('.hs_form_assoc_type').style.display = 'none'
+                          
+                            electedOficial.selectedIndex = 0;
+                            electedOficial.dispatchEvent(new Event('select', { bubbles: true }));
                           }
                           memberPartyField.value = e.target.value
                           memberPartyField.dispatchEvent(new Event('input', { bubbles: true }));
@@ -66,12 +73,12 @@ const CampaignHanbook = () =>{
                   onError={(e) => console.error(e)}
                 />
 
-                <div id={`hubspotForm-100`}></div>
+              <div id={`hubspotForm-${block.id}`}></div>
             </div>
           </div>
         </div>
     </div>
-  );
+  </> : <></> 
 }
 
-export default CampaignHanbook
+export default ConditionalHubspotForm

@@ -180,9 +180,25 @@ export const PageQuery = graphql`
             providerUid
           }
         }
-        ... on DatoCmsHandbookForm{
+        ... on DatoCmsHubspotConditionalForm{
           id
           __typename
+          hubspot {
+          ... on DatoCmsHubspot {
+            formId
+            region
+            portalId
+            hasMemberPartiesLogic
+            redirectTo {
+              ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+            }
+          }
+        }
         }
         ... on DatoCmsFormWithStep{
           id
