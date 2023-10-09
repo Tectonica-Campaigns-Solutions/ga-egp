@@ -1,39 +1,67 @@
-// input[name="2-117824001/member_party_name"]{
-//   display:none;
-// }
-
-.hs-company{
-  display:none;
-}
 
 .campaing-handbook{
+  background-color: rgba(87, 180, 95, 0.05);
   .hs_error_rollup{
     display:none;
   }
-  form{
-    display:flex;
-    flex-wrap: wrap;
-    gap:10px;
-    > div{
-      width:calc(50% - 10px);
+  form > div{
+    margin-bottom:15px;
+  }
+
+  .inputs-list{
+    padding-left:0;
+  }
+
+  .hs-error-msg{
+    color:red;
+  }
+
+  .hs-fieldtype-text, .hs-fieldtype-phonenumber, .hs-fieldtype-select{
+    label{
+      font-weight: bold;
+      padding-bottom:5px;
     }
   }
+  
   input[type=text],
-  input[type=email]{
+  input[type=email],
+  input[type=tel]{
+    height: 100%;
+    width: 100%;
+    padding: 17px 20px 17px 10px;
+    border: 1px solid #E0E3E9;
+    background: #F8F9FB;
+    border-radius: 8px;
+  }
+  select{
+    width:100%;
+    border:1px solid #E0E3E9;
+    background-color: #F8F9FB;
     border-radius: 8px;
     padding: 17px 20px;
     box-shadow: none;
-    background-color: #fff;
-    width:100%;
+    option{
+      background-color: #F8F9FB;
+    }
   }
   .legal-consent-container{
     width:100%;
+    a{
+      color:var(--egp-green)
+    }
+    *{
+      font-size:15px;
+    }
+    .inputs-list{
+      input{
+        margin-top:5px;
+      }
+      
+    }
   }
-  select{
-    border-radius: 8px;
-    padding: 17px 20px;
-    box-shadow: none;
-    background-color: #fff;
+
+  .hs_form_assoc_type{
+    display:none;
   }
   input[type=submit]{
     padding: 13px 20px;
@@ -44,5 +72,12 @@
     border: 2px solid #fff;
     transition: all 0.3s;
     font-size: 20px;
+    border-radius:10px;
+    font-size:20px;
+    font-family: 'Jaldi';
+    transition:all .3s;
+    &:hover{
+      background-color:var(--egp-dark-green)
+    }
   }
 }
