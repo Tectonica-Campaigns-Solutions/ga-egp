@@ -131,6 +131,12 @@ export const DatoCMS = graphql`
       }
     }
   }
+
+  fragment BlockAnchor on DatoCmsAnchor{
+    __typename
+    id
+    anchorId
+  }
   fragment BlockTextHubspot on DatoCmsTextHubspotForm {
     __typename
     id

@@ -65,6 +65,8 @@ export default function Blocks({ blocks }) {
             return <PreviewCtaBlock key={block.id} block={block} />;
           case 'DatoCmsHubspotConditionalForm':
             return <ConditionalHubspotForm key={block.id} block={block} />;
+          case 'DatoCmsAnchor':
+            return <a id={block.anchorId} key={block.id} />;
           default:
             return '';
         }

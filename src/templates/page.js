@@ -167,6 +167,9 @@ export const PageQuery = graphql`
         ... on DatoCmsPreviewCta {
           ...BlockPreviewCta
         }
+        ... on DatoCmsAnchor{
+          ...BlockAnchor
+        }
         ... on DatoCmsEmbedIframe {
           id
           __typename
