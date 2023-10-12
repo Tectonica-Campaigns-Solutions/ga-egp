@@ -22,7 +22,7 @@ exports.handler = async (event) => {
         key: 'nationality',
         label: {
           type: 'custom',
-          custom: 'Nationality (only donations from EU nationals are allowed)',
+          custom: 'Nationality (only donations from EU)',
         },
         type: 'dropdown',
         dropdown: {
