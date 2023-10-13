@@ -2,7 +2,6 @@ import React from 'react';
 import * as styles from './textsimple.module.scss';
 
 function TextSimple({ block }) {
-  console.log(block)
   const { text, useContainer = false, smallWidth = false } = block;
 
   return (

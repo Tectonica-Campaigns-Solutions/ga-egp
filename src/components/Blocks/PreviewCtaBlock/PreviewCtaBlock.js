@@ -6,7 +6,6 @@ import ImageWrapper from '../../Global/Image/ImageWrapper';
 import './index.scss';
 
 const PreviewCtaBlock = ({ block }) => {
-  console.log(block)
   const [open, setOpen] = useState(null)
   const { title, description, backgroundImage, backgroundColor, accordionItemsCta = [] } = block;
 

@@ -1,0 +1,73 @@
+.form-hubspot {
+  input {
+    border-radius: 8px;
+    padding: 17px 20px;
+    box-shadow: none;
+    background-color: #fff;
+    border: 2px solid #fff;
+  }
+
+  select{
+    width:100%;
+    border:1px solid #E0E3E9;
+    background-color: #F8F9FB;
+    border-radius: 8px;
+    padding: 17px 20px;
+    box-shadow: none;
+    margin-bottom:15px;
+    option{
+      background-color: #F8F9FB;
+    }
+  }
+
+  input[type="submit"] {
+    padding: 8px;
+  }
+  .hs-fieldtype-textarea{
+    label{
+      display:block;
+      font-weight: bold;
+      padding-bottom:5px;
+    }
+    textarea{
+      width:100%;
+      border-radius: 8px;
+      border:1px solid #E0E3E9;
+      background-color: #F8F9FB;
+      min-height:100px;
+    }
+  }
+    .legal-consent-container{
+    width:100%;
+    a{
+      color:var(--egp-green)
+    }
+    *{
+      font-size:15px;
+    }
+    .inputs-list{
+      input{
+        margin-top:5px;
+      }
+      
+    }
+  }
+
+  .hs-fieldtype-radio, .hs-fieldtype-checkbox{
+    > label{
+      display:block;
+      font-weight: bold;
+      padding-bottom:5px;
+    }
+    .inputs-list{
+      padding-left:10px;
+      li{
+        padding-bottom:6px;
+        input{
+          margin-right: 5px;;
+        }
+      }
+    }
+  }
+  
+}

@@ -3,6 +3,7 @@ import { Script, navigate } from 'gatsby';
 import { useStaticQuery } from 'gatsby';
 import { graphql } from 'gatsby';
 import './index.scss'
+import '../HubspotForm/index.scss'
 
 const ConditionalHubspotForm = ({ block }) =>{
   const { formId, region, portalId, redirectTo, hasMemberPartiesLogic } = block.hubspot;
@@ -19,7 +20,7 @@ const ConditionalHubspotForm = ({ block }) =>{
     }
   `);
   return hasMemberPartiesLogic ? <>
-  <div className={`conditional-form block-${block.id} pt-3 pb-3`}>
+  <div className={`conditional-form block-${block.id} pt-4 pb-4`}>
         <div className="container pt-3 pb-5">
 
           <div className="row justify-content-center pt-2 pt-lg-3">
@@ -37,7 +38,6 @@ const ConditionalHubspotForm = ({ block }) =>{
                         let options = selectOptions.allMemberParty.edges.map(item => item.node.title)
                         options.unshift('I am not a member party')
                         const form = document.querySelector(`.block-${block.id} form`);
-                        console.log(form.querySelector('input[name="form_member_party"]').parentElement)
                         const parent = form.querySelector('input[name="form_member_party"]').parentElement
                         const select = document.createElement("select");
                         const memberPartyField = form.querySelector('input[name="form_member_party"]')
@@ -73,7 +73,7 @@ const ConditionalHubspotForm = ({ block }) =>{
                   onError={(e) => console.error(e)}
                 />
 
-              <div id={`hubspotForm-${block.id}`}></div>
+              <div id={`hubspotForm-${block.id}`} className="form-hubspot"></div>
             </div>
           </div>
         </div>
