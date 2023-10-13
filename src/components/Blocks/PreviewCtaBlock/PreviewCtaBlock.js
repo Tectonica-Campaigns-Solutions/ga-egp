@@ -6,8 +6,9 @@ import ImageWrapper from '../../Global/Image/ImageWrapper';
 import './index.scss';
 
 const PreviewCtaBlock = ({ block }) => {
+  console.log(block)
   const [open, setOpen] = useState(null)
-  const { title, description, backgroundImage, backgroundColor, ctas = [] } = block;
+  const { title, description, backgroundImage, backgroundColor, accordionItemsCta = [] } = block;
 
   const handleClicksAcord = (e) => {
     if(e == open){
@@ -37,32 +38,22 @@ const PreviewCtaBlock = ({ block }) => {
       <div className="container acordions-login pt-3 pt-lg-5 pb-5">
         <div className="row justify-content-center">
 
-          {isArray(ctas) && (
+          {isArray(accordionItemsCta) && (
               <div className="col-lg-6">
                   <div className="ctas">
-                    {ctas.map((cta, i) => (
+                    {accordionItemsCta.map((cta, i) => (
                        
                       <div key={i} className={`item-acord ${open == i ? 'open': ''}`} onClick={() => handleClicksAcord(i)}>
                         <div className="title-acord-item">{ cta.title }</div>
                         <div className="content">
-                          <a href={cta.url?.url}>
-                            <ImageWrapper image={cta?.image} />
-                          </a>
+                          {
+                              cta.cta.map(el => <a href={el.url?.url}>
+                                <ImageWrapper image={el?.image} />
+                              </a>)
+                          }
                         </div>
                         
                       </div>
-                      // <div className="input-cta">
-                      //   <input
-                      //     type="radio"
-                      //     id={cta.id}
-                      //     name="link_to"
-                      //     value={cta.url?.url}
-                      //     onChange={(event) => setSelectedCta(event.target.value)}
-                      //   />
-
-                      //   <label for={cta.id} dangerouslySetInnerHTML={{ __html: cta.title }} />
-                      //   <div className="extra-information" dangerouslySetInnerHTML={{ __html: cta.description }} />
-                      // </div>
                     ))}
                   </div>
               </div>

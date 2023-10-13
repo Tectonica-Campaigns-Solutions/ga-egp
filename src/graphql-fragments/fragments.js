@@ -907,17 +907,22 @@ export const DatoCMS = graphql`
     backgroundImage {
       url
     }
-    ctas {
-      ... on DatoCmsCtaExternal {
-        id
-        url {
-          url
-        }
+    accordionItemsCta{
+      ... on DatoCmsAccordionItemCta{
         title
-        description
-        image{
-          gatsbyImageData(width:400)
-          url
+        cta {
+          ... on DatoCmsCtaExternal {
+            id
+            url {
+              url
+            }
+            title
+            description
+            image{
+              gatsbyImageData(width:400)
+              url
+            }
+          }
         }
       }
     }
