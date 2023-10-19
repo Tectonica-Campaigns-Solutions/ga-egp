@@ -40,12 +40,15 @@
   }
 }
 
-@media screen and (max-width:767px){
+@media screen and (max-width:767px) {
   .resolution-detail {
-    .detail-doc-layout .content{
-      padding:30px 15px;
-      *{
-        font-size:13px;
+
+    .detail-doc-layout .content,
+    .detail-doc-layout .second-content {
+      padding: 30px 15px;
+
+      * {
+        font-size: 13px;
       }
     }
   }

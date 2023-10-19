@@ -85,10 +85,12 @@
 @media screen and (max-width: 992px) {
   .pagination-container {
     padding-top: 30px;
+    gap: 10px;
 
     .pagination-item {
-      font-size: 16px;
-      line-height: 16px;
+      font-size: 14px;
+      line-height: 14px;
+      padding: 8px;
     }
   }
 }
