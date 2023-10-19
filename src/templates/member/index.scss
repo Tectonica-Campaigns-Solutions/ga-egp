@@ -164,6 +164,8 @@
       height: 50px;
 
       .content {
+        height: 100%;
+
         h1 {
           font-size: 25px;
           line-height: 100%;
@@ -187,15 +189,14 @@
         }
 
         .close-btn-container {
-          a {
-            .back-btn {
-              background-color: transparent;
-              height: 45px;
-              width: 45px;
+          height: 100%;
 
-              img {
-                max-width: 30px;
-              }
+          .back-btn {
+            height: 100%;
+            width: 50px;
+
+            img {
+              max-width: 30px;
             }
           }
         }
