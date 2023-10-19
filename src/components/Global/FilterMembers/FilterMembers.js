@@ -23,8 +23,6 @@ function FilterMembers({ members, introduction }) {
     navigate(currentUrl + countryId);
   };
 
-  
-
   const handleOnChangeSelect = (e) => {
     const countryId = e.target.value;
     const currentUrl = window.location.pathname;
