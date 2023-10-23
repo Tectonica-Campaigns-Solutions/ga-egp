@@ -4,7 +4,15 @@ import HubspotForm from '../HubspotForm/HubspotForm';
 import './index.scss';
 
 function TextHubspotForm({ block, centerContent = false }) {
-  const { id, title, backgroundColor, variant, backgroundImage, smallTitle = false, hasMemberPartiesLogic = false } = block;
+  const {
+    id,
+    title,
+    backgroundColor,
+    variant,
+    backgroundImage,
+    smallTitle = false,
+    hasMemberPartiesLogic = false,
+  } = block;
   const { formId, region, portalId, redirectTo } = block.hubspot;
 
   return (
@@ -13,7 +21,14 @@ function TextHubspotForm({ block, centerContent = false }) {
         {title && <h2 className={`${smallTitle ? 'sm' : ''}`}>{title}</h2>}
 
         <div className={`hubspot-container ${variant} ${centerContent ? 'form-center' : ''}`}>
-          <HubspotForm id={id} formId={formId} region={region} portalId={portalId} redirectTo={redirectTo} hasMemberPartiesLogic={hasMemberPartiesLogic}/>
+          <HubspotForm
+            id={id}
+            formId={formId}
+            region={region}
+            portalId={portalId}
+            redirectTo={redirectTo}
+            hasMemberPartiesLogic={hasMemberPartiesLogic}
+          />
         </div>
       </div>
 

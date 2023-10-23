@@ -1,7 +1,7 @@
 import React from 'react';
 import { Script, navigate } from 'gatsby';
 
-import './index.scss'
+import './index.scss';
 
 const HubspotForm = ({ id, formId, region, portalId, redirectTo = null }) => {
   return (

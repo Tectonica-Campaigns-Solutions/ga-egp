@@ -167,7 +167,7 @@ export const PageQuery = graphql`
         ... on DatoCmsPreviewCta {
           ...BlockPreviewCta
         }
-        ... on DatoCmsAnchor{
+        ... on DatoCmsAnchor {
           ...BlockAnchor
         }
         ... on DatoCmsEmbedIframe {
@@ -183,43 +183,43 @@ export const PageQuery = graphql`
             providerUid
           }
         }
-        ... on DatoCmsHubspotConditionalForm{
+        ... on DatoCmsHubspotConditionalForm {
           id
           __typename
           hubspot {
-          ... on DatoCmsHubspot {
-            formId
-            region
-            portalId
-            hasMemberPartiesLogic
-            redirectTo {
-              ... on DatoCmsPage {
-                slug
-                model {
-                  apiKey
+            ... on DatoCmsHubspot {
+              formId
+              region
+              portalId
+              hasMemberPartiesLogic
+              redirectTo {
+                ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
                 }
               }
             }
           }
         }
-        }
-        ... on DatoCmsFormWithStep{
+        ... on DatoCmsFormWithStep {
           id
           __typename
-          ... on DatoCmsFormWithStep{
-            steps{
-              ... on DatoCmsFormStep{
+          ... on DatoCmsFormWithStep {
+            steps {
+              ... on DatoCmsFormStep {
                 title
                 stepPreTitle
                 description
-                formFields{
-                  ... on DatoCmsHubspotField{
+                formFields {
+                  ... on DatoCmsHubspotField {
                     hubspotId
                   }
                 }
               }
             }
-          }     
+          }
         }
       }
     }
@@ -278,7 +278,6 @@ export const PageQuery = graphql`
                   apiKey
                 }
               }
-            
             }
           }
         }
