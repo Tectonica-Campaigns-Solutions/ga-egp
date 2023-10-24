@@ -22,40 +22,49 @@ const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fet
 // node source from Hubspot
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
   const result = await fetch('https://api.hubspot.com/crm/v3/objects/2-117824001/search', {
-    method: "POST",
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: 'Bearer ' + process.env.HUBSPOT_API,
     },
     body: JSON.stringify({
-      "filterGroups":[
+      filterGroups: [
         {
-          "filters":[
+          filters: [
             {
-              "propertyName": "published_in_the_site",
-              "operator": "EQ",
-              "value": "Yes"
+              propertyName: 'published_in_the_site',
+              operator: 'EQ',
+              value: 'Yes',
             },
             {
-              "propertyName": "egp_membership_status",
-              "operator": "IN",
-              "values": ["Full Member", "Associate Member", "Candidate Member"]
-            }
-          ]
-        }
+              propertyName: 'egp_membership_status',
+              operator: 'IN',
+              values: ['Full Member', 'Associate Member', 'Candidate Member'],
+            },
+          ],
+        },
       ],
-      "properties": ["member_party_name", "country", "id", "logo", "facebook", "linkedin", "twitter", "member_party_main_email", "egp_membership_status", "website"]
+      properties: [
+        'member_party_name',
+        'country',
+        'id',
+        'logo',
+        'facebook',
+        'linkedin',
+        'twitter',
+        'member_party_main_email',
+        'egp_membership_status',
+        'website',
+      ],
     }),
-  })
+  });
 
   const resultData = await result.json();
-  
- 
+
   //loop companies and get all relational data and create pages
   for (const company of resultData.results) {
-    
-    const contacts = [{name: ''}];
+    const contacts = [{ name: '' }];
     const getAssociations = await fetch('https://api.hubapi.com/crm/v4/associations/2-117824001/Contacts/batch/read', {
       method: 'POST',
       headers: {
@@ -69,12 +78,10 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     });
 
     const resultAssociations = await getAssociations.json();
-  
-    
+
     //const resultsContacts = await getContacts.json()
     if (resultAssociations.results[0]) {
-    
-      const filterByPartyLeaders = resultAssociations.results[0].to
+      const filterByPartyLeaders = resultAssociations.results[0].to;
 
       for (const item of filterByPartyLeaders) {
         const contact = item.toObjectId;
@@ -86,7 +93,11 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
           },
         });
         const contactResult = await getContact.json();
-        contacts.push({ name: `${contactResult.properties.firstname} ${contactResult.properties?.lastname ? contactResult.properties.lastname : ''}` });
+        contacts.push({
+          name: `${contactResult.properties.firstname} ${
+            contactResult.properties?.lastname ? contactResult.properties.lastname : ''
+          }`,
+        });
       }
     }
 
@@ -226,7 +237,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
-            persons: allDatoCmsPerson(filter: {hasDetailPage: {eq: true}}) {
+            persons: allDatoCmsPerson(filter: { hasDetailPage: { eq: true } }) {
               edges {
                 node {
                   name
