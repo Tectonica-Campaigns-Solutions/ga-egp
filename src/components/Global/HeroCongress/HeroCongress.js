@@ -22,7 +22,7 @@ function HeroCongress({ title, introduction, bgColor = '', bgImage, ctas = [], m
               </Link>
             )}
             {mainPage ? <h1>{title}</h1> : <h2>{title}</h2>}
-            {mainPage && introduction && <p>{introduction}</p>}
+            {mainPage && introduction && <p dangerouslySetInnerHTML={{ __html: introduction }} />}
 
             {isArray(ctas) && (
               <div className={styles.actionsContainer}>
