@@ -21,6 +21,7 @@ const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fet
 
 // node source from Hubspot
 exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
+  // TODO: ADD PAGINATION ON FUTURE... MAX 100 ITEMS PER REQUEST
   const result = await fetch('https://api.hubspot.com/crm/v3/objects/2-117824001/search', {
     method: 'POST',
     headers: {
@@ -57,6 +58,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         'egp_membership_status',
         'website',
       ],
+      limit: 100,
     }),
   });
 
