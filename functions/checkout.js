@@ -7,7 +7,7 @@ exports.handler = async (event) => {
   const session = await stripe.checkout.sessions.create({
     mode: mode,
     // payment_method_types: ['card'],
-    payment_method_types: ['card', 'bancontact', 'klarna', 'p24', 'eps', 'giropay', 'sofort', 'ideal'],
+    payment_method_types: ['card', 'bancontact', 'p24', 'eps', 'giropay', 'sofort', 'ideal'],
     success_url: `${process.env.BASE_URL}/donation-thank-you`,
     cancel_url: process.env.BASE_URL,
     line_items: [
