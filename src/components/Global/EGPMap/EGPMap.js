@@ -4542,7 +4542,7 @@ const EGPMap = ({ handleOnClickCountry, isoCodes = [] }) => {
 		l-0.1-0.1l0-0.1l0.1,0l0.3,0l0.1,0l0.1-0.1L452.1,446.2z"
         />
       </g>
-      <g id="uk" className={isInIsoCodesList('uk') ? 'active' : null}>
+      <g id="gb" className={isInIsoCodesList('gb') ? 'active' : null}>
         <path
           class="st5"
           d="M247.3,325.5L247.3,325.5l-0.1,0.2l0.1,0l0.1,0l0-0.1L247.3,325.5L247.3,325.5z M247.1,325.2L247.1,325.2
