@@ -4,10 +4,14 @@ const countries = require('./countries.json');
 exports.handler = async (event) => {
   const { priceid, mode } = event.queryStringParameters;
 
+  const isSubscriptionMode = mode === 'subscription';
+
   const session = await stripe.checkout.sessions.create({
     mode: mode,
     // payment_method_types: ['card'],
-    payment_method_types: ['card', 'bancontact', 'p24', 'eps', 'giropay', 'sofort', 'ideal'],
+    payment_method_types: isSubscriptionMode
+      ? ['card', 'bancontact', 'p24', 'eps', 'giropay', 'sofort', 'ideal']
+      : ['card', 'bancontact', 'p24'],
     success_url: `${process.env.BASE_URL}/donation-thank-you`,
     cancel_url: process.env.BASE_URL,
     line_items: [
