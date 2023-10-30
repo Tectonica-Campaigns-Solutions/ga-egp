@@ -20,7 +20,13 @@ function GroupPerson({ block }) {
 
               return (
                 <div key={person.id} className={`${isHighlighted ? 'col-lg-8' : 'col-lg-4 col-md-6'}`}>
-                  <CardPerson person={person} key={person.id} hasLink={hasLink} animated />
+                  <CardPerson
+                    person={person}
+                    key={person.id}
+                    hasLink={hasLink}
+                    highlighted={item.highlighted}
+                    animated
+                  />
                 </div>
               );
             })}

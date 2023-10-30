@@ -7,35 +7,44 @@ import SocialLinkList from '../SocialLink/SocialLinkList';
 import TextIcon from '../TextIcon/TextIcon';
 import iconPhone from '../../Icons/icon_phone.svg';
 import iconEmail from '../../Icons/icon_email.svg';
+import iconPhoneWhite from '../../Icons/icon_phone_white.svg';
+import iconEmailWhite from '../../Icons/icon_email_white.svg';
 
 import './index.scss';
 
-function CardPerson({ person, animated = false, hasLink = false }) {
+function CardPerson({ person, animated = false, hasLink = false, highlighted = false }) {
+  console.log({ person });
+  const { hasDetailPage, image, name, jobPosition, country, model, slug, socialLinks = [], phone, email } = person;
+
   const FinalLink = animated ? AnimateLink : Link;
-  const url = pathToModel(person.model.apiKey, person.slug);
+  const url = pathToModel(model.apiKey, slug);
 
   return (
-    <div className="card-person">
-      {/* <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink> */}
-      {person.hasDetailPage && <FinalLink to={url}>{person.image && <ImageWrapper image={person.image} />}</FinalLink>}
-      {!person.hasDetailPage && person.image && <ImageWrapper image={person.image} />}
+    <div className={`card-person ${highlighted ? 'highlighted' : ''}`}>
+      {hasDetailPage && <FinalLink to={url}>{image && <ImageWrapper image={image} />}</FinalLink>}
+      {!hasDetailPage && image && <ImageWrapper image={image} />}
 
       <div>
-        {/* <div className="position">head of unit</div> */}
-        <h3>{person.name}</h3>
+        {highlighted && jobPosition && <div className="position">{jobPosition}</div>}
 
-        <div className="job">{person.jobPosition}</div>
-        <div className="job">{person.country}</div>
-        {/* <SocialLinkList links={person.socialLinks} /> */}
+        {name && <h3>{name}</h3>}
 
-        {person.hasDetailPage && (
+        {!highlighted && jobPosition && <div className="job">{jobPosition}</div>}
+        {country && <div className="job">{country}</div>}
+        {!highlighted && socialLinks && <SocialLinkList links={socialLinks} />}
+
+        {hasDetailPage && (
           <FinalLink to={url} className="link-read-more">
             Read more
           </FinalLink>
         )}
 
-        {/* {person.phone && <TextIcon icon={iconPhone} text={<a href={getPhoneLink(person.phone)}>{person.phone}</a>} />}
-        {person.email && <TextIcon icon={iconEmail} text={<a href={getEmailLink(person.email)}>{person.email}</a>} />} */}
+        {phone && (
+          <TextIcon icon={highlighted ? iconPhoneWhite : iconPhone} text={<a href={getPhoneLink(phone)}>{phone}</a>} />
+        )}
+        {email && (
+          <TextIcon icon={highlighted ? iconEmailWhite : iconEmail} text={<a href={getEmailLink(email)}>{email}</a>} />
+        )}
       </div>
     </div>
   );

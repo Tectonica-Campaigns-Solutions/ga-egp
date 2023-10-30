@@ -3,6 +3,7 @@
   flex-direction: column;
   border-radius: 15px;
   overflow: hidden;
+  height: 100%;
 
   h3 {
     font-family: 'Jaldi';
@@ -59,6 +60,27 @@
     text-transform: uppercase;
     color: var(--egp-gray);
     margin-bottom: 18px;
+  }
+
+  &.highlighted {
+    padding: 20px;
+    border-radius: 15px;
+    background: var(--EGP-Green, #57B45F);
+
+    a,
+    .position,
+    .job,
+    h3 {
+      color: var(--EGP-White, #FFF);
+    }
+
+    .position {
+      display: inline-block;
+      border-radius: 5px;
+      padding: 4px 10px;
+      background: var(--EGP-White, #FFF);
+      color: var(--EGP-Green, #57B45F);
+    }
   }
 }
 

@@ -132,7 +132,7 @@ export const DatoCMS = graphql`
     }
   }
 
-  fragment BlockAnchor on DatoCmsAnchor{
+  fragment BlockAnchor on DatoCmsAnchor {
     __typename
     id
     anchorId
@@ -238,7 +238,7 @@ export const DatoCMS = graphql`
             title
             room
             description
-            icon{
+            icon {
               url
             }
             sessionType {
@@ -430,9 +430,9 @@ export const DatoCMS = graphql`
     __typename
     id
     title
-    highlighted
     people {
       ... on DatoCmsItemGroup {
+        highlighted
         person {
           ... on DatoCmsPerson {
             id
@@ -907,8 +907,8 @@ export const DatoCMS = graphql`
     backgroundImage {
       url
     }
-    accordionItemsCta{
-      ... on DatoCmsAccordionItemCta{
+    accordionItemsCta {
+      ... on DatoCmsAccordionItemCta {
         title
         cta {
           ... on DatoCmsCtaExternal {
@@ -918,8 +918,8 @@ export const DatoCMS = graphql`
             }
             title
             description
-            image{
-              gatsbyImageData(width:400)
+            image {
+              gatsbyImageData(width: 400)
               url
             }
           }
