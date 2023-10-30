@@ -101,6 +101,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       }
     }
 
+    console.log('Company ISO CODE: ', company.properties.country);
     //create node for build time of member parties from hubspot
 
     createNode({

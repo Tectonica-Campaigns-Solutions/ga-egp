@@ -10,8 +10,8 @@ exports.handler = async (event) => {
     mode: mode,
     // payment_method_types: ['card'],
     payment_method_types: isSubscriptionMode
-      ? ['card', 'bancontact', 'p24', 'eps', 'giropay', 'sofort', 'ideal']
-      : ['card', 'bancontact', 'p24'],
+      ? ['card', 'bancontact', 'eps']
+      : ['card', 'bancontact', 'p24', 'eps', 'giropay', 'sofort', 'ideal'],
     success_url: `${process.env.BASE_URL}/donation-thank-you`,
     cancel_url: process.env.BASE_URL,
     line_items: [
