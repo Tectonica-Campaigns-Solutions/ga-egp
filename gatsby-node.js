@@ -470,36 +470,13 @@ exports.createPages = ({ graphql, actions }) => {
         const redirects = result.data.redirects.edges;
 
         // Redirects
-        // redirects.map(({ node: redirect }) => {
-        //   console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
-        //   createRedirect({
-        //     fromPath: redirect.from,
-        //     toPath: redirect.to,
-        //   });
-        // });
-
-        // Testing approach
-        const redirectsFile = redirects
-          .map(
-            ({ node }) =>
-              `[[redirects]]
-                  from = "${node.from}"
-                  to = "${node.to}"
-              `
-          )
-          .join('\n');
-
-        const netlifyTomlContent = `
-          [build]
-            command = 'yarn build'
-            functions = 'functions'
-            publish = 'public'
-          ${redirectsFile}
-        `;
-
-        const filePath = path.join(__dirname, 'netlify.toml');
-        fs.writeFileSync(filePath, netlifyTomlContent);
-        console.log(`netlify.toml creado en ${filePath}`);
+        redirects.map(({ node: redirect }) => {
+          console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
+          createRedirect({
+            fromPath: redirect.from,
+            toPath: redirect.to,
+          });
+        });
 
         // const globalSettings = result.data.globalSettings.nodes;
 
