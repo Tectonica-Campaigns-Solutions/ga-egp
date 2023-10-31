@@ -83,7 +83,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
 
     //const resultsContacts = await getContacts.json()
     if (resultAssociations.results[0]) {
-      const filterByPartyLeaders = resultAssociations.results[0].to;
+      const filterByPartyLeaders = resultAssociations.results[0]?.to;
 
       for (const item of filterByPartyLeaders) {
         const contact = item.toObjectId;
@@ -96,7 +96,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         });
         const contactResult = await getContact.json();
         contacts.push({
-          name: `${contactResult.properties.firstname} ${
+          name: `${contactResult.properties?.firstname} ${
             contactResult.properties?.lastname ? contactResult.properties.lastname : ''
           }`,
         });
@@ -107,9 +107,9 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     //create node for build time of member parties from hubspot
 
     createNode({
-      title: company.properties.member_party_name,
-      logo: company.properties?.logo ? company.properties.logo : '',
-      iso_code: countries.getAlpha2Code(company.properties.country, 'en'),
+      title: company.properties?.member_party_name,
+      logo: company.properties?.logo ? company.properties?.logo : '',
+      iso_code: countries.getAlpha2Code(company.properties?.country, 'en'),
       social: [
         {
           url: company.properties?.facebook,
