@@ -470,6 +470,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         // Redirects
         redirects.map(({ node: redirect }) => {
+          console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
           createRedirect({
             fromPath: redirect.from,
             toPath: redirect.to,

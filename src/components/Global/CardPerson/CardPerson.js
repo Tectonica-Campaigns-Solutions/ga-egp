@@ -13,7 +13,7 @@ import iconEmailWhite from '../../Icons/icon_email_white.svg';
 import './index.scss';
 
 function CardPerson({ person, animated = false, hasLink = false, highlighted = false }) {
-  console.log({ person });
+  // console.log({ person });
   const { hasDetailPage, image, name, jobPosition, country, model, slug, socialLinks = [], phone, email } = person;
 
   const FinalLink = animated ? AnimateLink : Link;
