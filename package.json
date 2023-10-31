@@ -24,6 +24,7 @@
     "datocms-search": "0.1.10",
     "dotenv": "16.0.3",
     "gatsby": "5.9.0",
+    "gatsby-adapter-netlify": "^1.0.2",
     "gatsby-plugin-advanced-sitemap": "^2.1.0",
     "gatsby-plugin-image": "3.9.0",
     "gatsby-plugin-manifest": "5.9.0",
