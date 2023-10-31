@@ -103,7 +103,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
       }
     }
 
-    console.log('Company ISO CODE: ', company.properties.country);
+    // console.log('Company ISO CODE: ', company.properties.country);
     //create node for build time of member parties from hubspot
 
     createNode({
@@ -148,7 +148,7 @@ const getMenuPosition = (menus, key) => {
 };
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage, createSlice } = actions;
+  const { createPage, createRedirect } = actions;
 
   return new Promise((resolve, reject) => {
     const templates = {
@@ -191,6 +191,15 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   slug
                   id
+                }
+              }
+            }
+            redirects: allDatoCmsRedirect {
+              edges {
+                node {
+                  id
+                  from
+                  to
                 }
               }
             }
@@ -457,10 +466,19 @@ exports.createPages = ({ graphql, actions }) => {
         const allPodcasts = result.data.allPodcasts.edges;
         const navTree = result.data.navTree.nodes;
         const jobs = result.data.jobs.edges;
+        const redirects = result.data.redirects.edges;
+
+        // Redirects
+        redirects.map(({ node: redirect }) => {
+          createRedirect({
+            fromPath: redirect.from,
+            toPath: redirect.to,
+          });
+        });
 
         // const globalSettings = result.data.globalSettings.nodes;
 
-        //home
+        // home
         if (result.data.home) {
           createPage({
             path: '/',
