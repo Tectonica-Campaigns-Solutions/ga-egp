@@ -1,4 +1,5 @@
 const path = require(`path`);
+const fs = require('fs');
 const FilterWarningsPlugin = require('webpack-filter-warnings-plugin');
 var countries = require('i18n-iso-countries');
 
@@ -469,13 +470,36 @@ exports.createPages = ({ graphql, actions }) => {
         const redirects = result.data.redirects.edges;
 
         // Redirects
-        redirects.map(({ node: redirect }) => {
-          console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
-          createRedirect({
-            fromPath: redirect.from,
-            toPath: redirect.to,
-          });
-        });
+        // redirects.map(({ node: redirect }) => {
+        //   console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
+        //   createRedirect({
+        //     fromPath: redirect.from,
+        //     toPath: redirect.to,
+        //   });
+        // });
+
+        // Testing approach
+        const redirectsFile = redirects
+          .map(
+            ({ node }) =>
+              `[[redirects]]
+                  from = "${node.from}"
+                  to = "${node.to}"
+              `
+          )
+          .join('\n');
+
+        const netlifyTomlContent = `
+          [build]
+            command = 'yarn build'
+            functions = 'functions'
+            publish = 'public'
+          ${redirectsFile}
+        `;
+
+        const filePath = path.join(__dirname, 'netlify.toml');
+        fs.writeFileSync(filePath, netlifyTomlContent);
+        console.log(`netlify.toml creado en ${filePath}`);
 
         // const globalSettings = result.data.globalSettings.nodes;
 

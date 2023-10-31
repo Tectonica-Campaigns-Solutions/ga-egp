@@ -23,6 +23,7 @@
     "@stackbit/types": "^0.10.1",
     "datocms-search": "0.1.10",
     "dotenv": "16.0.3",
+    "fs": "^0.0.1-security",
     "gatsby": "5.9.0",
     "gatsby-adapter-netlify": "^1.0.2",
     "gatsby-plugin-advanced-sitemap": "^2.1.0",
