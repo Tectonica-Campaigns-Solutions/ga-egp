@@ -1,7 +1,7 @@
-[build]
-  functions = 'functions'
-
 [[redirects]]
-  from = "/about"
+  from = "about"
   to = "/"
   status = 301
+
+[build]
+  functions = 'functions'
