@@ -96,6 +96,7 @@ export const ListJobsQuery = graphql`
             id
             title
             hideInInnerNavigation
+            position
             content {
               ... on DatoCmsPage {
                 slug
@@ -140,6 +141,8 @@ export const ListJobsQuery = graphql`
           title
           treeChildren {
             id
+            hideInInnerNavigation
+            position
             ... on DatoCmsMenu {
               id
               title
