@@ -1,14 +1,2 @@
 [build]
   functions = 'functions'
-  publish = 'public'
-  command = "npm run build"
-
-[[redirects]]
-  from = "about"
-  to = "/"
-  status = 301
-
-[[redirects]]
-  from = "positions"
-  to = "/news"
-  status = 200
