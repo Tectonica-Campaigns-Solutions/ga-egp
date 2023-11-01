@@ -16,35 +16,35 @@ const Order = {
 };
 
 function Member({ pageContext, location, data: { page, members, breadcrumb, favicon, siteTitle } }) {
-  const parties = members.edges;
+  // const parties = members.edges;
 
-  const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
+  // const [orderBy, setOrderBy] = useState(Order.ALPHABETICALLY);
 
-  const partiesOrdered = useCallback(() => {
-    // console.log('Ordenar parties por ', orderBy);
+  // const partiesOrdered = useCallback(() => {
+  //   // console.log('Ordenar parties por ', orderBy);
 
-    const ordered = parties.sort((current, previous) => {
-      const currentTitle = current.node.title.toUpperCase();
-      const previousTitle = previous.node.title.toUpperCase();
+  //   const ordered = parties.sort((current, previous) => {
+  //     const currentTitle = current.node.title.toUpperCase();
+  //     const previousTitle = previous.node.title.toUpperCase();
 
-      if (currentTitle < previousTitle) {
-        return -1;
-      }
-      if (currentTitle > previousTitle) {
-        return 1;
-      }
+  //     if (currentTitle < previousTitle) {
+  //       return -1;
+  //     }
+  //     if (currentTitle > previousTitle) {
+  //       return 1;
+  //     }
 
-      return 0;
-    });
+  //     return 0;
+  //   });
 
-    return ordered;
-  }, [orderBy, parties]);
+  //   return ordered;
+  // }, [orderBy, parties]);
 
-  const handleOnChangeOrderBy = (newOrder) => setOrderBy(newOrder);
+  // const handleOnChangeOrderBy = (newOrder) => setOrderBy(newOrder);
 
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+      {/* <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
 
       <HeroPage
         title={pageContext.titleParent ? pageContext.titleParent : page.title}
@@ -74,17 +74,6 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
         </div>
 
         <div className="container">
-          {/* <div className="mt-5">
-            {partiesOrdered().length > 1 && (
-              <Dropdown
-                activeValue={orderBy}
-                options={Object.values(Order).map((order) => {
-                  return { label: order, onClick: () => handleOnChangeOrderBy(order) };
-                })}
-              />
-            )}
-          </div> */}
-
           <div className="content-member">
             {partiesOrdered()?.map((el) => {
               const item = el.node;
@@ -139,60 +128,60 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
             })}
           </div>
         </div>
-      </div>
+      </div> */}
     </Layout>
   );
 }
 
-export const MemberQuery = graphql`
-  query MemberById($id: String, $menuPos: String, $isoCode: String) {
-    favicon: datoCmsSite {
-      faviconMetaTags {
-        ...GatsbyDatoCmsFaviconMetaTags
-      }
-    }
-    breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
-      ...Breadcrumb
-    }
-    siteTitle: datoCmsSite {
-      globalSeo {
-        siteName
-      }
-    }
-    page: datoCmsMember(id: { eq: $id }) {
-      id
-      title
-      slug
-      flag {
-        url
-        alt
-      }
-      seo: seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-    }
-    members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
-      edges {
-        node {
-          id
-          title
-          logo
-          contacts {
-            name
-          }
-          social {
-            url
-            socialNetwork
-          }
-          contact {
-            website
-            email
-          }
-          status
-        }
-      }
-    }
-  }
-`;
+// export const MemberQuery = graphql`
+//   query MemberById($id: String, $menuPos: String, $isoCode: String) {
+//     favicon: datoCmsSite {
+//       faviconMetaTags {
+//         ...GatsbyDatoCmsFaviconMetaTags
+//       }
+//     }
+//     breadcrumb: datoCmsMenu(id: { eq: $menuPos }) {
+//       ...Breadcrumb
+//     }
+//     siteTitle: datoCmsSite {
+//       globalSeo {
+//         siteName
+//       }
+//     }
+//     page: datoCmsMember(id: { eq: $id }) {
+//       id
+//       title
+//       slug
+//       flag {
+//         url
+//         alt
+//       }
+//       seo: seoMetaTags {
+//         ...GatsbyDatoCmsSeoMetaTags
+//       }
+//     }
+//     members: allMemberParty(filter: { iso_code: { eq: $isoCode } }) {
+//       edges {
+//         node {
+//           id
+//           title
+//           logo
+//           contacts {
+//             name
+//           }
+//           social {
+//             url
+//             socialNetwork
+//           }
+//           contact {
+//             website
+//             email
+//           }
+//           status
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export default Member;
