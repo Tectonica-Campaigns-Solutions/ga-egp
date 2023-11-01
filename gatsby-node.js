@@ -469,13 +469,13 @@ exports.createPages = ({ graphql, actions }) => {
         const redirects = result.data.redirects.edges;
 
         // Redirects
-        redirects.map(({ node: redirect }) => {
-          console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
-          createRedirect({
-            fromPath: redirect.from,
-            toPath: redirect.to,
-          });
-        });
+        // redirects.map(({ node: redirect }) => {
+        //   console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
+        //   createRedirect({
+        //     fromPath: redirect.from,
+        //     toPath: redirect.to,
+        //   });
+        // });
 
         // const globalSettings = result.data.globalSettings.nodes;
 
