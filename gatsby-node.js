@@ -473,15 +473,6 @@ exports.createPages = ({ graphql, actions }) => {
         const jobs = result.data.jobs.edges;
         const redirects = result.data.redirects.edges;
 
-        // Redirects
-        // redirects.map(({ node: redirect }) => {
-        //   console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
-        //   createRedirect({
-        //     fromPath: redirect.from,
-        //     toPath: redirect.to,
-        //   });
-        // });
-
         // const globalSettings = result.data.globalSettings.nodes;
 
         // home
@@ -776,6 +767,21 @@ exports.createPages = ({ graphql, actions }) => {
             },
           });
         });
+
+        // Redirects
+        // redirects.map(({ node: redirect }) => {
+        //   console.log(`Creating redirect from: ${redirect.from} to: ${redirect.to}`);
+        //   createRedirect({
+        //     fromPath: redirect.from,
+        //     toPath: redirect.to,
+        //   });
+        // });
+        createRedirect({
+            fromPath: '/about',
+            toPath: '/guidelines',
+            statusCode: 301,
+            force: true
+          });
       })
     );
   });
