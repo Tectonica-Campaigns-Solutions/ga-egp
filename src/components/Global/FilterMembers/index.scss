@@ -169,6 +169,8 @@
 
     .mobile-container {
       display: block;
+      position: relative;
+      z-index: 1000;
 
       h3 {
         color: var(--egp-black, #333);
