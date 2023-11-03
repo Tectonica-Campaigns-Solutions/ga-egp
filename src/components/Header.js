@@ -5,7 +5,7 @@ import { useStaticQuery } from 'gatsby';
 import { graphql } from 'gatsby';
 import SearchEngine from './Global/Search/SearchEngine';
 
-const Header = ({ location, navbarWhite = false, navbarYellowHover = false }) => {
+const Header = ({ location, navbarWhite = false, navbarYellowHover = false, hideLinks = false }) => {
   const [searchEngineVisible, setSearchEngineVisible] = useState(false);
 
   const mainMenu = useStaticQuery(graphql`
@@ -28,6 +28,7 @@ const Header = ({ location, navbarWhite = false, navbarYellowHover = false }) =>
         navbarYellowHover={navbarYellowHover}
         location={location}
         setSearchEngineVisible={setSearchEngineVisible}
+        hideLinks={hideLinks}
       />
     </header>
   );

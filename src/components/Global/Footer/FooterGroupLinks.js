@@ -10,9 +10,9 @@ const FooterGroupLinks = ({ item }) => {
       {childrenLinks && (
         <div className="links">
           <ul>
-            {childrenLinks.map((item) => (
-              <li key={item.id}>
-                <Link to={item.link}>{item.label ? item.label : item.link.label }</Link>
+            {childrenLinks.map((item, index) => (
+              <li key={item.id + '' + index}>
+                <Link to={item.link}>{item.label ? item.label : item.link.label}</Link>
               </li>
             ))}
           </ul>

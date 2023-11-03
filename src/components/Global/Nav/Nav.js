@@ -54,6 +54,7 @@ export default function Nav({
   navbarYellowHover = false,
   location,
   setSearchEngineVisible,
+  hideLinks = false,
 }) {
   const navLinks = navData.allDatoCmsMenu.nodes;
 
@@ -118,35 +119,37 @@ export default function Nav({
         <span className={`${expanded ? 'open-toggle ' : ''} navbar-toggler-icon`} />
       </button>
 
-      <div className={`${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
-        <ul className={`navbar-nav mr-auto ${navbarWhite ? 'nav-white' : ''}`}>
-          {groupedLinks?.withoutIcon?.map((link) =>
-            link.treeChildren.length === 0 ? (
-              <LinkItem key={link.id} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />
-            ) : (
-              <DropdownItem
-                key={link.id}
-                link={link?.content?.slug}
-                label={link?.title}
-                children={link?.treeChildren}
-              />
-            )
-          )}
+      {!hideLinks && (
+        <div className={`${expanded ? 'show' : ''} collapse navbar-collapse egp-nav`} id="navNav">
+          <ul className={`navbar-nav mr-auto ${navbarWhite ? 'nav-white' : ''}`}>
+            {groupedLinks?.withoutIcon?.map((link) =>
+              link.treeChildren.length === 0 ? (
+                <LinkItem key={link.id} link={link?.content.slug} label={link?.title} isButton={link?.isButton} />
+              ) : (
+                <DropdownItem
+                  key={link.id}
+                  link={link?.content?.slug}
+                  label={link?.title}
+                  children={link?.treeChildren}
+                />
+              )
+            )}
 
-          {/* Final icons */}
-          <div className="nav-actions">
-            <Link onClick={() => setSearchEngineVisible(true)} style={{ cursor: 'pointer' }}>
-              <img src={searchIcon} alt="Search icon" />
-            </Link>
-
-            {groupedLinks?.withIcon?.map((link) => (
-              <Link key={link.id} to={getCtaUrl(link?.content.slug)}>
-                <img src={link.icon.url} alt="Link icon" />
+            {/* Final icons */}
+            <div className="nav-actions">
+              <Link onClick={() => setSearchEngineVisible(true)} style={{ cursor: 'pointer' }}>
+                <img src={searchIcon} alt="Search icon" />
               </Link>
-            ))}
-          </div>
-        </ul>
-      </div>
+
+              {groupedLinks?.withIcon?.map((link) => (
+                <Link key={link.id} to={getCtaUrl(link?.content.slug)}>
+                  <img src={link.icon.url} alt="Link icon" />
+                </Link>
+              ))}
+            </div>
+          </ul>
+        </div>
+      )}
     </nav>
   );
 }
