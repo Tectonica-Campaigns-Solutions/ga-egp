@@ -71,7 +71,7 @@ const Post = ({ pageContext, location, data: { page, breadcrumb, favicon, siteTi
               {isArray(tags) && (
                 <div className="new-tags">
                   {tags.map((tag) => (
-                    <Tag key={tag.id} basePath={basePath} slug={tag.slug} title={tag.title} />
+                    <Tag key={tag.id} basePath={basePath} slug={tag.slug} title={tag.title} variant={tag.color} />
                   ))}
                 </div>
               )}
@@ -173,6 +173,7 @@ export const PostQuery = graphql`
           id
           slug
           title
+          color
         }
       }
       authors {

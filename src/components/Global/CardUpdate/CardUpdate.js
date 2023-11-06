@@ -39,7 +39,7 @@ const CardUpdate = ({ post }) => {
           {isArray(tags) && (
             <div className="tags">
               {tags.map((tag, index) => (
-                <Tag key={index} basePath={basePath} title={tag.title} slug={tag.slug} />
+                <Tag key={index} basePath={basePath} title={tag.title} slug={tag.slug} variant={tag.color} />
               ))}
             </div>
           )}

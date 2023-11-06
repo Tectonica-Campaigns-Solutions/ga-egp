@@ -349,6 +349,7 @@ exports.createPages = ({ graphql, actions }) => {
                       title
                       id
                       slug
+                      color
                     }
                   }
                   date(formatString: "D MMM Y")
@@ -376,6 +377,7 @@ exports.createPages = ({ graphql, actions }) => {
                       title
                       id
                       slug
+                      color
                     }
                   }
                   date(formatString: "D MMM Y")
@@ -391,6 +393,7 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   slug
                   id
+                  color
                 }
               }
             }

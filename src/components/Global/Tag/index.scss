@@ -23,6 +23,10 @@
     color: var(--egp-darker-green, #184B31);
     background: var(--egp-light-gray, #CCCCD0);
   }
+
+  &.pink {
+    background-color: var(--egp-pink);
+  }
 }
 
 @media screen and (max-width: 992px) {

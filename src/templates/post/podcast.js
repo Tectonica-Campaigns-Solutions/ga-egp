@@ -31,7 +31,10 @@ const Podcast = ({ data: { page, breadcrumb, favicon, siteTitle } }) => {
           <div className="row justify-content-center">
             <div className="col-lg-9">
               {page.audioUrl && <EmbedAudio file={page.audioUrl[0].file} />}
-              {page.audioUrl[0].iframeContent && <div className="mb-5" dangerouslySetInnerHTML={{__html: page.audioUrl[0].iframeContent}}/>}
+              {page.audioUrl[0].iframeContent && (
+                <div className="mb-5" dangerouslySetInnerHTML={{ __html: page.audioUrl[0].iframeContent }} />
+              )}
+
               {isArray(page.authors) && (
                 <div className="authors-list row gy-4">
                   {page.authors.map((author) => (
@@ -108,7 +111,6 @@ export const PodcastQuery = graphql`
               text
             }
           }
-          
           ... on DatoCmsImage {
             __typename
             id: originalId
@@ -130,6 +132,7 @@ export const PodcastQuery = graphql`
           title
           id
           slug
+          color
         }
       }
       audioUrl {

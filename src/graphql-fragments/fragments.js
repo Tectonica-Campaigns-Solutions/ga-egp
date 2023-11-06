@@ -882,6 +882,7 @@ export const DatoCMS = graphql`
         title
         id
         slug
+        color
       }
     }
     date(formatString: "D MMM Y")
