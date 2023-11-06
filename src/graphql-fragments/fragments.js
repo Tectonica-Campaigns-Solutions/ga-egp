@@ -935,6 +935,26 @@ export const DatoCMS = graphql`
       publishedAt(formatString: "D MMM YYYY")
     }
   }
+  fragment PressReleaseCard on DatoCmsPressRelease {
+    id
+    title
+    slug
+    tags {
+      ... on DatoCmsTagNews {
+        title
+        id
+        slug
+        color
+      }
+    }
+    date(formatString: "D MMM Y")
+    model {
+      apiKey
+    }
+    meta {
+      publishedAt(formatString: "D MMM YYYY")
+    }
+  }
   fragment PageLink on DatoCmsPage {
     slug
     model {
