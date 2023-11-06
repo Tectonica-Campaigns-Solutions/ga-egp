@@ -706,13 +706,20 @@ exports.createPages = ({ graphql, actions }) => {
             return newTags.some((newTag) => newTag.id === tag.id);
           });
 
+          const finalItems = [...items, ...itemsPR].sort((a, b) => {
+            const dateA = new Date(a.node.date);
+            const dateB = new Date(b.node.date);
+
+            return dateB - dateA;
+          });
+
           createPage({
             path: `news/${tag.slug}`,
             component: templates.listNews,
             context: {
               slug: `news/${tag.slug}`,
               id: tag.id,
-              items: [...items, ...itemsPR],
+              items: finalItems,
               tag: tag.title,
             },
           });
