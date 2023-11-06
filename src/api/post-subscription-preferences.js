@@ -3,8 +3,8 @@ import axios from 'axios';
 const MAP = {
   marketingEmail: {
     id: '153977537',
-    legalBasis: null,
-    legalBasisExplanation: null,
+    legalBasis: 'CONSENT_WITH_NOTICE',
+    legalBasisExplanation: '<p>Choose which emails you would like to receive:</p>\n<p>Marketing Email</p>',
   },
   marketingStatutory: {
     id: '238585646',
@@ -44,8 +44,32 @@ export default async function handler(req, res) {
   try {
     const requests = [];
 
+    // Un-sub all checked?
+    if (preferences.unsubAll) {
+      const unsubscribePromises = [];
+
+      for (const key in MAP) {
+        const { id, legalBasis, legalBasisExplanation } = MAP[key];
+        unsubscribePromises.push(unsubscribe(email, id, legalBasis, legalBasisExplanation));
+      }
+
+      Promise.allSettled(unsubscribePromises)
+        .then((results) => {
+          console.log('Unsubscribe results:', results);
+          res.status(200).send('ok');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          res.status(400).send('error');
+          return;
+        });
+
+      return;
+    }
+
+    // Normal preference update
     for (const preference in preferences) {
-      if (preferences[preference]) {
+      if (preferences[preference] && MAP[preference]) {
         const { id, legalBasis, legalBasisExplanation } = MAP[preference];
 
         const requestData = {
@@ -70,8 +94,20 @@ export default async function handler(req, res) {
     const responses = await Promise.allSettled(requests);
 
     responses.forEach((response, index) => {
-      if (response.status === 200) {
+      if (response.status === 'fulfilled') {
         console.log(`${Object.keys(preferences)[index]} updated`);
+      } else {
+        const errorReason = response.reason;
+        console.error(`Error updating preference: ${Object.keys(preferences)[index]}`);
+
+        if (errorReason.response && errorReason.response.data) {
+          const errorData = errorReason.response.data;
+          const msg = errorData.message;
+
+          if (msg.includes('cannot be updated because they have unsubscribed')) {
+            res.status(400).send('Preferences cannot be updated because you have unsubscribed previously.');
+          }
+        }
       }
     });
 
@@ -81,3 +117,24 @@ export default async function handler(req, res) {
     res.status(400).send('error');
   }
 }
+
+const unsubscribe = async (email, subscriptionId, legalBasis, legalBasisExplanation) => {
+  const url = 'https://api.hubapi.com/communication-preferences/v3/unsubscribe';
+  const requestData = {
+    emailAddress: email,
+    subscriptionId,
+    legalBasis,
+    legalBasisExplanation,
+  };
+
+  try {
+    const response = await axios.post(url, requestData, {
+      headers: {
+        Authorization: `Bearer ${process.env.HUBSPOT_API}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

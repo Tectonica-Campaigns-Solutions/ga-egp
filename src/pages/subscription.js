@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { graphql } from 'gatsby';
 import axios from 'axios';
 import Layout from '../components/Layout/Layout';
+import SeoDatoCMS from '../components/SeoDatoCms';
 
 import './subscription.scss';
 
-const SubscriptionPage = () => {
+const SubscriptionPage = ({ data: { favicon, siteTitle } }) => {
   const [email, setEmail] = useState('');
   const [preferences, setPreferences] = useState({
     marketingEmail: false,
@@ -57,6 +58,7 @@ const SubscriptionPage = () => {
       }
 
       if (emailSaved) {
+        setIsLoading(true);
         setEmail(emailSaved);
         fetchContactData();
       }
@@ -75,7 +77,7 @@ const SubscriptionPage = () => {
       setIsSuccess(response.status === 200);
       localStorage.setItem('email', email);
     } catch (error) {
-      setError(true);
+      setError(error.response.data);
     } finally {
       setIsLoading(false);
     }
@@ -115,23 +117,40 @@ const SubscriptionPage = () => {
     }
   };
 
+  const restartForm = () => {
+    setEmail('');
+    setPreferences({
+      marketingEmail: false,
+      marketingStatutory: false,
+      marketingEvents: false,
+      serviceEmail: false,
+      salesEmail: false,
+      serviceEmailPrivacy: false,
+      unsubAll: false,
+    });
+    setIsSuccess(null);
+    setError(null);
+    setIsLoading(false);
+
+    if (localStorage.getItem('email')) {
+      localStorage.removeItem('email');
+    }
+  };
+
   return (
     <Layout hideLinks hideFooter>
+      <SeoDatoCMS favicon={favicon} siteTitle={siteTitle}>
+        <title>Subscription | European Greens</title>
+        <meta property="og:site_name" content="Subscription"></meta>
+      </SeoDatoCMS>
+
       {isSuccess ? (
         <div className="success">
           <div className="container">
             <div className="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="76" height="76" viewBox="0 0 76 76" fill="none">
-                <g clip-path="url(#clip0_4892_25916)">
-                  <mask
-                    id="mask0_4892_25916"
-                    // style="mask-type:luminance"
-                    maskUnits="userSpaceOnUse"
-                    x="16"
-                    y="16"
-                    width="44"
-                    height="44"
-                  >
+                <g clipPath="url(#clip0_4892_25916)">
+                  <mask id="mask0_4892_25916" maskUnits="userSpaceOnUse" x="16" y="16" width="44" height="44">
                     <path d="M59.2 16.1454H16.1455V59.1999H59.2V16.1454Z" fill="white" />
                   </mask>
                   <g mask="url(#mask0_4892_25916)">
@@ -143,7 +162,7 @@ const SubscriptionPage = () => {
                   <path
                     d="M37.6727 73.5954C57.5123 73.5954 73.5954 57.5123 73.5954 37.6727C73.5954 17.8331 57.5123 1.75 37.6727 1.75C17.8331 1.75 1.75 17.8331 1.75 37.6727C1.75 57.5123 17.8331 73.5954 37.6727 73.5954Z"
                     stroke="#57B45F"
-                    stroke-width="3.5"
+                    strokeWidth="3.5"
                   />
                 </g>
                 <defs>
@@ -285,12 +304,19 @@ const SubscriptionPage = () => {
                   </div>
                 </form>
 
-                {error && <p>Error here</p>}
+                {error && (
+                  <p className="error">
+                    {error || 'An error occurred while trying to update preferences. Try again later.'}
+                  </p>
+                )}
 
                 <div className="info">
                   <p>
                     If this is not your address, an email was most likely forwarded to you from someone else and you can
                     safely ignore this message.
+                  </p>
+                  <p style={{ cursor: 'pointer' }} onClick={restartForm}>
+                    Isn't it you? Restart the form
                   </p>
                 </div>
               </div>

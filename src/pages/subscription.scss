@@ -110,10 +110,16 @@
     }
   }
 
+  .error,
   .info {
     max-width: 80%;
     text-align: center;
     margin: 0 auto;
+  }
+
+  .error {
+    font-weight: 700;
+    margin-bottom: 1rem;
   }
 
   // Unsub
