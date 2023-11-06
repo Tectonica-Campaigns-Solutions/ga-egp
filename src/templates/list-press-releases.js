@@ -2,20 +2,15 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import HeroPage from '../components/Global/HeroPage/HeroPage';
 import Layout from '../components/Layout/Layout';
+import ListPaginated from '../components/Global/Pagination/ListPaginated';
+import { isArray } from '../utils';
+import CardUpdate from '../components/Global/CardUpdate/CardUpdate';
 import SeoDatoCms from '../components/SeoDatoCms';
-import ListJobOpportunities from '../components/Blocks/ListJobOpportunities/ListJobOpportunities';
-import InnerNavigation from '../components/Global/InnerNavigation/InnerNavigation';
-import InnerLayout from '../components/Layout/InnerLayout/InnerLayout';
+import TextHubspotForm from '../components/Blocks/TextHubspotForm/TextHubsportForm';
 
-function ListJobs({
-  pageContext,
-  location,
-  data: { page, breadcrumb, navLinks, favicon, siteTitle, jobs, allMenu, sideNav = null },
-}) {
-  const secondaryMenu = navLinks.treeParent?.treeParent ? navLinks.treeParent.treeParent : navLinks.treeParent;
-  const siblingMenu = sideNav?.treeParent?.treeParent?.treeChildren
-    ? sideNav?.treeParent.treeChildren
-    : sideNav?.treeChildren;
+function ListPressReleases({ pageContext, location, data: { page, breadcrumb, navLinks, favicon, siteTitle } }) {
+  const filteredContent = pageContext.items;
+  const shouldRenderMiddleCta = filteredContent.length >= 12;
 
   return (
     <Layout>
@@ -28,28 +23,35 @@ function ListJobs({
         breadcrumb={breadcrumb}
       />
 
-      {!page.hideInnerNavigation && secondaryMenu?.treeChildren && (
-        <InnerNavigation
-          location={location}
-          linkParent={navLinks.treeParent}
-          innerMenu={secondaryMenu}
-          allMenu={allMenu}
-        />
-      )}
+      <div className="container">
+        <div className="row g-5 my-3">
+          {isArray(filteredContent) && (
+            <ListPaginated
+              list={filteredContent}
+              resetPage={location?.state?.filtered ?? null}
+              renderItem={(item, index) => (
+                <React.Fragment key={item.node.id}>
+                  <div className="col-lg-4">
+                    <CardUpdate post={item.node} />
+                  </div>
 
-      {!page.hideSidebarNavigation && siblingMenu && siblingMenu.length > 0 ? (
-        <InnerLayout sideNav={siblingMenu} location={location}>
-          <ListJobOpportunities values={jobs} />
-        </InnerLayout>
-      ) : (
-        <ListJobOpportunities values={jobs} />
-      )}
+                  {shouldRenderMiddleCta && index === 5 && (
+                    <div className="col-lg-12 mt-5 mb-5">
+                      {page.formCta && page.formCta[0] && <TextHubspotForm centerContent block={page.formCta[0]} />}
+                    </div>
+                  )}
+                </React.Fragment>
+              )}
+            />
+          )}
+        </div>
+      </div>
     </Layout>
   );
 }
 
-export const ListJobsQuery = graphql`
-  query ListJobs($menuPos: String) {
+export const ListPressReleasesQuery = graphql`
+  query ListNews($menuPos: String) {
     favicon: datoCmsSite {
       faviconMetaTags {
         ...GatsbyDatoCmsFaviconMetaTags
@@ -60,29 +62,34 @@ export const ListJobsQuery = graphql`
         siteName
       }
     }
-    page: datoCmsListJobOp {
+    page: datoCmsListPressRelease {
       title
       slug
-      seo: seoMetaTags {
-        ...GatsbyDatoCmsSeoMetaTags
-      }
-    }
-    jobs: allDatoCmsJobOpportunity {
-      nodes {
-        id
-        title
-        location
-        description
-        isRemote
-        slug
-        model {
-          apiKey
+      formCta {
+        ... on DatoCmsTextHubspotForm {
+          id
+          title
+          description
+          variant
+          backgroundColor
+          backgroundImage {
+            url
+            alt
+            gatsbyImageData
+          }
+          smallTitle
+          hubspot {
+            ... on DatoCmsHubspot {
+              id
+              formId
+              portalId
+              region
+            }
+          }
         }
       }
-    }
-    allMenu: allDatoCmsMenu {
-      nodes {
-        ...AllMenu
+      seo: seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
     navLinks: datoCmsMenu(id: { eq: $menuPos }) {
@@ -96,15 +103,8 @@ export const ListJobsQuery = graphql`
             id
             title
             hideInInnerNavigation
-            position
             content {
               ... on DatoCmsPage {
-                slug
-                model {
-                  apiKey
-                }
-              }
-              ... on DatoCmsListJobOp {
                 slug
                 model {
                   apiKey
@@ -147,8 +147,6 @@ export const ListJobsQuery = graphql`
           title
           treeChildren {
             id
-            hideInInnerNavigation
-            position
             ... on DatoCmsMenu {
               id
               title
@@ -183,12 +181,6 @@ export const ListJobsQuery = graphql`
                     apiKey
                   }
                 }
-                ... on DatoCmsListJobOp {
-                  slug
-                  model {
-                    apiKey
-                  }
-                }
               }
             }
           }
@@ -201,4 +193,4 @@ export const ListJobsQuery = graphql`
   }
 `;
 
-export default ListJobs;
+export default ListPressReleases;

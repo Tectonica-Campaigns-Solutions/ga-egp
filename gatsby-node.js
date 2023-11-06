@@ -159,6 +159,7 @@ exports.createPages = ({ graphql, actions }) => {
     const templates = {
       page: path.resolve('./src/templates/page.js'),
       post: path.resolve('./src/templates/post/post.js'),
+      pressRelease: path.resolve('./src/templates/press-release/press-release.js'),
       podcast: path.resolve('./src/templates/post/podcast.js'),
       home: path.resolve('./src/templates/home.js'),
       listPositions: path.resolve('./src/templates/list-positions.js'),
@@ -166,6 +167,7 @@ exports.createPages = ({ graphql, actions }) => {
       listPolicyPapers: path.resolve('./src/templates/list-policy-paper/list-policy-papers.js'),
       listMembers: path.resolve('./src/templates/list-members.js'),
       listNews: path.resolve('./src/templates/list-news.js'),
+      listPressReleases: path.resolve('./src/templates/list-press-releases.js'),
       listEvents: path.resolve('./src/templates/list-events.js'),
       listPodcast: path.resolve('./src/templates/list-podcast.js'),
       listJobs: path.resolve('./src/templates/list-jobs.js'),
@@ -209,6 +211,15 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
             posts: allDatoCmsPost {
+              edges {
+                node {
+                  title
+                  slug
+                  id
+                }
+              }
+            }
+            pressReleases: allDatoCmsPressRelease {
               edges {
                 node {
                   title
@@ -293,6 +304,11 @@ exports.createPages = ({ graphql, actions }) => {
               slug
             }
             listNews: datoCmsListNews {
+              title
+              id
+              slug
+            }
+            listPressReleases: datoCmsListPressRelease {
               title
               id
               slug
@@ -387,6 +403,27 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
             }
+            allPressReleases: allDatoCmsPressRelease(limit: 1000, sort: { date: DESC }) {
+              edges {
+                node {
+                  id
+                  title
+                  slug
+                  tags {
+                    ... on DatoCmsTagNews {
+                      title
+                      id
+                      slug
+                      color
+                    }
+                  }
+                  date(formatString: "D MMM Y")
+                  model {
+                    apiKey
+                  }
+                }
+              }
+            }
             tagsNews: allDatoCmsTagNews {
               edges {
                 node {
@@ -427,6 +464,9 @@ exports.createPages = ({ graphql, actions }) => {
                   ... on DatoCmsListNews {
                     id
                   }
+                  ... on DatoCmsListPressRelease {
+                    id
+                  }
                   ... on DatoCmsListPodcast {
                     id
                   }
@@ -464,11 +504,13 @@ exports.createPages = ({ graphql, actions }) => {
         const positions = result.data.positions.edges;
         const resolutions = result.data.resolutions.edges;
         const posts = result.data.posts.edges;
+        const pressReleases = result.data.pressReleases.edges;
         const members = result.data.members.edges;
         const persons = result.data.persons.edges;
         const events = result.data.events.edges;
         const tagsNews = result.data.tagsNews.edges;
         const allNews = result.data.allNews.edges;
+        const allPressReleases = result.data.allPressReleases.edges;
         const congress = result.data.allCongress.edges;
         const congressInnerPages = result.data.allInnerCongress.edges;
         const allPodcasts = result.data.allPodcasts.edges;
@@ -523,6 +565,20 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               slug: post.slug,
               id: post.id,
+              // TODO
+              menuPos: 'DatoCmsMenu-117741848',
+            },
+          });
+        });
+
+        // press releases
+        pressReleases.map(({ node: release }) => {
+          createPage({
+            path: `/press-releases/${release.slug}`,
+            component: templates.pressRelease,
+            context: {
+              slug: release.slug,
+              id: release.id,
               // TODO
               menuPos: 'DatoCmsMenu-117741848',
             },
@@ -645,13 +701,18 @@ exports.createPages = ({ graphql, actions }) => {
             return newTags.some((newTag) => newTag.id === tag.id);
           });
 
+          const itemsPR = allPressReleases.filter((newItem) => {
+            const newTags = newItem.node.tags;
+            return newTags.some((newTag) => newTag.id === tag.id);
+          });
+
           createPage({
             path: `news/${tag.slug}`,
             component: templates.listNews,
             context: {
               slug: `news/${tag.slug}`,
               id: tag.id,
-              items: items,
+              items: [...items, ...itemsPR],
               tag: tag.title,
             },
           });
@@ -740,6 +801,20 @@ exports.createPages = ({ graphql, actions }) => {
               id: result.data.listNews.id,
               items: allNews,
               menuPos: getMenuPosition(navTree, result.data.listNews.id),
+            },
+          });
+        }
+
+        // list press releases
+        if (result.data.listPressReleases) {
+          createPage({
+            path: result.data.listPressReleases.slug,
+            component: templates.listPressReleases,
+            context: {
+              slug: result.data.listPressReleases.slug,
+              id: result.data.listPressReleases.id,
+              items: allPressReleases,
+              menuPos: getMenuPosition(navTree, result.data.listPressReleases.id),
             },
           });
         }

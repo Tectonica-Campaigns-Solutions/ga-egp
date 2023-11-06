@@ -116,7 +116,7 @@ export const PositionQuery = graphql`
       }
       text {
         value
-        blocks{
+        blocks {
           ... on DatoCmsEmbedVideo {
             id: originalId
             __typename
@@ -204,6 +204,12 @@ export const PositionQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsListPressRelease {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListPodcast {
                 slug
                 model {
@@ -248,6 +254,12 @@ export const PositionQuery = graphql`
                   }
                 }
                 ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPressRelease {
                   slug
                   model {
                     apiKey
@@ -305,6 +317,12 @@ export const PositionQuery = graphql`
                 apiKey
               }
             }
+            ... on DatoCmsListPressRelease {
+              slug
+              model {
+                apiKey
+              }
+            }
             ... on DatoCmsListPodcast {
               slug
               model {
@@ -348,6 +366,12 @@ export const PositionQuery = graphql`
                 }
               }
               ... on DatoCmsListNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPressRelease {
                 slug
                 model {
                   apiKey

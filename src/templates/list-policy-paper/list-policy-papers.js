@@ -410,6 +410,12 @@ export const ListPositionsQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsListPressRelease {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListPodcast {
                 slug
                 model {
@@ -448,6 +454,12 @@ export const ListPositionsQuery = graphql`
                   }
                 }
                 ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPressRelease {
                   slug
                   model {
                     apiKey

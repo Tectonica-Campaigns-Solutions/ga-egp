@@ -116,6 +116,18 @@ export const ListNewsQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsListPressRelease {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsListPressRelease {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListPodcast {
                 slug
                 model {

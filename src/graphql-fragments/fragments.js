@@ -42,6 +42,12 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsListPressRelease {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsListEvent {
             slug
             model {
@@ -98,6 +104,12 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsListNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPressRelease {
             slug
             model {
               apiKey
@@ -381,6 +393,12 @@ export const DatoCMS = graphql`
             apiKey
           }
         }
+        ... on DatoCmsListPressRelease {
+          slug
+          model {
+            apiKey
+          }
+        }
         ... on DatoCmsListPodcast {
           slug
           model {
@@ -550,6 +568,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsListPressRelease {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsListMember {
         slug
         model {
@@ -613,6 +637,12 @@ export const DatoCMS = graphql`
             }
           }
           ... on DatoCmsListNews {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsListPressRelease {
             slug
             model {
               apiKey
@@ -689,6 +719,12 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsListPressRelease {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsListPodcast {
             slug
             model {
@@ -754,6 +790,12 @@ export const DatoCMS = graphql`
                   }
                 }
                 ... on DatoCmsListNews {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsListPressRelease {
                   slug
                   model {
                     apiKey
@@ -962,6 +1004,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsListPressRelease {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsListEvent {
         slug
         model {
@@ -1014,6 +1062,12 @@ export const DatoCMS = graphql`
             apiKey
           }
         }
+        ... on DatoCmsListPressRelease {
+          slug
+          model {
+            apiKey
+          }
+        }
         ... on DatoCmsListPosition {
           slug
           model {
@@ -1048,6 +1102,12 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsListPressRelease {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsListPosition {
             slug
             model {
@@ -1065,6 +1125,12 @@ export const DatoCMS = graphql`
               }
             }
             ... on DatoCmsListNews {
+              slug
+              model {
+                apiKey
+              }
+            }
+            ... on DatoCmsListPressRelease {
               slug
               model {
                 apiKey

@@ -13,6 +13,8 @@ export const pathToModel = (model = null, slug = '') => {
     return `/job-opportunity/${slug}`;
   } else if (model === 'event') {
     return `/events/${slug}`;
+  } else if (model === 'press_release') {
+    return `/press-releases/${slug}`;
   } else {
     return '/' + slug;
   }
@@ -22,6 +24,8 @@ export const basePathTag = (model) => {
   if (model === 'podcast') {
     return '/podcast/';
   } else if (model === 'post') {
+    return '/news/';
+  } else if (model === 'press_release') {
     return '/news/';
   } else {
     return '';
