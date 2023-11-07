@@ -8,6 +8,7 @@ function TextHubspotForm({ block, centerContent = false }) {
     id,
     title,
     backgroundColor,
+    description,
     variant,
     backgroundImage,
     smallTitle = false,
@@ -16,11 +17,16 @@ function TextHubspotForm({ block, centerContent = false }) {
   const { formId, region, portalId, redirectTo } = block.hubspot;
 
   return (
-    <div className={`text-hubspot-form ${backgroundColor} ${centerContent ? 'text-center' : ''}`}>
+    <div
+      className={`text-hubspot-form ${backgroundColor} ${centerContent ? 'text-center' : ''} ${
+        variant === 'column-small' ? 'p-0 pb-5' : ''
+      }`}
+    >
       <div className="container">
-        {title && <h2 className={`${smallTitle ? 'sm' : ''}`}>{title}</h2>}
-
         <div className={`hubspot-container ${variant} ${centerContent ? 'form-center' : ''}`}>
+          {title && <h2 className={`${smallTitle ? 'sm' : ''}`}>{title}</h2>}
+          {description && <div className="description" dangerouslySetInnerHTML={{ __html: description }} />}
+
           <HubspotForm
             id={id}
             formId={formId}

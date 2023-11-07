@@ -32,6 +32,19 @@
     color: var(--ct-white);
   }
 
+  .description {
+    margin-bottom: 3rem;
+
+    * {
+      color: var(--EGP-Dark-Gray, #4D4845);
+      font-family: "Roboto";
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+    }
+  }
+
   .legal-consent-container .hs-form-booleancheckbox-display * {
     font-family: "Roboto";
     font-size: 13px;
@@ -617,6 +630,177 @@
       }
     }
 
+  }
+
+  .hubspot-container.column-small {
+    max-width: 850px;
+    margin: 0 auto;
+
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+
+    form {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 16px;
+
+      label {
+        color: var(--EGP-Black, #333);
+        font-family: "Roboto";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 25px;
+      }
+
+      .input {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+
+
+        textarea,
+        input {
+          height: 100%;
+          width: 100%;
+          padding: 17px 20px 17px 10px;
+          border: 1px solid #E0E3E9;
+          background: #F8F9FB;
+          border-radius: 8px;
+        }
+      }
+
+      .actions {
+        height: 100%;
+
+        input {
+          padding: 16px 15px 15px 15px;
+          height: 100%;
+        }
+      }
+
+      .hs-submit {
+        display: block;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+        height: 100%;
+
+        .hs-button {
+          height: 100%;
+          display: block !important;
+          text-align: center;
+          padding: 16px 15px 15px;
+          background: var(--egp-green, #57B45F);
+          border-radius: 10px;
+
+          font-family: 'Jaldi';
+          color: var(--egp-white, #FFF);
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 800;
+          line-height: 18.4px;
+          text-transform: uppercase;
+          border: 2px solid var(--egp-green, #57B45F);
+        }
+      }
+
+      .hs-input {
+        border: 2px solid #FFF;
+      }
+
+      .hs-input.invalid.error {
+        border: 2px solid red;
+      }
+
+      // New
+      .input {
+        background: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+        height: 100%;
+        width: 100%;
+
+        ul,
+        li {
+          list-style: none !important;
+        }
+
+        .inputs-list {
+          margin: 0;
+          padding: 0;
+          margin-top: 10px;
+
+          .hs-form-booleancheckbox label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+
+            color: var(--egp-black, #333);
+            font-family: "Roboto";
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 130%;
+
+            input {
+              width: auto;
+            }
+
+            span {
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
+
+      .hs-richtext {
+        color: var(--egp-black, #333);
+        font-family: "Roboto";
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%;
+      }
+
+      .hs-form-field {
+        height: 100%;
+      }
+
+      .hs-error-msgs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        margin-top: 5px;
+
+        label {
+          display: block;
+          font-style: italic;
+          font-size: 15px;
+          color: var(--egp-black, #333);
+        }
+      }
+
+      .hs_error_rollup {
+        color: red;
+        width: 100%;
+        position: absolute;
+        bottom: -30px;
+        left: 0;
+
+        ul {
+          padding-left: 0;
+        }
+
+        * {
+          display: block !important;
+        }
+      }
+    }
   }
 }
 

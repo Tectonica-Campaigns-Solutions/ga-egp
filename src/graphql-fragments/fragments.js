@@ -161,6 +161,7 @@ export const DatoCMS = graphql`
     title
     backgroundColor
     variant
+    description
     backgroundImage {
       url
       alt
