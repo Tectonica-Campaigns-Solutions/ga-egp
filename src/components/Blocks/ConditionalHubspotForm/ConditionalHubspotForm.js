@@ -2,6 +2,7 @@ import React from 'react';
 import { Script } from 'gatsby';
 import { useStaticQuery } from 'gatsby';
 import { graphql } from 'gatsby';
+
 import './index.scss';
 import '../HubspotForm/index.scss';
 
@@ -36,15 +37,18 @@ const ConditionalHubspotForm = ({ block }) => {
                     target: `#hubspotForm-${block.id}`,
                     onFormReady: () => {
                       let options = selectOptions.allMemberParty.edges.map((item) => item.node.title);
-                      options.unshift('I am not a member party');
+                      options.unshift('I am not from a member party');
+
                       const form = document.querySelector(`.block-${block.id} form`);
                       const parent = form.querySelector('input[name="form_member_party"]').parentElement;
                       const select = document.createElement('select');
                       const memberPartyField = form.querySelector('input[name="form_member_party"]');
                       const electedOficial = form.querySelector('select[name="form_assoc_type"');
-                      memberPartyField.value = 'I am not a member party';
+
+                      memberPartyField.value = 'I am not from a member party';
+
                       select.addEventListener('change', function (e) {
-                        if (e.target.value != 'I am not a member party') {
+                        if (e.target.value != 'I am not from a member party') {
                           form.querySelector('.hs-company').style.display = 'none';
                           form.querySelector('.hs_form_assoc_type').style.display = 'block';
                         } else {
@@ -57,6 +61,7 @@ const ConditionalHubspotForm = ({ block }) => {
                         memberPartyField.value = e.target.value;
                         memberPartyField.dispatchEvent(new Event('input', { bubbles: true }));
                       });
+
                       for (var i = 0; i < options.length; i++) {
                         var option = document.createElement('option');
                         option.value = options[i];
