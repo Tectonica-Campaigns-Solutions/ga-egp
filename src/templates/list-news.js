@@ -14,7 +14,9 @@ function ListNews({ pageContext, location, data: { page, breadcrumb, navLinks, f
 
   return (
     <Layout>
-      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle} />
+      <SeoDatoCms seo={page.seo} favicon={favicon} siteTitle={siteTitle}>
+        {pageContext.tag ? <title>{pageContext.tag} | European Greens</title> : null}
+      </SeoDatoCms>
 
       <HeroPage
         title={pageContext.tag ? pageContext.tag : page.title}
