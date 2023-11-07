@@ -32,6 +32,22 @@
     color: var(--ct-white);
   }
 
+  .legal-consent-container .hs-form-booleancheckbox-display * {
+    font-family: "Roboto";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
+  .hs-richtext * {
+    font-family: "Roboto";
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+  }
+
   .hubspot-container {
     min-height: 156px;
   }
