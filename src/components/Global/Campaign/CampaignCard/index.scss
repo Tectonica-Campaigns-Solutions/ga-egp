@@ -180,6 +180,15 @@
         }
       }
 
+      .submitted-message * {
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 500;
+        line-height: 130%;
+        color: var(--egp-white);
+        font-style: italic;
+      }
+
       @media screen and (max-width: 992px) {
         flex-direction: column;
 
