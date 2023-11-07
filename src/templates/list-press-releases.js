@@ -110,6 +110,12 @@ export const ListPressReleasesQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsTagNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListNews {
                 slug
                 model {
@@ -152,6 +158,12 @@ export const ListPressReleasesQuery = graphql`
               title
               content {
                 ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsTagNews {
                   slug
                   model {
                     apiKey

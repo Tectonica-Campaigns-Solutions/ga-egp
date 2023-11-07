@@ -468,6 +468,9 @@ exports.createPages = ({ graphql, actions }) => {
                   ... on DatoCmsPage {
                     id
                   }
+                  ... on DatoCmsTagNews {
+                    id
+                  }
                   ... on DatoCmsListJobOp {
                     id
                   }

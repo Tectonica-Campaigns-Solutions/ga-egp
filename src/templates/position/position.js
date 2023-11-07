@@ -198,6 +198,12 @@ export const PositionQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsTagNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListNews {
                 slug
                 model {
@@ -248,6 +254,12 @@ export const PositionQuery = graphql`
               position
               content {
                 ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsTagNews {
                   slug
                   model {
                     apiKey
@@ -311,6 +323,12 @@ export const PositionQuery = graphql`
                 apiKey
               }
             }
+            ... on DatoCmsTagNews {
+              slug
+              model {
+                apiKey
+              }
+            }
             ... on DatoCmsListNews {
               slug
               model {
@@ -360,6 +378,12 @@ export const PositionQuery = graphql`
             hideInInnerNavigation
             content {
               ... on DatoCmsPage {
+                slug
+                model {
+                  apiKey
+                }
+              }
+              ... on DatoCmsTagNews {
                 slug
                 model {
                   apiKey

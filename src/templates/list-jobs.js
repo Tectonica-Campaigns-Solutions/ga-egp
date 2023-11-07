@@ -104,6 +104,12 @@ export const ListJobsQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsTagNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListJobOp {
                 slug
                 model {
@@ -154,6 +160,12 @@ export const ListJobsQuery = graphql`
               title
               content {
                 ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsTagNews {
                   slug
                   model {
                     apiKey

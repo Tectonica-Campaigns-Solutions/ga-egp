@@ -74,6 +74,12 @@ export const ListPodcastQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsTagNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListNews {
                 slug
                 model {
@@ -117,6 +123,12 @@ export const ListPodcastQuery = graphql`
               hideInInnerNavigation
               content {
                 ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsTagNews {
                   slug
                   model {
                     apiKey

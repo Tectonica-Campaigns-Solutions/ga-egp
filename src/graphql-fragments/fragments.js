@@ -103,6 +103,12 @@ export const DatoCMS = graphql`
               apiKey
             }
           }
+          ... on DatoCmsTagNews {
+            slug
+            model {
+              apiKey
+            }
+          }
           ... on DatoCmsListNews {
             slug
             model {
@@ -532,6 +538,12 @@ export const DatoCMS = graphql`
           apiKey
         }
       }
+      ... on DatoCmsTagNews {
+        slug
+        model {
+          apiKey
+        }
+      }
       ... on DatoCmsListJobOp {
         slug
         model {
@@ -601,6 +613,12 @@ export const DatoCMS = graphql`
         position
         content {
           ... on DatoCmsPage {
+            slug
+            model {
+              apiKey
+            }
+          }
+          ... on DatoCmsTagNews {
             slug
             model {
               apiKey
@@ -995,6 +1013,12 @@ export const DatoCMS = graphql`
     hideInInnerNavigation
     content {
       ... on DatoCmsPage {
+        slug
+        model {
+          apiKey
+        }
+      }
+      ... on DatoCmsTagNews {
         slug
         model {
           apiKey

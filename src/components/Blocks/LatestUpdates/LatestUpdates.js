@@ -18,24 +18,10 @@ const LatestUpdates = ({ block, items = [] }) => {
           }
         }
       }
-      releases: allDatoCmsPressRelease(limit: 3, sort: { date: DESC }) {
-        edges {
-          node {
-            ...PressReleaseCard
-          }
-        }
-      }
     }
   `);
 
-  const itemsSorted = [...latestsPosts.allDatoCmsPost.edges, ...latestsPosts.releases.edges]
-    .sort((a, b) => {
-      const dateA = new Date(a.node.date);
-      const dateB = new Date(b.node.date);
-
-      return dateB - dateA;
-    })
-    .slice(0, 3);
+  const itemsSorted = [...latestsPosts.allDatoCmsPost.edges];
 
   const customItems = Array.isArray(items) && items.length > 0;
   const finalItems = customItems ? items : itemsSorted;

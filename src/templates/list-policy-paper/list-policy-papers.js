@@ -404,6 +404,12 @@ export const ListPositionsQuery = graphql`
                   apiKey
                 }
               }
+              ... on DatoCmsTagNews {
+                slug
+                model {
+                  apiKey
+                }
+              }
               ... on DatoCmsListNews {
                 slug
                 model {
@@ -448,6 +454,12 @@ export const ListPositionsQuery = graphql`
               position
               content {
                 ... on DatoCmsPage {
+                  slug
+                  model {
+                    apiKey
+                  }
+                }
+                ... on DatoCmsTagNews {
                   slug
                   model {
                     apiKey
