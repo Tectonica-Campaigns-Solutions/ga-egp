@@ -54,6 +54,8 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         'facebook',
         'linkedin',
         'twitter',
+        'instagram',
+        'youtube',
         'member_party_main_email',
         'egp_membership_status',
         'website',
@@ -127,6 +129,14 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
         {
           url: company.properties?.linkedin,
           socialNetwork: 'linkedin',
+        },
+        {
+          url: company.properties?.instagram,
+          socialNetwork: 'instagram',
+        },
+        {
+          url: company.properties?.youtube,
+          socialNetwork: 'youtube',
         },
       ],
       contact: {

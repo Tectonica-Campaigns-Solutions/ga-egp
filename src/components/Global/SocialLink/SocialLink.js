@@ -6,6 +6,7 @@ import iconFacebook from '../../Icons/icon_facebook.svg';
 import iconFlickr from '../../Icons/icon_flickr.svg';
 import iconIg from '../../Icons/icon_ig.svg';
 import iconTikTok from '../../Icons/icon_tiktok.svg';
+import iconYoutube from '../../Icons/youtube-icon.svg';
 
 import './index.scss';
 
@@ -16,11 +17,13 @@ const SocialMap = {
   instagram: iconIg,
   flickr: iconFlickr,
   tiktok: iconTikTok,
+  youtube: iconYoutube,
 };
 
 const SocialLink = ({ name, url, title = '', iconWhite = false, smallIcons = false }) => {
   const socialImg = SocialMap[name];
-  let finalUrl = url
+  let finalUrl = url;
+
   // if(name == 'twitter'){
   //   finalUrl = `https://twitter.com/${url}`
   // }else{
