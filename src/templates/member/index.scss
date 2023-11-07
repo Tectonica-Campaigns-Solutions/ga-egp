@@ -121,11 +121,15 @@
       border-top: 1px solid hsla(240, 1%, 52%, 0.2);
     }
 
-    .image-wrapper {
-      &>div {
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 15px;
-      }
+    .col-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .links-right {
@@ -155,6 +159,16 @@
   .color-associatemember {
     background-color: #4D4845;
     color: white
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .member-detail {
+    .content-member {
+      .col-image {
+        padding: 1rem;
+      }
+    }
   }
 }
 
@@ -208,12 +222,9 @@
 
       .col-image {
         img {
-          box-shadow: 0 0 10px #ccc;
-          padding: 10px;
-          max-width: 70%;
+          width: 100%;
         }
       }
-
 
       .party-main-header {
         gap: 10px;

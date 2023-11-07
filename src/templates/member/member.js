@@ -90,7 +90,9 @@ function Member({ pageContext, location, data: { page, members, breadcrumb, favi
               const item = el.node;
               return (
                 <div className="row mb-5 pb-0 pb-md-5" key={item.id}>
-                  <div className="col-lg-3 col-image">{item.logo && <img src={item.logo} />}</div>
+                  <div className="col-lg-3 col-7">
+                    <div className="col-image">{item.logo && <img src={item.logo} />}</div>
+                  </div>
 
                   <div className="col-lg-8 offset-lg-1 mt-4 mt-lg-0">
                     <div className="party-main-header">
