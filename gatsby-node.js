@@ -113,10 +113,14 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     }
 
     //create node for build time of member parties from hubspot
+
+    // hotfix
+    const isMoldova = company.properties?.country ? company.properties?.country === 'Moldova' : '';
+
     createNode({
       title: company.properties?.member_party_name,
       logo: company.properties?.logo ? company.properties?.logo : '',
-      iso_code: countries.getAlpha2Code(company.properties?.country, 'en'),
+      iso_code: isMoldova ? 'MD' : countries.getAlpha2Code(company.properties?.country, 'en'),
       social: [
         {
           url: company.properties?.facebook,
