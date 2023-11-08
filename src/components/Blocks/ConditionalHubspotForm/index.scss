@@ -1,9 +1,9 @@
+.conditional-form {
+  // background-color: rgba(87, 180, 95, 0.05);
 
-.conditional-form{
-   background-color: rgba(87, 180, 95, 0.05);
   input[type=text],
   input[type=email],
-  input[type=tel]{
+  input[type=tel] {
     height: 100%;
     width: 100%;
     padding: 17px 20px 17px 10px;
@@ -11,12 +11,16 @@
     background: #F8F9FB;
     border-radius: 8px;
   }
-    .hs-fieldtype-text, .hs-fieldtype-phonenumber, .hs-fieldtype-select{
-    label{
+
+  .hs-fieldtype-text,
+  .hs-fieldtype-phonenumber,
+  .hs-fieldtype-select {
+    label {
       font-weight: bold;
-      padding-bottom:5px;
+      padding-bottom: 5px;
     }
   }
+
   input[type=submit] {
     padding: 13px 20px;
     background-color: var(--egp-green);
@@ -27,25 +31,33 @@
     transition: all 0.3s;
     font-size: 20px;
   }
-  form > div{
-    margin-bottom:15px;
-  }
-  input[name="form_member_party"]{
-    display:none!important;
-  }
-  .legal-consent-container{
-    .inputs-list{
-      padding-left:0;
-    }
-  }
-  .hs-error-msgs{
 
-      padding-left:0;
-    
-    label{
-      color:red;
-      font-weight: normal;
-      font-size:14px;
+  form>div {
+    margin-bottom: 15px;
+  }
+
+  input[name="form_member_party"] {
+    display: none !important;
+  }
+
+  .legal-consent-container {
+    .inputs-list {
+      padding-left: 0;
     }
+  }
+
+  .hs-error-msgs {
+    padding-left: 0;
+
+    label {
+      color: red;
+      font-weight: normal;
+      font-size: 14px;
+    }
+  }
+
+  .hb-form-container-custom {
+    max-width: 850px;
+    margin: 0 auto;
   }
 }

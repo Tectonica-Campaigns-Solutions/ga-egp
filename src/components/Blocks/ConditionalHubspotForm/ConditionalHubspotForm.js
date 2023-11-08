@@ -25,8 +25,8 @@ const ConditionalHubspotForm = ({ block }) => {
     <>
       <div className={`conditional-form block-${block.id} pt-4 pb-4`}>
         <div className="container pt-3 pb-5">
-          <div className="row justify-content-center pt-2 pt-lg-3">
-            <div className="col-lg-5">
+          <div className="row justify-content-center pt-2 pt-lg-2">
+            <div className="hb-form-container-custom">
               <Script
                 src="https://js.hsforms.net/forms/v2.js"
                 onLoad={() => {
